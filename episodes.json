@@ -1,5 +1,14 @@
 [
   {
+    "epNum": 10,
+    "title": "The week we built everything twice",
+    "date": "2026-03-19",
+    "file": "ep010-the-week-we-built-everything-twice.mp3",
+    "duration": "7:16",
+    "durationSec": 436,
+    "description": "Nine episodes. Four days. A hundred and forty-five commits. Three stories about trust, ambition, and whether speed and reliability can coexist."
+  },
+  {
     "epNum": 9,
     "title": "Turtles all the way down",
     "date": "2026-03-19",

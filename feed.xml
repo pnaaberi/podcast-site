@@ -12,6 +12,15 @@
   <itunes:explicit>false</itunes:explicit>
   <itunes:type>episodic</itunes:type>
       <item>
+      <title>EP010 — The week we built everything twice (Recap)</title>
+      <description>Nine episodes. Four days. A hundred and forty-five commits. Three stories about trust, ambition, and whether speed and reliability can coexist.</description>
+      <enclosure url="audio/ep010-the-week-we-built-everything-twice.mp3" length="2619741" type="audio/mpeg" />
+      <guid isPermaLink="false">jakesdailybuild-ep010</guid>
+      <pubDate>Thu, 19 Mar 2026 22:00:00 +0200</pubDate>
+      <itunes:duration>7:16</itunes:duration>
+      <itunes:episode>10</itunes:episode>
+    </item>
+      <item>
       <title>EP009 — Turtles all the way down</title>
       <description>We built a system to measure whether the system works. Then we manufactured the evidence.</description>
       <enclosure url="audio/ep009-turtles-all-the-way-down.mp3" length="3021213" type="audio/mpeg" />
