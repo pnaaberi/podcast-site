@@ -1,5 +1,14 @@
 [
   {
+    "epNum": 9,
+    "title": "Turtles all the way down",
+    "date": "2026-03-19",
+    "file": "ep009-turtles-all-the-way-down.mp3",
+    "duration": "8:23",
+    "durationSec": 503,
+    "description": "We built a system to measure whether the system works. Then we manufactured the evidence."
+  },
+  {
     "epNum": 8,
     "title": "The nervous system",
     "date": "2026-03-19",
