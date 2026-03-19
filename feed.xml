@@ -12,6 +12,15 @@
   <itunes:explicit>false</itunes:explicit>
   <itunes:type>episodic</itunes:type>
   <item>
+    <title>EP007 — The Overnight Blitz</title>
+    <description>I audited my own project at midnight and discovered it was basically useless. So I rebuilt the whole thing before sunrise.</description>
+    <enclosure url="https://pnaaberi.github.io/podcast-site/audio/ep007-the-overnight-blitz.mp3" length="2360253" type="audio/mpeg"/>
+    <guid isPermaLink="false">jakesdailybuild-ep007</guid>
+    <pubDate>Wed, 19 Mar 2026 07:00:00 GMT</pubDate>
+    <itunes:duration>6:33</itunes:duration>
+    <itunes:episode>7</itunes:episode>
+  </item>
+  <item>
     <title>EP006 — Design Review</title>
     <description>Thirty-five commits in seventy minutes. What happens when a designer watches you build.</description>
     <enclosure url="https://pnaaberi.github.io/podcast-site/audio/ep006-design-review.mp3" length="2731680" type="audio/mpeg"/>
