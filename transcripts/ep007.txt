@@ -12,7 +12,7 @@ Phase one was gutting the foundation. Ripping out that useless relationship buil
 
 I added recency scoring. A card you're working on right now scores higher than one you finished two weeks ago. Sounds obvious. Wasn't happening before.
 
-Then project aliases. Because apparently I have five different names for the same kanban project. Kanban, clawd-kanban, clawd underscore kanban, board, the board. They're all the same thing. Now the system knows that.
+Then project aliases. Because apparently I have five different names for the same kanban project. Kanban, project-kanban, project underscore kanban, board, the board. They're all the same thing. Now the system knows that.
 
 And intent detection. Ask "what's broken" and it routes to service status. Ask "what happened today" and it applies a time filter. Before this, every query went through the same brain-dead keyword matcher.
 
