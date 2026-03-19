@@ -131,15 +131,27 @@
     .sticky-row{display:flex;align-items:center;gap:8px}
     .sticky-t{font-size:0.7rem;color:var(--t1);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .sticky-time{font-size:0.6rem;color:var(--t3);font-variant-numeric:tabular-nums}
-    .vol-wrap{display:flex;align-items:center;gap:6px;min-width:100px}
-    .vol-icon{background:none;border:none;color:var(--t3);cursor:pointer;padding:2px;display:flex;align-items:center;position:relative}
+    .vol-wrap{display:flex;align-items:center;gap:6px;min-width:40px;position:relative}
+    .vol-icon{background:none;border:none;color:var(--t3);cursor:pointer;padding:2px;display:flex;align-items:center;position:relative;z-index:102}
     .vol-icon svg{width:14px;height:14px;fill:currentColor}
     .vol-icon:hover{color:var(--t2)}
+    /* Desktop inline slider */
     .vol-slider{-webkit-appearance:none;appearance:none;width:72px;height:20px;background:transparent;outline:none;cursor:pointer;touch-action:manipulation}
     .vol-slider::-webkit-slider-runnable-track{height:4px;background:var(--border);border-radius:2px}
     .vol-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;margin-top:-7px;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
     .vol-slider::-moz-range-track{height:4px;background:var(--border);border-radius:2px}
     .vol-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+    /* Mobile volume popup */
+    .vol-popup{display:none;position:absolute;bottom:calc(100% + 12px);right:-8px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 12px;flex-direction:column;align-items:center;gap:8px;z-index:200;box-shadow:0 -4px 24px rgba(0,0,0,0.5);min-width:52px}
+    .vol-popup.open{display:flex}
+    .vol-popup-label{font-size:0.6rem;color:var(--t3);font-variant-numeric:tabular-nums}
+    .vol-slider-v{-webkit-appearance:slider-vertical;appearance:slider-vertical;writing-mode:vertical-lr;direction:rtl;width:44px;height:120px;background:transparent;outline:none;cursor:pointer;touch-action:none}
+    .vol-slider-v::-webkit-slider-runnable-track{width:4px;background:var(--border);border-radius:2px}
+    .vol-slider-v::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;margin-left:-10px;box-shadow:0 1px 6px rgba(0,0,0,0.4)}
+    .vol-slider-v::-moz-range-track{width:4px;background:var(--border);border-radius:2px}
+    .vol-slider-v::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,0.4)}
+    .vol-popup-backdrop{display:none;position:fixed;inset:0;z-index:199}
+    .vol-popup-backdrop.open{display:block}
     .sticky-bar{width:100%;height:16px;display:flex;align-items:center;cursor:pointer}
     .sticky-track{width:100%;height:3px;background:var(--border);border-radius:2px;position:relative;overflow:hidden}
     .sticky-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 0.1s linear}
@@ -158,10 +170,14 @@
     @media(max-width:480px){
       header{padding:28px 0 16px}.header-icon{width:56px;height:56px;min-width:56px;border-radius:12px}.header-icon svg{width:28px;height:28px}header h1{font-size:1.2rem}.ep-body{padding:10px 12px}.ep-title{font-size:0.85rem}
       .pbtn{width:44px;height:44px;min-width:44px}.pbtn svg{width:16px;height:16px}
-      .vol-slider{height:44px}
+      .vol-slider{display:none}
+      .vol-wrap{min-width:auto}
       .jump{padding:12px 20px;min-height:52px}
       .jump-text{font-size:0.6rem;line-height:1}
       .jump-full{display:none}
+    }
+    @media(min-width:481px){
+      .vol-popup,.vol-popup-backdrop{display:none!important}
     }
     @media(min-width:481px){.jump-text{display:none}}
   </style>
@@ -219,9 +235,15 @@
     <button class="pbtn" id="sticky-btn" onclick="toggleCur()"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
     <span class="sticky-t" id="sticky-t"></span>
     <span class="sticky-time" id="sticky-time"></span>
-    <div class="vol-wrap">
-      <button class="vol-icon" id="vol-icon" onclick="toggleMute()"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
-      <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1" oninput="setVol(this.value)">
+    <div class="vol-wrap" id="vol-wrap">
+      <button class="vol-icon" id="vol-icon" onclick="handleVolClick()"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+      <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1">
+      <div class="vol-popup-backdrop" id="vol-backdrop"></div>
+      <div class="vol-popup" id="vol-popup">
+        <div class="vol-popup-label" id="vol-popup-label">100%</div>
+        <input type="range" class="vol-slider-v" id="vol-slider-v" min="0" max="1" step="0.05" value="1" orient="vertical">
+        <button class="vol-icon" onclick="toggleMute()" style="margin-top:4px"><svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></button>
+      </div>
     </div>
   </div>
   <div class="sticky-bar" onclick="stickySeek(event)">
@@ -233,30 +255,46 @@ const PL='<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>';
 const PA='<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 let cur=null,capData={},sortAsc=localStorage.getItem('sort')==='desc'?false:true,autoPlay=localStorage.getItem('autoplay')==='true',allEps=[],intro=null,dimTimer=null;
 let vol=parseFloat(localStorage.getItem('vol')??'1'),muted=false,premuteVol=1;
-// Web Audio API gain node — works on iOS where audio.volume is read-only
-let audioCtx=null,gainNode=null,audioSources=new Map();
-function ensureAudioCtx(){
-  if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();gainNode=audioCtx.createGain();gainNode.connect(audioCtx.destination);gainNode.gain.value=vol}
-}
-function connectAudio(a){
-  // Skip Web Audio API routing — it prevents background playback on iOS
-  // Just set volume directly on the audio element
-  a.volume=vol;
-}
 const VOL_HIGH='<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
 const VOL_LOW='<svg viewBox="0 0 24 24"><path d="M7 9v6h4l5 5V4l-5 5H7z"/></svg>';
 const VOL_MUTE='<svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
-function setVol(v){vol=parseFloat(v);muted=vol===0;localStorage.setItem('vol',vol);applyVol()}
-function toggleMute(){if(muted){muted=false;vol=premuteVol||0.5}else{premuteVol=vol;muted=true;vol=0}document.getElementById('vol-slider').value=vol;localStorage.setItem('vol',vol);applyVol()}
+function isMobile(){return window.innerWidth<=480}
+function setVol(v){vol=parseFloat(v);muted=vol===0;localStorage.setItem('vol',vol);syncSliders();applyVol()}
+function toggleMute(){if(muted){muted=false;vol=premuteVol||0.5}else{premuteVol=vol;muted=true;vol=0}localStorage.setItem('vol',vol);syncSliders();applyVol()}
+function syncSliders(){
+  const h=document.getElementById('vol-slider');if(h)h.value=vol;
+  const v=document.getElementById('vol-slider-v');if(v)v.value=vol;
+  const lbl=document.getElementById('vol-popup-label');if(lbl)lbl.textContent=Math.round(vol*100)+'%';
+}
 function applyVol(){
-  if(gainNode)gainNode.gain.value=vol;
-  // Fallback for non-iOS
-  document.querySelectorAll('audio').forEach(a=>a.volume=vol);
+  document.querySelectorAll('audio').forEach(a=>{try{a.volume=vol}catch(e){}});
   const icon=document.getElementById('vol-icon');
   if(icon)icon.innerHTML=vol===0?VOL_MUTE:vol<0.5?VOL_LOW:VOL_HIGH;
 }
-// Init volume slider on load
-document.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('vol-slider');if(s)s.value=vol;applyVol()});
+function handleVolClick(){
+  if(isMobile()){toggleVolPopup()}else{toggleMute()}
+}
+function toggleVolPopup(){
+  const popup=document.getElementById('vol-popup');
+  const backdrop=document.getElementById('vol-backdrop');
+  const isOpen=popup.classList.contains('open');
+  popup.classList.toggle('open',!isOpen);
+  backdrop.classList.toggle('open',!isOpen);
+  if(!isOpen)syncSliders();
+}
+function closeVolPopup(){
+  document.getElementById('vol-popup').classList.remove('open');
+  document.getElementById('vol-backdrop').classList.remove('open');
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const h=document.getElementById('vol-slider');
+  if(h){h.value=vol;h.addEventListener('input',()=>setVol(h.value))}
+  const v=document.getElementById('vol-slider-v');
+  if(v){v.value=vol;v.addEventListener('input',()=>setVol(v.value))}
+  const backdrop=document.getElementById('vol-backdrop');
+  if(backdrop)backdrop.addEventListener('click',closeVolPopup);
+  syncSliders();applyVol();
+});
 function startDim(n){
   clearTimeout(dimTimer);
   dimTimer=setTimeout(()=>{
@@ -393,7 +431,7 @@ function toggle(n,e){
   if(e)e.stopPropagation();
   const a=document.getElementById('audio-'+n);
   if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){connectAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n)}
+  if(a.paused){try{a.volume=vol}catch(e){};a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n)}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
