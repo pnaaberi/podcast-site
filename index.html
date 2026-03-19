@@ -258,9 +258,12 @@ const PL='<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>';
 const PA='<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 let cur=null,capData={},sortAsc=localStorage.getItem('sort')==='desc'?false:true,autoPlay=localStorage.getItem('autoplay')==='true',allEps=[],intro=null,dimTimer=null;
 let vol=parseFloat(localStorage.getItem('vol')??'1'),muted=false,premuteVol=1;
-// Detect iOS — audio.volume is read-only there, need Web Audio GainNode
-const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||
-  (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+// Detect read-only volume (iOS WebKit — all browsers) at runtime
+let isVolReadOnly=false;
+(function detectVolRO(){
+  const t=new Audio();t.volume=0.5;
+  isVolReadOnly=(t.volume!==0.5);
+})();
 let audioCtx=null,gainNode=null;
 const audioSources=new Map();
 function ensureGain(){
@@ -272,7 +275,7 @@ function ensureGain(){
   gainNode.gain.value=vol;
 }
 function routeAudio(a){
-  if(!isIOS)return; // non-iOS: audio.volume works, skip Web Audio
+  if(!isVolReadOnly)return; // audio.volume works, skip Web Audio
   if(audioSources.has(a))return;
   ensureGain();
   try{
