@@ -71,7 +71,7 @@
 
     /* Episodes */
     .episodes{display:flex;flex-direction:column;gap:8px;padding-bottom:24px}
-    .ep{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;transition:border-color 0.2s,transform 0.15s;cursor:pointer;animation:fade-border 5s ease forwards}
+    .ep{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;transition:border-color 0.2s,transform 0.15s;cursor:pointer;animation:fade-border 5s ease forwards;overflow:hidden}
     @keyframes fade-border{0%,60%{border-color:var(--border)}100%{border-color:transparent}}
     .ep.playing{animation:none}
     .ep-row{display:flex;gap:12px;align-items:flex-start}
