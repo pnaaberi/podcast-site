@@ -31,6 +31,31 @@
 • Usage jumped from 13 to 31 API calls in a single session just from the build process
 • The ontology went from a showcase project to actual infrastructure
 
+## Topic 2: The timezone bugs that stack
+
+### The setup
+• Calendar app — drag events to reschedule, hour labels down the side
+• Two bugs that looked unrelated but shared the same root cause
+
+### Bug 1: The drifting labels
+• Hour labels in day/week view used negative margin (`-mt-2`) for visual alignment
+• Each label pushed the next one 8 pixels higher — cumulative
+• By 4 PM, labels were 128 pixels off — nearly 2 hours of visual drift
+• Events were positioned correctly but labels were wrong, so everything looked misplaced
+• Fix: switched to absolute positioning — each label independent, no cascade
+
+### Bug 2: Drag saves wrong time
+• Drag an event to 7 PM Helsinki → it saves as 5 PM
+• `toISOString()` converts to UTC silently — the classic JavaScript timezone trap
+• Every tutorial uses `toISOString()`, every timezone-aware app gets burned by it
+• Fix: wrote a `toLocalISO()` helper that preserves the local timezone offset
+
+### The pattern
+• Both bugs were timezone-related at their core
+• Label drift was present since the calendar was first built — just got worse later in the day
+• The lesson: never use `toISOString()` for local time display or storage
+• JavaScript date handling is a minefield — every project hits this eventually
+
 ### Broader pattern
 • This is the vibe coding trap: building impressive things that don't connect to workflows
 • The dashboard, the kanban, the ontology — all built separately, integrated later
