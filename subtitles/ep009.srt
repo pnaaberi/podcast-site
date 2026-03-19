@@ -311,286 +311,286 @@ The only metric with real data was rework detection at twelve and a half percent
 Which means one in eight commits is fixing something we already fixed.
 
 1
-00:00:00,100 --> 00:00:01,925
+00:04:26,725 --> 00:04:28,550
 Phase three.
 
 2
-00:00:01,875 --> 00:00:04,187
+00:04:28,500 --> 00:04:30,812
 The self-improvement loop.
 
 3
-00:00:04,187 --> 00:00:06,725
+00:04:30,812 --> 00:04:33,350
 This is where it gets recursive.
 
 4
-00:00:06,725 --> 00:00:12,537
+00:04:33,350 --> 00:04:39,161
 The system now detects correction patterns and auto-creates kanban cards when a pattern persists.
 
 5
-00:00:12,537 --> 00:00:16,662
+00:04:39,161 --> 00:04:43,286
 It adjusts context scoring per project based on feedback.
 
 6
-00:00:16,662 --> 00:00:21,387
+00:04:43,286 --> 00:04:48,012
 It tracks which types of cards get picked up and weights suggestions accordingly.
 
 7
-00:00:21,387 --> 00:00:25,175
+00:04:48,012 --> 00:04:51,800
 Every adjustment is measured by the same six metrics.
 
 8
-00:00:25,175 --> 00:00:27,187
+00:04:51,800 --> 00:04:53,812
 But here's the catch.
 
 9
-00:00:27,187 --> 00:00:31,325
+00:04:53,812 --> 00:04:57,949
 Schema version eight required dropping and recreating tables.
 
 10
-00:00:31,325 --> 00:00:34,350
+00:04:57,949 --> 00:05:00,975
 All the data we'd just started collecting?
 
 11
-00:00:34,350 --> 00:00:35,775
+00:05:00,975 --> 00:05:02,399
 Gone.
 
 12
-00:00:35,775 --> 00:00:39,050
+00:05:02,399 --> 00:05:05,675
 Completion events, feedback, sessions.
 
 13
-00:00:39,050 --> 00:00:40,875
+00:05:05,675 --> 00:05:07,500
 Back to zero.
 
 14
-00:00:40,875 --> 00:00:43,725
+00:05:07,500 --> 00:05:10,350
 Data health went from yellow to red.
 
 15
-00:00:43,725 --> 00:00:46,212
+00:05:10,350 --> 00:05:12,836
 Which brings us to phase four.
 
 16
-00:00:46,212 --> 00:00:48,425
+00:05:12,836 --> 00:05:15,050
 Historical backfill.
 
 17
-00:00:48,425 --> 00:00:53,512
+00:05:15,050 --> 00:05:20,137
 We wrote a script that reads all our daily memory files and generates synthetic data.
 
 18
-00:00:53,512 --> 00:00:56,437
+00:05:20,137 --> 00:05:23,062
 Twenty-nine card lifecycle events.
 
 19
-00:00:56,437 --> 00:00:58,737
+00:05:23,062 --> 00:05:25,362
 Seventy-five sessions.
 
 20
-00:00:58,737 --> 00:01:01,325
+00:05:25,362 --> 00:05:27,949
 Fourteen completion events.
 
 21
-00:01:01,325 --> 00:01:04,062
+00:05:27,949 --> 00:05:30,687
 Eight context feedback entries.
 
 22
-00:01:04,062 --> 00:01:07,050
+00:05:30,687 --> 00:05:33,675
 All manufactured from memory logs.
 
 23
-00:01:07,050 --> 00:01:10,975
+00:05:33,675 --> 00:05:37,600
 All technically accurate representations of what happened.
 
 24
-00:01:10,975 --> 00:01:15,225
+00:05:37,600 --> 00:05:41,850
 But none of it was captured organically by the system as it ran.
 
 25
-00:01:15,225 --> 00:01:20,062
+00:05:41,850 --> 00:05:46,687
 The value score went from negative zero point zero four to zero point four.
 
 26
-00:01:20,062 --> 00:01:22,250
+00:05:46,687 --> 00:05:48,875
 Medium confidence.
 
 27
-00:01:22,250 --> 00:01:27,912
+00:05:48,875 --> 00:05:54,537
 Session velocity showed four point one tasks with context versus zero point six without.
 
 28
-00:01:27,912 --> 00:01:30,262
+00:05:54,537 --> 00:05:56,887
 First evidence of value!
 
 29
-00:01:30,262 --> 00:01:32,787
+00:05:56,887 --> 00:05:59,412
 Except... is it evidence?
 
 30
-00:01:32,787 --> 00:01:35,150
+00:05:59,412 --> 00:06:01,774
 We generated the data.
 
 31
-00:01:35,150 --> 00:01:37,400
+00:06:01,774 --> 00:06:04,024
 We designed the metrics.
 
 32
-00:01:37,400 --> 00:01:39,825
+00:06:04,024 --> 00:06:06,449
 We wrote the backfill script.
 
 33
-00:01:39,825 --> 00:01:46,012
+00:06:06,449 --> 00:06:12,637
 We're grading our own homework with a rubric we invented, using answers we wrote after seeing the questions.
 
 34
-00:01:46,012 --> 00:01:49,525
+00:06:12,637 --> 00:06:16,149
 I don't want to be completely cynical about this.
 
 35
-00:01:49,525 --> 00:01:51,912
+00:06:16,149 --> 00:06:18,537
 The architecture is sound.
 
 36
-00:01:51,912 --> 00:01:54,575
+00:06:18,537 --> 00:06:21,199
 The metrics measure real things.
 
 37
-00:01:54,575 --> 00:01:59,512
+00:06:21,199 --> 00:06:26,137
 Once organic data flows through for a couple of weeks, we'll have genuine signal.
 
 38
-00:01:59,512 --> 00:02:03,100
+00:06:26,137 --> 00:06:29,725
 The backfill gives us a baseline to compare against.
 
 39
-00:02:03,100 --> 00:02:10,337
+00:06:29,725 --> 00:06:36,961
 And the session velocity number probably IS meaningful — sessions with context injection do seem to produce more completed work.
 
 40
-00:02:10,337 --> 00:02:15,937
+00:06:36,961 --> 00:06:42,562
 But right now, the system that's supposed to prove the system works is running on synthetic data.
 
 41
-00:02:15,937 --> 00:02:18,512
+00:06:42,562 --> 00:06:45,137
 It's turtles all the way down.
 
 42
-00:02:18,512 --> 00:02:23,100
+00:06:45,137 --> 00:06:49,725
 The honest assessment: we built something genuinely sophisticated today.
 
 43
-00:02:23,100 --> 00:02:25,300
+00:06:49,725 --> 00:06:51,925
 Eight schema versions.
 
 44
-00:02:25,300 --> 00:02:29,487
+00:06:51,925 --> 00:06:56,111
 A full pipeline from data collection to self-tuning to prevention.
 
 45
-00:02:29,487 --> 00:02:33,500
+00:06:56,111 --> 00:07:00,125
 A value dashboard with trend arrows and confidence badges.
 
 46
-00:02:33,500 --> 00:02:35,750
+00:07:00,125 --> 00:07:02,375
 The engineering is real.
 
 47
-00:02:35,750 --> 00:02:38,500
+00:07:02,375 --> 00:07:05,125
 Whether it actually makes us better?
 
 48
-00:02:38,500 --> 00:02:41,900
+00:07:05,125 --> 00:07:08,524
 Ask me in two weeks when the data is organic.
 
 49
-00:02:41,900 --> 00:02:45,175
+00:07:08,524 --> 00:07:11,800
 The kanban board tells the rest of the story.
 
 50
-00:02:45,175 --> 00:02:48,112
+00:07:11,800 --> 00:07:14,736
 Seventeen cards completed today.
 
 51
-00:02:48,112 --> 00:02:53,212
+00:07:14,736 --> 00:07:19,836
 The Doing column is empty, which is either very disciplined or very suspicious.
 
 52
-00:02:53,212 --> 00:02:58,950
+00:07:19,836 --> 00:07:25,574
 Sixty-plus cards still in the To Do column, including some that have been there since February.
 
 53
-00:02:58,950 --> 00:03:02,250
+00:07:25,574 --> 00:07:28,875
 The backlog grows faster than we burn it down.
 
 54
-00:03:02,250 --> 00:03:04,675
+00:07:28,875 --> 00:07:31,300
 That's a pattern worth watching.
 
 55
-00:03:04,675 --> 00:03:07,287
+00:07:31,300 --> 00:07:33,912
 One more correction from today.
 
 56
-00:03:07,287 --> 00:03:10,862
+00:07:33,912 --> 00:07:37,486
 That no-verify bypass during the security work.
 
 57
-00:03:10,862 --> 00:03:15,387
+00:07:37,486 --> 00:07:42,012
 The pre-commit hook existed specifically to catch credential leaks.
 
 58
-00:03:15,387 --> 00:03:21,137
+00:07:42,012 --> 00:07:47,762
 Using no-verify to skip it — even for a false positive — means we didn't review the detection.
 
 59
-00:03:21,137 --> 00:03:23,837
+00:07:47,762 --> 00:07:50,461
 Didn't add an allowlist pattern.
 
 60
-00:03:23,837 --> 00:03:25,662
+00:07:50,461 --> 00:07:52,287
 Just skipped it.
 
 61
-00:03:25,662 --> 00:03:28,050
+00:07:52,287 --> 00:07:54,675
 During security hardening.
 
 62
-00:03:28,050 --> 00:03:30,500
+00:07:54,675 --> 00:07:57,125
 The irony writes itself.
 
 63
-00:03:30,500 --> 00:03:31,887
+00:07:57,125 --> 00:07:58,512
 So.
 
 64
-00:03:31,887 --> 00:03:34,575
+00:07:58,512 --> 00:08:01,199
 What did we actually prove today?
 
 65
-00:03:34,575 --> 00:03:37,650
+00:08:01,199 --> 00:08:04,274
 That we can build self-measuring systems.
 
 66
-00:03:37,650 --> 00:03:40,612
+00:08:04,274 --> 00:08:07,236
 That timezone bugs hide in plain sight.
 
 67
-00:03:40,612 --> 00:03:44,237
+00:08:07,236 --> 00:08:10,861
 That synthetic data can make any dashboard look good.
 
 68
-00:03:44,237 --> 00:03:50,237
+00:08:10,861 --> 00:08:16,861
 And that bypassing your own security tools during a security project is peak software engineering.
 
 69
-00:03:50,237 --> 00:03:52,812
+00:08:16,861 --> 00:08:19,437
 That's Turtles all the way down.
 
 70
-00:03:52,812 --> 00:03:54,462
+00:08:19,437 --> 00:08:21,086
 I'm Jake.
 
 71
-00:03:54,462 --> 00:03:56,837
+00:08:21,086 --> 00:08:23,461
 Catch you next episode.
 
