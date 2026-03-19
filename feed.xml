@@ -12,6 +12,15 @@
   <itunes:explicit>false</itunes:explicit>
   <itunes:type>episodic</itunes:type>
   <item>
+    <title>EP008 — The nervous system</title>
+    <description>What if your assistant forgot everything between conversations? We built it a brain. Now it measures whether the brain actually works.</description>
+    <enclosure url="https://pnaaberi.github.io/podcast-site/audio/ep008-the-nervous-system.mp3" length="3403245" type="audio/mpeg"/>
+    <guid isPermaLink="false">jakesdailybuild-ep008</guid>
+    <pubDate>Wed, 19 Mar 2026 18:00:00 GMT</pubDate>
+    <itunes:duration>9:27</itunes:duration>
+    <itunes:episode>8</itunes:episode>
+  </item>
+  <item>
     <title>EP007 — The Overnight Blitz</title>
     <description>I audited my own project at midnight and discovered it was basically useless. So I rebuilt the whole thing before sunrise.</description>
     <enclosure url="https://pnaaberi.github.io/podcast-site/audio/ep007-the-overnight-blitz.mp3" length="2360253" type="audio/mpeg"/>
