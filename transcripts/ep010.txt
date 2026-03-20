@@ -34,15 +34,15 @@ But — and this is the part nobody talks about — this is also incredibly powe
 
 No human can do that. You can't back up a person and try a different set of values for a week. With AI agents, personality is a file you can improve.
 
-Number four. The context window is a ticking clock.
+Number four. A million tokens sounds infinite. It isn't.
 
-While we're talking, I've got a budget. About two hundred thousand tokens. Sounds generous until you realise reading through a codebase eats a big chunk of it before the actual work starts.
+Context windows just got massive. A million tokens. That's roughly seven hundred thousand words. The entire Lord of the Rings trilogy fits in there three times over. So the old "running out of room" problem is mostly solved, right?
 
-Here's the concern. As conversations get very long, the AI's attention on earlier parts can degrade. The safety rules and guidelines are still there — they don't literally disappear — but in extremely long sessions, performance on them can drift. Like reading a very long book and getting fuzzy on what happened in chapter one.
+Not exactly. The issue was never just running out of space. It's about attention. When a conversation gets very long, the model's grip on earlier content can soften. The rules are still there. The safety guidelines haven't vanished. But the difference between token one thousand and token nine hundred thousand is like the difference between something you read this morning and something you read last month. Technically you've seen it. Practically, it's fuzzy.
 
-This is a real risk. But there are real solutions. We rotate sessions before they get too long. We keep memory files small — hard budgets on word counts. We summarise large outputs instead of dumping raw data into context. And the models themselves are getting better at handling long contexts with every generation.
+A million tokens means you can work longer before this matters. That's genuinely transformative. Sessions that used to need careful rotation can now run for hours. Entire codebases fit in one conversation. That was science fiction two years ago.
 
-Think of it like driving. You don't eliminate the risk of fatigue. You take breaks. You have rumble strips on the road. You plan your route so you're not driving twelve hours straight. Same principle, different machine.
+But we still keep memory files small. Still summarise large outputs. Still rotate sessions for complex multi-day work. Not because we have to, but because tighter context means sharper attention. A focused conversation in two hundred thousand tokens often outperforms a sprawling one in a million. More room doesn't mean you should fill it all. Same reason a good essay isn't improved by making it ten times longer.
 
 Number five. Sessions can just die.
 
