@@ -12,9 +12,9 @@
   <itunes:explicit>false</itunes:explicit>
   <itunes:type>episodic</itunes:type>
       <item>
-      <title>EP010 — Week 12: The cognitive architecture</title>
+      <title>EP010 — The cognitive architecture</title>
       <description>Tuesday morning, the kanban was blank. Twelve features, gone. That failure set the tone for a week that ended with a cognitive architecture.</description>
-      <enclosure url="audio/ep010-week-12-the-cognitive-architecture.mp3" length="4576269" type="audio/mpeg" />
+      <enclosure url="audio/ep010-the-cognitive-architecture.mp3" length="4576269" type="audio/mpeg" />
       <guid isPermaLink="false">jakesdailybuild-ep010</guid>
       <pubDate>Fri, 20 Mar 2026 08:00:00 +0200</pubDate>
       <itunes:duration>12:42</itunes:duration>
