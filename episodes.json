@@ -1,5 +1,14 @@
 [
   {
+    "epNum": 12,
+    "title": "The file that tells you who you are",
+    "date": "2026-03-21",
+    "file": "ep012-the-file-that-tells-you-who-you-are.mp3",
+    "duration": "7:11",
+    "durationSec": 431,
+    "description": "What happens when an AI agent rewrites its own identity document \u2014 not cosmetically, but by compiling five days of corrections into something honest."
+  },
+  {
     "epNum": 11,
     "title": "Five versions and a database diet",
     "date": "2026-03-20",
