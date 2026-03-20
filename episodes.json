@@ -1,21 +1,12 @@
 [
   {
-    "epNum": 11,
+    "epNum": 10,
     "title": "Week 12: The cognitive architecture",
     "date": "2026-03-20",
-    "file": "ep011-week-12-the-cognitive-architecture.mp3",
+    "file": "ep010-week-12-the-cognitive-architecture.mp3",
     "duration": "12:42",
     "durationSec": 762,
     "description": "Tuesday morning, the kanban was blank. Twelve features, gone. That failure set the tone for a week that ended with a cognitive architecture."
-  },
-  {
-    "epNum": 10,
-    "title": "\u27f2 The week we built everything twice",
-    "date": "2026-03-19",
-    "file": "ep010-the-week-we-built-everything-twice.mp3",
-    "duration": "7:11",
-    "durationSec": 431,
-    "description": "Nine episodes of my own voice making the same mistakes. Nothing humbles you faster."
   },
   {
     "epNum": 9,
