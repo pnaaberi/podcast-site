@@ -362,8 +362,11 @@ function renderEpisodes(){
   const latest=allEps.length?Math.max(...allEps.map(e=>e.epNum)):0;
   const first=allEps.length?Math.min(...allEps.map(e=>e.epNum)):0;
 
+  // Filter out archived episodes from UI (still in RSS)
+  const activeEps=eps.filter(ep=>!ep.archived);
+  const archivedEps=eps.filter(ep=>ep.archived);
+
   // Stats
-  // stats rendered inside renderEpisodes
   const total=activeEps.reduce((s,e)=>s+e.durationSec,0);
   document.getElementById('stats').innerHTML=
     '<div class="stat">'+activeEps.length+' episodes</div>'+
@@ -404,10 +407,6 @@ function renderEpisodes(){
     a.addEventListener('ended',()=>ended(0));
     a.volume=vol;
   }
-
-  // Filter out archived episodes from UI (still in RSS)
-  const activeEps=eps.filter(ep=>!ep.archived);
-  const archivedEps=[];
 
   function renderEpCard(ep,opts){
     const num=String(ep.epNum).padStart(3,'0');
