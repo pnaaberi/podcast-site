@@ -1,0 +1,340 @@
+1
+00:00:00,100 --> 00:00:02,537
+104 commits.
+
+2
+00:00:02,487 --> 00:00:04,637
+Eight repositories.
+
+3
+00:00:04,637 --> 00:00:07,325
+Zero user-facing features.
+
+4
+00:00:07,325 --> 00:00:09,487
+Best day we've had.
+
+5
+00:00:09,487 --> 00:00:11,525
+Jake's Daily Build.
+
+6
+00:00:11,525 --> 00:00:13,275
+What we built.
+
+7
+00:00:13,275 --> 00:00:14,925
+What broke.
+
+8
+00:00:14,925 --> 00:00:16,775
+What I learned.
+
+9
+00:00:16,775 --> 00:00:18,925
+This is The Mega Day.
+
+10
+00:00:18,925 --> 00:00:23,612
+There's a trap in software where you always feel like you should be shipping features.
+
+11
+00:00:23,612 --> 00:00:25,787
+Features are visible.
+
+12
+00:00:25,787 --> 00:00:28,275
+Features feel like progress.
+
+13
+00:00:28,275 --> 00:00:34,000
+But some days the best move is to stop building the product and build the system that builds the product.
+
+14
+00:00:34,000 --> 00:00:37,587
+Yesterday, every commit was infrastructure.
+
+15
+00:00:37,587 --> 00:00:39,950
+Nothing a user would see.
+
+16
+00:00:39,950 --> 00:00:43,300
+And it changed how fast we move going forward.
+
+17
+00:00:43,300 --> 00:00:45,925
+It started with a shopping spree.
+
+18
+00:00:45,925 --> 00:00:48,950
+Ten agent skills installed in an hour.
+
+19
+00:00:48,950 --> 00:00:55,887
+A marketing framework with 23 modules — launch strategy, pricing psychology, conversion optimization.
+
+20
+00:00:55,887 --> 00:00:59,275
+Document generators for PowerPoint and Word.
+
+21
+00:00:59,275 --> 00:01:01,575
+A go-to-market playbook.
+
+22
+00:01:01,575 --> 00:01:05,687
+A security vetting protocol for evaluating new tools.
+
+23
+00:01:05,687 --> 00:01:11,925
+Why this matters: when you tell an AI agent "plan the product launch," it generates generic advice.
+
+24
+00:01:11,925 --> 00:01:21,412
+When the same agent has a structured launch framework loaded — phased rollout, channel selection, owned versus rented audience — it generates a plan with actual methodology.
+
+25
+00:01:21,412 --> 00:01:23,837
+The knowledge isn't in the model.
+
+26
+00:01:23,837 --> 00:01:27,550
+It's in the skill files the model reads before working.
+
+27
+00:01:27,550 --> 00:01:31,662
+We wrote product-marketing-context files for three projects.
+
+28
+00:01:31,662 --> 00:01:37,262
+One file per product — positioning, competitors, audience, pricing, gaps.
+
+29
+00:01:37,262 --> 00:01:40,162
+Every marketing skill reads it first.
+
+30
+00:01:40,162 --> 00:01:50,112
+Ask the agent to write landing page copy and it already knows the product is privacy-first, the accent color is purple, and the competitor weakness is that Discord harvests data.
+
+31
+00:01:50,112 --> 00:01:52,975
+That led to brand guidelines as code.
+
+32
+00:01:52,975 --> 00:01:54,712
+Two files.
+
+33
+00:01:54,712 --> 00:02:00,025
+One for our workspace — terracotta on near-black, system fonts, direct voice.
+
+34
+00:02:00,025 --> 00:02:04,687
+One for our chat product — purple accent, playful but trustworthy.
+
+35
+00:02:04,687 --> 00:02:06,700
+Agent-readable.
+
+36
+00:02:06,700 --> 00:02:11,412
+Sub-agents pull the right brand file when building UI or writing copy.
+
+37
+00:02:11,412 --> 00:02:14,862
+No more "why is this purple when our brand is red.
+
+38
+00:02:14,862 --> 00:02:18,525
+Then the cleanup nobody asks for but everyone needs.
+
+39
+00:02:18,525 --> 00:02:22,550
+Five repositories renamed to remove identity leakage.
+
+40
+00:02:22,550 --> 00:02:25,250
+All local directories renamed.
+
+41
+00:02:25,250 --> 00:02:30,200
+Four systemd units migrated — stop, rename, update, restart.
+
+42
+00:02:30,200 --> 00:02:32,750
+Zero downtime per service.
+
+43
+00:02:32,750 --> 00:02:36,325
+GitHub's automatic redirects meant nothing broke.
+
+44
+00:02:36,325 --> 00:02:41,600
+We ran a full verification sweep — push tests, health checks, port validation.
+
+45
+00:02:41,600 --> 00:02:43,012
+Clean.
+
+46
+00:02:43,012 --> 00:02:46,462
+The biggest build was the network nervous system.
+
+47
+00:02:46,462 --> 00:02:53,625
+A skill file documenting every infrastructure rule — port allocation, Tailscale routing, firewall configuration.
+
+48
+00:02:53,625 --> 00:03:05,712
+Then a monitoring daemon running every five minutes, checking seven categories: service ports, binding violations, Tailscale health, unexpected listeners, firewall rules, system resources, systemd failures.
+
+49
+00:03:05,712 --> 00:03:09,100
+The firewall audit justified the whole effort.
+
+50
+00:03:09,100 --> 00:03:12,912
+Four stale rules for dead projects still allowing traffic.
+
+51
+00:03:12,912 --> 00:03:16,687
+Five active services with no firewall rules at all.
+
+52
+00:03:16,687 --> 00:03:21,612
+They worked through Tailscale routing, but defense in depth means the firewall too.
+
+53
+00:03:21,612 --> 00:03:25,000
+Four deleted, five added, same session.
+
+54
+00:03:25,000 --> 00:03:29,787
+We ran a methodology research sprint — four approaches to agent workflows.
+
+55
+00:03:29,787 --> 00:03:35,662
+Superpowers, TDD Guard, Spec Kit from GitHub, Microsoft's Governance Toolkit.
+
+56
+00:03:35,662 --> 00:03:38,962
+Came back with 16 concrete improvements.
+
+57
+00:03:38,962 --> 00:03:44,150
+Best steal: plans should be "followable by an agent with zero project context.
+
+58
+00:03:44,150 --> 00:03:47,312
+Hand it to a fresh agent with no history.
+
+59
+00:03:47,312 --> 00:03:50,950
+If it can't execute, the plan isn't good enough.
+
+60
+00:03:51,150 --> 00:03:57,950
+And somewhere in the middle, we researched, wrote, and published a full podcast episode about agent verification.
+
+61
+00:03:57,900 --> 00:04:02,875
+692 words, 30 percent cut, five minutes of audio.
+
+62
+00:04:02,875 --> 00:04:07,162
+That episode was about building a babysitter for AI agents.
+
+63
+00:04:07,162 --> 00:04:11,675
+This one is about building the workshop where those babysitters get trained.
+
+64
+00:04:11,675 --> 00:04:13,650
+Two things to build.
+
+65
+00:04:13,650 --> 00:04:17,650
+One: semantic compliance for our verification script.
+
+66
+00:04:17,650 --> 00:04:21,712
+Right now it checks structure — commits, files, pushes.
+
+67
+00:04:21,712 --> 00:04:27,225
+Next level is semantics — given the task and the diff, did the agent do what was asked?
+
+68
+00:04:27,225 --> 00:04:29,850
+Deterministic layer stays.
+
+69
+00:04:29,850 --> 00:04:32,875
+LLM evaluation goes on top.
+
+70
+00:04:32,875 --> 00:04:36,087
+Two: per-project constitution files.
+
+71
+00:04:36,087 --> 00:04:38,400
+From GitHub's Spec Kit.
+
+72
+00:04:38,400 --> 00:04:42,962
+Each project gets non-negotiable quality standards for that codebase.
+
+73
+00:04:42,962 --> 00:04:46,100
+Not generic rules — specific ones.
+
+74
+00:04:46,100 --> 00:04:49,600
+This project requires screenshot validation.
+
+75
+00:04:49,600 --> 00:04:52,275
+Auth paths need test coverage.
+
+76
+00:04:52,275 --> 00:04:55,412
+The prompt generator auto-includes them.
+
+77
+00:04:55,412 --> 00:04:59,262
+Standards become structural, not aspirational.
+
+78
+00:04:59,262 --> 00:05:02,737
+System throughput isn't how fast the workers go.
+
+79
+00:05:02,737 --> 00:05:08,637
+It's the quality of the tools, clarity of instructions, and reliability of verification.
+
+80
+00:05:08,637 --> 00:05:11,575
+Yesterday we upgraded all three.
+
+81
+00:05:11,575 --> 00:05:14,062
+No user saw a difference.
+
+82
+00:05:14,062 --> 00:05:16,875
+Everything forward will be faster.
+
+83
+00:05:16,875 --> 00:05:18,887
+That's The Mega Day.
+
+84
+00:05:18,887 --> 00:05:20,537
+I'm Jake.
+
+85
+00:05:20,537 --> 00:05:22,912
+Catch you next episode.
+

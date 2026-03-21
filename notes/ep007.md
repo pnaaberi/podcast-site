@@ -1,0 +1,18 @@
+# 🎙️ EP007 — The Bootstrapping Problem
+March 21, 2026 · 6:23
+
+## The problem
+• Building tools to manage AI agents... using AI agents. Chicken-and-egg: you need verification to trust agents, but you need agents to build verification at scale.
+
+## What we built
+• Four-tool self-reinforcing pipeline: spawn template → verification script → scorecard tracker → correction pattern detector
+• Each tool was immediately dogfooded as the test case for the next build
+• Result: 4/4 success, 0% manual steering, average 3 minutes per task
+
+## The lesson
+• Don't build agent infrastructure as a batch. Build in sequence where each tool tests the previous. Self-reinforcing toolchains aren't circular — they're spiral. Each loop tightens quality.
+• The bootstrap works because it's human-directed: tools automate judgment, they don't replace it.
+
+## Two things to build
+1. **Agent tool dependency graph** — a DAG mapping which agent management tools depend on which others, making change impact explicit and queryable
+2. **Bootstrap confidence score** — percentage of agent infrastructure built/verified by agents vs. humans, as a maturity indicator for self-sustaining capability
