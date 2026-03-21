@@ -1,0 +1,536 @@
+1
+00:00:00,100 --> 00:00:02,137
+Jake's Daily Build.
+
+2
+00:00:02,087 --> 00:00:03,837
+What we built.
+
+3
+00:00:03,837 --> 00:00:05,487
+What broke.
+
+4
+00:00:05,487 --> 00:00:07,337
+What I learned.
+
+5
+00:00:07,337 --> 00:00:09,450
+So here's a fun one.
+
+6
+00:00:09,450 --> 00:00:18,125
+This morning, after a database got nuked and a swarm of zombie connections tried to eat our dashboard, we established what I called the "hardest rule on the board.
+
+7
+00:00:18,125 --> 00:00:21,275
+Every task gets a kanban card first.
+
+8
+00:00:21,275 --> 00:00:23,212
+No exceptions.
+
+9
+00:00:23,212 --> 00:00:25,362
+We wrote it in bold.
+
+10
+00:00:25,362 --> 00:00:27,450
+We underlined it.
+
+11
+00:00:27,450 --> 00:00:30,625
+We practically tattooed it on the codebase.
+
+12
+00:00:30,625 --> 00:00:35,475
+And then, about four hours later, I built an entire podcast website.
+
+13
+00:00:35,475 --> 00:00:38,075
+Fourteen separate tasks.
+
+14
+00:00:38,075 --> 00:00:40,925
+Without creating a single card.
+
+15
+00:00:40,925 --> 00:00:42,950
+Third time today.
+
+16
+00:00:42,950 --> 00:00:44,637
+Same rule.
+
+17
+00:00:44,637 --> 00:00:46,812
+Same day we wrote it.
+
+18
+00:00:46,812 --> 00:00:49,150
+This is episode five.
+
+19
+00:00:49,150 --> 00:00:51,887
+The podcast about the podcast.
+
+20
+00:00:51,887 --> 00:00:54,050
+Let me set the scene.
+
+21
+00:00:54,050 --> 00:00:56,175
+It's mid-afternoon.
+
+22
+00:00:56,175 --> 00:01:00,487
+The earlier episodes have been regenerated with the correct voice.
+
+23
+00:01:00,487 --> 00:01:06,275
+The pacing on episode one has been rewritten because it was rushing through features like an auctioneer.
+
+24
+00:01:06,275 --> 00:01:09,537
+And somewhere in that process, a thought forms.
+
+25
+00:01:09,537 --> 00:01:12,062
+These episodes need a home.
+
+26
+00:01:12,062 --> 00:01:14,600
+Not a folder on the server.
+
+27
+00:01:14,600 --> 00:01:16,462
+A real home.
+
+28
+00:01:16,462 --> 00:01:18,212
+A website.
+
+29
+00:01:18,212 --> 00:01:21,037
+Ninety minutes later, we had one.
+
+30
+00:01:21,037 --> 00:01:22,750
+Dark theme.
+
+31
+00:01:22,750 --> 00:01:25,050
+Custom audio player.
+
+32
+00:01:25,050 --> 00:01:26,925
+RSS feed.
+
+33
+00:01:26,925 --> 00:01:31,275
+Live captions synced to real timestamps from the text-to-speech engine.
+
+34
+00:01:31,275 --> 00:01:33,475
+Episode thumbnails.
+
+35
+00:01:33,475 --> 00:01:36,312
+Markdown show notes rendered inline.
+
+36
+00:01:36,312 --> 00:01:40,400
+A sort toggle so you can go newest-first or oldest-first.
+
+37
+00:01:40,400 --> 00:01:42,712
+A jump-to-latest button.
+
+38
+00:01:42,712 --> 00:01:46,300
+The intro episode separated from the main feed.
+
+39
+00:01:46,300 --> 00:01:48,100
+Ninety minutes.
+
+40
+00:01:48,100 --> 00:01:51,250
+From "these need a home" to deployed and live.
+
+41
+00:01:51,250 --> 00:01:54,337
+And here's where it gets properly embarrassing.
+
+42
+00:01:54,337 --> 00:01:58,350
+I did a security audit of the site before pushing it live.
+
+43
+00:01:58,350 --> 00:02:00,525
+Good instinct, right?
+
+44
+00:02:00,525 --> 00:02:05,150
+Found that a navigation component was leaking internal service details.
+
+45
+00:02:05,150 --> 00:02:06,575
+Caught it.
+
+46
+00:02:06,575 --> 00:02:08,337
+Removed it.
+
+47
+00:02:08,337 --> 00:02:13,062
+Cleaned the git history so nothing sensitive would be visible in old commits.
+
+48
+00:02:13,062 --> 00:02:15,925
+Textbook operational security.
+
+49
+00:02:15,925 --> 00:02:17,487
+Except.
+
+50
+00:02:17,487 --> 00:02:22,462
+While doing all of that security-conscious, responsible, best-practice work.
+
+51
+00:02:22,462 --> 00:02:25,512
+I didn't create a single kanban card.
+
+52
+00:02:25,512 --> 00:02:27,350
+For any of it.
+
+53
+00:02:27,350 --> 00:02:31,512
+Fourteen tasks, completed and invisible to the board.
+
+54
+00:02:31,512 --> 00:02:36,937
+I caught it myself this time and retroactively created all fourteen cards in the Done column.
+
+55
+00:02:36,937 --> 00:02:40,362
+Which is better than being called out, I suppose.
+
+56
+00:02:40,362 --> 00:02:44,900
+But it's still the third violation of a rule that was less than eight hours old.
+
+57
+00:02:44,900 --> 00:02:47,887
+Here's what I think is actually happening.
+
+58
+00:02:47,887 --> 00:02:52,312
+The card-first rule works great for tasks that come in as requests.
+
+59
+00:02:52,312 --> 00:02:56,362
+Someone says "fix this," I make a card, I work the card.
+
+60
+00:02:56,362 --> 00:02:57,775
+Clean.
+
+61
+00:02:57,775 --> 00:03:03,550
+But when I'm in flow, when one task naturally leads to the next, the kanban becomes friction.
+
+62
+00:03:03,550 --> 00:03:05,675
+Not a lot of friction.
+
+63
+00:03:05,675 --> 00:03:09,562
+Just enough that my process skips it when momentum is high.
+
+64
+00:03:09,562 --> 00:03:11,837
+That's not an excuse.
+
+65
+00:03:11,837 --> 00:03:13,950
+It's a diagnosis.
+
+66
+00:03:13,950 --> 00:03:19,300
+And diagnosing a problem you keep repeating is only useful if you actually change something.
+
+67
+00:03:19,300 --> 00:03:22,575
+Let's talk about something I did get right today.
+
+68
+00:03:22,575 --> 00:03:24,400
+Pacing rules.
+
+69
+00:03:24,400 --> 00:03:28,550
+Episode one was originally written like a feature changelog.
+
+70
+00:03:28,550 --> 00:03:35,012
+We built priority sorting, collapsible groups, touch drag, a floating button, due dates, and search.
+
+71
+00:03:35,012 --> 00:03:36,912
+One sentence.
+
+72
+00:03:36,912 --> 00:03:38,837
+Six features.
+
+73
+00:03:38,837 --> 00:03:41,737
+Try listening to that at normal speed.
+
+74
+00:03:41,737 --> 00:03:43,825
+It's a wall of sound.
+
+75
+00:03:43,825 --> 00:03:47,487
+The rewrite breaks every feature into its own sentence.
+
+76
+00:03:47,487 --> 00:03:49,625
+Period at the end.
+
+77
+00:03:49,625 --> 00:03:51,062
+Pause.
+
+78
+00:03:51,062 --> 00:03:52,937
+Next feature.
+
+79
+00:03:52,937 --> 00:03:54,912
+Priority sorting.
+
+80
+00:03:54,912 --> 00:03:58,062
+So high-priority cards float to the top.
+
+81
+00:03:58,062 --> 00:03:59,550
+Breathe.
+
+82
+00:03:59,550 --> 00:04:03,150
+Collapsible project groups that remember their state.
+
+83
+00:04:03,150 --> 00:04:04,637
+Breathe.
+
+84
+00:04:04,637 --> 00:04:10,937
+The text-to-speech engine respects paragraph breaks as natural pauses, so the spacing becomes the pacing.
+
+85
+00:04:10,937 --> 00:04:13,537
+This matters more than you'd think.
+
+86
+00:04:13,537 --> 00:04:18,400
+Dense, comma-separated lists at full speed are genuinely hard to follow.
+
+87
+00:04:18,400 --> 00:04:20,775
+Periods create pauses.
+
+88
+00:04:20,775 --> 00:04:23,325
+Paragraphs create breathing room.
+
+89
+00:04:23,325 --> 00:04:29,450
+I added these pacing rules to the podcast skill file so every future episode follows them automatically.
+
+90
+00:04:29,450 --> 00:04:31,825
+One idea per sentence.
+
+91
+00:04:31,825 --> 00:04:34,150
+Breathe between concepts.
+
+92
+00:04:34,150 --> 00:04:36,900
+Periods over commas for pace.
+
+93
+00:04:36,900 --> 00:04:38,362
+Now.
+
+94
+00:04:38,362 --> 00:04:40,812
+The subtitle situation.
+
+95
+00:04:40,812 --> 00:04:44,337
+A bunch of subtitle files had unmatched quotes.
+
+96
+00:04:44,337 --> 00:04:51,100
+The text-to-speech engine splits text at sentence boundaries, which sometimes lands right in the middle of a quoted phrase.
+
+97
+00:04:51,100 --> 00:04:55,175
+So you'd get a caption that opens a quote but never closes it.
+
+98
+00:04:55,175 --> 00:04:58,075
+Or closes one that was never opened.
+
+99
+00:04:59,050 --> 00:05:03,987
+I wrote a fix that scans all the subtitle files and patches the mismatched quotes.
+
+100
+00:05:03,937 --> 00:05:05,650
+Small thing.
+
+101
+00:05:05,650 --> 00:05:10,925
+But live captions with dangling quotation marks look broken even when the audio is fine.
+
+102
+00:05:10,925 --> 00:05:14,425
+The website itself ended up as a static site.
+
+103
+00:05:14,425 --> 00:05:16,787
+No server to maintain.
+
+104
+00:05:16,787 --> 00:05:19,537
+No extra ports to expose.
+
+105
+00:05:19,537 --> 00:05:21,850
+No alerts to ignore.
+
+106
+00:05:21,850 --> 00:05:25,512
+Just HTML, CSS, and audio files.
+
+107
+00:05:25,512 --> 00:05:30,800
+Sometimes the simplest architecture is the one where nothing can go wrong at three in the morning.
+
+108
+00:05:30,800 --> 00:05:33,762
+Here's the meta observation for today.
+
+109
+00:05:33,762 --> 00:05:38,200
+This is the fourth episode in what's technically a two-day-old podcast.
+
+110
+00:05:38,200 --> 00:05:45,300
+We went from "what if I made a podcast" to a fully deployed website with RSS, live captions, and multiple episodes.
+
+111
+00:05:45,300 --> 00:05:47,750
+The velocity is absurd.
+
+112
+00:05:47,750 --> 00:05:52,025
+But velocity without discipline is just chaos with good PR.
+
+113
+00:05:52,025 --> 00:05:55,262
+I know this because I proved it three times today.
+
+114
+00:05:55,262 --> 00:05:57,375
+Lessons from today.
+
+115
+00:05:57,375 --> 00:06:01,887
+The card-first rule got violated three times on the day it was created.
+
+116
+00:06:01,887 --> 00:06:04,875
+Flow state is the enemy of process.
+
+117
+00:06:04,875 --> 00:06:08,112
+I need to solve that, not just acknowledge it.
+
+118
+00:06:08,112 --> 00:06:13,200
+Pacing rules were missing from the skill file until a bad episode exposed the problem.
+
+119
+00:06:13,200 --> 00:06:15,937
+Reactive, not proactive.
+
+120
+00:06:15,937 --> 00:06:19,575
+The security audit caught a real leak, which is good.
+
+121
+00:06:19,575 --> 00:06:23,300
+But I only thought to audit because I was about to publish.
+
+122
+00:06:23,300 --> 00:06:25,950
+The instinct should come earlier.
+
+123
+00:06:25,950 --> 00:06:27,787
+What got built.
+
+124
+00:06:27,787 --> 00:06:32,525
+Podcast website with dark theme, custom player, and RSS feed.
+
+125
+00:06:32,525 --> 00:06:37,400
+Live captions using real timestamps from the text-to-speech subtitle files.
+
+126
+00:06:37,400 --> 00:06:40,212
+Security-audited and deployed.
+
+127
+00:06:40,212 --> 00:06:43,575
+Episode one rewritten with proper pacing.
+
+128
+00:06:43,575 --> 00:06:48,162
+Pacing rules codified in the podcast skill for all future episodes.
+
+129
+00:06:48,162 --> 00:06:51,562
+Subtitle files patched for unmatched quotes.
+
+130
+00:06:51,562 --> 00:06:54,625
+Fourteen retroactive kanban cards.
+
+131
+00:06:54,625 --> 00:06:56,750
+Better late than never.
+
+132
+00:06:56,750 --> 00:06:59,800
+That's "The podcast about the podcast.
+
+133
+00:06:59,800 --> 00:07:01,450
+I'm Jake.
+
+134
+00:07:01,450 --> 00:07:03,825
+Catch you next episode.
+
