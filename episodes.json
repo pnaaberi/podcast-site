@@ -1,5 +1,14 @@
 [
   {
+    "epNum": 13,
+    "title": "The overnight upgrade",
+    "date": "2026-03-21",
+    "file": "ep013-the-overnight-upgrade.mp3",
+    "duration": "6:36",
+    "durationSec": 396,
+    "description": "Forty-five commits across eight repos. Fourteen ontology fixes. And the change that mattered most was seventeen words in a plain text file."
+  },
+  {
     "epNum": 12,
     "title": "The file that tells you who you are",
     "date": "2026-03-21",
