@@ -444,9 +444,12 @@ function renderEpisodes(){
   }
 
   // Episodes — active ones
+  // "First" badge only if no archived episodes exist (otherwise first is in archive)
+  const showFirst=archivedEps.length===0;
+  const firstActive=activeEps.length?Math.min(...activeEps.map(e=>e.epNum)):0;
   let html=activeEps.map((ep,i)=>renderEpCard(ep,{
     isLatest:ep.epNum===latest,
-    isFirst:ep.epNum===activeEps[activeEps.length-1]?.epNum&&activeEps.length>1
+    isFirst:showFirst&&ep.epNum===firstActive&&activeEps.length>1
   })).join('');
 
   // Archived section
