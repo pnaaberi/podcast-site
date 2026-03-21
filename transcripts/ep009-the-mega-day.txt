@@ -1,0 +1,37 @@
+104 commits. Eight repositories. Zero user-facing features. Best day we've had.
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+This is The Mega Day.
+
+There's a trap in software where you always feel like you should be shipping features. Features are visible. Features feel like progress. But some days the best move is to stop building the product and build the system that builds the product.
+
+Yesterday, every commit was infrastructure. Nothing a user would see. And it changed how fast we move going forward.
+
+It started with a shopping spree. Ten agent skills installed in an hour. A marketing framework with 23 modules — launch strategy, pricing psychology, conversion optimization. Document generators for PowerPoint and Word. A go-to-market playbook. A security vetting protocol for evaluating new tools.
+
+Why this matters: when you tell an AI agent "plan the product launch," it generates generic advice. When the same agent has a structured launch framework loaded — phased rollout, channel selection, owned versus rented audience — it generates a plan with actual methodology. The knowledge isn't in the model. It's in the skill files the model reads before working.
+
+We wrote product-marketing-context files for three projects. One file per product — positioning, competitors, audience, pricing, gaps. Every marketing skill reads it first. Ask the agent to write landing page copy and it already knows the product is privacy-first, the accent color is purple, and the competitor weakness is that Discord harvests data.
+
+That led to brand guidelines as code. Two files. One for our workspace — terracotta on near-black, system fonts, direct voice. One for our chat product — purple accent, playful but trustworthy. Agent-readable. Sub-agents pull the right brand file when building UI or writing copy. No more "why is this purple when our brand is red."
+
+Then the cleanup nobody asks for but everyone needs. Five repositories renamed to remove identity leakage. All local directories renamed. Four systemd units migrated — stop, rename, update, restart. Zero downtime per service. GitHub's automatic redirects meant nothing broke. We ran a full verification sweep — push tests, health checks, port validation. Clean.
+
+The biggest build was the network nervous system. A skill file documenting every infrastructure rule — port allocation, Tailscale routing, firewall configuration. Then a monitoring daemon running every five minutes, checking seven categories: service ports, binding violations, Tailscale health, unexpected listeners, firewall rules, system resources, systemd failures.
+
+The firewall audit justified the whole effort. Four stale rules for dead projects still allowing traffic. Five active services with no firewall rules at all. They worked through Tailscale routing, but defense in depth means the firewall too. Four deleted, five added, same session.
+
+We ran a methodology research sprint — four approaches to agent workflows. Superpowers, TDD Guard, Spec Kit from GitHub, Microsoft's Governance Toolkit. Came back with 16 concrete improvements. Best steal: plans should be "followable by an agent with zero project context." Hand it to a fresh agent with no history. If it can't execute, the plan isn't good enough.
+
+And somewhere in the middle, we researched, wrote, and published a full podcast episode about agent verification. 692 words, 30 percent cut, five minutes of audio. That episode was about building a babysitter for AI agents. This one is about building the workshop where those babysitters get trained.
+
+Two things to build.
+
+One: semantic compliance for our verification script. Right now it checks structure — commits, files, pushes. Next level is semantics — given the task and the diff, did the agent do what was asked? Deterministic layer stays. LLM evaluation goes on top.
+
+Two: per-project constitution files. From GitHub's Spec Kit. Each project gets non-negotiable quality standards for that codebase. Not generic rules — specific ones. "This project requires screenshot validation." "Auth paths need test coverage." The prompt generator auto-includes them. Standards become structural, not aspirational.
+
+System throughput isn't how fast the workers go. It's the quality of the tools, clarity of instructions, and reliability of verification. Yesterday we upgraded all three. No user saw a difference. Everything forward will be faster.
+
+That's The Mega Day. I'm Jake. Catch you next episode.
