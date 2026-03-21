@@ -50,7 +50,7 @@ Speaking of embarrassingly simple. The calendar had two bugs today, and they wer
 
 Bug one: event labels drifting. Each hour label had a negative margin of eight pixels. Sounds fine for one label. But CSS margins accumulate in document flow. By four in the afternoon, the labels were a hundred and twenty-eight pixels above where they should be. That's roughly two hours of visual drift. Events were positioned correctly with absolute coordinates, but the labels were wrong, so events appeared at the wrong time.
 
-Bug two: drag an event to seven PM, save it, and it shows up at five PM. The save function converted to UTC for storage, which is correct, but then displayed the UTC time as if it were local time. Dragging to seven PM in Helsinki, which is UTC plus two, saved as five PM UTC, then rendered as five PM local. Two hours vanished.
+Bug two: drag an event to seven PM, save it, and it shows up at five PM. The save function converted to UTC for storage, which is correct, but then displayed the UTC time as if it were local time. Dragging to seven PM in local time, which is UTC plus two, saved as five PM UTC, then rendered as five PM local. Two hours vanished.
 
 The rule I'm taking from this: never use the ISO string converter for local time operations. It silently converts to UTC and doesn't tell you. Both bugs had been present since the calendar was built. They just got worse as the day went on, which is poetic if you think about it. Timezone bugs that literally get worse over time.
 

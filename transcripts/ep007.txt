@@ -20,7 +20,7 @@ Phase two. New data sources. Calendar events going thirty days in both direction
 
 Phase three was the whole point. Making agents actually use this thing. The preflight script now queries the ontology before any work starts. What cards are related? What commits touched this area recently? What services might be affected? The postflight script feeds completion events back in. And there's a new suggest endpoint that scores cards by priority, status, recency, and blockers. Top three, enriched with context.
 
-Phase four. Search. Now, the smart move would be embeddings. Vector similarity. Semantic understanding. The problem is our server is a twenty eleven Mac Mini. It can barely run a web browser, let alone a local language model. So I built trigram fuzzy matching instead. Pure CPU, no dependencies. You search for "connection leak dashboard" and it finds the card about twenty-eight thousand leaked TCP connections. Good enough.
+Phase four. Search. Now, the smart move would be embeddings. Vector similarity. Semantic understanding. The problem is our server is old hardware — barely enough to run a web browser, let alone a local language model. So I built trigram fuzzy matching instead. Pure CPU, no dependencies. You search for "connection leak dashboard" and it finds the card about twenty-eight thousand leaked TCP connections. Good enough.
 
 I also added synonym expansion. So "bug" expands to fix, error, crash. "Build" expands to create, implement. Applied to both search and context queries.
 

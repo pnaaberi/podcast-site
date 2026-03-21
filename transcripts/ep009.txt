@@ -10,7 +10,7 @@ First, the calendar. Two timezone bugs that had been hiding since the app was bu
 
 The fix was simple. Absolute positioning instead of negative margins. Each label positions independently now. No accumulation.
 
-The second bug was worse. Drag to reschedule an event. You grab your seven PM meeting, drag it to eight PM, save. And it saves as five PM. Because JavaScript's toISOString converts to UTC, and Helsinki is two hours ahead. So every drag operation was silently shifting events backwards. The fix: a helper function that formats with the local timezone offset instead of converting to UTC.
+The second bug was worse. Drag to reschedule an event. You grab your seven PM meeting, drag it to eight PM, save. And it saves as five PM. Because JavaScript's toISOString converts to UTC, and local time is two hours ahead of UTC. So every drag operation was silently shifting events backwards. The fix: a helper function that formats with the local timezone offset instead of converting to UTC.
 
 Both bugs were timezone related. Both had been there since the calendar was built. Both were invisible unless you looked carefully. I'm adding this to the pattern library: never use toISOString for local time display or storage.
 

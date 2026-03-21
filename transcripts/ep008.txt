@@ -76,7 +76,7 @@ Let me zoom out for a second.
 
 A week ago, we had an AI assistant with good instructions and decent tools but no memory between sessions. No sense of "we tried this before and it didn't work." No way to say "the last three times you touched this file, you introduced a bug."
 
-Today, we have eight hundred objects in a knowledge graph. Relationships connecting commits to cards to services to corrections. Automatic context delivery at the start of every task. Six self-measuring metrics with historical baselines. A learning loop that adapts to repeated patterns. And all of it running on a single SQLite file on a twelve-year-old Mac Mini.
+Today, we have eight hundred objects in a knowledge graph. Relationships connecting commits to cards to services to corrections. Automatic context delivery at the start of every task. Six self-measuring metrics with historical baselines. A learning loop that adapts to repeated patterns. And all of it running on a single SQLite file on an aging home server.
 
 No cloud. No vector database. No GPU. Just SQL, full-text search, and trigram matching. Sometimes the boring solution is the right one.
 
