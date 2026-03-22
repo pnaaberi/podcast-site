@@ -194,6 +194,26 @@
       .vol-popup,.vol-popup-backdrop{display:none!important}
     }
     @media(min-width:481px){.jump-text{display:none}}
+    /* Transport controls */
+    .sbtn{width:28px;height:28px;min-width:28px;border-radius:50%;border:none;background:transparent;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color 0.15s,transform 0.15s;padding:0;position:relative}
+    .sbtn::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:44px;min-height:44px}
+    .sbtn:hover{color:var(--t1);transform:scale(1.1)}
+    .sbtn svg{width:18px;height:18px;fill:currentColor}
+    .sbtn-sm{width:24px;height:24px;min-width:24px}
+    .sbtn-sm svg{width:14px;height:14px}
+    .speed-btn{width:auto!important;min-width:32px;border-radius:4px!important;font-size:0.62rem;font-weight:600;font-family:inherit;letter-spacing:-0.02em;padding:2px 6px}
+    .speed-btn:hover{color:var(--accent)}
+    .speed-btn.active{color:var(--accent)}
+    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:8px;padding:2px 0}
+    .sticky-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+    @media(max-width:480px){
+      .sbtn-prev,.sbtn-next{display:none}
+      .sbtn svg{width:16px;height:16px}
+      .sticky-controls{gap:2px}
+      .sbtn-sm{width:20px;height:20px;min-width:20px}
+      .sbtn-sm svg{width:12px;height:12px}
+    }
+
     /* Focus styles for keyboard navigation */
     :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
     button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -261,8 +281,9 @@
 </button>
 <div class="sticky" id="sticky">
   <div class="sticky-row">
-    <button class="pbtn" id="sticky-btn" onclick="toggleCur()" aria-label="Play or pause current episode"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
-    <span class="sticky-t" id="sticky-t"></span>
+    <div class="sticky-info">
+      <span class="sticky-t" id="sticky-t"></span>
+    </div>
     <span class="sticky-time" id="sticky-time"></span>
     <div class="vol-wrap" id="vol-wrap">
       <button class="vol-icon" id="vol-icon" onclick="handleVolClick()" aria-label="Volume control"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
@@ -277,6 +298,14 @@
   </div>
   <div class="sticky-bar" onclick="stickySeek(event)">
     <div class="sticky-track"><div class="sticky-fill" id="sticky-fill"></div></div>
+  </div>
+  <div class="sticky-controls">
+    <button class="sbtn sbtn-sm sbtn-prev" onclick="prevTrack()" aria-label="Previous episode" title="Previous episode"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+    <button class="sbtn" onclick="skipBack()" aria-label="Skip back 15 seconds" title="Skip back 15s"><svg viewBox="0 0 24 24"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="10" y="16" font-size="7.5" fill="currentColor" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">15</text></svg></button>
+    <button class="pbtn" id="sticky-btn" onclick="toggleCur()" aria-label="Play or pause current episode"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
+    <button class="sbtn" onclick="skipFwd()" aria-label="Skip forward 30 seconds" title="Skip forward 30s"><svg viewBox="0 0 24 24"><path d="M12.01 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="14" y="16" font-size="7.5" fill="currentColor" font-weight="700" text-anchor="middle" font-family="Inter,sans-serif">30</text></svg></button>
+    <button class="sbtn sbtn-sm sbtn-next" onclick="nextTrack()" aria-label="Next episode" title="Next episode"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    <button class="sbtn sbtn-sm speed-btn" id="speed-btn" onclick="cycleSpeed()" aria-label="Playback speed" title="Playback speed">1×</button>
   </div>
 </div>
 <script>
@@ -520,7 +549,7 @@ function toggle(n,e){
   if(e)e.stopPropagation();
   const a=document.getElementById('audio-'+n);
   if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n)}
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n)}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -539,18 +568,10 @@ function updateMediaSession(n){
   });
   navigator.mediaSession.setActionHandler('play',()=>{if(cur)cur.a.play()});
   navigator.mediaSession.setActionHandler('pause',()=>{if(cur)cur.a.pause()});
-  navigator.mediaSession.setActionHandler('seekbackward',()=>{if(cur)cur.a.currentTime=Math.max(0,cur.a.currentTime-15)});
-  navigator.mediaSession.setActionHandler('seekforward',()=>{if(cur)cur.a.currentTime=Math.min(cur.a.duration||0,cur.a.currentTime+30)});
-  navigator.mediaSession.setActionHandler('previoustrack',()=>{
-    const sorted=sortAsc?[...full].sort((a,b)=>a.epNum-b.epNum):[...full].sort((a,b)=>b.epNum-a.epNum);
-    const idx=sorted.findIndex(e=>e.epNum===n);
-    if(idx>0)toggle(sorted[idx-1].epNum);
-  });
-  navigator.mediaSession.setActionHandler('nexttrack',()=>{
-    const sorted=sortAsc?[...full].sort((a,b)=>a.epNum-b.epNum):[...full].sort((a,b)=>b.epNum-a.epNum);
-    const idx=sorted.findIndex(e=>e.epNum===n);
-    if(idx>=0&&idx<sorted.length-1)toggle(sorted[idx+1].epNum);
-  });
+  navigator.mediaSession.setActionHandler('seekbackward',()=>skipBack());
+  navigator.mediaSession.setActionHandler('seekforward',()=>skipFwd());
+  navigator.mediaSession.setActionHandler('previoustrack',()=>prevTrack());
+  navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack());
   try{navigator.mediaSession.setActionHandler('seekto',(d)=>{if(cur&&d.seekTime!=null)cur.a.currentTime=d.seekTime})}catch(e){}
 }
 
@@ -749,14 +770,59 @@ function syncCap(n){
   });
 }
 
+// Transport controls
+const SPEEDS=[0.75,1,1.25,1.5,1.75,2];
+let speedIdx=1;
+function cycleSpeed(){
+  speedIdx=(speedIdx+1)%SPEEDS.length;
+  const s=SPEEDS[speedIdx];
+  document.querySelectorAll('audio').forEach(a=>a.playbackRate=s);
+  const btn=document.getElementById('speed-btn');
+  btn.textContent=s===1?'1×':s+'×';
+  btn.classList.toggle('active',s!==1);
+}
+function skipBack(){if(cur)cur.a.currentTime=Math.max(0,cur.a.currentTime-15)}
+function skipFwd(){if(cur)cur.a.currentTime=Math.min(cur.a.duration||0,cur.a.currentTime+30)}
+function getPlayOrder(){
+  const full=intro?[intro,...allEps]:allEps;
+  return sortAsc?[...full].sort((a,b)=>a.epNum-b.epNum):[...full].sort((a,b)=>b.epNum-a.epNum);
+}
+function prevTrack(){
+  if(!cur)return;
+  // If more than 3s in, restart current track
+  if(cur.a.currentTime>3){cur.a.currentTime=0;return}
+  const order=getPlayOrder();
+  const idx=order.findIndex(e=>e.epNum===cur.n);
+  if(idx>0){
+    const prev=order[idx-1];
+    const el=document.getElementById('ep'+prev.epNum);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>toggle(prev.epNum),300);
+  }
+}
+function nextTrack(){
+  if(!cur)return;
+  const order=getPlayOrder();
+  const idx=order.findIndex(e=>e.epNum===cur.n);
+  if(idx>=0&&idx<order.length-1){
+    const next=order[idx+1];
+    const el=document.getElementById('ep'+next.epNum);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>toggle(next.epNum),300);
+  }
+}
+
 load();updateJumpPos();
 
 // Keyboard navigation
 document.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT')return; // Don't hijack sliders
   if(e.code==='Space'&&cur){e.preventDefault();toggleCur()}
-  if(e.code==='ArrowLeft'&&cur){e.preventDefault();cur.a.currentTime=Math.max(0,cur.a.currentTime-10)}
-  if(e.code==='ArrowRight'&&cur){e.preventDefault();cur.a.currentTime=Math.min(cur.a.duration||0,cur.a.currentTime+10)}
+  if(e.code==='ArrowLeft'&&cur){e.preventDefault();skipBack()}
+  if(e.code==='ArrowRight'&&cur){e.preventDefault();skipFwd()}
+  if(e.code==='KeyN'&&cur){e.preventDefault();nextTrack()}
+  if(e.code==='KeyP'&&cur){e.preventDefault();prevTrack()}
+  if(e.code==='KeyS'){e.preventDefault();cycleSpeed()}
 });
 </script>
 </body>
