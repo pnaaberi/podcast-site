@@ -5,19 +5,18 @@
     "slug": "the-nervous-system",
     "date": "2026-03-22",
     "description": "Nine scripts worked perfectly in isolation. None shared context. What happens when you wire them to a knowledge graph \u2014 and ship the first version without auth.",
-    "audioFile": "audio/ep011-the-nervous-system.mp3",
     "transcriptFile": "transcripts/ep011-the-nervous-system.txt",
     "notesFile": "notes/ep011.md",
     "durationSec": 357,
-    "file": "audio/ep011-the-nervous-system.mp3",
-    "type": "regular"
+    "file": "ep011-the-nervous-system.mp3",
+    "type": "regular",
+    "duration": "5:57"
   },
   {
     "epNum": 10,
     "title": "Monitoring That Doesn't Act",
     "date": "2026-03-22",
-    "file": "audio/ep010-monitoring-that-doesnt-act.mp3",
-    "audioFile": "audio/ep010-monitoring-that-doesnt-act.mp3",
+    "file": "ep010-monitoring-that-doesnt-act.mp3",
     "notesFile": "notes/ep010.md",
     "transcriptFile": "transcripts/ep010-monitoring-that-doesnt-act.txt",
     "captionsFile": "subtitles/ep010.srt",

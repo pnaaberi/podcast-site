@@ -396,7 +396,7 @@ function fmt(s){if(!s||isNaN(s))return'0:00';return Math.floor(s/60)+':'+String(
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 async function load(){
-  const data=await(await fetch('episodes.json')).json();
+  const data=await(await fetch('episodes.json?t='+Date.now())).json();
   intro=data.find(e=>e.epNum===0);
   allEps=data.filter(e=>e.epNum!==0);
   renderEpisodes();
