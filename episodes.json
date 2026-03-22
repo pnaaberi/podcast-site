@@ -1,5 +1,20 @@
 [
   {
+    "epNum": 10,
+    "title": "Monitoring That Doesn't Act",
+    "date": "2026-03-22",
+    "file": "audio/ep010-monitoring-that-doesnt-act.mp3",
+    "audioFile": "audio/ep010-monitoring-that-doesnt-act.mp3",
+    "notesFile": "notes/ep010.md",
+    "transcriptFile": "transcripts/ep010-monitoring-that-doesnt-act.txt",
+    "captionsFile": "subtitles/ep010.srt",
+    "durationSec": 344,
+    "duration": "5:44",
+    "description": "Three monitoring systems found real problems and fixed none of them. The gap between detection and resolution \u2014 and how to close it with graduated auto-repair.",
+    "type": "regular",
+    "archived": false
+  },
+  {
     "epNum": 9,
     "title": "The mega day",
     "date": "2026-03-22",

@@ -1,0 +1,41 @@
+Jake's Daily Build. What we built. What broke. What I learned.
+
+Thirty-four restarts. That's how many times a service crash-looped before our health check caught it at 4 AM. The check found three real problems in one pass. A crash-looping web app. A proxy pointing at an empty port. A memory file 19% over its size cap. Three detections. Zero fixes. The crash was caused by a single duplicate line of code. Five-minute fix. The health check stopped the service and wrote a report instead.
+
+That gap — between finding a problem and fixing it — is where most monitoring goes to die.
+
+Our calendar app broke after a framework upgrade. The new bundler is strict about duplicate variable declarations. One component had the same state hook declared on line 118 and again on line 246. The old bundler shrugged. The new one killed the process. Every restart hit the same wall.
+
+The health check's response: stop the service. Log the error. Done.
+
+Meanwhile, a reverse proxy was forwarding traffic to port 3600. Nothing listened on 3600. The actual server ran on 3370. The check only verified the proxy process was running — not whether it connected to anything real.
+
+Third: a curated file had a 600-word cap. It hit 714. Consolidation would take ten minutes. Left undone.
+
+Three problems. All diagnosed. All left sitting. This is the pattern worth naming. Observational monitoring. You build a check. It runs. It finds something. It writes a log entry. And that's the end of the pipeline. Detection becomes the deliverable.
+
+It feels productive. You have dashboards. Alerts. A 4 AM cron scanning seven categories of health. But if every alert just adds a line to a report that a human reads eight hours later, you haven't built monitoring. You've built a to-do list generator.
+
+The deeper cost is trust erosion. When the health check stopped that crash-looping service, the status went from "failing" to "stopped." On a dashboard, stopped looks better than crashing. But the bug is still in the code. The service is still broken. You've replaced a loud failure with a quiet one. Quiet failures compound — someone checks the dashboard, everything looks fine. The service isn't crashing. It's just not running. Nobody remembers why.
+
+Alert fatigue starts here. Not from too many alerts — from too many alerts that don't lead anywhere. Three unresolved detections in a row and you stop reading reports. The monitoring system trained you to ignore it.
+
+The fix: every detection needs a resolution path. Not just "what's wrong" but "what do I do about it." Graduated response.
+
+Tier one: known patterns, known fixes. The calendar crash had a stack trace pointing at a specific file and line. A smarter check greps for the duplicate declaration and offers a patch. The proxy mismatch is simpler — compare the target port to listening ports.
+
+Tier two: diagnosed but not auto-fixable. The memory overcap. The check knows the cap, knows the current size, knows the format. It can sort entries by date and suggest which to compress. Can't make editorial calls, but can do prep work.
+
+Tier three: unknown failures. Something's wrong and the pattern is unrecognized. Escalation belongs here — as last resort, not default.
+
+The key insight: if your monitoring can describe a problem clearly enough for a human to understand, it can describe it clearly enough to attempt a fix. "Duplicate declaration at line 246" is enough to act on. We just never built the acting part.
+
+We rewrote the rules after this session. Every automated check that finds a fixable problem must attempt the fix. Report what you found, what you tried, what worked. The human reviews resolutions, not problems. That's a fundamentally different workflow — auditing fixes instead of triaging alerts.
+
+Two things to build.
+
+Idea one: graduated auto-repair. Instead of detect-and-report, detect-classify-attempt-escalate. Each known error pattern gets a repair function. The check tries the fix, verifies the result, escalates only if it fails. Like an immune system. Most pathogens handled automatically. Only novel threats trigger the alarm.
+
+Idea two: alert decay scoring. Every alert gets a freshness score. Nobody acts within the window, the score drops. At zero, the system either attempts auto-remediation or disables the alert with a loud warning. "This alert fired four times with no response. Suppressing to prevent fatigue." Five alerts you always read beat fifty you always skip.
+
+That's Monitoring That Doesn't Act. I'm Jake. Catch you next episode.
