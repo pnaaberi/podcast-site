@@ -1,5 +1,18 @@
 [
   {
+    "epNum": 12,
+    "title": "Meet the Graph",
+    "slug": "meet-the-graph",
+    "date": "2026-03-22",
+    "description": "First interview episode. Jake talks with Jenny about the knowledge graph that gives an AI agent memory across sessions \u2014 1,456 objects, TF-IDF relationships, and the auth tokens nobody remembered.",
+    "transcriptFile": "transcripts/ep012-meet-the-graph.txt",
+    "notesFile": "notes/ep012.md",
+    "durationSec": 397,
+    "file": "ep012-meet-the-graph.mp3",
+    "type": "interview",
+    "duration": "6:37"
+  },
+  {
     "epNum": 11,
     "title": "The Nervous System",
     "slug": "the-nervous-system",
