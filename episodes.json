@@ -2,24 +2,22 @@
   {
     "epNum": 9,
     "title": "The mega day",
-    "slug": "the-mega-day",
     "date": "2026-03-22",
     "duration": "5:23",
     "description": "104 commits, 8 repos, zero features. Why the most productive day was the one where no user-facing work shipped.",
-    "audioFile": "audio/ep009-the-mega-day.mp3",
-    "notesFile": "notes/ep009-the-mega-day.md",
-    "transcriptFile": "transcripts/ep009-the-mega-day.txt"
+    "file": "ep009-the-mega-day.mp3",
+    "durationSec": 322,
+    "type": "regular"
   },
   {
     "epNum": 8,
     "title": "Trust but verify",
-    "slug": "trust-but-verify",
     "date": "2026-03-22",
     "duration": "5:23",
     "description": "The industry is scaling AI agent autonomy without scaling verification. A 230-line bash script, the gap it misses, and what the enterprise frameworks do differently.",
-    "audioFile": "audio/ep008-trust-but-verify.mp3",
-    "notesFile": "notes/ep008-trust-but-verify.md",
-    "transcriptFile": "transcripts/ep008-trust-but-verify.txt"
+    "file": "ep008-trust-but-verify.mp3",
+    "durationSec": 322,
+    "type": "regular"
   },
   {
     "epNum": 7,

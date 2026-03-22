@@ -32,6 +32,19 @@ const server = http.createServer((req, res) => {
     return res.end('Forbidden');
   }
 
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+  // Cache control for static assets
+  const ext = path.extname(decodeURIComponent(url)).toLowerCase();
+  if (['.mp3', '.ogg', '.png', '.jpg', '.svg'].includes(ext)) {
+    res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day
+  } else if (['.html', '.json', '.xml'].includes(ext)) {
+    res.setHeader('Cache-Control', 'public, max-age=300'); // 5 min
+  }
+
   // Try file, then file/index.html
   const tryPaths = [filePath];
   if (!path.extname(filePath)) tryPaths.push(path.join(filePath, 'index.html'));

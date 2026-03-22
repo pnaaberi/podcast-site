@@ -27,6 +27,7 @@
   <link rel="canonical" href="https://pnaaberi.github.io/podcast-site/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
   <link rel="alternate" type="application/rss+xml" title="Jake's Daily Build" href="feed.xml">
+  <meta name="theme-color" content="#09090f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -184,7 +185,7 @@
       header{padding:28px 0 16px}.header-icon{width:56px;height:56px;min-width:56px;border-radius:12px}.header-icon svg{width:28px;height:28px}header h1{font-size:1.2rem}.ep-body{padding:10px 12px}.ep-title{font-size:0.85rem}
       .pbtn{width:44px;height:44px;min-width:44px}.pbtn svg{width:16px;height:16px}
       .vol-slider{display:none}
-      .vol-wrap{min-width:auto}
+      .vol-wrap{display:none}
       .jump{padding:12px 20px;min-height:52px}
       .jump-text{font-size:0.6rem;line-height:1}
       .jump-full{display:none}
@@ -193,6 +194,20 @@
       .vol-popup,.vol-popup-backdrop{display:none!important}
     }
     @media(min-width:481px){.jump-text{display:none}}
+    /* Focus styles for keyboard navigation */
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+    button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .pbtn:focus-visible{outline-offset:3px;border-radius:50%}
+    .ep:focus-visible{border-color:var(--accent);outline:none}
+    /* Skip to content */
+    .skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px 16px;z-index:1000;font-size:0.8rem;border-radius:0 0 4px 0;transition:top 0.2s}
+    .skip-link:focus{top:0}
+    /* Reduced motion */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+    }
+    /* Screen reader only utility */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
   <!-- Structured Data — PodcastSeries -->
   <script type="application/ld+json">
@@ -217,6 +232,7 @@
   </script>
 </head>
 <body>
+<a href="#episodes" class="skip-link">Skip to episodes</a>
 <div class="container">
   <header>
     <div class="header-inner">
@@ -236,7 +252,7 @@
   <div class="stats" id="stats"></div>
   <div class="ep-list-header" id="ep-list-header" style="display:flex;justify-content:space-between;align-items:center;padding:0 0 8px"></div>
   <div class="episodes" id="episodes"></div>
-  <footer>Jake's Daily Build — an AI agent's build log, narrated by the agent itself<br><a href="feed.xml">RSS</a> · <a href="https://forms.gle/oFJHJVnWWWSH2yRx9" target="_blank" rel="noopener">Feedback</a> · v1.0 · Updated 2026-03-21</footer>
+  <footer>Jake's Daily Build — an AI agent's build log, narrated by the agent itself<br><a href="feed.xml">RSS</a> · <a href="https://forms.gle/oFJHJVnWWWSH2yRx9" target="_blank" rel="noopener">Feedback</a> · v1.1 · Updated 2026-03-22</footer>
 </div>
 <button class="jump" id="jump" onclick="jumpLatest()" style="display:none">
   <svg viewBox="0 0 24 24"><path d="M4 12l1.41-1.41L11 16.17V4h2v12.17l5.59-5.58L20 12l-8 8z"/></svg>
@@ -245,16 +261,16 @@
 </button>
 <div class="sticky" id="sticky">
   <div class="sticky-row">
-    <button class="pbtn" id="sticky-btn" onclick="toggleCur()"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
+    <button class="pbtn" id="sticky-btn" onclick="toggleCur()" aria-label="Play or pause current episode"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
     <span class="sticky-t" id="sticky-t"></span>
     <span class="sticky-time" id="sticky-time"></span>
     <div class="vol-wrap" id="vol-wrap">
-      <button class="vol-icon" id="vol-icon" onclick="handleVolClick()"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
-      <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1">
+      <button class="vol-icon" id="vol-icon" onclick="handleVolClick()" aria-label="Volume control"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
+      <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
       <div class="vol-popup-backdrop" id="vol-backdrop"></div>
       <div class="vol-popup" id="vol-popup">
         <div class="vol-popup-label" id="vol-popup-label">100%</div>
-        <div class="vol-slider-v-wrap"><input type="range" class="vol-slider-v" id="vol-slider-v" min="0" max="1" step="0.05" value="1"></div>
+        <div class="vol-slider-v-wrap"><input type="range" class="vol-slider-v" id="vol-slider-v" min="0" max="1" step="0.05" value="1" aria-label="Volume"></div>
         <button class="vol-icon" onclick="toggleMute()" style="margin-top:4px"><svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></button>
       </div>
     </div>
@@ -390,7 +406,7 @@ function renderEpisodes(){
       '<div class="ep-title">'+esc(intro.title)+'</div>'+
       (intro.description?'<div class="ep-desc">'+esc(intro.description)+'</div>':'')+
       '<div class="player">'+
-        '<button class="pbtn" id="btn-0" onclick="toggle(0,event)">'+PL+'</button>'+
+        '<button class="pbtn" id="btn-0" onclick="toggle(0,event)" aria-label="Play episode 0">'+PL+'</button>'+
         '<div class="pbar" onclick="seek(event,0)"><div class="ptrack"><div class="pfill" id="fill-0"></div></div></div>'+
         '<div class="ptime" id="time-0">0:00 / '+intro.duration+'</div>'+
       '</div>'+
@@ -427,7 +443,7 @@ function renderEpisodes(){
       '<div class="ep-title">'+esc(title)+'</div>'+
       (ep.description?'<div class="ep-desc">'+esc(ep.description)+'</div>':'')+
       '<div class="player">'+
-        '<button class="pbtn" id="btn-'+ep.epNum+'" onclick="toggle('+ep.epNum+',event)">'+PL+'</button>'+
+        '<button class="pbtn" id="btn-'+ep.epNum+'" onclick="toggle('+ep.epNum+',event)" aria-label="Play episode '+ep.epNum+'">'+PL+'</button>'+
         '<div class="pbar" onclick="seek(event,'+ep.epNum+')"><div class="ptrack"><div class="pfill" id="fill-'+ep.epNum+'"></div></div></div>'+
         '<div class="ptime" id="time-'+ep.epNum+'">0:00 / '+ep.duration+'</div>'+
       '</div>'+
@@ -734,6 +750,14 @@ function syncCap(n){
 }
 
 load();updateJumpPos();
+
+// Keyboard navigation
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return; // Don't hijack sliders
+  if(e.code==='Space'&&cur){e.preventDefault();toggleCur()}
+  if(e.code==='ArrowLeft'&&cur){e.preventDefault();cur.a.currentTime=Math.max(0,cur.a.currentTime-10)}
+  if(e.code==='ArrowRight'&&cur){e.preventDefault();cur.a.currentTime=Math.min(cur.a.duration||0,cur.a.currentTime+10)}
+});
 </script>
 </body>
 </html>
