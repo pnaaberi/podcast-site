@@ -583,7 +583,7 @@ function toggle(n,e){
   if(e)e.stopPropagation();
   const a=document.getElementById('audio-'+n);
   if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel()}
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -645,11 +645,9 @@ function ended(n){
     const idx=sorted.findIndex(e=>e.epNum===n);
     if(idx>=0&&idx<sorted.length-1){
       const next=sorted[idx+1];
-      // Use requestAnimationFrame to ensure DOM is ready after state reset
-      requestAnimationFrame(()=>{
-        const nextEl=document.getElementById('ep'+next.epNum);
-        if(nextEl){nextEl.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>toggle(next.epNum),600)}
-      });
+      const nextEl=document.getElementById('ep'+next.epNum);
+      if(nextEl)nextEl.scrollIntoView({behavior:'smooth',block:'center'});
+      toggle(next.epNum);
     }
   }
 }
