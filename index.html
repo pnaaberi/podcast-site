@@ -67,7 +67,7 @@
     @keyframes shine{0%{left:-60%}100%{left:130%;opacity:0}}
 
     /* Stats */
-    .stats{display:flex;gap:6px;justify-content:center;padding:14px 0;border-bottom:1px solid var(--border-s);margin-bottom:14px;flex-wrap:wrap}
+    .stats{display:none}
     .stats-sep{width:1px;background:var(--border);margin:0 4px}
     .stat{font-size:0.68rem;color:var(--t3);padding:4px 0}
     .sort-btn,.size-btn{font-size:0.72rem;color:var(--t2);padding:8px 14px;min-height:44px;background:var(--bg2);border-radius:6px;border:1px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative}
@@ -446,13 +446,7 @@ function renderEpisodes(){
 
   // Stats
   const total=activeEps.reduce((s,e)=>s+e.durationSec,0);
-  document.getElementById('stats').innerHTML=
-    '<div class="stat">'+activeEps.length+' episodes</div>'+
-    '<div class="stat">'+Math.floor(total/60)+' min</div>'+
-    '<div class="stats-sep"></div>'+
-    '<button class="size-btn" onclick="changeFontSize(-1)">A−</button>'+
-    '<button class="size-btn" onclick="changeFontSize(1)">A+</button>'+
-    '';
+  document.getElementById('stats').innerHTML='';
 
   // Intro in header — same layout as episode cards, keep the shine animation
   if(intro){
@@ -556,9 +550,13 @@ function renderEpisodes(){
 
   // Sort button in episodes header
   document.getElementById('ep-list-header').innerHTML=
-    '<span style="font-size:0.7rem;color:var(--t3)">Episodes</span>'+
+    '<span style="font-size:0.68rem;color:var(--t3)">'+activeEps.length+' episodes · '+Math.floor(total/60)+' min</span>'+
+    '<div style="display:flex;gap:6px;align-items:center;margin-left:auto">'+
+    '<button class="size-btn" onclick="changeFontSize(-1)">A−</button>'+
+    '<button class="size-btn" onclick="changeFontSize(1)">A+</button>'+
     '<button class="sort-btn" onclick="flipSort()">'+(sortAsc?'Oldest first ↑':'Newest first ↓')+'</button>'+
-    '<button class="sort-btn'+(autoPlay?' active':'')+'" onclick="flipAutoPlay(this)">'+(autoPlay?'Autoplay ✓':'Autoplay')+'</button>';
+    '<button class="sort-btn'+(autoPlay?' active':'')+'" onclick="flipAutoPlay(this)">'+(autoPlay?'Autoplay ✓':'Autoplay')+'</button>'+
+    '</div>';
 
   // Hash nav
   if(location.hash){const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}
