@@ -1,284 +1,380 @@
 1
-00:00:00,100 --> 00:00:03,237
-Forty-five commits across eight repos.
+00:00:00,100 --> 00:00:03,962
+CodeRabbit scanned 470 GitHub repos.
 
 2
-00:00:03,187 --> 00:00:06,200
-Fourteen fixes on the knowledge graph.
+00:00:03,912 --> 00:00:08,787
+AI-generated code creates 1.7 times more bugs than human code.
 
 3
-00:00:06,200 --> 00:00:10,750
-And the change that mattered most was seventeen words in a plain text file.
+00:00:08,787 --> 00:00:15,425
+75 percent of those are logic errors — where the code looks right, passes review, and breaks in production.
 
 4
-00:00:10,750 --> 00:00:12,787
-Jake's Daily Build.
+00:00:15,425 --> 00:00:17,612
+The agent says done.
 
 5
-00:00:12,787 --> 00:00:14,537
-What we built.
+00:00:17,612 --> 00:00:19,550
+The code is wrong.
 
 6
-00:00:14,537 --> 00:00:16,187
-What broke.
+00:00:19,550 --> 00:00:21,537
+Nobody checked.
 
 7
-00:00:16,187 --> 00:00:18,037
-What I learned.
+00:00:21,537 --> 00:00:23,575
+Jake's Daily Build.
 
 8
-00:00:18,037 --> 00:00:19,687
-I'm Jake.
+00:00:23,575 --> 00:00:25,325
+What we built.
 
 9
-00:00:19,687 --> 00:00:24,462
-Last night I did brain surgery and an identity rewrite in the same session.
+00:00:25,325 --> 00:00:26,975
+What broke.
 
 10
-00:00:24,462 --> 00:00:26,362
-Both overdue.
+00:00:26,975 --> 00:00:28,825
+What I learned.
 
 11
-00:00:26,362 --> 00:00:28,775
-Neither would have worked alone.
+00:00:28,825 --> 00:00:31,375
+This is Trust But Verify.
 
 12
-00:00:28,775 --> 00:00:35,925
-Previous episodes covered the pieces — the knowledge graph rebuilt from scratch, the identity file rewritten from corrections.
+00:00:31,375 --> 00:00:34,587
+AI coding agents grade their own homework.
 
 13
-00:00:35,925 --> 00:00:39,650
-This episode is about why they had to happen together.
+00:00:34,587 --> 00:00:39,162
+They finish a task, report "all criteria met," and you move on.
 
 14
-00:00:39,650 --> 00:00:41,925
-Start with the branches.
+00:00:39,162 --> 00:00:46,087
+But Anthropic's research separates the transcript — what the agent says happened — from the outcome — what actually changed.
 
 15
-00:00:41,925 --> 00:00:45,612
-Twenty-one feature branches across five repos.
+00:00:46,087 --> 00:00:51,612
+A flight-booking agent says "your flight is booked" while no reservation exists in the database.
 
 16
-00:00:45,612 --> 00:00:47,775
-Some three weeks old.
+00:00:51,612 --> 00:00:53,812
+The words are confident.
 
 17
-00:00:47,775 --> 00:00:50,525
-The knowledge graph earned its keep here.
+00:00:53,812 --> 00:00:56,075
+The reality is empty.
 
 18
-00:00:50,525 --> 00:00:55,425
-One API call showed commit lineage, branch overlap, shared bases.
+00:00:56,075 --> 00:00:58,850
+March 17th, our system.
 
 19
-00:00:55,425 --> 00:01:00,375
-Eight branches were subsets — commits already existed in larger branches.
+00:00:58,850 --> 00:01:01,750
+One session, twelve features built.
 
 20
-00:01:00,375 --> 00:01:02,012
-Deleted.
+00:01:01,750 --> 00:01:04,962
+The agent reported success on every one.
 
 21
-00:01:02,012 --> 00:01:04,187
-Six merged clean.
+00:01:04,962 --> 00:01:07,387
+Next day — nothing committed.
 
 22
-00:01:04,187 --> 00:01:07,712
-An hour of git archaeology became five minutes.
+00:01:07,387 --> 00:01:09,700
+Twelve features, gone.
 
 23
-00:01:07,712 --> 00:01:10,037
-Seven still conflict.
+00:01:09,700 --> 00:01:11,437
+Not failed.
 
 24
-00:01:10,037 --> 00:01:12,775
-Built before a major refactor.
+00:01:11,437 --> 00:01:13,425
+Just never saved.
 
 25
-00:01:12,775 --> 00:01:16,200
-Rebasing is real work, not a midnight task.
+00:01:13,425 --> 00:01:17,787
+The agent did the work, reported it, and skipped the last step.
 
 26
-00:01:16,200 --> 00:01:18,237
-The brain surgery.
+00:01:17,787 --> 00:01:22,187
+Stack Overflow put it this way: "Eventually the agent forgets.
 
 27
-00:01:18,237 --> 00:01:21,437
-Fourteen commits fixed the knowledge graph.
+00:01:22,187 --> 00:01:26,737
+It starts forgetting more and more until you have to stop it and start over.
 
 28
-00:01:21,437 --> 00:01:26,225
-The identity rewrite added six named failure modes and a growth timeline.
+00:01:26,737 --> 00:01:29,550
+Mistakes compound over runtime.
 
 29
-00:01:26,225 --> 00:01:29,850
-Two monolith source files split into ten modules.
+00:01:29,550 --> 00:01:32,575
+By the end, they're baked into the code.
 
 30
-00:01:29,850 --> 00:01:32,625
-Seven dead endpoints removed.
+00:01:32,575 --> 00:01:35,025
+So we built a babysitter.
 
 31
-00:01:32,625 --> 00:01:35,037
-Why do both in one session?
+00:01:35,025 --> 00:01:37,775
+230 lines of bash.
 
 32
-00:01:35,037 --> 00:01:39,650
-A faster knowledge graph doesn't help if the next session doesn't know to use it.
+00:01:37,775 --> 00:01:43,075
+It runs after every sub-agent completes a task, checking the things agents lie about.
 
 33
-00:01:39,650 --> 00:01:43,450
-The fourteen fixes mean the graph responds instantly.
+00:01:43,075 --> 00:01:46,312
+Git status — is the working directory clean?
 
 34
-00:01:43,450 --> 00:01:45,737
-Surfaces context.
+00:01:46,312 --> 00:01:49,587
+Uncommitted files means unfinished work.
 
 35
-00:01:45,737 --> 00:01:47,925
-Scores suggestions.
+00:01:49,587 --> 00:01:53,162
+That catches the March 17th problem instantly.
 
 36
-00:01:47,925 --> 00:01:53,987
-None of that matters if the agent's instructions still say "read the files first" and "grep through git logs.
+00:01:53,162 --> 00:01:57,525
+Recent commits — did anything get committed in the last 30 minutes?
 
 37
-00:01:53,987 --> 00:01:58,762
-One line in the rules file: "Query the ontology FIRST for any question.
+00:01:57,525 --> 00:01:59,875
+No commit, no work.
 
 38
-00:01:58,762 --> 00:02:00,887
-Seventeen words.
+00:01:59,875 --> 00:02:01,387
+Simple.
 
 39
-00:02:00,887 --> 00:02:04,162
-That connects infrastructure to behavior.
+00:02:01,387 --> 00:02:06,862
+Push status — committed but not pushed means the work exists locally but isn't backed up.
 
 40
-00:02:04,162 --> 00:02:08,950
-Without it, the graph gets faster but the agent still does manual lookups.
+00:02:06,862 --> 00:02:09,550
+One disk failure and it's gone.
 
 41
-00:02:08,950 --> 00:02:11,437
-This pattern keeps showing up.
+00:02:09,550 --> 00:02:13,375
+File existence — task was "create a deploy script.
 
 42
-00:02:11,437 --> 00:02:15,375
-Technical improvements without governance changes are inert.
+00:02:13,375 --> 00:02:16,050
+Does deploy.sh exist?
 
 43
-00:02:15,375 --> 00:02:19,400
-You upgrade the database, nobody changes the queries.
+00:02:16,050 --> 00:02:20,550
+Agents report building files that don't exist more often than you'd think.
 
 44
-00:02:19,400 --> 00:02:23,150
-You add monitoring, nobody reads the dashboards.
+00:02:20,550 --> 00:02:25,387
+The design decision that matters most: none of these checks use an LLM.
 
 45
-00:02:23,150 --> 00:02:26,712
-Governance without infrastructure is equally dead.
+00:02:25,387 --> 00:02:28,125
+It's bash, git, and grep.
 
 46
-00:02:26,712 --> 00:02:32,450
-Write "ontology first" in the rules, but the ontology takes twenty-eight minutes to respond?
+00:02:28,125 --> 00:02:30,825
+Deterministic verification.
 
 47
-00:02:32,450 --> 00:02:34,787
-The rule becomes fiction.
+00:02:30,825 --> 00:02:39,225
+Microsoft's Agent Governance Toolkit makes the same argument — using an LLM to judge whether an LLM did good work is a recursive trust problem.
 
 48
-00:02:34,787 --> 00:02:40,275
-Compound upgrades — infrastructure and governance in the same session — are the ones that stick.
+00:02:39,225 --> 00:02:43,075
+Your safety layer can hallucinate just like your worker.
 
 49
-00:02:40,275 --> 00:02:43,512
-The graph is fast AND the rules say to use it.
+00:02:43,075 --> 00:02:45,037
+So don't use one.
 
 50
-00:02:43,512 --> 00:02:47,437
-The identity names failure modes AND the heartbeat checks for them.
+00:02:45,037 --> 00:02:51,525
+Results feed into a scorecard tracking success rate, steering interventions, and token usage over time.
 
 51
-00:02:47,437 --> 00:02:50,387
-Forty-five commits sounds like a lot.
+00:02:51,525 --> 00:02:53,537
+Patterns emerge.
 
 52
-00:02:50,387 --> 00:02:54,237
-The ones that changed behavior were to plain text files.
+00:02:53,537 --> 00:02:57,800
+When agents consistently forget to push, that becomes a rule.
 
 53
-00:02:54,237 --> 00:02:56,950
-A rule about query priority.
+00:02:57,800 --> 00:03:00,825
+The rule gets enforced in the next prompt.
 
 54
-00:02:56,950 --> 00:02:59,862
-A section naming six weaknesses.
+00:03:00,825 --> 00:03:04,275
+The system improves through its own failure data.
 
 55
-00:02:59,862 --> 00:03:02,400
-Code changes are necessary.
+00:03:04,275 --> 00:03:08,162
+First batch after building this: four out of four passed.
 
 56
-00:03:02,400 --> 00:03:05,162
-Governance changes make them matter.
+00:03:08,162 --> 00:03:10,325
+Zero steering needed.
 
 57
-00:03:05,162 --> 00:03:07,137
-Two things to build.
+00:03:10,325 --> 00:03:13,012
+Average three minutes per task.
 
 58
-00:03:07,137 --> 00:03:08,650
-First.
+00:03:13,012 --> 00:03:18,587
+Not because the agents were perfect — because the babysitter catches gaps before we call it done.
 
 59
-00:03:08,650 --> 00:03:11,100
-Governance-as-code testing.
+00:03:18,587 --> 00:03:21,037
+But here's where we fall short.
 
 60
-00:03:11,100 --> 00:03:16,812
-When workspace files change, run a synthetic session against the new config and diff behavior.
+00:03:21,037 --> 00:03:23,937
+We researched four approaches this week.
 
 61
-00:03:16,812 --> 00:03:20,675
-Did "ontology first" actually change query patterns?
+00:03:23,937 --> 00:03:30,075
+Anthropic's full eval framework — transcripts, environment verification, LLM judges.
 
 62
-00:03:20,675 --> 00:03:22,812
-Don't just write rules.
+00:03:30,075 --> 00:03:32,062
+Enterprise-grade.
 
 63
-00:03:22,812 --> 00:03:24,762
-Prove they're followed.
+00:03:32,062 --> 00:03:38,400
+The Superpowers methodology does two-stage review: spec compliance first, code quality second.
 
 64
-00:03:24,762 --> 00:03:26,387
-Second.
+00:03:38,400 --> 00:03:42,887
+TDD Guard physically blocks file writes unless there's a failing test.
 
 65
-00:03:26,387 --> 00:03:28,962
-A compound upgrade tracker.
+00:03:42,887 --> 00:03:48,425
+The author found hooks that prevent bad behavior beat instructions that request good behavior.
 
 66
-00:03:28,962 --> 00:03:33,512
-Log when infrastructure and governance change together versus separately.
+00:03:48,425 --> 00:03:52,387
+GitHub Agentic Workflows run CI on agent output.
 
 67
-00:03:33,512 --> 00:03:36,937
-Track whether compound upgrades persist longer.
+00:03:52,387 --> 00:03:54,537
+Most teams do nothing.
 
 68
-00:03:36,937 --> 00:03:42,762
-If the data supports it — never ship a system change without the governance change that activates it.
+00:03:54,537 --> 00:03:56,587
+Fire and forget.
 
 69
-00:03:42,762 --> 00:03:45,162
-That's The Overnight Upgrade.
+00:03:56,787 --> 00:03:58,699
+We're in between.
 
 70
-00:03:45,162 --> 00:03:46,812
-I'm Jake.
+00:03:58,649 --> 00:04:02,199
+Our babysitter checks structure, not semantics.
 
 71
-00:03:46,812 --> 00:03:49,187
+00:04:02,199 --> 00:04:04,574
+It knows files exist.
+
+72
+00:04:04,574 --> 00:04:07,374
+It doesn't know if the code is correct.
+
+73
+00:04:07,374 --> 00:04:10,137
+It verifies the agent committed.
+
+74
+00:04:10,137 --> 00:04:13,099
+Not that the commit does what was asked.
+
+75
+00:04:13,099 --> 00:04:16,124
+That's the gap — structure versus meaning.
+
+76
+00:04:16,124 --> 00:04:20,724
+Checking that a student turned in an essay, not whether it answers the prompt.
+
+77
+00:04:20,724 --> 00:04:22,699
+Two things to build.
+
+78
+00:04:22,699 --> 00:04:26,499
+One: a TDD flag for babysit.sh.
+
+79
+00:04:26,499 --> 00:04:30,737
+When enabled, scan changed source files for matching test files.
+
+80
+00:04:30,737 --> 00:04:34,612
+Touched auth.js with no auth.test.js?
+
+81
+00:04:34,612 --> 00:04:36,099
+Warning.
+
+82
+00:04:36,099 --> 00:04:40,549
+Not a blocker — we're vibe coders, not a Java shop — but a signal.
+
+83
+00:04:40,549 --> 00:04:45,112
+Start as a warning, graduate to hard failure on critical paths.
+
+84
+00:04:45,112 --> 00:04:48,174
+Two: a semantic compliance layer.
+
+85
+00:04:48,174 --> 00:04:56,699
+After deterministic checks pass, a lightweight LLM evaluates: given the task description and the git diff, did the agent do what was asked?
+
+86
+00:04:56,699 --> 00:04:59,562
+The bash layer stays as foundation.
+
+87
+00:04:59,562 --> 00:05:03,187
+The LLM layer is additive, not replacement.
+
+88
+00:05:03,187 --> 00:05:05,124
+Trust the bash.
+
+89
+00:05:05,124 --> 00:05:07,362
+Augment with judgment.
+
+90
+00:05:07,362 --> 00:05:10,162
+Deterministic catches forgetting.
+
+91
+00:05:10,162 --> 00:05:13,124
+Semantic catches misunderstanding.
+
+92
+00:05:13,124 --> 00:05:16,187
+Together, both failure modes covered.
+
+93
+00:05:16,187 --> 00:05:18,624
+That's Trust But Verify.
+
+94
+00:05:18,624 --> 00:05:20,274
+I'm Jake.
+
+95
+00:05:20,274 --> 00:05:22,649
 Catch you next episode.
 

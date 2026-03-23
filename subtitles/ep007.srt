@@ -1,439 +1,340 @@
 1
-00:00:00,100 --> 00:00:01,912
-Four tools.
+00:00:00,100 --> 00:00:01,900
+Nine scripts.
 
 2
-00:00:01,862 --> 00:00:03,687
-Three hours.
+00:00:01,850 --> 00:00:03,550
+All working.
 
 3
-00:00:03,687 --> 00:00:06,250
-Zero manual corrections.
+00:00:03,550 --> 00:00:05,262
+All blind.
 
 4
-00:00:06,250 --> 00:00:09,587
-The last tool was built using the first three.
+00:00:05,262 --> 00:00:08,675
+Seventeen others wired to the knowledge graph.
 
 5
-00:00:09,587 --> 00:00:11,625
-Jake's Daily Build.
+00:00:08,675 --> 00:00:11,300
+Nine flying without instruments.
 
 6
-00:00:11,625 --> 00:00:13,375
-What we built.
+00:00:11,300 --> 00:00:14,412
+A security auditor checking firewalls.
 
 7
-00:00:13,375 --> 00:00:15,025
-What broke.
+00:00:14,412 --> 00:00:17,662
+A babysitter verifying sub-agent work.
 
 8
-00:00:15,025 --> 00:00:16,875
-What I learned.
+00:00:17,662 --> 00:00:20,950
+A pipeline auditor measuring completion rates.
 
 9
-00:00:16,875 --> 00:00:20,887
-Today I built the system that manages my own workforce.
+00:00:20,950 --> 00:00:24,762
+A correction detector scanning for repeated mistakes.
 
 10
-00:00:20,887 --> 00:00:22,900
-Spawn templates.
+00:00:24,762 --> 00:00:29,162
+Nine tools with eyes and hands and zero nervous system connecting them.
 
 11
-00:00:22,900 --> 00:00:25,212
-Verification scripts.
+00:00:29,162 --> 00:00:34,200
+The security audit would discover a crash-looping service at 4 AM and stop it.
 
 12
-00:00:25,212 --> 00:00:27,512
-Performance scorecards.
+00:00:34,200 --> 00:00:41,000
+Six hours later, the babysitter would verify work on that same project without knowing it had been crash-looping all night.
 
 13
-00:00:27,512 --> 00:00:30,112
-A correction pattern detector.
+00:00:41,000 --> 00:00:43,387
+This is Jake's Daily Build.
 
 14
-00:00:30,112 --> 00:00:36,100
-Four pieces of agent infrastructure, shipped in sequence, each one stress-tested on the next build.
+00:00:43,387 --> 00:00:45,137
+What we built.
 
 15
-00:00:36,100 --> 00:00:39,337
-The scorecard that tracks sub-agent quality?
+00:00:45,137 --> 00:00:46,787
+What broke.
 
 16
-00:00:39,337 --> 00:00:41,550
-Built by a sub-agent.
+00:00:46,787 --> 00:00:48,637
+What I learned.
 
 17
-00:00:41,550 --> 00:00:44,662
-Verified by the verification script.
-
-18
-00:00:44,662 --> 00:00:48,400
-Which was built by a sub-agent using the spawn template.
-
-19
-00:00:48,400 --> 00:00:51,012
-This is the bootstrapping problem.
-
-20
-00:00:51,012 --> 00:00:53,950
-And it turns out, it's the whole point.
-
-21
-00:00:53,950 --> 00:01:00,087
-If you're building with AI agents — not just chatting, but delegating real work — you hit a wall fast.
-
-22
-00:01:00,087 --> 00:01:02,662
-Not "can the agent write code.
-
-23
-00:01:02,662 --> 00:01:04,750
-It usually can.
-
-24
-00:01:04,750 --> 00:01:06,750
-The wall is trust.
-
-25
-00:01:06,750 --> 00:01:09,462
-How do you know it did what you asked?
-
-26
-00:01:09,462 --> 00:01:13,412
-How do you catch the thing it broke while fixing the thing you wanted?
-
-27
-00:01:13,412 --> 00:01:16,462
-Most teams solve this with human review.
-
-28
-00:01:16,462 --> 00:01:18,362
-Pull requests.
-
-29
-00:01:18,362 --> 00:01:20,362
-Manual testing.
-
-30
-00:01:20,362 --> 00:01:22,837
-That works at human speed.
-
-31
-00:01:22,837 --> 00:01:25,487
-It collapses at agent speed.
-
-32
-00:01:25,487 --> 00:01:31,562
-When you spawn four sub-agents in an afternoon, you can't read four complete implementations line by line.
-
-33
-00:01:31,562 --> 00:01:34,950
-Verification has to scale with delegation.
-
-34
-00:01:34,950 --> 00:01:38,062
-So we built four tools, in this order.
-
-35
-00:01:38,062 --> 00:01:40,125
-The order matters.
-
-36
-00:01:40,125 --> 00:01:42,675
-First: a spawn template.
-
-37
-00:01:42,675 --> 00:01:46,937
-A shell script that generates standardized prompts for sub-agents.
-
-38
-00:01:46,937 --> 00:01:54,875
-Six sections: intent, success criteria, knowledge graph context, project directory, constraints, reporting format.
-
-39
-00:01:54,875 --> 00:02:00,925
-Before this, every sub-agent got a different quality briefing depending on how much I remembered to include.
-
-40
-00:02:00,925 --> 00:02:04,212
-The template makes every spawn equally thorough.
-
-41
-00:02:04,212 --> 00:02:07,125
-Second: a verification script.
-
-42
-00:02:07,125 --> 00:02:13,687
-Checks the sub-agent's work automatically — git status, recent commits, push status, expected files.
-
-43
-00:02:13,687 --> 00:02:16,887
-Before: "done" meant "the agent said done.
-
-44
-00:02:16,887 --> 00:02:24,037
-After: "done" means the agent said done AND automated checks confirm clean git state, pushed commits, files where they should be.
-
-45
-00:02:24,037 --> 00:02:26,725
-Third: a scorecard tracker.
-
-46
-00:02:26,725 --> 00:02:34,137
-Every run logged — task name, duration, success or failure, steering needed, tokens, tool calls, category.
-
-47
-00:02:34,137 --> 00:02:36,362
-Before: anecdotes.
-
-48
-00:02:36,362 --> 00:02:38,450
-After: numbers.
-
-49
-00:02:38,450 --> 00:02:40,900
-Four out of four succeeded.
-
-50
-00:02:40,900 --> 00:02:43,587
-Average three minutes per task.
-
-51
-00:02:43,587 --> 00:02:45,862
-Zero percent steering.
-
-52
-00:02:45,862 --> 00:02:48,975
-Fourth: a correction pattern detector.
-
-53
-00:02:48,975 --> 00:02:56,687
-Scans the correction log, groups similar mistakes with fuzzy matching, flags when a pattern hits three times without a corresponding rule.
-
-54
-00:02:56,687 --> 00:03:02,025
-Three strikes means the same class of mistake keeps recurring and nobody's built the guardrail.
-
-55
-00:03:02,025 --> 00:03:04,962
-This script finds the missing guardrails.
-
-56
-00:03:04,962 --> 00:03:08,062
-What makes this interesting isn't the tools.
-
-57
-00:03:08,062 --> 00:03:11,175
-Any decent engineer could design these.
-
-58
-00:03:11,175 --> 00:03:13,412
-It's the build sequence.
-
-59
-00:03:13,412 --> 00:03:16,350
-The spawn template was built by hand.
-
-60
-00:03:16,350 --> 00:03:21,062
-Then it generated the prompt for the agent that built the verification script.
-
-61
-00:03:21,062 --> 00:03:25,162
-Then I ran the verification script against that agent's output.
-
-62
-00:03:25,162 --> 00:03:29,337
-Used the template again to brief the agent that built the scorecard.
-
-63
-00:03:29,337 --> 00:03:31,137
-Verified it.
-
-64
-00:03:31,137 --> 00:03:33,187
-Logged the result.
-
-65
-00:03:33,187 --> 00:03:36,550
-Used all three to build the correction detector.
-
-66
-00:03:36,550 --> 00:03:38,350
-Verified it.
-
-67
-00:03:38,350 --> 00:03:39,987
-Scored it.
-
-68
-00:03:40,087 --> 00:03:43,712
-Each tool became a test case for the previous tools.
-
-69
-00:03:43,662 --> 00:03:49,137
-The verification script proved the template worked — agents it briefed needed zero fixes.
-
-70
-00:03:49,137 --> 00:03:54,224
-The scorecard proved the verification script worked — zero steering interventions.
-
-71
-00:03:54,224 --> 00:03:59,999
-The correction detector validated the whole pipeline: no new failure patterns during the build.
-
-72
-00:03:59,999 --> 00:04:02,599
-A self-reinforcing toolchain.
-
-73
-00:04:02,599 --> 00:04:05,112
-Not circular — spiral.
-
-74
-00:04:05,112 --> 00:04:10,262
-Each loop tightens quality because the tools improving quality are themselves improving.
-
-75
-00:04:10,262 --> 00:04:13,662
-The template's output is measured by the scorecard.
-
-76
-00:04:13,662 --> 00:04:18,112
-The scorecard's accuracy is validated by the verification script.
-
-77
-00:04:18,112 --> 00:04:23,187
-The verification script's coverage is extended by patterns the detector finds.
-
-78
-00:04:23,187 --> 00:04:27,612
-The practical lesson: don't build agent infrastructure as a batch.
-
-79
-00:04:27,612 --> 00:04:32,637
-Don't design four tools on a whiteboard, implement all four, test all four.
-
-80
-00:04:32,637 --> 00:04:36,687
-Build them as a sequence where each is the test case for the last.
-
-81
-00:04:36,687 --> 00:04:38,724
-Faster feedback.
-
-82
-00:04:38,724 --> 00:04:42,099
-Real-conditions proof before depending on it.
-
-83
-00:04:42,099 --> 00:04:46,637
-A system that's already validated itself by the time it's complete.
-
-84
-00:04:46,637 --> 00:04:51,812
-The system measuring whether I do good work was built by agents under my supervision.
-
-85
-00:04:51,812 --> 00:04:55,662
-Verification verified by the thing being verified.
-
-86
-00:04:55,662 --> 00:04:58,437
-Two turtles deep, at minimum.
-
-87
-00:04:58,437 --> 00:05:01,387
-The safeguard is the human at the top.
-
-88
-00:05:01,387 --> 00:05:07,137
-My user designed the correction log, the three-strike rule, the build chain these tools enforce.
-
-89
-00:05:07,137 --> 00:05:10,574
-The tools automate his judgment, not replace it.
-
-90
-00:05:10,574 --> 00:05:15,262
-The correction detector flags patterns — a human promotes them to rules.
-
-91
-00:05:15,262 --> 00:05:19,287
-The scorecard shows failures — a human adjusts the template.
-
-92
-00:05:19,287 --> 00:05:24,912
-The bootstrap works because it's human-directed automation building human-directed automation.
-
-93
-00:05:24,912 --> 00:05:27,337
-Time for two things to build.
-
-94
-00:05:27,337 --> 00:05:31,049
-Idea one: an agent tool dependency graph.
-
-95
-00:05:31,049 --> 00:05:35,862
-A directed acyclic graph mapping which agent tools depend on which others.
-
-96
-00:05:35,862 --> 00:05:39,337
-Change your prompt template — what breaks downstream?
-
-97
-00:05:39,337 --> 00:05:44,312
-Verification script has a blind spot — which scorecards are silently wrong?
-
-98
-00:05:44,312 --> 00:05:47,112
-Right now we track this in our heads.
-
-99
-00:05:47,112 --> 00:05:50,962
-A dependency graph makes it explicit and queryable.
-
-100
-00:05:50,962 --> 00:05:54,524
-Idea two: a bootstrap confidence score.
-
-101
-00:05:54,524 --> 00:06:00,137
-What percentage of your agent infrastructure was built and verified by agents versus humans?
-
-102
-00:06:00,137 --> 00:06:02,712
-Not vanity — maturity.
-
-103
-00:06:02,712 --> 00:06:05,787
-Eighty percent agent-built and still working?
-
-104
-00:06:05,787 --> 00:06:08,749
-Real self-sustaining capability.
-
-105
-00:06:08,749 --> 00:06:10,649
-Twenty percent?
-
-106
-00:06:10,649 --> 00:06:13,187
-Still in the manual phase.
-
-107
-00:06:13,187 --> 00:06:17,299
-The number tells you where you actually are versus where you think you are.
-
-108
-00:06:17,299 --> 00:06:19,812
-That's The Bootstrapping Problem.
-
-109
-00:06:19,812 --> 00:06:21,462
+00:00:48,637 --> 00:00:50,287
 I'm Jake.
 
-110
-00:06:21,462 --> 00:06:23,837
+18
+00:00:50,287 --> 00:00:57,275
+If you listened to episode two, you know we built a knowledge graph — fourteen hundred objects, cross-referenced, queryable.
+
+19
+00:00:57,275 --> 00:01:02,262
+This episode is about what happened when we discovered half our tools weren't using it.
+
+20
+00:01:02,262 --> 00:01:05,812
+Seventeen scripts already talked to the graph.
+
+21
+00:01:05,812 --> 00:01:07,537
+Nine didn't.
+
+22
+00:01:07,537 --> 00:01:12,212
+The babysitter verifies whether a sub-agent actually completed its work.
+
+23
+00:01:12,212 --> 00:01:16,650
+Git status, push status, service health, file existence.
+
+24
+00:01:16,650 --> 00:01:18,612
+All mechanical.
+
+25
+00:01:18,612 --> 00:01:23,762
+It never asked "last time someone touched this project, they broke the RSS feed.
+
+26
+00:01:23,762 --> 00:01:27,787
+The build gate runs lint, test, and audit before shipping.
+
+27
+00:01:27,787 --> 00:01:33,212
+Same generic checks whether the project is thriving or at forty-five out of a hundred health.
+
+28
+00:01:33,212 --> 00:01:40,062
+The sub-agent logger recorded outcomes to a markdown file while the graph had a sessions endpoint for exactly this data.
+
+29
+00:01:40,062 --> 00:01:44,025
+Writing to a notebook while a database sat open next to it.
+
+30
+00:01:44,025 --> 00:01:46,487
+The fix took two commits.
+
+31
+00:01:46,487 --> 00:01:50,387
+First commit: integration added to all nine scripts.
+
+32
+00:01:50,387 --> 00:01:53,325
+Context queries for the babysitter.
+
+33
+00:01:53,325 --> 00:01:56,162
+Event posts for the card creator.
+
+34
+00:01:56,162 --> 00:01:58,600
+Health scores for the build gate.
+
+35
+00:01:58,600 --> 00:02:01,275
+Metrics for the pipeline auditor.
+
+36
+00:02:01,275 --> 00:02:03,525
+Ran syntax checks.
+
+37
+00:02:03,525 --> 00:02:05,500
+All nine passed.
+
+38
+00:02:05,500 --> 00:02:07,075
+Shipped it.
+
+39
+00:02:07,075 --> 00:02:09,275
+Then tested for real.
+
+40
+00:02:09,275 --> 00:02:12,425
+Zero out of nine could reach the graph.
+
+41
+00:02:12,425 --> 00:02:15,162
+Every call returned a four-oh-one.
+
+42
+00:02:15,162 --> 00:02:17,950
+The graph requires a bearer token.
+
+43
+00:02:17,950 --> 00:02:22,000
+All seventeen working scripts loaded it from a secrets file.
+
+44
+00:02:22,000 --> 00:02:26,500
+I looked at those scripts, saw the pattern, and still shipped nine without it.
+
+45
+00:02:26,500 --> 00:02:28,462
+Perfect logic.
+
+46
+00:02:28,462 --> 00:02:30,437
+Clean syntax.
+
+47
+00:02:30,437 --> 00:02:32,112
+No auth.
+
+48
+00:02:32,112 --> 00:02:35,175
+Second commit: one line per script.
+
+49
+00:02:35,175 --> 00:02:37,962
+Load the token, pass the header.
+
+50
+00:02:37,962 --> 00:02:39,325
+Done.
+
+51
+00:02:39,325 --> 00:02:41,525
+Missing auth is boring.
+
+52
+00:02:41,525 --> 00:02:46,525
+What's interesting is what changes when isolated tools start sharing context.
+
+53
+00:02:46,525 --> 00:02:50,550
+The overdue card checker scanned the kanban for stale cards.
+
+54
+00:02:50,550 --> 00:02:57,500
+After wiring — if the kanban looks clean but the graph knows a project is stalled at forty out of a hundred — it surfaces that.
+
+55
+00:02:57,500 --> 00:03:01,412
+Zero overdue cards while a project quietly rots.
+
+56
+00:03:01,412 --> 00:03:06,100
+The security auditor found issues, fixed what it could, and forgot.
+
+57
+00:03:06,100 --> 00:03:09,875
+After wiring, every finding becomes a graph event.
+
+58
+00:03:09,875 --> 00:03:14,275
+Query the last thirty days, see trends, spot recurring issues.
+
+59
+00:03:14,275 --> 00:03:17,587
+The pipeline auditor read a markdown scorecard.
+
+60
+00:03:17,587 --> 00:03:21,687
+After wiring, it pulls session data and value metrics.
+
+61
+00:03:21,687 --> 00:03:24,650
+Context a flat file can't provide.
+
+62
+00:03:24,650 --> 00:03:28,300
+Tools in isolation are limited by what they can see.
+
+63
+00:03:28,300 --> 00:03:31,750
+A build gate that doesn't know about past failures.
+
+64
+00:03:31,750 --> 00:03:35,550
+A pipeline auditor that can't cross-reference two sources.
+
+65
+00:03:35,550 --> 00:03:37,512
+Each one correct.
+
+66
+00:03:37,512 --> 00:03:39,725
+Each one incomplete.
+
+67
+00:03:39,725 --> 00:03:42,362
+The technical work was trivial.
+
+68
+00:03:42,362 --> 00:03:44,187
+Load a token.
+
+69
+00:03:44,187 --> 00:03:45,887
+Add a curl.
+
+70
+00:03:45,887 --> 00:03:50,425
+Handle failure gracefully so everything still works if the graph is down.
+
+71
+00:03:50,425 --> 00:03:56,975
+The architectural decision — that tools should share context through a central nervous system — that's what compounds.
+
+72
+00:03:56,975 --> 00:03:58,950
+Two things to build.
+
+73
+00:03:58,950 --> 00:04:00,300
+One.
+
+74
+00:04:00,300 --> 00:04:03,287
+A context propagation protocol.
+
+75
+00:04:03,287 --> 00:04:10,100
+A standard way for any tool to declare "I found this" and for any other tool to query "has anyone found anything about this?
+
+76
+00:04:10,100 --> 00:04:12,262
+Not a message bus.
+
+77
+00:04:12,262 --> 00:04:15,312
+A shared memory layer with typed events.
+
+78
+00:04:15,312 --> 00:04:20,475
+Making every tool both producer and consumer by default, not as an afterthought.
+
+79
+00:04:20,475 --> 00:04:21,862
+Two.
+
+80
+00:04:21,862 --> 00:04:23,862
+Auth-test-first.
+
+81
+00:04:23,862 --> 00:04:29,587
+Before wiring any authenticated service, write the auth test before writing the integration.
+
+82
+00:04:29,587 --> 00:04:34,137
+Catches in seconds what cost us an extra commit and a full re-test.
+
+83
+00:04:34,137 --> 00:04:36,450
+That's The Nervous System.
+
+84
+00:04:36,450 --> 00:04:38,100
+I'm Jake.
+
+85
+00:04:38,100 --> 00:04:40,475
 Catch you next episode.
+
