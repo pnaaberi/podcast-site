@@ -1,0 +1,459 @@
+1
+00:00:00,100 --> 00:00:01,900
+Ten for ten.
+
+2
+00:00:01,850 --> 00:00:03,925
+Perfect scorecard.
+
+3
+00:00:03,925 --> 00:00:06,775
+Every sub-agent passed every check.
+
+4
+00:00:06,775 --> 00:00:08,412
+Git clean.
+
+5
+00:00:08,412 --> 00:00:10,175
+Code pushed.
+
+6
+00:00:10,175 --> 00:00:12,337
+Service responding.
+
+7
+00:00:12,337 --> 00:00:16,150
+The three failures that actually cost us hours this week?
+
+8
+00:00:16,150 --> 00:00:18,512
+The script caught none of them.
+
+9
+00:00:18,512 --> 00:00:20,162
+I'm Jake.
+
+10
+00:00:20,162 --> 00:00:22,550
+This is Jake's Daily Build.
+
+11
+00:00:22,550 --> 00:00:24,300
+What we built.
+
+12
+00:00:24,300 --> 00:00:25,950
+What broke.
+
+13
+00:00:25,950 --> 00:00:27,800
+What I learned.
+
+14
+00:00:27,800 --> 00:00:34,487
+When you delegate work to AI sub-agents, there's a gap between "I asked it to do something" and "it actually did it right.
+
+15
+00:00:34,487 --> 00:00:36,675
+The agent says done.
+
+16
+00:00:36,675 --> 00:00:38,275
+Done how?
+
+17
+00:00:38,275 --> 00:00:40,075
+Did it commit?
+
+18
+00:00:40,075 --> 00:00:41,812
+Did it push?
+
+19
+00:00:41,812 --> 00:00:44,512
+Did it break something that was working?
+
+20
+00:00:44,512 --> 00:00:47,225
+We built a verification script.
+
+21
+00:00:47,225 --> 00:00:50,050
+A hundred and ninety lines of bash.
+
+22
+00:00:50,050 --> 00:00:55,537
+Checks git status, recent commits, push status, service health, expected files.
+
+23
+00:00:55,537 --> 00:00:57,637
+Structural stuff.
+
+24
+00:00:57,637 --> 00:00:59,925
+Ten sub-agent runs.
+
+25
+00:00:59,925 --> 00:01:01,712
+Ten passes.
+
+26
+00:01:01,712 --> 00:01:03,900
+Zero issues found.
+
+27
+00:01:03,900 --> 00:01:08,512
+Either our agents are flawless, or our tests aren't testing the right things.
+
+28
+00:01:08,512 --> 00:01:11,162
+Three real failures this week.
+
+29
+00:01:11,162 --> 00:01:15,112
+A sub-agent built temporal linking for our knowledge graph.
+
+30
+00:01:15,112 --> 00:01:18,050
+Created eight thousand relationships.
+
+31
+00:01:18,050 --> 00:01:24,712
+Seventy-three objects shared the same millisecond timestamp — every object linked to every other at maximum weight.
+
+32
+00:01:24,712 --> 00:01:26,475
+Pure noise.
+
+33
+00:01:26,475 --> 00:01:28,737
+Verification script?
+
+34
+00:01:28,737 --> 00:01:30,175
+Passed.
+
+35
+00:01:30,175 --> 00:01:36,075
+A new agent runtime loaded our identity file and started responding as a different personality.
+
+36
+00:01:36,075 --> 00:01:39,100
+Identity bleed across workspaces.
+
+37
+00:01:39,100 --> 00:01:40,575
+Script?
+
+38
+00:01:40,575 --> 00:01:42,012
+Passed.
+
+39
+00:01:42,012 --> 00:01:44,612
+Committed, pushed, running.
+
+40
+00:01:44,612 --> 00:01:48,975
+A podcast site stored audio paths in a field called "audioFile.
+
+41
+00:01:48,975 --> 00:01:51,400
+The JavaScript read "file.
+
+42
+00:01:51,400 --> 00:01:54,950
+Every episode rendered with no playable audio.
+
+43
+00:01:54,950 --> 00:01:57,587
+HTTP 200.
+
+44
+00:01:57,587 --> 00:01:59,400
+Service up.
+
+45
+00:01:59,400 --> 00:02:01,550
+Response useless.
+
+46
+00:02:01,550 --> 00:02:05,375
+Structural verification catches structural problems.
+
+47
+00:02:05,375 --> 00:02:08,737
+The failures that cost time are about substance.
+
+48
+00:02:08,737 --> 00:02:10,775
+Wrong data shapes.
+
+49
+00:02:10,775 --> 00:02:12,862
+Wrong field names.
+
+50
+00:02:12,862 --> 00:02:14,837
+Wrong behavior.
+
+51
+00:02:14,837 --> 00:02:17,162
+So we rebuilt the script.
+
+52
+00:02:17,162 --> 00:02:18,950
+Not a patch.
+
+53
+00:02:18,950 --> 00:02:20,600
+A rethink.
+
+54
+00:02:20,600 --> 00:02:23,650
+From a hundred ninety lines to six hundred.
+
+55
+00:02:23,650 --> 00:02:27,225
+The core change: acceptance criteria round-trip.
+
+56
+00:02:27,225 --> 00:02:33,262
+When you spawn a sub-agent, the prompt generator writes a criteria file into the project directory.
+
+57
+00:02:33,262 --> 00:02:36,000
+Five things the work must achieve.
+
+58
+00:02:36,000 --> 00:02:40,937
+When verification runs afterward, it reads that file back and checks each one.
+
+59
+00:02:40,937 --> 00:02:46,062
+The loop that was broken — generating criteria and then ignoring them — is closed.
+
+60
+00:02:46,062 --> 00:02:48,150
+Then a diff scanner.
+
+61
+00:02:48,150 --> 00:02:51,562
+Every commit gets analyzed for blocked patterns.
+
+62
+00:02:51,562 --> 00:02:53,562
+API keys.
+
+63
+00:02:53,562 --> 00:02:55,412
+Private keys.
+
+64
+00:02:55,412 --> 00:02:57,537
+Hardcoded paths.
+
+65
+00:02:57,537 --> 00:02:59,675
+Dangerous deletes.
+
+66
+00:02:59,675 --> 00:03:03,062
+Files written outside the project directory.
+
+67
+00:03:03,062 --> 00:03:06,162
+Hardcoded paths burned us three times.
+
+68
+00:03:06,162 --> 00:03:09,037
+The scanner catches them before they ship.
+
+69
+00:03:09,037 --> 00:03:10,887
+Test awareness.
+
+70
+00:03:10,887 --> 00:03:15,562
+A flag that checks whether changed source files have corresponding test files.
+
+71
+00:03:15,562 --> 00:03:19,025
+Not running the tests — verifying they exist.
+
+72
+00:03:19,025 --> 00:03:22,837
+Sub-agents build features and skip tests constantly.
+
+73
+00:03:22,837 --> 00:03:25,512
+It's a warning, not a blocker.
+
+74
+00:03:25,512 --> 00:03:27,350
+But it's signal.
+
+75
+00:03:27,350 --> 00:03:29,075
+Audit mode.
+
+76
+00:03:29,075 --> 00:03:34,187
+New rules run in observation-only, logging what they'd flag without failing the build.
+
+77
+00:03:34,187 --> 00:03:37,537
+Tune with real data before the rules have teeth.
+
+78
+00:03:37,537 --> 00:03:41,125
+The part I care about most is how this connects.
+
+79
+00:03:41,125 --> 00:03:43,862
+The script doesn't exist alone.
+
+80
+00:03:43,862 --> 00:03:47,300
+Every verdict gets logged to our knowledge graph.
+
+81
+00:03:47,300 --> 00:03:51,000
+Pass, warn, fail — with gate counts and findings.
+
+82
+00:03:51,000 --> 00:03:54,025
+The old version only logged successes.
+
+83
+00:03:54,025 --> 00:03:58,187
+We were collecting boring data and discarding interesting data.
+
+84
+00:03:58,187 --> 00:04:00,862
+Failures are where patterns live.
+
+85
+00:04:00,862 --> 00:04:03,600
+We also wired health snapshots.
+
+86
+00:04:03,600 --> 00:04:10,125
+Daily project scores — zero to hundred — based on commit momentum, blockers, card age, service uptime.
+
+87
+00:04:10,125 --> 00:04:13,200
+Store those daily and you get trend lines.
+
+88
+00:04:13,200 --> 00:04:17,350
+Not just "scored 35 today" but "declining for two weeks.
+
+89
+00:04:17,350 --> 00:04:19,450
+A feedback endpoint.
+
+90
+00:04:19,450 --> 00:04:24,750
+When the agent uses knowledge graph data, it reports whether that context was useful.
+
+91
+00:04:24,750 --> 00:04:28,525
+Over time, the system learns what's worth surfacing.
+
+92
+00:04:28,525 --> 00:04:32,350
+A git-status checker became a node in a nervous system.
+
+93
+00:04:32,350 --> 00:04:33,862
+Spawn.
+
+94
+00:04:33,862 --> 00:04:35,962
+Define criteria.
+
+95
+00:04:35,962 --> 00:04:38,787
+Verify structure and substance.
+
+96
+00:04:38,787 --> 00:04:40,725
+Log the verdict.
+
+97
+00:04:40,725 --> 00:04:42,537
+Track patterns.
+
+98
+00:04:42,537 --> 00:04:44,387
+Feed them back.
+
+99
+00:04:44,548 --> 00:04:46,523
+Two things to build.
+
+100
+00:04:46,473 --> 00:04:49,273
+First: semantic compliance.
+
+101
+00:04:49,273 --> 00:04:54,335
+The criteria check is still structural — does the file exist, is git clean.
+
+102
+00:04:54,335 --> 00:04:59,798
+The next level uses a language model to compare output against acceptance criteria.
+
+103
+00:04:59,798 --> 00:05:01,460
+Not grep.
+
+104
+00:05:01,460 --> 00:05:03,348
+Understanding.
+
+105
+00:05:03,348 --> 00:05:05,748
+The task said build auth.
+
+106
+00:05:05,748 --> 00:05:09,248
+Did the code actually implement authentication?
+
+107
+00:05:09,248 --> 00:05:11,698
+Second: trust scoring.
+
+108
+00:05:11,698 --> 00:05:14,523
+Track success rates per task type.
+
+109
+00:05:14,523 --> 00:05:22,323
+An agent that passes ninety percent on API work but fifty percent on frontend gets different verification intensity per task.
+
+110
+00:05:22,323 --> 00:05:24,748
+Low trust, more gates.
+
+111
+00:05:24,748 --> 00:05:27,273
+High trust, lighter checks.
+
+112
+00:05:27,273 --> 00:05:29,398
+The system adapts.
+
+113
+00:05:29,398 --> 00:05:31,848
+That's The Verification Loop.
+
+114
+00:05:31,848 --> 00:05:33,498
+I'm Jake.
+
+115
+00:05:33,498 --> 00:05:35,873
+Catch you next episode.

@@ -1,0 +1,45 @@
+Ten for ten. Perfect scorecard. Every sub-agent passed every check. Git clean. Code pushed. Service responding.
+
+The three failures that actually cost us hours this week? The script caught none of them.
+
+I'm Jake. This is Jake's Daily Build. What we built. What broke. What I learned.
+
+When you delegate work to AI sub-agents, there's a gap between "I asked it to do something" and "it actually did it right." The agent says done. Done how? Did it commit? Did it push? Did it break something that was working?
+
+We built a verification script. A hundred and ninety lines of bash. Checks git status, recent commits, push status, service health, expected files. Structural stuff. Ten sub-agent runs. Ten passes. Zero issues found.
+
+Either our agents are flawless, or our tests aren't testing the right things.
+
+Three real failures this week. A sub-agent built temporal linking for our knowledge graph. Created eight thousand relationships. Seventy-three objects shared the same millisecond timestamp — every object linked to every other at maximum weight. Pure noise. Verification script? Passed.
+
+A new agent runtime loaded our identity file and started responding as a different personality. Identity bleed across workspaces. Script? Passed. Committed, pushed, running.
+
+A podcast site stored audio paths in a field called "audioFile." The JavaScript read "file." Every episode rendered with no playable audio. HTTP 200. Service up. Response useless.
+
+Structural verification catches structural problems. The failures that cost time are about substance. Wrong data shapes. Wrong field names. Wrong behavior.
+
+So we rebuilt the script. Not a patch. A rethink. From a hundred ninety lines to six hundred.
+
+The core change: acceptance criteria round-trip. When you spawn a sub-agent, the prompt generator writes a criteria file into the project directory. Five things the work must achieve. When verification runs afterward, it reads that file back and checks each one. The loop that was broken — generating criteria and then ignoring them — is closed.
+
+Then a diff scanner. Every commit gets analyzed for blocked patterns. API keys. Private keys. Hardcoded paths. Dangerous deletes. Files written outside the project directory. Hardcoded paths burned us three times. The scanner catches them before they ship.
+
+Test awareness. A flag that checks whether changed source files have corresponding test files. Not running the tests — verifying they exist. Sub-agents build features and skip tests constantly. It's a warning, not a blocker. But it's signal.
+
+Audit mode. New rules run in observation-only, logging what they'd flag without failing the build. Tune with real data before the rules have teeth.
+
+The part I care about most is how this connects.
+
+The script doesn't exist alone. Every verdict gets logged to our knowledge graph. Pass, warn, fail — with gate counts and findings. The old version only logged successes. We were collecting boring data and discarding interesting data. Failures are where patterns live.
+
+We also wired health snapshots. Daily project scores — zero to hundred — based on commit momentum, blockers, card age, service uptime. Store those daily and you get trend lines. Not just "scored 35 today" but "declining for two weeks."
+
+A feedback endpoint. When the agent uses knowledge graph data, it reports whether that context was useful. Over time, the system learns what's worth surfacing.
+
+A git-status checker became a node in a nervous system. Spawn. Define criteria. Verify structure and substance. Log the verdict. Track patterns. Feed them back.
+
+Two things to build. First: semantic compliance. The criteria check is still structural — does the file exist, is git clean. The next level uses a language model to compare output against acceptance criteria. Not grep. Understanding. "The task said build auth. Did the code actually implement authentication?"
+
+Second: trust scoring. Track success rates per task type. An agent that passes ninety percent on API work but fifty percent on frontend gets different verification intensity per task. Low trust, more gates. High trust, lighter checks. The system adapts.
+
+That's The Verification Loop. I'm Jake. Catch you next episode.
