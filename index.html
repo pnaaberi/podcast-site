@@ -583,7 +583,7 @@ function toggle(n,e){
   if(e)e.stopPropagation();
   const a=document.getElementById('audio-'+n);
   if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();preloadNext(n);if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -636,21 +636,40 @@ function ended(n){
   document.getElementById('btn-'+n).innerHTML=PL;
   const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');
   clearDim(n);
-  hideSticky();cur=null;
-  // Autoplay next if toggled on
+
+  // Autoplay next BEFORE wiping state — browser allows .play() right after ended
   if(autoPlay){
-    // Include intro in the full list for autoplay chaining
     const full=intro?[intro,...allEps]:allEps;
     const sorted=sortAsc?[...full].sort((a,b)=>a.epNum-b.epNum):[...full].sort((a,b)=>b.epNum-a.epNum);
     const idx=sorted.findIndex(e=>e.epNum===n);
     if(idx>=0&&idx<sorted.length-1){
       const next=sorted[idx+1];
+      const nextAudio=document.getElementById('audio-'+next.epNum);
+      // Preload next track so .play() doesn't fail on empty buffer
+      if(nextAudio)nextAudio.preload='auto';
+      // Clear cur so toggle() doesn't try to pause the ended track
+      cur=null;
       const nextEl=document.getElementById('ep'+next.epNum);
       if(nextEl)nextEl.scrollIntoView({behavior:'smooth',block:'center'});
+      // Must call synchronously — setTimeout breaks browser gesture chain
       toggle(next.epNum);
+      return;
     }
   }
+
+  hideSticky();cur=null;
 }
+
+function preloadNext(n){
+  const order=getPlayOrder();
+  const idx=order.findIndex(e=>e.epNum===n);
+  if(idx>=0&&idx<order.length-1){
+    const nextA=document.getElementById('audio-'+order[idx+1].epNum);
+    if(nextA&&nextA.preload==='none')nextA.preload='auto';
+  }
+}
+
+
 
 function updateJumpPos(){const j=document.getElementById('jump');if(j){j.classList.toggle('no-sticky',!document.getElementById('sticky').classList.contains('on'))}}
 function showSticky(n){
