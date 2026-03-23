@@ -61,8 +61,12 @@
         root.innerHTML = '<div class="error">Could not load episodes</div>';
       });
 
+    function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
     function render(ep) {
       const padNum = String(ep.epNum).padStart(3, '0');
+      const safeTitle = esc(ep.title);
+      const safeDuration = esc(ep.duration || '');
 
       root.innerHTML = `
         <div class="embed">
@@ -71,8 +75,8 @@
           </div>
           <div class="info">
             <div class="ep-num">EP${padNum}${ep.type === 'interview' ? ' · Interview' : ''}</div>
-            <div class="ep-title" title="${ep.title}">${ep.title}</div>
-            <div class="ep-show">Jake's Daily Build · ${ep.duration || ''}</div>
+            <div class="ep-title" title="${safeTitle}">${safeTitle}</div>
+            <div class="ep-show">Jake's Daily Build · ${safeDuration}</div>
             <div class="player-row">
               <button class="pbtn" id="playBtn" aria-label="Play episode">
                 <svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg>
