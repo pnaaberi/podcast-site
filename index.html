@@ -579,11 +579,11 @@ function toggle(n,e){
   const a=sharedAudio;
   const switching=cur&&cur.n!==n;
   if(switching){document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  // If switching episode or not loaded yet, swap src
+  // If switching episode or not loaded yet, swap src (no .load() — it resets Firefox autoplay permission)
   if(!cur||cur.n!==n||!a.src||!a.src.includes(epFiles[n])){
-    a.src=epFiles[n];a.load();
+    a.src=epFiles[n];
   }
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');if(pp&&pp.then)pp.then(()=>{console.log('[autoplay] playing ep'+n)}).catch((err)=>{console.warn('[autoplay] blocked ep'+n,err.name,err.message);document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -638,25 +638,59 @@ function ended(n){
   const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');
   clearDim(n);
 
-  // Autoplay next BEFORE wiping state — browser allows .play() right after ended
   if(autoPlay){
     const full=intro?[intro,...allEps]:allEps;
     const sorted=sortAsc?[...full].sort((a,b)=>a.epNum-b.epNum):[...full].sort((a,b)=>b.epNum-a.epNum);
     const idx=sorted.findIndex(e=>e.epNum===n);
     if(idx>=0&&idx<sorted.length-1){
       const next=sorted[idx+1];
-      // Shared audio — just swap src, same element stays "blessed"
-      // Clear cur so toggle() doesn't try to pause the ended track
-      cur=null;
-      const nextEl=document.getElementById('ep'+next.epNum);
-      if(nextEl)nextEl.scrollIntoView({behavior:'smooth',block:'center'});
-      // Must call synchronously — setTimeout breaks browser gesture chain
-      toggle(next.epNum);
+      autoplayNext(next.epNum);
       return;
     }
   }
 
   hideSticky();cur=null;
+}
+
+// Dedicated autoplay handler — bypasses toggle() to avoid race conditions
+function autoplayNext(n){
+  const a=sharedAudio;
+  // Update UI immediately
+  document.getElementById('btn-'+n).innerHTML=PA;
+  const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');
+  cur={a,n};
+  showSticky(n);startDim(n);updateMediaSession(n);resetStickyPanel();
+  const nextEl=document.getElementById('ep'+n);
+  if(nextEl)nextEl.scrollIntoView({behavior:'smooth',block:'center'});
+
+  // Set src and wait for browser to be ready before playing
+  a.src=epFiles[n];
+  a.playbackRate=SPEEDS[speedIdx];
+
+  function tryPlay(){
+    const pp=a.play();
+    if(pp&&pp.then)pp.then(()=>{
+      console.log('[autoplay] playing ep'+n);
+    }).catch((err)=>{
+      console.warn('[autoplay] blocked ep'+n,err.name,err.message);
+      // Revert UI
+      document.getElementById('btn-'+n).innerHTML=PL;
+      const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');
+      hideSticky();cur=null;
+    });
+  }
+
+  // If readyState is enough, play immediately; otherwise wait for canplay
+  if(a.readyState>=2){
+    tryPlay();
+  } else {
+    a.addEventListener('canplay',function onReady(){
+      a.removeEventListener('canplay',onReady);
+      tryPlay();
+    },{once:true});
+    // Fallback: if canplay never fires (e.g. network issue), try after 3s
+    setTimeout(()=>{if(cur&&cur.n===n&&a.paused)tryPlay()},3000);
+  }
 }
 
 
