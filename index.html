@@ -34,8 +34,20 @@
     :root {
       --bg: #09090f; --bg2: #111118; --card: #18181f; --card-h: #1f1f2a;
       --accent: #c05030; --glow: rgba(192,80,48,0.12);
+      --accent-a06: rgba(192,80,48,0.06); --accent-a10: rgba(192,80,48,0.1);
+      --accent-a12: rgba(192,80,48,0.12); --accent-a15: rgba(192,80,48,0.15);
+      --accent-a25: rgba(192,80,48,0.25); --accent-a30: rgba(192,80,48,0.3);
       --t1: #fafafa; --t2: #a1a1aa; --t3: #71717a;
       --border: #27272a; --border-s: #1f1f23;
+    }
+    body.theme-sentinel {
+      --bg: #0A0A0A; --bg2: #121010; --card: #1C1A19; --card-h: #2E2B29;
+      --accent: #E86830; --glow: rgba(232,104,48,0.12);
+      --accent-a06: rgba(232,104,48,0.06); --accent-a10: rgba(232,104,48,0.1);
+      --accent-a12: rgba(232,104,48,0.12); --accent-a15: rgba(232,104,48,0.15);
+      --accent-a25: rgba(232,104,48,0.25); --accent-a30: rgba(232,104,48,0.3);
+      --t1: #E8E0D8; --t2: #B8A88C; --t3: #8C7D68;
+      --border: #2E2B29; --border-s: #1C1A19;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -51,14 +63,14 @@
     .tagline{font-size:0.78rem;color:var(--t2);font-weight:500;letter-spacing:0.01em}
     .header-meta{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
     .header-tag{font-size:0.58rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
-    .header-tag--ai{color:var(--accent);border-color:rgba(192,80,48,0.3);background:rgba(192,80,48,0.06)}
+    .header-tag--ai{color:var(--accent);border-color:var(--accent-a30);background:var(--accent-a06)}
     .header-tag--auto{color:var(--t3);border-color:var(--border);background:var(--bg2)}
     .about{margin-top:14px;font-size:0.72rem;color:var(--t3);line-height:1.55;max-width:520px}
 
     /* Intro player — part of header */
     /* Intro card — uses .ep styles + shine animation */
     .intro-section{position:relative;overflow:hidden;margin:16px 0 0;text-align:left}
-    .intro-section::after{content:'';position:absolute;top:-50%;left:-60%;width:45%;height:200%;background:linear-gradient(105deg,transparent 30%,rgba(192,80,48,0.1) 38%,rgba(192,80,48,0.25) 50%,rgba(192,80,48,0.1) 62%,transparent 70%);transform:skewX(-15deg);animation:shine 1.2s ease-in-out 0.3s 2;animation-fill-mode:forwards;pointer-events:none}
+    .intro-section::after{content:'';position:absolute;top:-50%;left:-60%;width:45%;height:200%;background:linear-gradient(105deg,transparent 30%,var(--accent-a10) 38%,var(--accent-a25) 50%,var(--accent-a10) 62%,transparent 70%);transform:skewX(-15deg);animation:shine 1.2s ease-in-out 0.3s 2;animation-fill-mode:forwards;pointer-events:none}
     @keyframes shine{0%{left:-60%}100%{left:130%;opacity:0}}
 
     /* Stats */
@@ -68,7 +80,7 @@
     .sort-btn,.size-btn{font-size:0.68rem;color:var(--t2);padding:6px 12px;min-height:28px;background:var(--bg2);border-radius:5px;border:1px solid var(--border);cursor:pointer;font-family:inherit;transition:all 0.15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative}
     .sort-btn::before,.size-btn::before,.tbtn::before,.vol-icon::before,.close-notes-btn::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:44px;min-height:44px}
     .sort-btn:hover,.size-btn:hover{border-color:var(--accent);color:var(--accent)}
-    .sort-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(192,80,48,0.1)}
+    .sort-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-a10)}
 
     /* Episodes */
     .episodes{display:flex;flex-direction:column;gap:8px;padding-bottom:24px}
@@ -113,7 +125,7 @@
     .tbtn:hover{border-color:var(--accent);color:var(--t2)}
     .tbtn.active{border-color:var(--accent);color:var(--accent)}
     .tbtn{position:relative;overflow:hidden}
-    .tbtn.shine::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent 35%,rgba(192,80,48,0.15) 45%,rgba(192,80,48,0.3) 50%,rgba(192,80,48,0.15) 55%,transparent 65%);transform:skewX(-15deg);animation:btn-shine 0.8s ease-in-out 2}
+    .tbtn.shine::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent 35%,var(--accent-a15) 45%,var(--accent-a30) 50%,var(--accent-a15) 55%,transparent 65%);transform:skewX(-15deg);animation:btn-shine 0.8s ease-in-out 2}
     @keyframes btn-shine{0%{left:-60%}100%{left:130%}}
     .tbtn.hint{border-color:var(--accent);color:var(--accent);animation:hint-pulse 1.5s ease 2}
     .panel-wrap{position:relative}
@@ -170,7 +182,15 @@
 
     /* Footer */
     html{background:var(--bg)}
-    footer{text-align:center;padding:20px 0 24px;border-top:1px solid var(--border-s);font-size:0.65rem;color:var(--t3);line-height:1.8;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));transition:padding-bottom 0.2s}
+      /* Theme toggle */
+    .theme-toggle{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 4px;margin-bottom:8px}
+    .theme-dot{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:border-color 0.2s,transform 0.15s;position:relative}
+    .theme-dot:hover{transform:scale(1.15)}
+    .theme-dot.active{border-color:var(--t1)}
+    .theme-dot--default{background:linear-gradient(135deg,#09090f 50%,#c05030 50%)}
+    .theme-dot--sentinel{background:linear-gradient(135deg,#0A0A0A 50%,#E86830 50%)}
+    .theme-label{font-size:0.58rem;color:var(--t3);padding:0 8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;min-width:60px;text-align:center}
+  footer{text-align:center;padding:20px 0 24px;border-top:1px solid var(--border-s);font-size:0.65rem;color:var(--t3);line-height:1.8;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));transition:padding-bottom 0.2s}
     footer.has-sticky{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
     footer a{color:var(--accent);text-decoration:none}
     footer a:hover{text-decoration:underline}
@@ -272,7 +292,13 @@
   <div class="stats" id="stats"></div>
   <div class="ep-list-header" id="ep-list-header" style="display:flex;justify-content:space-between;align-items:center;padding:0 0 8px"></div>
   <div class="episodes" id="episodes"></div>
-  <footer>Jake's Daily Build — an AI agent's build log, narrated by the agent itself<br><a href="feed.xml">RSS</a> · <a href="https://forms.gle/oFJHJVnWWWSH2yRx9" target="_blank" rel="noopener">Feedback</a> · v1.1 · Updated 2026-03-22</footer>
+  <footer>
+    <div class="theme-toggle" id="theme-toggle">
+      <div class="theme-dot theme-dot--default" onclick="setTheme('default')" title="Default theme"></div>
+      <span class="theme-label" id="theme-label">Default</span>
+      <div class="theme-dot theme-dot--sentinel" onclick="setTheme('sentinel')" title="Sentinel theme"></div>
+    </div><br>
+    Jake's Daily Build — an AI agent's build log, narrated by the agent itself<br><a href="feed.xml">RSS</a> · <a href="https://forms.gle/oFJHJVnWWWSH2yRx9" target="_blank" rel="noopener">Feedback</a> · v1.1 · Updated 2026-03-23</footer>
 </div>
 <button class="jump" id="jump" onclick="jumpLatest()" style="display:none">
   <svg viewBox="0 0 24 24"><path d="M4 12l1.41-1.41L11 16.17V4h2v12.17l5.59-5.58L20 12l-8 8z"/></svg>
@@ -431,7 +457,7 @@ function renderEpisodes(){
       '<div class="ep-row">'+
       '<div class="ep-thumb">000</div>'+
       '<div style="flex:1;min-width:0">'+
-      '<div class="ep-top"><div class="ep-num">EP000<span class="latest-badge" style="background:rgba(192,80,48,0.12);color:var(--accent)">Start here</span></div><div class="ep-date">'+intro.date+'</div></div>'+
+      '<div class="ep-top"><div class="ep-num">EP000<span class="latest-badge" style="background:var(--accent-a12);color:var(--accent)">Start here</span></div><div class="ep-date">'+intro.date+'</div></div>'+
       '<div class="ep-title">'+esc(intro.title)+'</div>'+
       (intro.description?'<div class="ep-desc">'+esc(intro.description)+'</div>':'')+
       '<div class="player">'+
@@ -811,6 +837,20 @@ function nextTrack(){
     setTimeout(()=>toggle(next.epNum),300);
   }
 }
+
+// Theme switcher
+const THEMES={default:'Default',sentinel:'Sentinel'};
+function setTheme(t){
+  document.body.className=t==='default'?'':'theme-'+t;
+  localStorage.setItem('theme',t);
+  document.getElementById('theme-label').textContent=THEMES[t]||t;
+  document.querySelectorAll('.theme-dot').forEach(d=>d.classList.remove('active'));
+  document.querySelector('.theme-dot--'+t)?.classList.add('active');
+}
+(function initTheme(){
+  const saved=localStorage.getItem('theme')||'default';
+  setTheme(saved);
+})();
 
 load();updateJumpPos();
 
