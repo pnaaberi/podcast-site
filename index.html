@@ -305,6 +305,7 @@
   <span class="jump-full">Jump to Latest</span>
   <span class="jump-text">Latest EP.</span>
 </button>
+<audio id="shared-audio" preload="auto"></audio>
 <div class="sticky-panel" id="sticky-panel">
   <div class="sticky-panel-inner">
     <div class="sticky-panel-content" id="sticky-panel-content"></div>
@@ -347,6 +348,9 @@
 const PL='<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>';
 const PA='<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 let cur=null,capData={},sortAsc=localStorage.getItem('sort')==='desc'?false:true,autoPlay=localStorage.getItem('autoplay')==='true',allEps=[],intro=null,dimTimer=null;
+const sharedAudio=document.getElementById('shared-audio');
+// Map epNum → audio file path for src swapping
+const epFiles={};
 let vol=parseFloat(localStorage.getItem('vol')??'1'),muted=false,premuteVol=1;
 // Detect read-only volume (iOS WebKit — all browsers) at runtime
 let isVolReadOnly=false;
@@ -389,7 +393,7 @@ function applyVol(){
   // GainNode controls actual output (works on iOS)
   if(gainNode)gainNode.gain.value=vol;
   // Also set audio.volume for non-iOS browsers
-  document.querySelectorAll('audio').forEach(a=>{try{a.volume=vol}catch(e){}});
+  try{sharedAudio.volume=vol}catch(e){}
   const icon=document.getElementById('vol-icon');
   if(icon)icon.innerHTML=vol===0?VOL_MUTE:vol<0.5?VOL_LOW:VOL_HIGH;
 }
@@ -434,6 +438,8 @@ async function load(){
   const data=await(await fetch('episodes.json?t='+Date.now())).json();
   intro=data.find(e=>e.epNum===0);
   allEps=data.filter(e=>e.epNum!==0);
+  // Build file map
+  data.forEach(e=>{epFiles[e.epNum]='audio/'+e.file});
   renderEpisodes();
 }
 
@@ -468,7 +474,6 @@ function renderEpisodes(){
         '<div class="pbar" onclick="seek(event,0)"><div class="ptrack"><div class="pfill" id="fill-0"></div></div></div>'+
         '<div class="ptime" id="time-0">0:00 / '+intro.duration+'</div>'+
       '</div>'+
-      '<audio id="audio-0" src="audio/'+intro.file+'" preload="none"></audio>'+
       '<div class="toggles">'+
         '<button class="tbtn" onclick="loadPanel(0,&apos;notes&apos;,&apos;notes/ep000.md&apos;,this)">Notes</button>'+
         '<button class="tbtn" onclick="toggleCap(0,&apos;subtitles/ep000.srt&apos;,this)">Captions</button>'+
@@ -476,10 +481,7 @@ function renderEpisodes(){
       '</div></div>'+
       '<div class="panel-wrap" id="panel-wrap-notes-0"><div class="panel" id="panel-notes-0"></div><button class="close-notes-btn" id="closenotes-0" onclick="closeNotes(0,event)">Close ✕</button></div>'+
       '<div class="capbox" id="cap-0"></div>';
-    const a=document.getElementById('audio-0');
-    a.addEventListener('timeupdate',()=>tick(0));
-    a.addEventListener('ended',()=>ended(0));
-    a.volume=vol;
+
   }
 
   function renderEpCard(ep,opts){
@@ -505,7 +507,7 @@ function renderEpisodes(){
         '<div class="pbar" onclick="seek(event,'+ep.epNum+')"><div class="ptrack"><div class="pfill" id="fill-'+ep.epNum+'"></div></div></div>'+
         '<div class="ptime" id="time-'+ep.epNum+'">0:00 / '+ep.duration+'</div>'+
       '</div>'+
-      '<audio id="audio-'+ep.epNum+'" src="audio/'+ep.file+'" preload="none"></audio>'+
+
       '<div class="toggles">'+
         '<button class="tbtn" onclick="loadPanel('+ep.epNum+',&apos;notes&apos;,&apos;notes/ep'+num+'.md&apos;,this)">Notes</button>'+
         '<button class="tbtn" onclick="toggleCap('+ep.epNum+',&apos;subtitles/ep'+num+'.srt&apos;,this)">Captions</button>'+
@@ -541,14 +543,7 @@ function renderEpisodes(){
 
   document.getElementById('episodes').innerHTML=html;
 
-  // Wire audio events + apply volume
-  eps.forEach(ep=>{
-    const a=document.getElementById('audio-'+ep.epNum);
-    a.addEventListener('timeupdate',()=>tick(ep.epNum));
-    a.addEventListener('ended',()=>ended(ep.epNum));
-    a.volume=vol;
-  });
-  if(intro){const ia=document.getElementById('audio-0');if(ia)ia.volume=vol;}
+
 
   // Sort button in episodes header
   document.getElementById('ep-list-header').innerHTML=
@@ -581,9 +576,14 @@ function renderEpisodes(){
 
 function toggle(n,e){
   if(e)e.stopPropagation();
-  const a=document.getElementById('audio-'+n);
-  if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();preloadNext(n);if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
+  const a=sharedAudio;
+  const switching=cur&&cur.n!==n;
+  if(switching){document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
+  // If switching episode or not loaded yet, swap src
+  if(!cur||cur.n!==n||!a.src||!a.src.includes(epFiles[n])){
+    a.src=epFiles[n];a.load();
+  }
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];const pp=a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel();if(pp&&pp.catch)pp.catch(()=>{document.getElementById('btn-'+n).innerHTML=PL;const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');hideSticky();cur=null})}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -610,7 +610,7 @@ function updateMediaSession(n){
 }
 
 function tick(n){
-  const a=document.getElementById('audio-'+n);
+  const a=sharedAudio;
   const pct=a.duration?(a.currentTime/a.duration)*100:0;
   document.getElementById('fill-'+n).style.width=pct+'%';
   document.getElementById('time-'+n).textContent=fmt(a.currentTime)+' / '+fmt(a.duration);
@@ -625,11 +625,12 @@ function tick(n){
 
 function seek(e,n){
   e.stopPropagation();
-  const a=document.getElementById('audio-'+n);
+  // If not playing this episode, start it first
+  if(!cur||cur.n!==n){toggle(n);return}
+  const a=sharedAudio;
   const r=e.currentTarget.getBoundingClientRect();
   const pct=(e.clientX-r.left)/r.width;
   if(a.duration)a.currentTime=pct*a.duration;
-  if(!cur||cur.n!==n)toggle(n);
 }
 
 function ended(n){
@@ -644,9 +645,7 @@ function ended(n){
     const idx=sorted.findIndex(e=>e.epNum===n);
     if(idx>=0&&idx<sorted.length-1){
       const next=sorted[idx+1];
-      const nextAudio=document.getElementById('audio-'+next.epNum);
-      // Preload next track so .play() doesn't fail on empty buffer
-      if(nextAudio)nextAudio.preload='auto';
+      // Shared audio — just swap src, same element stays "blessed"
       // Clear cur so toggle() doesn't try to pause the ended track
       cur=null;
       const nextEl=document.getElementById('ep'+next.epNum);
@@ -660,14 +659,6 @@ function ended(n){
   hideSticky();cur=null;
 }
 
-function preloadNext(n){
-  const order=getPlayOrder();
-  const idx=order.findIndex(e=>e.epNum===n);
-  if(idx>=0&&idx<order.length-1){
-    const nextA=document.getElementById('audio-'+order[idx+1].epNum);
-    if(nextA&&nextA.preload==='none')nextA.preload='auto';
-  }
-}
 
 
 
@@ -817,7 +808,7 @@ let lastCi={};
 function syncCap(n){
   const subs=capData[n],box=document.getElementById('cap-'+n);
   if(!subs||!box||!box.classList.contains('open'))return;
-  const t=document.getElementById('audio-'+n).currentTime;
+  const t=sharedAudio.currentTime;
   let ci=-1;
   for(let i=0;i<subs.length;i++){if(t>=subs[i].start&&t<subs[i].end){ci=i;break}if(t>=subs[i].end)ci=i}
   if(ci===lastCi[n])return; // no change — skip to prevent jiggle
@@ -845,7 +836,7 @@ let speedIdx=1;
 function cycleSpeed(){
   speedIdx=(speedIdx+1)%SPEEDS.length;
   const s=SPEEDS[speedIdx];
-  document.querySelectorAll('audio').forEach(a=>a.playbackRate=s);
+  sharedAudio.playbackRate=s;
   const btn=document.getElementById('speed-btn');
   btn.textContent=s===1?'1×':s+'×';
   btn.classList.toggle('active',s!==1);
@@ -940,7 +931,7 @@ function syncStickyCap(n) {
   const subs = capData[n];
   const box = document.getElementById('sticky-cap-' + n);
   if (!box) return;
-  const t = document.getElementById('audio-' + n).currentTime;
+  const t = sharedAudio.currentTime;
   let ci = -1;
   for (let i = 0; i < subs.length; i++) {
     if (t >= subs[i].start && t < subs[i].end) { ci = i; break; }
@@ -1006,6 +997,11 @@ function nextTrack(){
 }
 
 
+
+// Wire shared audio events
+sharedAudio.addEventListener('timeupdate',()=>{if(cur)tick(cur.n)});
+sharedAudio.addEventListener('ended',()=>{if(cur)ended(cur.n)});
+sharedAudio.volume=vol;
 
 load();updateJumpPos();
 
