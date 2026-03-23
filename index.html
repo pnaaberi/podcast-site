@@ -673,10 +673,11 @@ function autoplayNext(n){
       console.log('[autoplay] playing ep'+n);
     }).catch((err)=>{
       console.warn('[autoplay] blocked ep'+n,err.name,err.message);
-      // Revert UI
+      // Don't revert — keep episode loaded and ready in sticky player.
+      // Just show play button so one tap continues.
       document.getElementById('btn-'+n).innerHTML=PL;
-      const el2=document.getElementById('ep'+n);if(el2)el2.classList.remove('playing');
-      hideSticky();cur=null;
+      document.getElementById('sticky-btn').innerHTML=PL;
+      clearDim(n);
     });
   }
 
