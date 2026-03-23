@@ -40,26 +40,7 @@
       --t1: #fafafa; --t2: #a1a1aa; --t3: #71717a;
       --border: #27272a; --border-s: #1f1f23;
     }
-    body.theme-construct {
-      --bg: #1a1714; --bg2: #211e1a; --card: #262220; --card-h: #2e2a26;
-      --accent: #c08a74; --glow: rgba(192,138,116,0.12);
-      --accent-a06: rgba(192,138,116,0.06); --accent-a10: rgba(192,138,116,0.1);
-      --accent-a12: rgba(192,138,116,0.12); --accent-a15: rgba(192,138,116,0.15);
-      --accent-a25: rgba(192,138,116,0.25); --accent-a30: rgba(192,138,116,0.3);
-      --t1: #e8e0d8; --t2: #a09688; --t3: #706860;
-      --border: #38322e; --border-s: #2e2a26;
-    }
-    /* ====== CONSTRUCT THEME — warm dark industrial ====== */
-    body.theme-construct .header-icon{background:linear-gradient(145deg,#2e2a26,var(--card));border-color:var(--border)}
-    body.theme-construct .header-icon svg{fill:var(--accent)}
-    body.theme-construct .ep-thumb{background:#2e2826;border-color:var(--border);color:var(--accent)}
-    /* Sticky player — slightly darker than bg */
-    body.theme-construct .sticky{background:#141210;border-top:2px solid var(--accent)}
-    body.theme-construct .sticky-track{background:#38322e}
-    body.theme-construct .sticky-fill{background:var(--accent)}
-    /* Theme toggle */
-    body.theme-construct .theme-toggle{background:var(--card);border-color:var(--border)}
-    body.theme-construct .theme-label{color:var(--t3)}
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
     .container{max-width:640px;margin:0 auto;padding:0 16px}
@@ -171,9 +152,7 @@
     .sticky-panel .cap{font-size:0.78rem}
     .sticky-panel .panel{display:block;font-size:0.68rem;border-top:none;padding-top:0}
     .sticky-panel-content{min-height:120px}
-    body.theme-construct .sticky-panel{background:#1a1714;border-top-color:#38322e}
-    body.theme-construct .sticky-tab{border-color:#38322e;color:#706860}
-    body.theme-construct .sticky-tab.active{color:var(--accent);border-color:var(--accent);background:rgba(192,138,116,0.06)}
+
 
     /* Sticky */
     .sticky{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:8px 16px;display:none;flex-direction:column;gap:6px;z-index:100}
@@ -210,13 +189,7 @@
     /* Footer */
     html{background:var(--bg)}
       /* Theme toggle — top right */
-    .theme-toggle{position:fixed;top:16px;right:16px;z-index:110;display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 4px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-    .theme-dot{width:28px;height:28px;min-width:28px;min-height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:border-color 0.2s,transform 0.15s;position:relative}
-    .theme-dot:hover{transform:scale(1.15)}
-    .theme-dot.active{border-color:var(--t1)}
-    .theme-dot--default{background:linear-gradient(135deg,#09090f 50%,#c05030 50%)}
-    .theme-dot--construct{background:linear-gradient(135deg,#1a1714 50%,#c08a74 50%)}
-    .theme-label{font-size:0.58rem;color:var(--t3);padding:0 8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;min-width:60px;text-align:center}
+
   footer{text-align:center;padding:20px 0 24px;border-top:1px solid var(--border-s);font-size:0.65rem;color:var(--t3);line-height:1.8;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));transition:padding-bottom 0.2s}
     footer.has-sticky{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
     footer.has-sticky.has-panel{padding-bottom:calc(80px + 40vh + env(safe-area-inset-bottom,0px))}
@@ -301,11 +274,7 @@
 </head>
 <body>
 <a href="#episodes" class="skip-link">Skip to episodes</a>
-<div class="theme-toggle" id="theme-toggle">
-  <div class="theme-dot theme-dot--default" onclick="setTheme('default')" title="Default theme"></div>
-  <span class="theme-label" id="theme-label">Default</span>
-  <div class="theme-dot theme-dot--construct" onclick="setTheme('construct')" title="Construct theme"></div>
-</div>
+
 <div class="container">
   <header>
     <div class="header-inner">
@@ -1018,20 +987,7 @@ function nextTrack(){
   }
 }
 
-// Theme switcher
-const THEMES={default:'Default',construct:'Construct'};
-function setTheme(t){
-  document.body.className=t==='default'?'':'theme-'+t;
-  localStorage.setItem('theme',t);
-  document.getElementById('theme-label').textContent=THEMES[t]||t;
-  document.querySelectorAll('.theme-dot').forEach(d=>d.classList.remove('active'));
-  document.querySelector('.theme-dot--'+t)?.classList.add('active');
-}
-(function initTheme(){
-  let saved=localStorage.getItem('theme')||'default';
-  if(!THEMES[saved])saved='default';
-  setTheme(saved);
-})();
+
 
 load();updateJumpPos();
 
