@@ -124,6 +124,8 @@
     .pbtn{width:44px;height:44px;min-width:44px;border-radius:50%;border:none;background:var(--accent);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.15s}
     .pbtn:hover{transform:scale(1.08)}
     .pbtn svg{width:18px;height:18px;fill:#fff}
+    .sticky .pbtn{width:52px;height:52px;min-width:52px;box-shadow:0 2px 12px rgba(0,0,0,0.3)}
+    .sticky .pbtn svg{width:24px;height:24px}
     .pbar{flex:1;height:44px;display:flex;align-items:center;cursor:pointer}
     .ptrack{width:100%;height:6px;background:var(--border);border-radius:3px;position:relative;overflow:hidden}
     .pfill{height:100%;background:var(--accent);border-radius:3px;width:0%;transition:width 0.1s linear}
@@ -225,23 +227,23 @@
     }
     @media(min-width:481px){.jump-text{display:none}}
     /* Transport controls */
-    .sbtn{width:44px;height:44px;min-width:44px;border-radius:50%;border:none;background:transparent;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color 0.15s,transform 0.15s;padding:0;position:relative}
-    .sbtn:hover{color:var(--t1);transform:scale(1.1)}
-    .sbtn svg{width:22px;height:22px;fill:currentColor}
-    .sbtn-sm{width:40px;height:40px;min-width:40px}
-    .sbtn-sm svg{width:18px;height:18px}
-    .speed-btn{width:auto!important;min-width:44px;border-radius:6px!important;font-size:0.72rem;font-weight:600;font-family:inherit;letter-spacing:-0.02em;padding:6px 10px}
+    .sbtn{width:48px;height:48px;min-width:48px;border-radius:50%;border:none;background:transparent;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color 0.15s,transform 0.15s;padding:0;position:relative}
+    .sbtn:hover{color:var(--t1);transform:scale(1.08)}
+    .sbtn svg{width:28px;height:28px;fill:currentColor}
+    .sbtn-sm{width:44px;height:44px;min-width:44px}
+    .sbtn-sm svg{width:24px;height:24px}
+    .speed-btn{width:auto!important;min-width:48px;border-radius:8px!important;font-size:0.82rem;font-weight:700;font-family:inherit;letter-spacing:-0.02em;padding:8px 14px}
     .speed-btn:hover{color:var(--accent)}
     .speed-btn.active{color:var(--accent)}
-    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:8px;padding:2px 0}
+    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0}
     .sticky-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
     @media(max-width:480px){
       .sbtn-prev,.sbtn-next{display:none}
-      .sbtn{width:48px;height:48px;min-width:48px}
-      .sbtn svg{width:24px;height:24px}
+      .sbtn{width:52px;height:52px;min-width:52px}
+      .sbtn svg{width:28px;height:28px}
       .sticky-controls{gap:4px}
-      .sbtn-sm{width:44px;height:44px;min-width:44px}
-      .sbtn-sm svg{width:20px;height:20px}
+      .sbtn-sm{width:48px;height:48px;min-width:48px}
+      .sbtn-sm svg{width:24px;height:24px}
     }
 
     /* Focus styles for keyboard navigation */
