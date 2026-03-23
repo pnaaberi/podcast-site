@@ -160,6 +160,23 @@
     .cap.next{opacity:0.35;color:var(--t2);transform:translateY(0)}
     .cap.far{opacity:0;transform:translateY(4px)}
 
+    /* Sticky panel — expands upward */
+    .sticky-panel{position:fixed;bottom:0;left:0;right:0;z-index:99;max-height:0;overflow:hidden;transition:max-height 0.3s ease;background:var(--bg);border-top:1px solid var(--border)}
+    .sticky-panel.open{max-height:50vh;overflow-y:auto}
+    .sticky-panel-inner{padding:12px 16px 8px;max-width:640px;margin:0 auto}
+    .sticky-tabs{display:flex;gap:0;position:relative;z-index:101}
+    .sticky-tab{flex:1;background:var(--bg2);border:1px solid var(--border);border-bottom:none;color:var(--t3);font-size:0.68rem;font-weight:600;font-family:inherit;padding:8px 12px;min-height:36px;cursor:pointer;text-transform:uppercase;letter-spacing:0.5px;transition:color 0.15s,background 0.15s;border-radius:8px 8px 0 0;margin:0 -1px}
+    .sticky-tab:first-child{margin-left:0}
+    .sticky-tab:last-child{margin-right:0}
+    .sticky-tab:hover{color:var(--t2)}
+    .sticky-tab.active{color:var(--accent);background:var(--bg);border-color:var(--border);border-bottom-color:var(--bg)}
+    .sticky-panel .cap{font-size:0.78rem}
+    .sticky-panel .panel{display:block;font-size:0.68rem;border-top:none;padding-top:0}
+    .sticky-panel-content{min-height:80px}
+    body.theme-construct .sticky-panel{background:#1a1714;border-top-color:#38322e}
+    body.theme-construct .sticky-tab{background:#211e1a;border-color:#38322e;color:#706860}
+    body.theme-construct .sticky-tab.active{background:#1a1714;color:var(--accent);border-bottom-color:#1a1714}
+
     /* Sticky */
     .sticky{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:8px 16px;display:none;flex-direction:column;gap:6px;z-index:100}
     .sticky.on{display:flex}
@@ -317,6 +334,11 @@
   <span class="jump-full">Jump to Latest</span>
   <span class="jump-text">Latest EP.</span>
 </button>
+<div class="sticky-panel" id="sticky-panel">
+  <div class="sticky-panel-inner">
+    <div class="sticky-panel-content" id="sticky-panel-content"></div>
+  </div>
+</div>
 <div class="sticky" id="sticky">
   <div class="sticky-row">
     <div class="sticky-info">
@@ -334,14 +356,18 @@
       </div>
     </div>
   </div>
+  <div class="sticky-tabs">
+    <button class="sticky-tab" id="sticky-tab-captions" onclick="toggleStickyPanel('captions')">Captions</button>
+    <button class="sticky-tab" id="sticky-tab-notes" onclick="toggleStickyPanel('notes')">Notes</button>
+  </div>
   <div class="sticky-bar" onclick="stickySeek(event)">
     <div class="sticky-track"><div class="sticky-fill" id="sticky-fill"></div></div>
   </div>
   <div class="sticky-controls">
     <button class="sbtn sbtn-sm sbtn-prev" onclick="prevTrack()" aria-label="Previous episode" title="Previous episode"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
-    <button class="sbtn" onclick="skipBack()" aria-label="Skip back 15 seconds" title="Skip back 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="12" y="16.5" font-size="8" fill="currentColor" font-weight="800" text-anchor="middle" font-family="Inter,system-ui,sans-serif" dominant-baseline="central">15</text></svg></button>
+    <button class="sbtn" onclick="skipBack()" aria-label="Skip back 15 seconds" title="Skip back 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg></button>
     <button class="pbtn" id="sticky-btn" onclick="toggleCur()" aria-label="Play or pause current episode"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
-    <button class="sbtn" onclick="skipFwd()" aria-label="Skip forward 15 seconds" title="Skip forward 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="12" y="16.5" font-size="8" fill="currentColor" font-weight="800" text-anchor="middle" font-family="Inter,system-ui,sans-serif" dominant-baseline="central">15</text></svg></button>
+    <button class="sbtn" onclick="skipFwd()" aria-label="Skip forward 15 seconds" title="Skip forward 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/></svg></button>
     <button class="sbtn sbtn-sm sbtn-next" onclick="nextTrack()" aria-label="Next episode" title="Next episode"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
     <button class="sbtn sbtn-sm speed-btn" id="speed-btn" onclick="cycleSpeed()" aria-label="Playback speed" title="Playback speed">1×</button>
   </div>
@@ -587,7 +613,7 @@ function toggle(n,e){
   if(e)e.stopPropagation();
   const a=document.getElementById('audio-'+n);
   if(cur&&cur.n!==n){cur.a.pause();document.getElementById('btn-'+cur.n).innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing');clearDim(cur.n)}
-  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n)}
+  if(a.paused){routeAudio(a);if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();a.playbackRate=SPEEDS[speedIdx];a.play();document.getElementById('btn-'+n).innerHTML=PA;const el=document.getElementById('ep'+n);if(el)el.classList.add('playing');cur={a,n};showSticky(n);shineButtons(n);startDim(n);updateMediaSession(n);resetStickyPanel()}
   else{a.pause();document.getElementById('btn-'+n).innerHTML=PL;const el=document.getElementById('ep'+n);if(el)el.classList.remove('playing');document.getElementById('sticky-btn').innerHTML=PL;clearDim(n)}
 }
 function toggleCur(){if(cur)toggle(cur.n)}
@@ -624,6 +650,7 @@ function tick(n){
     document.getElementById('sticky-fill').style.width=spct+'%';
   }
   syncCap(n);
+  syncStickyCap(n);
 }
 
 function seek(e,n){
@@ -666,7 +693,7 @@ function showSticky(n){
   const f=document.querySelector('footer');if(f)f.classList.add('has-sticky');
   updateJumpPos();
 }
-function hideSticky(){document.getElementById('sticky').classList.remove('on');const f=document.querySelector('footer');if(f)f.classList.remove('has-sticky');updateJumpPos()}
+function hideSticky(){document.getElementById('sticky').classList.remove('on');document.getElementById('sticky-panel').classList.remove('open');stickyPanelMode=null;document.getElementById('sticky-tab-captions').classList.remove('active');document.getElementById('sticky-tab-notes').classList.remove('active');const f=document.querySelector('footer');if(f)f.classList.remove('has-sticky');updateJumpPos()}
 function stickySeek(e){if(!cur)return;const r=e.currentTarget.getBoundingClientRect();const pct=(e.clientX-r.left)/r.width;if(cur.a.duration)cur.a.currentTime=pct*cur.a.duration}
 const AUTO_CAP_SEC=20;
 async function autoShowCap(n){
@@ -819,6 +846,124 @@ function cycleSpeed(){
   btn.textContent=s===1?'1×':s+'×';
   btn.classList.toggle('active',s!==1);
 }
+// Sticky panel — Captions / Notes expanding upward
+let stickyPanelMode = null; // 'captions' | 'notes' | null
+let stickyCaptionsLoaded = {};
+let stickyNotesLoaded = {};
+
+function toggleStickyPanel(mode) {
+  const panel = document.getElementById('sticky-panel');
+  const content = document.getElementById('sticky-panel-content');
+  const tabCap = document.getElementById('sticky-tab-captions');
+  const tabNotes = document.getElementById('sticky-tab-notes');
+
+  if (stickyPanelMode === mode) {
+    // Close
+    panel.classList.remove('open');
+    tabCap.classList.remove('active');
+    tabNotes.classList.remove('active');
+    stickyPanelMode = null;
+    return;
+  }
+
+  stickyPanelMode = mode;
+  tabCap.classList.toggle('active', mode === 'captions');
+  tabNotes.classList.toggle('active', mode === 'notes');
+
+  if (!cur) {
+    content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;padding:16px 0;text-align:center">Play an episode first</div>';
+    panel.classList.add('open');
+    return;
+  }
+
+  const n = cur.n;
+  const num = String(n).padStart(3, '0');
+
+  if (mode === 'captions') {
+    loadStickyCaptions(n, num);
+  } else {
+    loadStickyNotes(n, num);
+  }
+  panel.classList.add('open');
+}
+
+async function loadStickyCaptions(n, num) {
+  const content = document.getElementById('sticky-panel-content');
+  const url = 'subtitles/ep' + num + '.srt';
+
+  if (!capData[n]) {
+    content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Loading captions...</div>';
+    try {
+      const r = await fetch(url);
+      if (!r.ok) { content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">No captions available for this episode.</div>'; return; }
+      capData[n] = parseSRT(await r.text());
+    } catch(e) { content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Failed to load captions.</div>'; return; }
+  }
+
+  content.innerHTML = '<div class="capbox open" id="sticky-cap-' + n + '" style="display:block;max-height:40vh;text-align:center">' +
+    capData[n].map((c, i) => '<div class="cap far" id="sc' + n + '-' + i + '">' + esc(c.text) + '</div>').join('') +
+    '</div>';
+  stickyCaptionsLoaded[n] = true;
+}
+
+async function loadStickyNotes(n, num) {
+  const content = document.getElementById('sticky-panel-content');
+  const url = 'notes/ep' + num + '.md';
+
+  if (stickyNotesLoaded[n]) return; // Already loaded
+
+  content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Loading notes...</div>';
+  try {
+    const r = await fetch(url);
+    if (!r.ok) { content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">No notes available for this episode.</div>'; return; }
+    const text = await r.text();
+    content.innerHTML = '<div class="panel open" style="display:block">' + renderMd(text) + '</div>';
+    stickyNotesLoaded[n] = true;
+  } catch(e) {
+    content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Failed to load notes.</div>';
+  }
+}
+
+// Sync sticky captions during playback
+function syncStickyCap(n) {
+  if (stickyPanelMode !== 'captions' || !capData[n]) return;
+  const subs = capData[n];
+  const box = document.getElementById('sticky-cap-' + n);
+  if (!box) return;
+  const t = document.getElementById('audio-' + n).currentTime;
+  let ci = -1;
+  for (let i = 0; i < subs.length; i++) {
+    if (t >= subs[i].start && t < subs[i].end) { ci = i; break; }
+    if (t >= subs[i].end) ci = i;
+  }
+  subs.forEach((_, i) => {
+    const el = document.getElementById('sc' + n + '-' + i);
+    if (!el) return;
+    el.className = 'cap';
+    if (i < ci) el.classList.add('past');
+    else if (i === ci) {
+      el.classList.add('current');
+      const boxRect = box.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const offset = elRect.top - boxRect.top - boxRect.height / 2 + elRect.height / 2;
+      box.scrollBy({ top: offset, behavior: 'smooth' });
+    }
+    else if (i === ci + 1) el.classList.add('next');
+    else el.classList.add('far');
+  });
+}
+
+// Reset sticky panel when track changes
+function resetStickyPanel() {
+  stickyNotesLoaded = {};
+  if (stickyPanelMode && cur) {
+    const n = cur.n;
+    const num = String(n).padStart(3, '0');
+    if (stickyPanelMode === 'captions') loadStickyCaptions(n, num);
+    else loadStickyNotes(n, num);
+  }
+}
+
 function skipBack(){if(cur)cur.a.currentTime=Math.max(0,cur.a.currentTime-15)}
 function skipFwd(){if(cur)cur.a.currentTime=Math.min(cur.a.duration||0,cur.a.currentTime+15)}
 function getPlayOrder(){
