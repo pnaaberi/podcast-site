@@ -440,7 +440,7 @@ async function load(){
   intro=data.find(e=>e.epNum===0);
   allEps=data.filter(e=>e.epNum!==0);
   // Build file map
-  data.forEach(e=>{epFiles[e.epNum]='audio/'+e.file});
+  data.forEach(e=>{const f=e.file||e.audioFile||(e.slug?'ep'+String(e.epNum).padStart(3,'0')+'-'+e.slug+'.mp3':'');epFiles[e.epNum]=f.startsWith('audio/')?f:'audio/'+f});
   renderEpisodes();
 }
 

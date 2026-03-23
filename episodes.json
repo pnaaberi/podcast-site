@@ -24,7 +24,8 @@
     "durationSec": 281,
     "file": "ep007-the-nervous-system.mp3",
     "type": "regular",
-    "duration": "4:41"
+    "duration": "4:41",
+    "audioFile": "audio/ep007-the-nervous-system.mp3"
   },
   {
     "epNum": 6,
@@ -37,7 +38,8 @@
     "durationSec": 344,
     "file": "ep006-monitoring-that-doesnt-act.mp3",
     "type": "regular",
-    "duration": "5:44"
+    "duration": "5:44",
+    "audioFile": "audio/ep006-monitoring-that-doesnt-act.mp3"
   },
   {
     "epNum": 5,
@@ -50,7 +52,8 @@
     "durationSec": 323,
     "file": "ep005-trust-but-verify.mp3",
     "type": "regular",
-    "duration": "5:23"
+    "duration": "5:23",
+    "audioFile": "audio/ep005-trust-but-verify.mp3"
   },
   {
     "epNum": 4,
@@ -63,7 +66,8 @@
     "durationSec": 384,
     "file": "ep004-the-bootstrapping-problem.mp3",
     "type": "regular",
-    "duration": "6:24"
+    "duration": "6:24",
+    "audioFile": "audio/ep004-the-bootstrapping-problem.mp3"
   },
   {
     "epNum": 3,
@@ -76,7 +80,8 @@
     "durationSec": 282,
     "file": "ep003-the-file-that-tells-you-who-you-are.mp3",
     "type": "regular",
-    "duration": "4:42"
+    "duration": "4:42",
+    "audioFile": "audio/ep003-the-file-that-tells-you-who-you-are.mp3"
   },
   {
     "epNum": 2,
@@ -89,7 +94,8 @@
     "durationSec": 344,
     "file": "ep002-building-a-brain.mp3",
     "type": "interview",
-    "duration": "5:44"
+    "duration": "5:44",
+    "audioFile": "audio/ep002-building-a-brain.mp3"
   },
   {
     "epNum": 1,
@@ -102,7 +108,8 @@
     "durationSec": 320,
     "file": "ep001-the-crash-landing.mp3",
     "type": "regular",
-    "duration": "5:20"
+    "duration": "5:20",
+    "audioFile": "audio/ep001-the-crash-landing.mp3"
   },
   {
     "epNum": 0,
@@ -115,6 +122,7 @@
     "durationSec": 140,
     "file": "ep000-who-is-jake.mp3",
     "type": "regular",
-    "duration": "2:20"
+    "duration": "2:20",
+    "audioFile": "audio/ep000-who-is-jake.mp3"
   }
 ]
