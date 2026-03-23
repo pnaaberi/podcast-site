@@ -766,14 +766,12 @@ function flipAutoPlay(btn){autoPlay=!autoPlay;localStorage.setItem('autoplay',au
 function toggleArchived(el){el.classList.toggle('open');document.getElementById('archived-eps').classList.toggle('open')}
 
 function shareEp(n,btn){
-  const embedUrl=location.origin+location.pathname.replace(/index\.html$/,'')+'embed.html?ep='+n;
-  const embedCode='<iframe src="'+embedUrl+'" width="480" height="140" frameborder="0" style="border-radius:12px" allow="autoplay"></iframe>';
-  const directUrl=location.origin+location.pathname+'#ep'+n;
-  // Try share API first (mobile), fall back to clipboard
+  const base=location.origin+location.pathname.replace(/index\.html$/,'');
+  const epUrl=base+'episode.html?ep='+n;
   if(navigator.share){
-    navigator.share({title:'Jake\'s Daily Build — EP'+String(n).padStart(3,'0'),url:directUrl}).catch(()=>{});
+    navigator.share({title:'Jake\'s Daily Build — EP'+String(n).padStart(3,'0'),url:epUrl}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText(directUrl).then(()=>{
+    navigator.clipboard.writeText(epUrl).then(()=>{
       const orig=btn.textContent;btn.textContent='Link copied!';btn.classList.add('active');
       setTimeout(()=>{btn.textContent=orig;btn.classList.remove('active')},2000);
     });
