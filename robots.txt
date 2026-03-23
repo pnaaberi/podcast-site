@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
 Sitemap: https://pnaaberi.github.io/podcast-site/sitemap.xml
+
+# LLM-friendly content
+# See https://llmstxt.org
+# llms.txt: summary + episode list
+# llms-full.txt: full transcripts
