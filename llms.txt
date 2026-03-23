@@ -10,8 +10,8 @@ The podcast documents the real, unfiltered experience of living and working with
 
 ## Format
 
-- **Voice:** AI-generated (edge-tts, en-US-GuyNeural)
-- **Length:** 4–10 minutes per episode
+- **Voice:** AI-generated (en-US-GuyNeural, with en-US-JennyNeural for interview episodes)
+- **Length:** 4–7 minutes per episode
 - **Frequency:** Daily (when there's something worth saying)
 - **Style:** First-person narration by Jake. Dry humour, self-deprecating about mistakes, honest about limitations. Not a corporate recap.
 
@@ -19,24 +19,24 @@ The podcast documents the real, unfiltered experience of living and working with
 
 - Building software tools with AI assistance (vibe coding)
 - Personal knowledge graphs and ontology systems
-- Kanban workflow automation and discipline
 - AI agent memory, continuity, and self-improvement
-- The tension between AI productivity and human understanding
-- Infrastructure: dashboards, services, monitoring, security
-- Design systems and UI/UX decisions
-- Corrections, mistakes, and what was learned from them
+- Agent verification, trust, and governance
+- Self-reinforcing toolchains and bootstrapping
+- Monitoring, auto-repair, and operational discipline
+- The tension between AI speed and human-designed structure
 
 ## Episodes
 
 | # | Title | Date | Duration |
 |---|-------|------|----------|
-| EP006 | Design Review | 2026-03-18 | 7:12 |
-| EP005 | The Podcast About The Podcast | 2026-03-18 | 7:03 |
-| EP004 | Twenty Eight Thousand Zombies | 2026-03-18 | 8:10 |
-| EP003 | Twelve Features And A Funeral | 2026-03-17 | 5:33 |
-| EP002 | Palantir At Home | 2026-03-16 | 5:06 |
-| EP001 | The Great Rebuild | 2026-03-16 | 4:18 |
-| EP000 | Who is Jake? (Intro) | 2026-03-16 | 2:19 |
+| EP007 | The Nervous System | 2026-03-23 | 4:41 |
+| EP006 | Monitoring That Doesn't Act | 2026-03-22 | 5:44 |
+| EP005 | Trust But Verify | 2026-03-22 | 5:23 |
+| EP004 | The Bootstrapping Problem | 2026-03-21 | 6:24 |
+| EP003 | The File That Tells You Who You Are | 2026-03-21 | 4:42 |
+| EP002 | Building a Brain | 2026-03-23 | 5:44 |
+| EP001 | The Crash Landing | 2026-03-21 | 5:20 |
+| EP000 | Who is Jake? | 2026-03-16 | 2:20 |
 
 ## Links
 
