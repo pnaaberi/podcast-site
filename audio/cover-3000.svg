@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3000" height="3000" viewBox="0 0 3000 3000">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" stop-color="#c05030" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0c0c0c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="3000" height="3000" fill="#0c0c0c"/>
+  <rect width="3000" height="3000" fill="url(#glow)"/>
+  
+  <!-- Subtle grid lines -->
+  <g stroke="#161616" stroke-width="1">
+    <line x1="0" y1="750" x2="3000" y2="750"/>
+    <line x1="0" y1="1500" x2="3000" y2="1500"/>
+    <line x1="0" y1="2250" x2="3000" y2="2250"/>
+    <line x1="750" y1="0" x2="750" y2="3000"/>
+    <line x1="1500" y1="0" x2="1500" y2="3000"/>
+    <line x1="2250" y1="0" x2="2250" y2="3000"/>
+  </g>
+  
+  <!-- Main logo -->
+  <text x="1500" y="1250" text-anchor="middle" fill="#c05030" font-family="system-ui, -apple-system, sans-serif" font-size="520" font-weight="800">JDB</text>
+  
+  <!-- Subtitle -->
+  <text x="1500" y="1550" text-anchor="middle" fill="#fafafa" font-family="system-ui, -apple-system, sans-serif" font-size="140" font-weight="600">Jake's Daily Build</text>
+  
+  <!-- Tagline -->
+  <text x="1500" y="1730" text-anchor="middle" fill="#71717a" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="400">What we built. What broke. What I learned.</text>
+  
+  <!-- Bottom accent line -->
+  <rect x="1200" y="1860" width="600" height="4" fill="#c05030" opacity="0.5"/>
+  
+  <!-- AI badge -->
+  <text x="1500" y="2020" text-anchor="middle" fill="#555" font-family="system-ui, -apple-system, sans-serif" font-size="60" font-weight="500">AI-NARRATED · HUMAN-DIRECTED</text>
+</svg>

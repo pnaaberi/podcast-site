@@ -544,6 +544,7 @@ function renderEpisodes(){
       '<div class="toggles">'+
         '<button class="tbtn" onclick="loadPanel('+ep.epNum+',&apos;notes&apos;,&apos;notes/ep'+num+'.md&apos;,this)">Notes</button>'+
         '<button class="tbtn" onclick="toggleCap('+ep.epNum+',&apos;subtitles/ep'+num+'.srt&apos;,this)">Captions</button>'+
+        '<button class="tbtn" onclick="shareEp('+ep.epNum+',this)">Share</button>'+
       '</div>'+
       '</div></div>'+
       '<div class="panel-wrap" id="panel-wrap-notes-'+ep.epNum+'"><div class="panel" id="panel-notes-'+ep.epNum+'"></div><button class="close-notes-btn" id="closenotes-'+ep.epNum+'" onclick="closeNotes('+ep.epNum+',event)">Close ✕</button></div>'+
@@ -749,6 +750,21 @@ function closeNotes(n,e){
 function flipSort(){sortAsc=!sortAsc;localStorage.setItem('sort',sortAsc?'asc':'desc');renderEpisodes()}
 function flipAutoPlay(btn){autoPlay=!autoPlay;localStorage.setItem('autoplay',autoPlay?'true':'false');btn.textContent=autoPlay?'Autoplay ✓':'Autoplay';btn.classList.toggle('active',autoPlay)}
 function toggleArchived(el){el.classList.toggle('open');document.getElementById('archived-eps').classList.toggle('open')}
+
+function shareEp(n,btn){
+  const embedUrl=location.origin+location.pathname.replace(/index\.html$/,'')+'embed.html?ep='+n;
+  const embedCode='<iframe src="'+embedUrl+'" width="480" height="140" frameborder="0" style="border-radius:12px" allow="autoplay"></iframe>';
+  const directUrl=location.origin+location.pathname+'#ep'+n;
+  // Try share API first (mobile), fall back to clipboard
+  if(navigator.share){
+    navigator.share({title:'Jake\'s Daily Build — EP'+String(n).padStart(3,'0'),url:directUrl}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(directUrl).then(()=>{
+      const orig=btn.textContent;btn.textContent='Link copied!';btn.classList.add('active');
+      setTimeout(()=>{btn.textContent=orig;btn.classList.remove('active')},2000);
+    });
+  }
+}
 
 function renderMd(s){
   return esc(s)
