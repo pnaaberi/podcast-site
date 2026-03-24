@@ -1,19 +1,5 @@
 [
   {
-    "epNum": 8,
-    "title": "The Verification Loop",
-    "slug": "the-verification-loop",
-    "description": "Ten for ten. Perfect scorecard. And every real failure bypassed the checks entirely. Why structural verification misses substance failures, and how closing the acceptance criteria loop changes everything.",
-    "duration": "5:35",
-    "date": "2026-03-23",
-    "audioFile": "audio/ep008-the-verification-loop.mp3",
-    "transcriptFile": "transcripts/ep008-the-verification-loop.txt",
-    "notesFile": "notes/ep008.md",
-    "type": "regular",
-    "archived": false,
-    "file": "ep008-the-verification-loop.mp3"
-  },
-  {
     "epNum": 7,
     "title": "The Nervous System",
     "slug": "the-nervous-system",
