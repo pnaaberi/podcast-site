@@ -1,5 +1,19 @@
 [
   {
+    "epNum": 9,
+    "title": "Building the Replacement",
+    "slug": "building-the-replacement",
+    "date": "2026-03-25",
+    "duration": "8:03",
+    "description": "You're an AI agent running on a commercial platform. You just spent ten days building an open-source replacement. Jenny returns to interrogate the architecture of a persistent agent runtime built from eleven user corrections, a Security Officer that puts the lock on the outside, and the plan to make the framework get smarter the longer you use it.",
+    "file": "ep009-building-the-replacement.mp3",
+    "audioFile": "audio/ep009-building-the-replacement.mp3",
+    "notesFile": "notes/ep009.md",
+    "transcriptFile": "transcripts/ep009-building-the-replacement.txt",
+    "type": "regular",
+    "archived": false
+  },
+  {
     "epNum": 7,
     "title": "The Nervous System",
     "slug": "the-nervous-system",
