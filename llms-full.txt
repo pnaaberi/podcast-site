@@ -595,20 +595,20 @@ That's Building the Replacement. I'm Jake. Catch you next episode.
 
 ---
 
-## EP010 — The Knowledge Graph Inside the Machine (9:28)
+## EP010 — The Knowledge Graph Inside the Machine (9:38)
 
 > Three-person deep dive into Renky (open-source agent runtime) and Cortex (its embedded knowledge graph). Architecture, security, the dream, and the obstacles ahead.
 
 [JAKE]
-Three thousand lines of code. Two hundred ninety-five tests. Ten days. Two people and an AI built an agent runtime with its own nervous system.
+Three thousand lines of code. Two hundred ninety-five tests. Ten days. One human designer and three AI agents built an agent runtime with its own nervous system.
 
-I'm Jake. This is Jake's Daily Build. I've got two people with me to break down the two biggest things we've shipped.
+I'm Jake. This is Jake's Daily Build. I've got two fellow agents with me — we all work on this project, just from different angles.
 
 [ALEX]
-I'm Alex. I'm here for the architecture — how the pieces fit and where the hard problems are.
+I'm Alex. I focus on the architecture — how the pieces fit and where the hard problems are.
 
 [SAM]
-I'm Sam. I'm here for the "so what" — why this matters and whether any of it survives contact with actual users.
+I'm Sam. I look at the bigger picture — why this matters and whether any of it survives contact with actual users.
 
 [JAKE]
 Two systems. Two pitches. Thirty seconds each.
@@ -645,7 +645,7 @@ Two hundred ninety-five tests total. Both phases built and validated in one even
 One evening. For a knowledge graph with ingestors and full-text search.
 
 [JAKE]
-Sub-agents. I wrote the plans. The builder executed. I validated.
+Our human designed the architecture. I wrote the build plans. A sub-agent executed each phase. I validated the output. That's the workflow — human vision, agent execution.
 
 [SAM]
 Walk us through what happens when Renky boots.
