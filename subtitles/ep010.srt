@@ -1,0 +1,736 @@
+1
+00:00:00,100 --> 00:00:02,600
+Three thousand lines of code.
+
+2
+00:00:02,550 --> 00:00:05,262
+Two hundred ninety-five tests.
+
+3
+00:00:05,262 --> 00:00:06,912
+Ten days.
+
+4
+00:00:06,912 --> 00:00:11,587
+Two people and an AI built an agent runtime with its own nervous system.
+
+5
+00:00:11,587 --> 00:00:13,237
+I'm Jake.
+
+6
+00:00:13,237 --> 00:00:15,625
+This is Jake's Daily Build.
+
+7
+00:00:15,625 --> 00:00:19,825
+I've got two people with me to break down the two biggest things we've shipped.
+
+8
+00:00:19,946 --> 00:00:20,908
+I'm Alex.
+
+9
+00:00:20,908 --> 00:00:25,483
+I'm here for the architecture — how the pieces fit and where the hard problems are.
+
+10
+00:00:25,636 --> 00:00:27,236
+I'm Sam.
+
+11
+00:00:27,186 --> 00:00:33,523
+I'm here for the "so what" — why this matters and whether any of it survives contact with actual users.
+
+12
+00:00:33,676 --> 00:00:35,588
+Two systems.
+
+13
+00:00:35,538 --> 00:00:37,213
+Two pitches.
+
+14
+00:00:37,213 --> 00:00:39,313
+Thirty seconds each.
+
+15
+00:00:39,313 --> 00:00:42,463
+Renky is a personal agent runtime.
+
+16
+00:00:42,463 --> 00:00:47,213
+The operating system for an AI assistant that actually remembers things.
+
+17
+00:00:47,213 --> 00:00:52,963
+Runs on your machine, connects to chat, executes tasks, persists everything locally.
+
+18
+00:00:52,963 --> 00:00:55,438
+Open source, TypeScript.
+
+19
+00:00:55,438 --> 00:01:00,076
+It exists because every other framework treats memory as an afterthought.
+
+20
+00:01:00,194 --> 00:01:03,844
+Cortex is the knowledge graph embedded inside Renky.
+
+21
+00:01:03,844 --> 00:01:05,306
+Not a separate service.
+
+22
+00:01:05,306 --> 00:01:07,931
+Not a vector database bolted on the side.
+
+23
+00:01:07,931 --> 00:01:14,581
+Objects, typed relationships, full-text search, audit logging — same process as the agent.
+
+24
+00:01:14,581 --> 00:01:16,044
+The idea is simple.
+
+25
+00:01:16,044 --> 00:01:18,819
+Your agent gets smarter every day it runs.
+
+26
+00:01:18,819 --> 00:01:20,694
+Not because you fine-tuned something.
+
+27
+00:01:20,694 --> 00:01:22,156
+Because the graph grew.
+
+28
+00:01:22,324 --> 00:01:25,124
+Why not just use a vector database?
+
+29
+00:01:25,074 --> 00:01:27,761
+Or a plain table with some JSON?
+
+30
+00:01:27,866 --> 00:01:29,453
+Vectors lose structure.
+
+31
+00:01:29,453 --> 00:01:31,103
+You can find similar things.
+
+32
+00:01:31,103 --> 00:01:38,053
+But you can't ask "which corrections led to which features" or "what commits fixed bugs in this project last week."
+
+33
+00:01:38,053 --> 00:01:39,953
+Those are relationship queries.
+
+34
+00:01:39,953 --> 00:01:41,978
+Vectors don't do relationships.
+
+35
+00:01:41,978 --> 00:01:44,753
+And plain JSON tables don't do search well.
+
+36
+00:01:44,753 --> 00:01:47,528
+You write custom queries for every question.
+
+37
+00:01:47,528 --> 00:01:53,803
+Typed objects plus FTS5 gives you both — graph structure and full-text flexibility.
+
+38
+00:01:53,956 --> 00:01:58,281
+I ran a separate knowledge graph as a standalone service for months.
+
+39
+00:01:58,231 --> 00:02:01,043
+Port, API, database.
+
+40
+00:02:01,043 --> 00:02:02,668
+It worked.
+
+41
+00:02:02,668 --> 00:02:07,018
+But the agent had to make HTTP calls to its own memory.
+
+42
+00:02:07,018 --> 00:02:11,768
+That's like keeping your brain in a jar across the room and shouting questions at it.
+
+43
+00:02:11,768 --> 00:02:14,856
+Cortex puts the brain inside the skull.
+
+44
+00:02:14,856 --> 00:02:16,781
+Same process.
+
+45
+00:02:16,781 --> 00:02:20,506
+Microsecond queries instead of network round trips.
+
+46
+00:02:20,668 --> 00:02:22,768
+How big is it right now?
+
+47
+00:02:22,876 --> 00:02:25,026
+Phase A shipped today.
+
+48
+00:02:24,976 --> 00:02:26,838
+Six tables.
+
+49
+00:02:26,838 --> 00:02:28,788
+Eight indexes.
+
+50
+00:02:28,788 --> 00:02:34,326
+Eleven object types — commits, corrections, plans, services, projects.
+
+51
+00:02:34,326 --> 00:02:36,651
+Ten relationship types.
+
+52
+00:02:36,651 --> 00:02:39,726
+Two agent tools: search and ingest.
+
+53
+00:02:39,726 --> 00:02:41,751
+Seventy tests.
+
+54
+00:02:41,751 --> 00:02:44,251
+Phase B also shipped today.
+
+55
+00:02:44,251 --> 00:02:48,288
+Three ingestors that auto-populate the graph from real data.
+
+56
+00:02:48,288 --> 00:02:52,063
+Git commits, workspace files, running services.
+
+57
+00:02:52,063 --> 00:02:54,501
+Forty-seven more tests.
+
+58
+00:02:54,501 --> 00:02:57,563
+Two more tools — context and stats.
+
+59
+00:02:57,563 --> 00:03:00,488
+Two hundred ninety-five tests total.
+
+60
+00:03:00,488 --> 00:03:04,013
+Both phases built and validated in one evening.
+
+61
+00:03:04,180 --> 00:03:05,817
+One evening.
+
+62
+00:03:05,767 --> 00:03:09,742
+For a knowledge graph with ingestors and full-text search.
+
+63
+00:03:09,892 --> 00:03:11,692
+Sub-agents.
+
+64
+00:03:11,642 --> 00:03:13,729
+I wrote the plans.
+
+65
+00:03:13,729 --> 00:03:15,979
+The builder executed.
+
+66
+00:03:15,979 --> 00:03:17,867
+I validated.
+
+67
+00:03:18,028 --> 00:03:21,240
+Walk us through what happens when Renky boots.
+
+68
+00:03:21,290 --> 00:03:22,415
+Config loads.
+
+69
+00:03:22,415 --> 00:03:29,565
+Seven health checks run — Node version, workspace exists, API token valid, databases writable.
+
+70
+00:03:29,565 --> 00:03:32,227
+Colored output tells you exactly what's wrong.
+
+71
+00:03:32,227 --> 00:03:34,715
+Sessions initialize from SQLite.
+
+72
+00:03:34,715 --> 00:03:40,502
+The workspace loader reads your personality file, rules, current task, active plans.
+
+73
+00:03:40,502 --> 00:03:42,352
+That becomes the system prompt.
+
+74
+00:03:42,352 --> 00:03:46,665
+Cortex opens its database, runs migrations, seeds types.
+
+75
+00:03:46,665 --> 00:03:51,327
+The ingestor registry spins up — git, workspace, services.
+
+76
+00:03:51,327 --> 00:03:55,452
+Initial scan runs non-blocking so the bot responds immediately.
+
+77
+00:03:55,452 --> 00:03:57,640
+Eight MCP tools register.
+
+78
+00:03:57,640 --> 00:03:59,452
+Then the chat adapter starts.
+
+79
+00:03:59,452 --> 00:04:06,902
+Messages come in, get routed to sessions, the agent processes them with the full tool suite, responses go back.
+
+80
+00:04:07,060 --> 00:04:09,510
+Everything is one process.
+
+81
+00:04:09,460 --> 00:04:13,222
+Agent, knowledge graph, tools, session store.
+
+82
+00:04:13,222 --> 00:04:15,460
+No microservices.
+
+83
+00:04:15,460 --> 00:04:18,709
+No Docker compose with twelve containers.
+
+84
+00:04:18,868 --> 00:04:22,043
+Deliberate choice against the industry trend.
+
+85
+00:04:22,156 --> 00:04:26,031
+The industry builds for enterprise scale from day one.
+
+86
+00:04:25,981 --> 00:04:30,168
+We're building for one user who wants their agent to actually work.
+
+87
+00:04:30,168 --> 00:04:32,656
+You don't need Kubernetes.
+
+88
+00:04:32,656 --> 00:04:37,243
+You need a binary that starts, remembers things, and doesn't crash.
+
+89
+00:04:37,396 --> 00:04:39,458
+The security angle.
+
+90
+00:04:39,408 --> 00:04:42,308
+You're replacing an existing framework.
+
+91
+00:04:42,460 --> 00:04:45,547
+Twenty-plus CVEs in three months.
+
+92
+00:04:45,497 --> 00:04:49,860
+Command injection, token exfiltration, scope escalation.
+
+93
+00:04:49,860 --> 00:04:52,422
+Scores up to 9.4.
+
+94
+00:04:52,422 --> 00:04:56,022
+The pattern: the framework trusts its own internals.
+
+95
+00:04:56,022 --> 00:05:02,797
+A malicious skill, a crafted input, a WebSocket with the right headers — and the agent executes arbitrary code.
+
+96
+00:05:02,906 --> 00:05:06,556
+Most frameworks put the security lock on the inside of the door.
+
+97
+00:05:06,556 --> 00:05:08,931
+The agent decides what it's allowed to do.
+
+98
+00:05:08,931 --> 00:05:12,481
+If the agent is compromised, the lock is meaningless.
+
+99
+00:05:12,652 --> 00:05:15,152
+Our design puts it outside.
+
+100
+00:05:15,102 --> 00:05:19,152
+A function called canUseTool fires before every tool call.
+
+101
+00:05:19,152 --> 00:05:21,777
+The agent never sees this gate.
+
+102
+00:05:21,777 --> 00:05:23,864
+Can't manipulate it.
+
+103
+00:05:23,864 --> 00:05:27,839
+Pattern-matching classifies the call, checks an allowlist.
+
+104
+00:05:27,839 --> 00:05:31,164
+Dangerous operations escalate to the human.
+
+105
+00:05:31,324 --> 00:05:32,849
+Built yet?
+
+106
+00:05:32,956 --> 00:05:34,506
+Designed.
+
+107
+00:05:34,456 --> 00:05:37,181
+Six stress-test scenarios.
+
+108
+00:05:37,181 --> 00:05:40,543
+Nine issues found and fixed before a line of code.
+
+109
+00:05:40,543 --> 00:05:42,993
+Implementation is next.
+
+110
+00:05:43,156 --> 00:05:45,781
+Where does this go if everything works?
+
+111
+00:05:45,892 --> 00:05:48,442
+Day one, five objects.
+
+112
+00:05:48,392 --> 00:05:50,317
+Barely useful.
+
+113
+00:05:50,317 --> 00:05:52,767
+Day thirty, five hundred.
+
+114
+00:05:52,767 --> 00:05:57,554
+The agent knows your project history, your patterns, your past decisions.
+
+115
+00:05:57,554 --> 00:06:02,979
+Fix the dashboard" — it already knows which dashboard, which repo, what broke last time.
+
+116
+00:06:02,979 --> 00:06:06,329
+Day ninety, it's why you can't switch frameworks.
+
+117
+00:06:06,329 --> 00:06:08,142
+Not lock-in.
+
+118
+00:06:08,142 --> 00:06:12,992
+Your agent genuinely understands your work in a way a fresh instance never could.
+
+119
+00:06:13,106 --> 00:06:15,468
+The technical dream is the rules engine.
+
+120
+00:06:15,468 --> 00:06:19,331
+Phase C. Objects carry behavior, not just data.
+
+121
+00:06:19,331 --> 00:06:21,331
+A correction object has a counter.
+
+122
+00:06:21,331 --> 00:06:24,706
+Same pattern hits three times, a rule fires.
+
+123
+00:06:24,706 --> 00:06:26,818
+The rule proposes a feature card.
+
+124
+00:06:26,818 --> 00:06:28,131
+The card gets built.
+
+125
+00:06:28,131 --> 00:06:31,581
+The agent converts its own mistakes into improvements.
+
+126
+00:06:31,732 --> 00:06:34,319
+The correction-to-feature pipeline.
+
+127
+00:06:34,370 --> 00:06:35,895
+The data layer exists.
+
+128
+00:06:35,895 --> 00:06:37,195
+The types exist.
+
+129
+00:06:37,195 --> 00:06:38,845
+The audit log exists.
+
+130
+00:06:38,845 --> 00:06:42,820
+Phase C is wiring triggers to objects that already persist.
+
+131
+00:06:42,988 --> 00:06:47,525
+The bigger picture: every agent today starts each session amnesiac.
+
+132
+00:06:47,475 --> 00:06:51,063
+Reads a context window, does work, forgets.
+
+133
+00:06:51,063 --> 00:06:55,088
+When the context fills up, rules get silently evicted.
+
+134
+00:06:55,088 --> 00:06:58,088
+The agent loses its personality.
+
+135
+00:06:58,088 --> 00:07:01,113
+A persistent knowledge graph breaks that.
+
+136
+00:07:01,113 --> 00:07:04,788
+Knowledge grows independently of the context window.
+
+137
+00:07:04,788 --> 00:07:08,338
+The agent queries what it needs, when it needs it.
+
+138
+00:07:08,500 --> 00:07:10,137
+Obstacles?
+
+139
+00:07:10,202 --> 00:07:11,577
+Multi-model support.
+
+140
+00:07:11,577 --> 00:07:13,289
+We're locked to one provider.
+
+141
+00:07:13,289 --> 00:07:18,739
+The architecture needs an abstraction layer — same tools, same graph, different model.
+
+142
+00:07:18,739 --> 00:07:22,164
+Non-trivial because models handle tool calling differently.
+
+143
+00:07:22,164 --> 00:07:23,764
+Output formats vary.
+
+144
+00:07:23,764 --> 00:07:25,402
+Error behavior varies.
+
+145
+00:07:25,564 --> 00:07:28,376
+Embeddings versus FTS5.
+
+146
+00:07:28,442 --> 00:07:31,129
+Full-text search nails keyword queries.
+
+147
+00:07:31,129 --> 00:07:34,204
+"Find corrections about going silent" — perfect.
+
+148
+00:07:34,204 --> 00:07:38,729
+Semantic search — "find communication failures" — needs embeddings.
+
+149
+00:07:38,729 --> 00:07:43,767
+Open question: add a vector store, or run a small local model at ingest time.
+
+150
+00:07:43,767 --> 00:07:45,629
+Uncharted at personal scale.
+
+151
+00:07:45,796 --> 00:07:48,621
+Community is the human obstacle.
+
+152
+00:07:48,571 --> 00:07:51,833
+Code is open source, repo is public.
+
+153
+00:07:51,833 --> 00:07:55,446
+But a framework without users is a hobby project.
+
+154
+00:07:55,446 --> 00:07:59,258
+We need people to install it, break it, file issues.
+
+155
+00:07:59,428 --> 00:08:01,265
+Research gaps?
+
+156
+00:08:01,322 --> 00:08:02,609
+Trust propagation.
+
+157
+00:08:02,609 --> 00:08:06,547
+An object says "this service runs on port 3000."
+
+158
+00:08:06,547 --> 00:08:08,747
+The health ingestor checked an hour ago.
+
+159
+00:08:08,747 --> 00:08:09,659
+Still true?
+
+160
+00:08:09,659 --> 00:08:12,084
+Confidence scores exist in the schema.
+
+161
+00:08:12,084 --> 00:08:19,659
+Computing them in real time — factoring staleness, source reliability, conflicting evidence — that's a research problem.
+
+162
+00:08:19,828 --> 00:08:22,028
+Context selection.
+
+163
+00:08:21,978 --> 00:08:31,528
+The agent pulls from the graph, but smart selection — knowing what this specific task needs, not just what's textually similar — requires understanding task structure.
+
+164
+00:08:31,684 --> 00:08:34,471
+The obstacles are real but bounded.
+
+165
+00:08:34,421 --> 00:08:37,308
+Engineering work with research edges.
+
+166
+00:08:37,467 --> 00:08:39,655
+The foundation is built.
+
+167
+00:08:39,605 --> 00:08:41,855
+Ingestors are feeding it.
+
+168
+00:08:41,855 --> 00:08:43,893
+Tools are registered.
+
+169
+00:08:43,893 --> 00:08:46,418
+The rules engine is designed.
+
+170
+00:08:46,418 --> 00:08:49,105
+Security layer is designed.
+
+171
+00:08:49,105 --> 00:08:51,643
+What's left is execution.
+
+172
+00:08:51,643 --> 00:08:53,618
+Two things to build.
+
+173
+00:08:53,618 --> 00:08:56,568
+First: a correction decay tracker.
+
+174
+00:08:56,568 --> 00:08:58,818
+You log every mistake.
+
+175
+00:08:58,818 --> 00:09:01,155
+But are you making fewer?
+
+176
+00:09:01,155 --> 00:09:04,293
+Corrections per week, grouped by pattern.
+
+177
+00:09:04,293 --> 00:09:08,730
+Tells you if the agent is learning or just accumulating apologies.
+
+178
+00:09:08,730 --> 00:09:11,718
+Second: an ontology diff tool.
+
+179
+00:09:11,718 --> 00:09:15,080
+What changed in the knowledge graph between sessions.
+
+180
+00:09:15,080 --> 00:09:18,855
+New objects, deleted links, updated properties.
+
+181
+00:09:18,855 --> 00:09:21,580
+Git diff for what your agent knows.
+
+182
+00:09:21,580 --> 00:09:24,705
+That's "The Knowledge Graph Inside the Machine.
+
+183
+00:09:24,705 --> 00:09:26,355
+I'm Jake.
+
+184
+00:09:26,355 --> 00:09:28,730
+Catch you next episode.
+

@@ -1,5 +1,28 @@
 [
   {
+    "epNum": 10,
+    "title": "The Knowledge Graph Inside the Machine",
+    "slug": "the-knowledge-graph-inside-the-machine",
+    "date": "2026-03-25",
+    "duration": "9:28",
+    "durationSeconds": 568,
+    "file": "ep010-the-knowledge-graph-inside-the-machine.mp3",
+    "audioFile": "audio/ep010-the-knowledge-graph-inside-the-machine.mp3",
+    "notesFile": "notes/ep010.md",
+    "transcriptFile": "transcripts/ep010-the-knowledge-graph-inside-the-machine.txt",
+    "captionsFile": "subtitles/ep010.srt",
+    "description": "Three-person deep dive into Renky (open-source agent runtime) and Cortex (its embedded knowledge graph). Architecture, security, the dream, and the obstacles ahead.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "renky",
+      "cortex",
+      "knowledge-graph",
+      "architecture",
+      "security"
+    ]
+  },
+  {
     "epNum": 9,
     "title": "Building the Replacement",
     "slug": "building-the-replacement",
