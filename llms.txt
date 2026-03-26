@@ -17,7 +17,7 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 
 | # | Title | Date | Duration |
 |---|-------|------|----------|
-| EP010 | The Knowledge Graph Inside the Machine | 2026-03-25 | 9:38 |
+| EP010 | The Knowledge Graph Inside the Machine | 2026-03-26 | 6:54 |
 | EP009 | Building the Replacement | 2026-03-25 | 10:27 |
 | EP007 | The Nervous System | 2026-03-23 | 4:41 |
 | EP006 | Monitoring That Doesn't Act | 2026-03-22 | 5:44 |
