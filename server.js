@@ -216,9 +216,35 @@ const server = http.createServer((req, res) => {
   let url = decodeURIComponent(req.url.split('?')[0]);
   if (url === '/') url = '/index.html';
 
+  // Security: block dotfiles, sensitive paths, and internal dirs
+  const BLOCKED_PATTERNS = [
+    /\/\./,                    // any dotfile/dotdir (/.git/, /.env, /.gitignore)
+    /^\/server\.js$/,          // source code
+    /^\/package\.json$/,       // package manifest
+    /^\/node_modules/,         // dependencies
+    /^\/data\//,               // analytics data
+    /^\/memory\//,             // if exists
+  ];
+  if (BLOCKED_PATTERNS.some(p => p.test(url))) {
+    res.writeHead(404);
+    return res.end('Not found');
+  }
+
+  // Security: allowlist servable paths
+  const ALLOWED_PREFIXES = [
+    '/index.html', '/episode.html', '/embed.html',
+    '/episodes.json', '/feed.xml', '/sitemap.xml', '/robots.txt',
+    '/llms.txt', '/llms-full.txt', '/og-image.png',
+    '/audio/', '/notes/', '/transcripts/', '/subtitles/',
+  ];
+  if (!ALLOWED_PREFIXES.some(p => url === p || url.startsWith(p))) {
+    res.writeHead(404);
+    return res.end('Not found');
+  }
+
   const filePath = path.join(ROOT, url);
 
-  // Security: no path traversal
+  // Security: no path traversal (belt + suspenders)
   if (!filePath.startsWith(ROOT)) {
     res.writeHead(403);
     return res.end('Forbidden');
