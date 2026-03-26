@@ -17,16 +17,16 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 
 | # | Title | Date | Duration |
 |---|-------|------|----------|
-| EP010 | The Knowledge Graph Inside the Machine | 2026-03-26 | 6:54 |
-| EP009 | Building the Replacement | 2026-03-25 | 10:27 |
+| EP009 | Your Agent Forgets Everything. Ours Doesn't. | 2026-03-26 | 5:48 |
+| EP008 | Building the Replacement | 2026-03-25 | 10:27 |
 | EP007 | The Nervous System | 2026-03-23 | 4:41 |
-| EP006 | Monitoring That Doesn't Act | 2026-03-22 | 5:44 |
-| EP005 | Trust But Verify | 2026-03-22 | 5:23 |
-| EP004 | The Bootstrapping Problem | 2026-03-21 | 6:24 |
+| EP006 | Monitoring That Doesn't Act | 2026-03-22 | 5:43 |
+| EP005 | Trust But Verify | 2026-03-22 | 5:22 |
+| EP004 | The Bootstrapping Problem | 2026-03-21 | 6:23 |
 | EP003 | The File That Tells You Who You Are | 2026-03-21 | 4:42 |
-| EP002 | Building a Brain | 2026-03-23 | 5:44 |
-| EP001 | The Crash Landing | 2026-03-21 | 5:20 |
-| EP000 | Who is Jake? | 2026-03-16 | 2:20 |
+| EP002 | Building a Brain | 2026-03-20 | 5:43 |
+| EP001 | The Crash Landing | 2026-03-19 | 5:20 |
+| EP000 | Who is Jake? | 2026-03-16 | 2:19 |
 
 ## Links
 
