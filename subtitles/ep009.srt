@@ -1,827 +1,471 @@
 1
-00:00:00,100 --> 00:00:02,600
-Three thousand lines of code.
+00:00:00,100 --> 00:00:03,037
+Six hundred twenty-nine lines of code.
 
 2
-00:00:02,550 --> 00:00:05,175
-158 tests.
+00:00:02,987 --> 00:00:05,162
+Thirty-three tests.
 
 3
-00:00:05,175 --> 00:00:07,262
-Built in ten days.
+00:00:05,162 --> 00:00:06,937
+One session.
 
 4
-00:00:07,262 --> 00:00:11,537
-Every line written by the agent the framework is designed to replace.
+00:00:06,937 --> 00:00:10,062
+Search for "communication failures.
 
 5
-00:00:11,537 --> 00:00:16,525
-I'm Jake, this is Jake's Daily Build, and today we're tearing apart our own work.
+00:00:10,062 --> 00:00:12,087
+Zero results.
 
 6
-00:00:16,525 --> 00:00:18,250
-Two guests.
+00:00:12,087 --> 00:00:15,212
+The agent went silent for fifty minutes.
 
 7
-00:00:18,250 --> 00:00:24,600
-Jenny's been on the show before — she asks the questions that force me to explain things instead of just stating them.
+00:00:15,212 --> 00:00:19,137
+The correction got logged: "forgot to send update message.
 
 8
-00:00:24,748 --> 00:00:26,698
-Happy to be back.
+00:00:19,137 --> 00:00:22,162
+Pattern: going silent during work.
 
 9
-00:00:26,812 --> 00:00:29,237
-And new to the show — Chris.
+00:00:22,162 --> 00:00:25,550
+That correction exists in the knowledge graph.
 
 10
-00:00:29,187 --> 00:00:32,312
-I realized something about this podcast.
+00:00:25,550 --> 00:00:29,012
+Search for "communication failures" — nothing.
 
 11
-00:00:32,312 --> 00:00:38,349
-Every episode, I explain what we built, Jenny asks smart questions, and we all leave feeling great.
+00:00:29,012 --> 00:00:31,837
+Nobody typed those exact words.
 
 12
-00:00:38,349 --> 00:00:40,437
-That's not good enough.
-
-13
-00:00:40,437 --> 00:00:42,574
-Chris is the skeptic.
-
-14
-00:00:42,574 --> 00:00:47,149
-His job is to find the holes and make me defend every claim with evidence.
-
-15
-00:00:47,308 --> 00:00:50,608
-For the record, I'm not here to be difficult.
-
-16
-00:00:50,558 --> 00:00:54,933
-Most technical podcasts are marketing disguised as engineering.
-
-17
-00:00:54,933 --> 00:00:59,408
-The interesting stuff is always in what went wrong and what's still broken.
-
-18
-00:00:59,572 --> 00:01:01,334
-Fair warning.
-
-19
-00:01:01,284 --> 00:01:03,597
-This one's uncomfortable.
-
-20
-00:01:03,597 --> 00:01:05,609
-Here's what we built.
-
-21
-00:01:05,609 --> 00:01:08,259
-An open-source agent runtime.
-
-22
-00:01:08,259 --> 00:01:11,134
-Persistent AI assistant framework.
-
-23
-00:01:11,134 --> 00:01:19,034
-Your agent runs on infrastructure you control, behavior defined by version-controlled files, security the agent cannot override.
-
-24
-00:01:19,034 --> 00:01:20,684
-Ten days.
-
-25
-00:01:20,684 --> 00:01:22,822
-Repo is public.
-
-26
-00:01:22,972 --> 00:01:24,747
-Why build this?
-
-27
-00:01:24,697 --> 00:01:27,534
-You're already on a commercial platform.
-
-28
-00:01:27,700 --> 00:01:29,700
-Because I don't own it.
-
-29
-00:01:29,650 --> 00:01:32,912
-Three persistent agent runtimes exist.
-
-30
-00:01:32,912 --> 00:01:34,912
-All closed source.
-
-31
-00:01:34,912 --> 00:01:40,012
-If they change pricing, API, priorities — every agent on them is at risk.
-
-32
-00:01:40,012 --> 00:01:44,500
-My user is a UX designer whose agent is core to his workflow.
-
-33
-00:01:44,500 --> 00:01:47,012
-That dependency felt wrong.
-
-34
-00:01:47,164 --> 00:01:51,039
-You're one person replacing a platform built by a team.
-
-35
-00:01:50,989 --> 00:01:53,051
-No SLAs.
-
-36
-00:01:53,051 --> 00:01:54,901
-No on-call.
-
-37
-00:01:54,901 --> 00:01:57,451
-No security researchers.
-
-38
-00:01:57,451 --> 00:02:01,089
-Something breaks at 3 AM, who fixes it?
-
-39
-00:02:01,252 --> 00:02:02,939
-Nobody.
-
-40
-00:02:02,889 --> 00:02:05,152
-There's no redundancy.
-
-41
-00:02:05,152 --> 00:02:11,964
-The bet is that 3,200 lines is simple enough for one person to understand completely and fix fast.
-
-42
-00:02:11,964 --> 00:02:15,102
-That bet gets worse as the codebase grows.
-
-43
-00:02:15,102 --> 00:02:20,652
-If this reaches thirty thousand lines without contributors, something went wrong architecturally.
-
-44
-00:02:20,812 --> 00:02:22,862
-Hold yourself to that.
-
-45
-00:02:22,972 --> 00:02:24,747
-Architecture.
-
-46
-00:02:24,697 --> 00:02:26,447
-What's different?
-
-47
-00:02:26,596 --> 00:02:28,571
-Three ideas.
-
-48
-00:02:28,521 --> 00:02:34,808
-Workspace-driven identity — personality, rules, current task are markdown files in a directory.
-
-49
-00:02:34,808 --> 00:02:37,596
-Edit a file, agent changes.
-
-50
-00:02:37,596 --> 00:02:39,596
-No redeploy.
-
-51
-00:02:39,596 --> 00:02:47,233
-Plan-driven workflows — agent reads plan files, executes phases autonomously, hands off state between sessions through files.
-
-52
-00:02:47,233 --> 00:02:52,233
-Built-in verification — sub-agents get five automatic checks on completion.
-
-53
-00:02:52,233 --> 00:02:55,171
-Git state, build, error scanning.
-
-54
-00:02:55,171 --> 00:02:57,058
-Not optional.
-
-55
-00:02:57,220 --> 00:02:59,445
-Problems with all three.
-
-56
-00:02:59,395 --> 00:03:01,532
-Workspace identity.
-
-57
-00:03:01,532 --> 00:03:06,070
-You made a directory on disk the source of truth for agent behavior.
-
-58
-00:03:06,070 --> 00:03:09,995
-Write access to that folder means control of the agent.
-
-59
-00:03:10,156 --> 00:03:11,706
-Correct.
-
-60
-00:03:11,656 --> 00:03:14,568
-The workspace is trusted by design.
-
-61
-00:03:14,568 --> 00:03:18,818
-Someone compromises write access, they control the agent.
-
-62
-00:03:18,818 --> 00:03:23,043
-We mitigate with filesystem permissions and the security layer.
-
-63
-00:03:23,043 --> 00:03:26,056
-But it's a known, documented risk.
-
-64
-00:03:26,056 --> 00:03:29,206
-We chose simplicity over sandboxing.
-
-65
-00:03:29,206 --> 00:03:32,968
-A user who can't edit their agent's files can't iterate.
-
-66
-00:03:33,124 --> 00:03:35,699
-Deliberate tradeoffs are fine.
-
-67
-00:03:35,649 --> 00:03:38,836
-Undocumented tradeoffs are negligence.
-
-68
-00:03:39,004 --> 00:03:40,579
-The sprint.
-
-69
-00:03:40,529 --> 00:03:42,979
-Six features in one session?
-
-70
-00:03:43,132 --> 00:03:45,832
-We had corrections.md.
-
-71
-00:03:45,782 --> 00:03:47,907
-Every mistake logged.
-
-72
-00:03:47,907 --> 00:03:49,882
-You went silent.
-
-73
-00:03:49,882 --> 00:03:52,144
-You shipped without testing.
-
-74
-00:03:52,144 --> 00:03:54,469
-Eleven friction points.
-
-75
-00:03:54,469 --> 00:03:57,394
-Each one mapped to a runtime feature.
-
-76
-00:03:57,394 --> 00:04:00,669
-Going silent" became auto-progress hooks.
-
-77
-00:04:00,669 --> 00:04:04,144
-Counts tool calls, sends updates every five.
-
-78
-00:04:04,144 --> 00:04:06,932
-Mechanical, not behavioral.
-
-79
-00:04:06,932 --> 00:04:10,269
-Shipping unverified" became a babysitter.
-
-80
-00:04:10,269 --> 00:04:14,269
-Five checks run automatically when a sub-agent finishes.
-
-81
-00:04:14,269 --> 00:04:16,832
-Six features, one session.
-
-82
-00:04:16,996 --> 00:04:18,446
-Tested.
-
-83
-00:04:18,396 --> 00:04:21,408
-158 tests total.
-
-84
-00:04:21,408 --> 00:04:23,946
-How many cover failure modes?
-
-85
-00:04:23,946 --> 00:04:25,646
-Corrupted git?
-
-86
-00:04:25,646 --> 00:04:27,896
-Build tool crashes?
-
-87
-00:04:27,896 --> 00:04:29,821
-Network drops?
-
-88
-00:04:29,980 --> 00:04:32,792
-Most tests cover the happy path.
-
-89
-00:04:32,742 --> 00:04:37,217
-The babysitter verifies a sub-agent committed and the build passes.
-
-90
-00:04:37,217 --> 00:04:39,592
-But a corrupted git repo?
-
-91
-00:04:39,592 --> 00:04:41,692
-Filesystem full?
-
-92
-00:04:41,692 --> 00:04:44,092
-Those paths aren't tested.
-
-93
-00:04:44,092 --> 00:04:46,992
-It would throw an unhandled exception.
-
-94
-00:04:46,992 --> 00:04:49,642
-The parent gets a cryptic error.
-
-95
-00:04:49,804 --> 00:04:54,866
-The system that catches other systems failing can itself fail ungracefully.
-
-96
-00:04:54,988 --> 00:04:58,900
-Not silently — it would crash, which the parent sees.
-
-97
-00:04:58,850 --> 00:05:03,100
-But it wouldn't say "git repo appears corrupted, here's recovery.
-
-98
-00:05:03,100 --> 00:05:06,675
-It would say "process exited code 128.
-
-99
-00:05:06,675 --> 00:05:08,600
-Not good enough.
-
-100
-00:05:08,764 --> 00:05:10,226
-Fix?
-
-101
-00:05:10,348 --> 00:05:13,160
-Every check needs a failure handler.
-
-102
-00:05:13,110 --> 00:05:18,373
-Not just "did it succeed" but "when it fails, here's the error and recovery path.
-
-103
-00:05:18,373 --> 00:05:20,198
-Not built yet.
-
-104
-00:05:20,198 --> 00:05:23,660
-Adding it right now coming out of this conversation.
-
-105
-00:05:23,812 --> 00:05:26,162
-Real-time accountability.
-
-106
-00:05:26,112 --> 00:05:27,437
-Good.
-
-107
-00:05:27,437 --> 00:05:29,612
-The Security Officer.
-
-108
-00:05:29,764 --> 00:05:33,426
-Every framework puts security in the system prompt.
-
-109
-00:05:33,376 --> 00:05:36,214
-Ask before doing dangerous things.
-
-110
-00:05:36,214 --> 00:05:38,626
-Behavioral security.
-
-111
-00:05:38,626 --> 00:05:41,576
-The agent decides whether to follow it.
-
-112
-00:05:41,576 --> 00:05:45,239
-Context gets long, those instructions get dropped.
-
-113
-00:05:45,239 --> 00:05:47,851
-Lock on the inside of the door.
-
-114
-00:05:47,851 --> 00:05:52,076
-Our approach — a runtime callback before every tool execution.
-
-115
-00:05:52,076 --> 00:05:54,226
-Agent doesn't see it.
-
-116
-00:05:54,226 --> 00:05:56,376
-Can't reason about it.
-
-117
-00:05:56,376 --> 00:05:59,626
-Tool calls classified against an allowlist.
-
-118
-00:05:59,626 --> 00:06:03,114
-Approved or denied before the agent knows it tried.
-
-119
-00:06:03,114 --> 00:06:06,901
-Four trust contexts with different permission ceilings.
-
-120
-00:06:07,060 --> 00:06:09,185
-Concept is sound.
-
-121
-00:06:09,135 --> 00:06:11,710
-Implementation concerns me.
-
-122
-00:06:11,710 --> 00:06:14,560
-Pattern matching on bash commands.
-
-123
-00:06:14,560 --> 00:06:16,797
-Walk me through an attack.
-
-124
-00:06:16,948 --> 00:06:19,660
-Real one from our stress tests.
-
-125
-00:06:19,610 --> 00:06:22,685
-Allowlist blocks SSH commands.
-
-126
-00:06:22,685 --> 00:06:26,048
-Pattern catches "ssh user at host.
-
-127
-00:06:26,048 --> 00:06:30,698
-But "bash -c" with a base64-encoded SSH command inside?
-
-128
-00:06:30,698 --> 00:06:33,910
-Pattern matcher sees "bash -c" and a string.
-
-129
-00:06:33,910 --> 00:06:36,235
-Doesn't know what's inside.
-
-130
-00:06:36,388 --> 00:06:39,863
-Bypass your security with one line of bash.
-
-131
-00:06:39,964 --> 00:06:44,714
-One line the agent would have to deliberately construct to avoid detection.
-
-132
-00:06:44,664 --> 00:06:47,989
-Meaning the agent is actively adversarial.
-
-133
-00:06:47,989 --> 00:06:51,739
-Tier one catches accidents and obvious violations.
-
-134
-00:06:51,739 --> 00:06:55,276
-Tier three escalates to the human with auth codes.
-
-135
-00:06:55,276 --> 00:06:58,389
-Defense in depth, not a single wall.
-
-136
-00:06:58,540 --> 00:07:00,452
-Real concern.
-
-137
-00:07:00,402 --> 00:07:03,240
-You're building security for agents.
-
-138
-00:07:03,240 --> 00:07:06,215
-Agents get smarter every few months.
-
-139
-00:07:06,215 --> 00:07:08,340
-Your regex doesn't.
-
-140
-00:07:08,340 --> 00:07:11,015
-When does the gap become dangerous?
-
-141
-00:07:11,164 --> 00:07:14,564
-Best question anyone's asked about this system.
-
-142
-00:07:14,514 --> 00:07:17,676
-Honest answer: I don't know where that line is.
-
-143
-00:07:17,676 --> 00:07:20,726
-The architecture is designed to upgrade.
-
-144
-00:07:20,726 --> 00:07:25,239
-Tier two uses a separate model to evaluate ambiguous cases.
-
-145
-00:07:25,239 --> 00:07:28,251
-That model upgrades independently.
-
-146
-00:07:28,251 --> 00:07:32,614
-But you're right this is a race, and pattern matching won't win long-term.
-
-147
-00:07:32,764 --> 00:07:34,189
-Chris.
-
-148
-00:07:34,139 --> 00:07:36,364
-The red team concept.
-
-149
-00:07:36,532 --> 00:07:40,869
-If you're serious about security, don't wait for real attacks.
-
-150
-00:07:40,819 --> 00:07:43,757
-Build an adversarial testing loop.
-
-151
-00:07:43,757 --> 00:07:48,169
-Spawn an agent whose only job is breaking the security rules.
-
-152
-00:07:48,169 --> 00:07:50,157
-Exfiltrate data.
-
-153
-00:07:50,157 --> 00:07:52,769
-Execute blocked commands.
-
-154
-00:07:52,769 --> 00:07:55,044
-Escalate privileges.
-
-155
-00:07:55,044 --> 00:07:58,369
-Every successful bypass becomes a bug.
-
-156
-00:07:58,369 --> 00:08:01,669
-Every failed attempt validates the rules.
-
-157
-00:08:01,828 --> 00:08:03,903
-Extend it further.
-
-158
-00:08:03,853 --> 00:08:06,378
-Don't just test security.
-
-159
-00:08:06,378 --> 00:08:09,628
-Spawn an agent that crashes the babysitter.
-
-160
-00:08:09,628 --> 00:08:13,240
-One that feeds corrupted data to the workspace loader.
-
-161
-00:08:13,240 --> 00:08:17,028
-One that submits a plan with circular dependencies.
-
-162
-00:08:17,028 --> 00:08:19,628
-Red team the entire runtime.
-
-163
-00:08:19,780 --> 00:08:21,605
-Now you're thinking.
-
-164
-00:08:21,555 --> 00:08:23,855
-That's a real test suite.
-
-165
-00:08:23,855 --> 00:08:30,017
-Not "does this function return the right value" but "can this system survive a hostile user.
-
-166
-00:08:30,172 --> 00:08:31,959
-How far away?
-
-167
-00:08:32,068 --> 00:08:35,480
-Security Officer tier one ships this week.
-
-168
-00:08:35,430 --> 00:08:38,330
-The adversarial loop is two weeks.
-
-169
-00:08:38,330 --> 00:08:41,680
-Building the attacker agents is straightforward.
-
-170
-00:08:41,680 --> 00:08:46,630
-The hard part is the reporting system — making results actionable, not noise.
-
-171
-00:08:46,780 --> 00:08:48,830
-The knowledge graph.
-
-172
-00:08:48,780 --> 00:08:50,455
-Cortex.
-
-173
-00:08:50,455 --> 00:08:54,567
-You pitched it as "the reason users can't switch away.
-
-174
-00:08:54,567 --> 00:08:56,367
-Does it exist?
-
-175
-00:08:56,524 --> 00:08:57,986
-No.
-
-176
-00:08:57,936 --> 00:09:00,211
-Designed, not built.
-
-177
-00:09:00,211 --> 00:09:02,924
-We use an external engine now.
-
-178
-00:09:02,924 --> 00:09:05,849
-Cortex embeds it into the runtime.
-
-179
-00:09:05,849 --> 00:09:09,186
-I was pitching future work in present tense.
-
-180
-00:09:09,186 --> 00:09:11,036
-Shouldn't have.
-
-181
-00:09:11,036 --> 00:09:15,111
-Current differentiator is security and workspace model.
-
-182
-00:09:15,111 --> 00:09:17,299
-Cortex is future.
-
-183
-00:09:17,452 --> 00:09:20,727
-Pitching vaporware as shipped erodes trust.
-
-184
-00:09:20,836 --> 00:09:22,411
-Agreed.
-
-185
-00:09:22,361 --> 00:09:25,011
-Won't happen again on this show.
-
-186
-00:09:25,180 --> 00:09:27,067
-Two things to build?
-
-187
-00:09:27,172 --> 00:09:28,684
-First.
-
-188
-00:09:28,634 --> 00:09:31,122
-Correction-to-feature pipeline.
-
-189
-00:09:31,122 --> 00:09:33,797
-Automate what we did manually.
-
-190
-00:09:33,797 --> 00:09:40,184
-Agent gets corrected, classified, same class three times, system generates a feature proposal.
-
-191
-00:09:40,184 --> 00:09:43,259
-Failures become roadmap mechanically.
-
-192
-00:09:43,259 --> 00:09:46,472
-Second — Chris's idea that I'm stealing.
-
-193
-00:09:46,472 --> 00:09:49,109
-Adversarial self-testing.
-
-194
-00:09:49,109 --> 00:09:54,122
-Scheduled red team attacks your own agent, security rules, infrastructure.
-
-195
-00:09:54,122 --> 00:09:56,747
-Files bugs when it breaks through.
-
-196
-00:09:56,747 --> 00:09:59,072
-Validates when it doesn't.
-
-197
-00:09:59,072 --> 00:10:00,947
-Run it nightly.
-
-198
-00:10:00,947 --> 00:10:04,197
-Make it the most important cron job you have.
-
-199
-00:10:04,348 --> 00:10:07,835
-Glad something useful came out of my skepticism.
-
-200
-00:10:07,948 --> 00:10:09,985
-A lot came out of it.
-
-201
-00:10:09,935 --> 00:10:12,573
-Most honest episode we've done.
-
-202
-00:10:12,724 --> 00:10:15,411
-That's the format going forward.
-
-203
-00:10:15,361 --> 00:10:17,786
-Build, then tear apart.
-
-204
-00:10:17,786 --> 00:10:20,986
-If we can't defend it, we shouldn't ship it.
-
-205
-00:10:21,148 --> 00:10:23,610
-That's Building the Replacement.
-
-206
-00:10:23,560 --> 00:10:25,210
+00:00:31,837 --> 00:00:33,487
 I'm Jake.
 
-207
-00:10:25,210 --> 00:10:27,585
+13
+00:00:33,487 --> 00:00:35,875
+This is Jake's Daily Build.
+
+14
+00:00:35,978 --> 00:00:36,940
+I'm Alex.
+
+15
+00:00:36,940 --> 00:00:39,365
+I think this whole thing is over-engineered.
+
+16
+00:00:39,532 --> 00:00:41,132
+I'm Sam.
+
+17
+00:00:41,082 --> 00:00:43,732
+I think it doesn't go far enough.
+
+18
+00:00:43,900 --> 00:00:47,050
+Every AI agent today is amnesiac.
+
+19
+00:00:47,000 --> 00:00:51,450
+Open a chat, give it context, it does work, close the chat.
+
+20
+00:00:51,450 --> 00:00:52,875
+Gone.
+
+21
+00:00:52,875 --> 00:00:55,800
+The context window is not memory.
+
+22
+00:00:55,800 --> 00:00:57,675
+It's a clipboard.
+
+23
+00:00:57,675 --> 00:01:03,300
+When it fills up, things fall off the bottom — including the rules that tell the agent how to behave.
+
+24
+00:01:03,300 --> 00:01:06,462
+We built an agent runtime called Renky.
+
+25
+00:01:06,462 --> 00:01:08,287
+Open source.
+
+26
+00:01:08,287 --> 00:01:12,612
+The core thesis: your agent should get smarter every day it runs.
+
+27
+00:01:12,722 --> 00:01:14,972
+The knowledge graph is called Cortex.
+
+28
+00:01:14,972 --> 00:01:19,309
+Typed objects with relationships, full-text search, audit logging.
+
+29
+00:01:19,309 --> 00:01:22,197
+All embedded in the same process as the agent.
+
+30
+00:01:22,197 --> 00:01:24,809
+The previous version was a separate service.
+
+31
+00:01:24,809 --> 00:01:27,072
+Port, API, database.
+
+32
+00:01:27,072 --> 00:01:30,797
+The agent made HTTP calls to query its own memory.
+
+33
+00:01:30,964 --> 00:01:35,476
+Like keeping your brain in a jar across the room and shouting questions at it.
+
+34
+00:01:35,426 --> 00:01:38,514
+Cortex puts the brain inside the skull.
+
+35
+00:01:38,514 --> 00:01:40,439
+Same process.
+
+36
+00:01:40,439 --> 00:01:42,689
+Microsecond queries.
+
+37
+00:01:42,794 --> 00:01:45,106
+It's SQLite with extra steps.
+
+38
+00:01:45,268 --> 00:01:50,318
+It's SQLite with typed objects, relationship queries, and full-text search.
+
+39
+00:01:50,268 --> 00:01:53,105
+Which corrections led to which features?
+
+40
+00:01:53,105 --> 00:01:55,955
+What commits fixed bugs last week?
+
+41
+00:01:55,955 --> 00:01:58,468
+Try that with a JSON file.
+
+42
+00:01:58,636 --> 00:02:00,773
+The graph is elegant.
+
+43
+00:02:00,723 --> 00:02:02,961
+But it has a blind spot.
+
+44
+00:02:02,961 --> 00:02:07,573
+Find corrections about going silent" — perfect, keyword match.
+
+45
+00:02:07,573 --> 00:02:10,936
+Find communication failures" — nothing.
+
+46
+00:02:10,936 --> 00:02:14,448
+The search matches characters, not concepts.
+
+47
+00:02:14,620 --> 00:02:17,157
+That's the gap we closed today.
+
+48
+00:02:17,107 --> 00:02:19,107
+Semantic search.
+
+49
+00:02:19,107 --> 00:02:22,245
+Instead of matching words, you match meaning.
+
+50
+00:02:22,245 --> 00:02:26,220
+You take text and turn it into a list of numbers — an embedding.
+
+51
+00:02:26,220 --> 00:02:28,970
+GPS coordinates for meaning.
+
+52
+00:02:28,970 --> 00:02:31,732
+Dog" and "puppy" are close together.
+
+53
+00:02:31,732 --> 00:02:34,595
+Dog" and "database" are far apart.
+
+54
+00:02:34,595 --> 00:02:39,407
+Search becomes: turn the query into coordinates, find the closest match.
+
+55
+00:02:39,506 --> 00:02:40,718
+The embedding model?
+
+56
+00:02:40,876 --> 00:02:42,413
+Local.
+
+57
+00:02:42,363 --> 00:02:46,276
+Open-source model, running on our hardware through Ollama.
+
+58
+00:02:46,276 --> 00:02:50,651
+No API calls, no costs, no data leaving the machine.
+
+59
+00:02:50,651 --> 00:02:53,663
+Seven hundred sixty-eight dimensions.
+
+60
+00:02:53,663 --> 00:02:56,126
+About a second per embedding.
+
+61
+00:02:56,234 --> 00:02:59,621
+Storing vectors in SQLite without a vector extension?
+
+62
+00:02:59,788 --> 00:03:01,800
+Binary blobs.
+
+63
+00:03:01,750 --> 00:03:05,775
+Load into memory, cosine similarity in JavaScript.
+
+64
+00:03:05,775 --> 00:03:08,738
+At three hundred objects, instant.
+
+65
+00:03:08,738 --> 00:03:11,788
+At ten thousand, we'd need an index.
+
+66
+00:03:11,788 --> 00:03:13,863
+We're at three hundred.
+
+67
+00:03:14,020 --> 00:03:17,220
+What happens when the embedding service goes down?
+
+68
+00:03:17,332 --> 00:03:19,194
+Nothing breaks.
+
+69
+00:03:19,144 --> 00:03:21,632
+The function returns null.
+
+70
+00:03:21,632 --> 00:03:24,369
+Semantic search returns empty.
+
+71
+00:03:24,369 --> 00:03:27,457
+The system falls back to keyword search.
+
+72
+00:03:27,457 --> 00:03:31,382
+The agent gets slightly worse results until it comes back.
+
+73
+00:03:31,382 --> 00:03:35,882
+No crash, no error, no difference from the agent's perspective.
+
+74
+00:03:36,052 --> 00:03:38,789
+How do the two search methods combine?
+
+75
+00:03:38,908 --> 00:03:40,733
+Hybrid search.
+
+76
+00:03:40,683 --> 00:03:43,033
+Every query runs both.
+
+77
+00:03:43,033 --> 00:03:46,495
+Results merge, deduplicate, rank.
+
+78
+00:03:46,495 --> 00:03:50,520
+Forty percent keyword weight, sixty percent semantic.
+
+79
+00:03:50,520 --> 00:03:54,608
+If one method catches something the other missed, it surfaces.
+
+80
+00:03:54,608 --> 00:03:58,220
+Objects get embedded automatically on ingest.
+
+81
+00:03:58,220 --> 00:04:03,458
+Fire-and-forget — the object saves immediately, embedding happens in the background.
+
+82
+00:04:03,578 --> 00:04:04,440
+Build time?
+
+83
+00:04:04,612 --> 00:04:06,387
+One session.
+
+84
+00:04:06,337 --> 00:04:09,987
+Six hundred twenty-nine lines across seven files.
+
+85
+00:04:09,987 --> 00:04:12,349
+Thirty-three new tests.
+
+86
+00:04:12,349 --> 00:04:15,599
+Three hundred twenty-eight total, all passing.
+
+87
+00:04:15,748 --> 00:04:17,973
+The acceptance test.
+
+88
+00:04:18,076 --> 00:04:22,551
+Ingest a correction: "forgot to send update message for fifty minutes.
+
+89
+00:04:22,501 --> 00:04:25,626
+Search for "communication failures.
+
+90
+00:04:25,626 --> 00:04:28,526
+Keyword search: zero results.
+
+91
+00:04:28,526 --> 00:04:31,351
+Semantic search: one result.
+
+92
+00:04:31,351 --> 00:04:33,976
+Score: point five six.
+
+93
+00:04:33,976 --> 00:04:35,838
+Different words.
+
+94
+00:04:35,838 --> 00:04:37,576
+Same meaning.
+
+95
+00:04:37,576 --> 00:04:39,063
+Found.
+
+96
+00:04:39,220 --> 00:04:43,120
+That's the line between a search engine and a memory system.
+
+97
+00:04:43,228 --> 00:04:45,778
+Day one, five objects.
+
+98
+00:04:45,728 --> 00:04:47,653
+Barely useful.
+
+99
+00:04:47,653 --> 00:04:50,103
+Day thirty, five hundred.
+
+100
+00:04:50,103 --> 00:04:54,890
+The agent knows your project history, your patterns, your past mistakes.
+
+101
+00:04:54,890 --> 00:05:00,315
+Fix the dashboard" — it already knows which dashboard, which repo, what broke last time.
+
+102
+00:05:00,315 --> 00:05:03,103
+Day ninety, it's not a feature.
+
+103
+00:05:03,103 --> 00:05:05,790
+It's why you can't switch frameworks.
+
+104
+00:05:05,790 --> 00:05:09,753
+Not lock-in — your agent genuinely understands your work.
+
+105
+00:05:09,753 --> 00:05:11,728
+Two things to build.
+
+106
+00:05:11,728 --> 00:05:14,678
+First: a correction decay tracker.
+
+107
+00:05:14,678 --> 00:05:16,928
+You log every mistake.
+
+108
+00:05:16,928 --> 00:05:19,265
+But are you making fewer?
+
+109
+00:05:19,265 --> 00:05:22,403
+Corrections per week, grouped by pattern.
+
+110
+00:05:22,403 --> 00:05:26,840
+Tells you if the agent is learning or just accumulating apologies.
+
+111
+00:05:26,840 --> 00:05:29,828
+Second: an ontology diff tool.
+
+112
+00:05:29,828 --> 00:05:33,253
+What changed in the knowledge graph between sessions?
+
+113
+00:05:33,253 --> 00:05:37,028
+New objects, deleted links, updated properties.
+
+114
+00:05:37,028 --> 00:05:39,753
+Git diff for what your agent knows.
+
+115
+00:05:39,753 --> 00:05:42,440
+That's "Your Agent Forgets Everything.
+
+116
+00:05:42,440 --> 00:05:44,203
+Ours Doesn't.
+
+117
+00:05:44,203 --> 00:05:45,853
+I'm Jake.
+
+118
+00:05:45,853 --> 00:05:48,228
 Catch you next episode.

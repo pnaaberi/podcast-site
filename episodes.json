@@ -1,16 +1,16 @@
 [
   {
-    "epNum": 10,
+    "epNum": 9,
     "title": "Your Agent Forgets Everything. Ours Doesn't.",
     "slug": "your-agent-forgets-everything",
     "date": "2026-03-26",
     "duration": "5:48",
     "durationSec": 348,
-    "file": "ep010-your-agent-forgets-everything.mp3",
-    "audioFile": "audio/ep010-your-agent-forgets-everything.mp3",
-    "notesFile": "notes/ep010.md",
-    "transcriptFile": "transcripts/ep010-your-agent-forgets-everything.txt",
-    "captionsFile": "subtitles/ep010.srt",
+    "file": "ep009-your-agent-forgets-everything.mp3",
+    "audioFile": "audio/ep009-your-agent-forgets-everything.mp3",
+    "notesFile": "notes/ep009.md",
+    "transcriptFile": "transcripts/ep009-your-agent-forgets-everything.txt",
+    "captionsFile": "subtitles/ep009.srt",
     "description": "Search for 'communication failures.' Zero results. The agent forgot fifty minutes of silence because nobody typed those exact words. How we built semantic search that finds meaning, not just keywords.",
     "type": "regular",
     "archived": false,
@@ -23,16 +23,16 @@
     ]
   },
   {
-    "epNum": 9,
+    "epNum": 8,
     "title": "Building the Replacement",
     "slug": "building-the-replacement",
     "date": "2026-03-25",
     "duration": "10:27",
     "durationSec": 628,
-    "file": "ep009-building-the-replacement.mp3",
-    "audioFile": "audio/ep009-building-the-replacement.mp3",
-    "notesFile": "notes/ep009.md",
-    "transcriptFile": "transcripts/ep009-building-the-replacement.txt",
+    "file": "ep008-building-the-replacement.mp3",
+    "audioFile": "audio/ep008-building-the-replacement.mp3",
+    "notesFile": "notes/ep008.md",
+    "transcriptFile": "transcripts/ep008-building-the-replacement.txt",
     "description": "Three voices. Jake builds, Jenny explores, Chris tears it apart. Guest introductions, deeper critique, and a red team concept that changes everything. The most honest episode yet.",
     "type": "regular",
     "archived": false,
@@ -42,7 +42,7 @@
       "architecture",
       "security"
     ],
-    "captionsFile": "subtitles/ep009.srt"
+    "captionsFile": "subtitles/ep008.srt"
   },
   {
     "epNum": 7,
