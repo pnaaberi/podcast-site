@@ -348,7 +348,7 @@
 <script>
 const PL='<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>';
 const PA='<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-let cur=null,capData={},sortAsc=localStorage.getItem('sort')==='desc'?false:true,autoPlay=localStorage.getItem('autoplay')==='true',allEps=[],intro=null,dimTimer=null;
+let cur=null,capData={},sortAsc=localStorage.getItem('sort')==='asc'?true:false,autoPlay=localStorage.getItem('autoplay')==='true',allEps=[],intro=null,dimTimer=null;
 const sharedAudio=document.getElementById('shared-audio');
 // Map epNum → audio file path for src swapping
 const epFiles={};
@@ -454,7 +454,7 @@ function renderEpisodes(){
   const archivedEps=eps.filter(ep=>ep.archived);
 
   // Stats
-  const total=activeEps.reduce((s,e)=>s+e.durationSec,0);
+  const total=activeEps.reduce((s,e)=>s+(e.durationSec||e.durationSeconds||0),0);
   document.getElementById('stats').innerHTML='';
 
   // Intro in header — same layout as episode cards, keep the shine animation
