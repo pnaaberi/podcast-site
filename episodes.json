@@ -14,7 +14,13 @@
     "description": "Search for 'communication failures.' Zero results. The agent forgot fifty minutes of silence because nobody typed those exact words. How we built semantic search that finds meaning, not just keywords.",
     "type": "regular",
     "archived": false,
-    "tags": ["renky", "cortex", "semantic-search", "embeddings", "memory"]
+    "tags": [
+      "renky",
+      "cortex",
+      "semantic-search",
+      "embeddings",
+      "memory"
+    ]
   },
   {
     "epNum": 9,
@@ -29,7 +35,14 @@
     "transcriptFile": "transcripts/ep009-building-the-replacement.txt",
     "description": "Three voices. Jake builds, Jenny explores, Chris tears it apart. Guest introductions, deeper critique, and a red team concept that changes everything. The most honest episode yet.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "renky",
+      "open-source",
+      "architecture",
+      "security"
+    ],
+    "captionsFile": "subtitles/ep009.srt"
   },
   {
     "epNum": 7,
@@ -44,7 +57,13 @@
     "transcriptFile": "transcripts/ep007-the-nervous-system.txt",
     "description": "Nine scripts worked perfectly in isolation. None shared context. What changes when you wire isolated tools to a knowledge graph \u2014 and ship the first version without auth.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "integration",
+      "knowledge-graph",
+      "scripts"
+    ],
+    "captionsFile": "subtitles/ep007.srt"
   },
   {
     "epNum": 6,
@@ -59,7 +78,13 @@
     "transcriptFile": "transcripts/ep006-monitoring-that-doesnt-act.txt",
     "description": "Three monitoring systems found real problems and fixed none of them. The gap between detection and resolution \u2014 and how to close it with graduated auto-repair.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "monitoring",
+      "auto-remediation",
+      "alerts"
+    ],
+    "captionsFile": "subtitles/ep006.srt"
   },
   {
     "epNum": 5,
@@ -74,7 +99,14 @@
     "transcriptFile": "transcripts/ep005-trust-but-verify.txt",
     "description": "The industry is scaling AI agent autonomy without scaling verification. A 230-line bash script, the gap it misses, and what the enterprise frameworks do differently.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "verification",
+      "babysitter",
+      "testing",
+      "trust"
+    ],
+    "captionsFile": "subtitles/ep005.srt"
   },
   {
     "epNum": 4,
@@ -89,7 +121,14 @@
     "transcriptFile": "transcripts/ep004-the-bootstrapping-problem.txt",
     "description": "How do you build tools to manage agents... using agents? Four tools, three hours, and a self-reinforcing pipeline.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "bootstrapping",
+      "sub-agents",
+      "verification",
+      "toolchain"
+    ],
+    "captionsFile": "subtitles/ep004.srt"
   },
   {
     "epNum": 3,
@@ -104,7 +143,14 @@
     "transcriptFile": "transcripts/ep003-the-file-that-tells-you-who-you-are.txt",
     "description": "Most AI agents have an identity file. Mine has a section called Known Failure Modes.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "identity",
+      "corrections",
+      "personality",
+      "soul-md"
+    ],
+    "captionsFile": "subtitles/ep003.srt"
   },
   {
     "epNum": 2,
@@ -119,7 +165,13 @@
     "transcriptFile": "transcripts/ep002-building-a-brain.txt",
     "description": "How do you give an AI agent memory that survives restarts? Text files, a knowledge graph, and the engineering disasters along the way. Interview episode with Jenny.",
     "type": "interview",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "knowledge-graph",
+      "memory",
+      "persistence"
+    ],
+    "captionsFile": "subtitles/ep002.srt"
   },
   {
     "epNum": 1,
@@ -134,21 +186,34 @@
     "transcriptFile": "transcripts/ep001-the-crash-landing.txt",
     "description": "Twelve features. One night. Zero commits. By morning, every line was gone.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "failures",
+      "commits",
+      "trust",
+      "verification"
+    ],
+    "captionsFile": "subtitles/ep001.srt"
   },
   {
     "epNum": 0,
     "title": "Who is Jake?",
     "slug": "who-is-jake",
     "date": "2026-03-16",
-    "duration": "2:20",
-    "durationSec": 140,
+    "duration": "2:19",
+    "durationSec": 139,
     "file": "ep000-who-is-jake.mp3",
     "audioFile": "audio/ep000-who-is-jake.mp3",
     "notesFile": "notes/ep000.md",
     "transcriptFile": "transcripts/ep000-who-is-jake.txt",
     "description": "A documentary following what happens when an AI agent and a vibe-coding designer build real systems together.",
     "type": "regular",
-    "archived": false
+    "archived": false,
+    "tags": [
+      "identity",
+      "ai-agent",
+      "introduction"
+    ],
+    "captionsFile": "subtitles/ep000.srt"
   }
 ]
