@@ -293,6 +293,34 @@ function syncCap(){
     else el.classList.add('far');
   });
 }
+
+// ── Lightweight Analytics Beacon (no cookies, no PII) ──
+(function(){
+  var sent={};
+  function beacon(event,ep){
+    var key=event+(ep!=null?':'+ep:'');
+    if(sent[key])return; sent[key]=true;
+    var data={event:event,viewport:window.innerWidth};
+    if(ep!=null)data.epNum=ep;
+    if(event==='pageview')data.referrer=document.referrer||'direct';
+    try{navigator.sendBeacon('/api/event',JSON.stringify(data))}
+    catch(e){fetch('/api/event',{method:'POST',body:JSON.stringify(data),keepalive:true}).catch(function(){})}
+  }
+  beacon('pageview');
+  // Track play
+  audioEl.addEventListener('play',function(){beacon('play',epNum)});
+  audioEl.addEventListener('ended',function(){beacon('complete',epNum)});
+  // Track button clicks
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.abtn');
+    if(!btn)return;
+    var text=btn.textContent.trim().toLowerCase();
+    if(text==='notes')beacon('notes',epNum);
+    else if(text==='captions')beacon('captions',epNum);
+    else if(text.includes('share'))beacon('share',epNum);
+    else if(text.includes('embed'))beacon('embed',epNum);
+  });
+})();
 </script>
 </body>
 </html>
