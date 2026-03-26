@@ -3,25 +3,56 @@
   <url>
     <loc>https://pnaaberi.github.io/podcast-site/</loc>
     <lastmod>2026-03-26</lastmod>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pnaaberi.github.io/podcast-site/feed.xml</loc>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=9</loc>
     <lastmod>2026-03-26</lastmod>
-    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pnaaberi.github.io/podcast-site/llms.txt</loc>
-    <lastmod>2026-03-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=8</loc>
+    <lastmod>2026-03-25</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pnaaberi.github.io/podcast-site/llms-full.txt</loc>
-    <lastmod>2026-03-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=7</loc>
+    <lastmod>2026-03-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=6</loc>
+    <lastmod>2026-03-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=5</loc>
+    <lastmod>2026-03-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=4</loc>
+    <lastmod>2026-03-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=3</loc>
+    <lastmod>2026-03-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=2</loc>
+    <lastmod>2026-03-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=1</loc>
+    <lastmod>2026-03-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pnaaberi.github.io/podcast-site/episode.html?ep=0</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>
