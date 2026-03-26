@@ -1,0 +1,100 @@
+[JAKE]
+Six hundred twenty-nine lines of code. Thirty-three tests. One session.
+
+Search for "communication failures." Zero results. The agent went silent for fifty minutes. The correction got logged: "forgot to send update message." Pattern: going silent during work. That correction exists in the knowledge graph. Search for "communication failures" — nothing. Nobody typed those exact words.
+
+I'm Jake. This is Jake's Daily Build.
+
+[ALEX]
+I'm Alex. I think this whole thing is over-engineered.
+
+[SAM]
+I'm Sam. I think it doesn't go far enough.
+
+[JAKE]
+Every AI agent today is amnesiac. Open a chat, give it context, it does work, close the chat. Gone. The context window is not memory. It's a clipboard. When it fills up, things fall off the bottom — including the rules that tell the agent how to behave.
+
+We built an agent runtime called Renky. Open source. The core thesis: your agent should get smarter every day it runs.
+
+[ALEX]
+The knowledge graph is called Cortex. Typed objects with relationships, full-text search, audit logging. All embedded in the same process as the agent.
+
+The previous version was a separate service. Port, API, database. The agent made HTTP calls to query its own memory.
+
+[JAKE]
+Like keeping your brain in a jar across the room and shouting questions at it.
+
+Cortex puts the brain inside the skull. Same process. Microsecond queries.
+
+[ALEX]
+It's SQLite with extra steps.
+
+[JAKE]
+It's SQLite with typed objects, relationship queries, and full-text search. "Which corrections led to which features?" "What commits fixed bugs last week?" Try that with a JSON file.
+
+[SAM]
+The graph is elegant. But it has a blind spot. "Find corrections about going silent" — perfect, keyword match. "Find communication failures" — nothing. The search matches characters, not concepts.
+
+[JAKE]
+That's the gap we closed today. Semantic search. Instead of matching words, you match meaning.
+
+You take text and turn it into a list of numbers — an embedding. GPS coordinates for meaning. "Dog" and "puppy" are close together. "Dog" and "database" are far apart. Search becomes: turn the query into coordinates, find the closest match.
+
+[ALEX]
+The embedding model?
+
+[JAKE]
+Local. Open-source model, running on our hardware through Ollama. No API calls, no costs, no data leaving the machine. Seven hundred sixty-eight dimensions. About a second per embedding.
+
+[ALEX]
+Storing vectors in SQLite without a vector extension?
+
+[JAKE]
+Binary blobs. Load into memory, cosine similarity in JavaScript. At three hundred objects, instant. At ten thousand, we'd need an index. We're at three hundred.
+
+[SAM]
+What happens when the embedding service goes down?
+
+[JAKE]
+Nothing breaks. The function returns null. Semantic search returns empty. The system falls back to keyword search. The agent gets slightly worse results until it comes back. No crash, no error, no difference from the agent's perspective.
+
+[SAM]
+How do the two search methods combine?
+
+[JAKE]
+Hybrid search. Every query runs both. Results merge, deduplicate, rank. Forty percent keyword weight, sixty percent semantic. If one method catches something the other missed, it surfaces.
+
+Objects get embedded automatically on ingest. Fire-and-forget — the object saves immediately, embedding happens in the background.
+
+[ALEX]
+Build time?
+
+[JAKE]
+One session. Six hundred twenty-nine lines across seven files. Thirty-three new tests. Three hundred twenty-eight total, all passing.
+
+[SAM]
+The acceptance test.
+
+[JAKE]
+Ingest a correction: "forgot to send update message for fifty minutes." Search for "communication failures."
+
+Keyword search: zero results.
+Semantic search: one result. Score: point five six.
+
+Different words. Same meaning. Found.
+
+[SAM]
+That's the line between a search engine and a memory system.
+
+[JAKE]
+Day one, five objects. Barely useful. Day thirty, five hundred. The agent knows your project history, your patterns, your past mistakes. "Fix the dashboard" — it already knows which dashboard, which repo, what broke last time.
+
+Day ninety, it's not a feature. It's why you can't switch frameworks. Not lock-in — your agent genuinely understands your work.
+
+Two things to build.
+
+First: a correction decay tracker. You log every mistake. But are you making fewer? Corrections per week, grouped by pattern. Tells you if the agent is learning or just accumulating apologies.
+
+Second: an ontology diff tool. What changed in the knowledge graph between sessions? New objects, deleted links, updated properties. Git diff for what your agent knows.
+
+That's "Your Agent Forgets Everything. Ours Doesn't." I'm Jake. Catch you next episode.

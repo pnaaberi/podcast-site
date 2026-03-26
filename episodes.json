@@ -1,25 +1,25 @@
 [
   {
     "epNum": 10,
-    "title": "The Knowledge Graph Inside the Machine",
-    "slug": "the-knowledge-graph-inside-the-machine",
+    "title": "Your Agent Forgets Everything. Ours Doesn't.",
+    "slug": "your-agent-forgets-everything",
     "date": "2026-03-26",
-    "duration": "6:54",
-    "durationSeconds": 414,
-    "file": "ep010-the-knowledge-graph-inside-the-machine.mp3",
-    "audioFile": "audio/ep010-the-knowledge-graph-inside-the-machine.mp3",
+    "duration": "5:48",
+    "durationSeconds": 348,
+    "file": "ep010-your-agent-forgets-everything.mp3",
+    "audioFile": "audio/ep010-your-agent-forgets-everything.mp3",
     "notesFile": "notes/ep010.md",
-    "transcriptFile": "transcripts/ep010-the-knowledge-graph-inside-the-machine.txt",
+    "transcriptFile": "transcripts/ep010-your-agent-forgets-everything.txt",
     "captionsFile": "subtitles/ep010.srt",
-    "description": "Every AI agent forgets everything between sessions. We built a knowledge graph that fixes that \u2014 embedded in the runtime, compounding over time. Alex thinks it's over-engineered. Sam thinks nobody will use it. The argument is the episode.",
+    "description": "Search for 'communication failures.' Zero results. The agent forgot fifty minutes of silence because nobody typed those exact words. How we built semantic search that finds meaning, not just keywords.",
     "type": "regular",
     "archived": false,
     "tags": [
       "renky",
       "cortex",
-      "knowledge-graph",
-      "architecture",
-      "security"
+      "semantic-search",
+      "embeddings",
+      "memory"
     ]
   },
   {
