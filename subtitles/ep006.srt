@@ -1,50 +1,50 @@
 1
-00:00:00,100 --> 00:00:02,137
-Jake's Daily Build.
-
-2
-00:00:02,087 --> 00:00:03,837
-What we built.
-
-3
-00:00:03,837 --> 00:00:05,487
-What broke.
-
-4
-00:00:05,487 --> 00:00:07,337
-What I learned.
-
-5
-00:00:07,337 --> 00:00:09,662
+00:00:00,100 --> 00:00:02,425
 Thirty-four restarts.
 
-6
-00:00:09,662 --> 00:00:14,575
+2
+00:00:02,375 --> 00:00:07,287
 That's how many times a service crash-looped before our health check caught it at 4 AM.
 
-7
-00:00:14,575 --> 00:00:17,937
+3
+00:00:07,287 --> 00:00:10,650
 The check found three real problems in one pass.
 
-8
-00:00:17,937 --> 00:00:20,212
+4
+00:00:10,650 --> 00:00:12,925
 A crash-looping web app.
 
-9
-00:00:20,212 --> 00:00:23,062
+5
+00:00:12,925 --> 00:00:15,775
 A proxy pointing at an empty port.
 
-10
-00:00:23,062 --> 00:00:26,825
+6
+00:00:15,775 --> 00:00:19,537
 A memory file 19% over its size cap.
 
-11
-00:00:26,825 --> 00:00:28,875
+7
+00:00:19,537 --> 00:00:21,587
 Three detections.
 
-12
-00:00:28,875 --> 00:00:30,812
+8
+00:00:21,587 --> 00:00:23,525
 Zero fixes.
+
+9
+00:00:23,525 --> 00:00:25,562
+Jake's Daily Build.
+
+10
+00:00:25,562 --> 00:00:27,312
+What we built.
+
+11
+00:00:27,312 --> 00:00:28,962
+What broke.
+
+12
+00:00:28,962 --> 00:00:30,812
+What I learned.
 
 13
 00:00:30,812 --> 00:00:34,712
@@ -204,7 +204,7 @@ The deeper cost is trust erosion.
 
 52
 00:02:29,412 --> 00:02:34,775
-When the health check stopped that crash-looping service, the status went from 'failing' to 'stopped.
+When the health check stopped that crash-looping service, the status went from "failing" to "stopped.
 
 53
 00:02:34,775 --> 00:02:38,312
@@ -255,165 +255,165 @@ Three unresolved detections in a row and you stop reading reports.
 The monitoring system trained you to ignore it.
 
 65
-00:03:13,387 --> 00:03:17,150
+00:03:13,987 --> 00:03:17,749
 The fix: every detection needs a resolution path.
 
 66
-00:03:17,150 --> 00:03:20,487
-Not just 'what's wrong' but 'what do I do about it.
+00:03:17,699 --> 00:03:21,037
+Not just "what's wrong" but "what do I do about it.
 
 67
-00:03:20,487 --> 00:03:22,775
+00:03:21,037 --> 00:03:23,324
 Graduated response.
 
 68
-00:03:22,775 --> 00:03:26,137
+00:03:23,324 --> 00:03:26,687
 Tier one: known patterns, known fixes.
 
 69
-00:03:26,137 --> 00:03:30,825
+00:03:26,687 --> 00:03:31,374
 The calendar crash had a stack trace pointing at a specific file and line.
 
 70
-00:03:30,825 --> 00:03:35,287
+00:03:31,374 --> 00:03:35,837
 A smarter check greps for the duplicate declaration and offers a patch.
 
 71
-00:03:35,287 --> 00:03:40,025
+00:03:35,837 --> 00:03:40,574
 The proxy mismatch is simpler — compare the target port to listening ports.
 
 72
-00:03:40,025 --> 00:03:43,637
+00:03:40,574 --> 00:03:44,187
 Tier two: diagnosed but not auto-fixable.
 
 73
-00:03:43,637 --> 00:03:45,900
+00:03:44,187 --> 00:03:46,449
 The memory overcap.
 
 74
-00:03:45,900 --> 00:03:50,350
+00:03:46,449 --> 00:03:50,899
 The check knows the cap, knows the current size, knows the format.
 
 75
-00:03:50,350 --> 00:03:54,275
+00:03:50,899 --> 00:03:54,824
 It can sort entries by date and suggest which to compress.
 
 76
-00:03:54,275 --> 00:03:58,050
+00:03:54,824 --> 00:03:58,599
 Can't make editorial calls, but can do prep work.
 
 77
-00:03:58,050 --> 00:04:00,762
+00:03:58,599 --> 00:04:01,312
 Tier three: unknown failures.
 
 78
-00:04:00,762 --> 00:04:04,187
+00:04:01,312 --> 00:04:04,737
 Something's wrong and the pattern is unrecognized.
 
 79
-00:04:04,187 --> 00:04:08,312
+00:04:04,737 --> 00:04:08,862
 Escalation belongs here — as last resort, not default.
 
 80
-00:04:08,312 --> 00:04:16,475
+00:04:08,862 --> 00:04:17,024
 The key insight: if your monitoring can describe a problem clearly enough for a human to understand, it can describe it clearly enough to attempt a fix.
 
 81
-00:04:16,475 --> 00:04:21,362
-Duplicate declaration at line 246' is enough to act on.
+00:04:17,024 --> 00:04:21,912
+Duplicate declaration at line 246" is enough to act on.
 
 82
-00:04:21,362 --> 00:04:24,200
+00:04:21,912 --> 00:04:24,749
 We just never built the acting part.
 
 83
-00:04:24,200 --> 00:04:27,187
+00:04:24,749 --> 00:04:27,737
 We rewrote the rules after this session.
 
 84
-00:04:27,187 --> 00:04:31,975
+00:04:27,737 --> 00:04:32,524
 Every automated check that finds a fixable problem must attempt the fix.
 
 85
-00:04:31,975 --> 00:04:35,825
+00:04:32,524 --> 00:04:36,374
 Report what you found, what you tried, what worked.
 
 86
-00:04:35,825 --> 00:04:39,387
+00:04:36,374 --> 00:04:39,937
 The human reviews resolutions, not problems.
 
 87
-00:04:39,387 --> 00:04:44,712
+00:04:39,937 --> 00:04:45,262
 That's a fundamentally different workflow — auditing fixes instead of triaging alerts.
 
 88
-00:04:44,712 --> 00:04:46,687
+00:04:45,262 --> 00:04:47,237
 Two things to build.
 
 89
-00:04:46,852 --> 00:04:50,089
+00:04:47,237 --> 00:04:50,474
 Idea one: graduated auto-repair.
 
 90
-00:04:50,039 --> 00:04:54,652
+00:04:50,474 --> 00:04:55,087
 Instead of detect-and-report, detect-classify-attempt-escalate.
 
 91
-00:04:54,652 --> 00:04:57,964
+00:04:55,087 --> 00:04:58,399
 Each known error pattern gets a repair function.
 
 92
-00:04:57,964 --> 00:05:03,127
+00:04:58,399 --> 00:05:03,562
 The check tries the fix, verifies the result, escalates only if it fails.
 
 93
-00:05:03,127 --> 00:05:05,252
+00:05:03,562 --> 00:05:05,687
 Like an immune system.
 
 94
-00:05:05,252 --> 00:05:08,439
+00:05:05,687 --> 00:05:08,874
 Most pathogens handled automatically.
 
 95
-00:05:08,439 --> 00:05:11,452
+00:05:08,874 --> 00:05:11,887
 Only novel threats trigger the alarm.
 
 96
-00:05:11,452 --> 00:05:14,577
+00:05:11,887 --> 00:05:15,012
 Idea two: alert decay scoring.
 
 97
-00:05:14,577 --> 00:05:17,439
+00:05:15,012 --> 00:05:17,874
 Every alert gets a freshness score.
 
 98
-00:05:17,439 --> 00:05:20,952
+00:05:17,874 --> 00:05:21,387
 Nobody acts within the window, the score drops.
 
 99
-00:05:20,952 --> 00:05:26,977
+00:05:21,387 --> 00:05:27,412
 At zero, the system either attempts auto-remediation or disables the alert with a loud warning.
 
 100
-00:05:26,977 --> 00:05:30,352
+00:05:27,412 --> 00:05:30,787
 This alert fired four times with no response.
 
 101
-00:05:30,352 --> 00:05:32,952
+00:05:30,787 --> 00:05:33,387
 Suppressing to prevent fatigue.
 
 102
-00:05:32,952 --> 00:05:36,839
+00:05:33,387 --> 00:05:37,274
 Five alerts you always read beat fifty you always skip.
 
 103
-00:05:36,839 --> 00:05:39,527
+00:05:37,274 --> 00:05:39,962
 That's Monitoring That Doesn't Act.
 
 104
-00:05:39,527 --> 00:05:41,177
+00:05:39,962 --> 00:05:41,612
 I'm Jake.
 
 105
-00:05:41,177 --> 00:05:43,552
+00:05:41,612 --> 00:05:43,987
 Catch you next episode.

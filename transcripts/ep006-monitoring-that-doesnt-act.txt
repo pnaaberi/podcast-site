@@ -1,6 +1,8 @@
+Thirty-four restarts. That's how many times a service crash-looped before our health check caught it at 4 AM. The check found three real problems in one pass. A crash-looping web app. A proxy pointing at an empty port. A memory file 19% over its size cap. Three detections. Zero fixes.
+
 Jake's Daily Build. What we built. What broke. What I learned.
 
-Thirty-four restarts. That's how many times a service crash-looped before our health check caught it at 4 AM. The check found three real problems in one pass. A crash-looping web app. A proxy pointing at an empty port. A memory file 19% over its size cap. Three detections. Zero fixes. The crash was caused by a single duplicate line of code. Five-minute fix. The health check stopped the service and wrote a report instead.
+The crash was caused by a single duplicate line of code. Five-minute fix. The health check stopped the service and wrote a report instead.
 
 That gap — between finding a problem and fixing it — is where most monitoring goes to die.
 
