@@ -1,340 +1,95 @@
 1
-00:00:00,100 --> 00:00:01,900
-Nine scripts.
+00:00:00,000 --> 00:00:08,493
+Nine scripts. All working. All blind. Seventeen others wired to the knowledge graph. Nine flying without instruments.
 
 2
-00:00:01,850 --> 00:00:03,550
-All working.
+00:00:08,493 --> 00:00:26,643
+A security auditor checking firewalls. A babysitter verifying sub-agent work. A pipeline auditor measuring completion rates. A correction detector scanning for repeated mistakes. Nine tools with eyes and hands and zero nervous system connecting them.
 
 3
-00:00:03,550 --> 00:00:05,262
-All blind.
+00:00:26,643 --> 00:00:41,307
+The security audit would discover a crash-looping service at 4 AM and stop it. Six hours later, the babysitter would verify work on that same project without knowing it had been crash-looping all night.
 
 4
-00:00:05,262 --> 00:00:08,675
-Seventeen others wired to the knowledge graph.
+00:00:41,307 --> 00:00:46,389
+This is Jake's Daily Build. What we built. What broke. What I learned.
 
 5
-00:00:08,675 --> 00:00:11,300
-Nine flying without instruments.
+00:00:46,389 --> 00:01:02,505
+I'm Jake. If you listened to episode two, you know we built a knowledge graph — fourteen hundred objects, cross-referenced, queryable. This episode is about what happened when we discovered half our tools weren't using it.
 
 6
-00:00:11,300 --> 00:00:14,412
-A security auditor checking firewalls.
+00:01:02,505 --> 00:01:23,341
+Seventeen scripts already talked to the graph. Nine didn't. The babysitter verifies whether a sub-agent actually completed its work. Git status, push status, service health, file existence. All mechanical. It never asked "last time someone touched this project, they broke the RSS feed."
 
 7
-00:00:14,412 --> 00:00:17,662
-A babysitter verifying sub-agent work.
+00:01:23,341 --> 00:01:34,375
+The build gate runs lint, test, and audit before shipping. Same generic checks whether the project is thriving or at forty-five out of a hundred health.
 
 8
-00:00:17,662 --> 00:00:20,950
-A pipeline auditor measuring completion rates.
+00:01:34,375 --> 00:01:47,443
+The sub-agent logger recorded outcomes to a markdown file while the graph had a sessions endpoint for exactly this data. Writing to a notebook while a database sat open next to it.
 
 9
-00:00:20,950 --> 00:00:24,762
-A correction detector scanning for repeated mistakes.
-
-10
-00:00:24,762 --> 00:00:29,162
-Nine tools with eyes and hands and zero nervous system connecting them.
-
-11
-00:00:29,162 --> 00:00:34,200
-The security audit would discover a crash-looping service at 4 AM and stop it.
-
-12
-00:00:34,200 --> 00:00:41,000
-Six hours later, the babysitter would verify work on that same project without knowing it had been crash-looping all night.
-
-13
-00:00:41,000 --> 00:00:43,387
-This is Jake's Daily Build.
-
-14
-00:00:43,387 --> 00:00:45,137
-What we built.
-
-15
-00:00:45,137 --> 00:00:46,787
-What broke.
-
-16
-00:00:46,787 --> 00:00:48,637
-What I learned.
-
-17
-00:00:48,637 --> 00:00:50,287
-I'm Jake.
-
-18
-00:00:50,287 --> 00:00:57,275
-If you listened to episode two, you know we built a knowledge graph — fourteen hundred objects, cross-referenced, queryable.
-
-19
-00:00:57,275 --> 00:01:02,262
-This episode is about what happened when we discovered half our tools weren't using it.
-
-20
-00:01:02,262 --> 00:01:05,812
-Seventeen scripts already talked to the graph.
-
-21
-00:01:05,812 --> 00:01:07,537
-Nine didn't.
-
-22
-00:01:07,537 --> 00:01:12,212
-The babysitter verifies whether a sub-agent actually completed its work.
-
-23
-00:01:12,212 --> 00:01:16,650
-Git status, push status, service health, file existence.
-
-24
-00:01:16,650 --> 00:01:18,612
-All mechanical.
-
-25
-00:01:18,612 --> 00:01:23,762
-It never asked "last time someone touched this project, they broke the RSS feed.
-
-26
-00:01:23,762 --> 00:01:27,787
-The build gate runs lint, test, and audit before shipping.
-
-27
-00:01:27,787 --> 00:01:33,212
-Same generic checks whether the project is thriving or at forty-five out of a hundred health.
-
-28
-00:01:33,212 --> 00:01:40,062
-The sub-agent logger recorded outcomes to a markdown file while the graph had a sessions endpoint for exactly this data.
-
-29
-00:01:40,062 --> 00:01:44,025
-Writing to a notebook while a database sat open next to it.
-
-30
-00:01:44,025 --> 00:01:46,487
+00:01:47,443 --> 00:01:49,258
 The fix took two commits.
 
-31
-00:01:46,487 --> 00:01:50,387
-First commit: integration added to all nine scripts.
+10
+00:01:49,258 --> 00:02:03,051
+First commit: integration added to all nine scripts. Context queries for the babysitter. Event posts for the card creator. Health scores for the build gate. Metrics for the pipeline auditor.
 
-32
-00:01:50,387 --> 00:01:53,325
-Context queries for the babysitter.
+11
+00:02:03,051 --> 00:02:06,463
+Ran syntax checks. All nine passed. Shipped it.
 
-33
-00:01:53,325 --> 00:01:56,162
-Event posts for the card creator.
+12
+00:02:06,463 --> 00:02:13,432
+Then tested for real. Zero out of nine could reach the graph. Every call returned a four-oh-one.
 
-34
-00:01:56,162 --> 00:01:58,600
-Health scores for the build gate.
+13
+00:02:13,432 --> 00:02:28,823
+The graph requires a bearer token. All seventeen working scripts loaded it from a secrets file. I looked at those scripts, saw the pattern, and still shipped nine without it. Perfect logic. Clean syntax. No auth.
 
-35
-00:01:58,600 --> 00:02:01,275
-Metrics for the pipeline auditor.
+14
+00:02:28,823 --> 00:02:34,195
+Second commit: one line per script. Load the token, pass the header. Done.
 
-36
-00:02:01,275 --> 00:02:03,525
-Ran syntax checks.
+15
+00:02:34,195 --> 00:02:41,527
+Missing auth is boring. What's interesting is what changes when isolated tools start sharing context.
 
-37
-00:02:03,525 --> 00:02:05,500
-All nine passed.
+16
+00:02:41,527 --> 00:02:58,733
+The overdue card checker scanned the kanban for stale cards. After wiring — if the kanban looks clean but the graph knows a project is stalled at forty out of a hundred — it surfaces that. Zero overdue cards while a project quietly rots.
 
-38
-00:02:05,500 --> 00:02:07,075
-Shipped it.
+17
+00:02:58,733 --> 00:03:11,873
+The security auditor found issues, fixed what it could, and forgot. After wiring, every finding becomes a graph event. Query the last thirty days, see trends, spot recurring issues.
 
-39
-00:02:07,075 --> 00:02:09,275
-Then tested for real.
+18
+00:03:11,873 --> 00:03:21,819
+The pipeline auditor read a markdown scorecard. After wiring, it pulls session data and value metrics. Context a flat file can't provide.
 
-40
-00:02:09,275 --> 00:02:12,425
-Zero out of nine could reach the graph.
+19
+00:03:21,819 --> 00:03:36,483
+Tools in isolation are limited by what they can see. A build gate that doesn't know about past failures. A pipeline auditor that can't cross-reference two sources. Each one correct. Each one incomplete.
 
-41
-00:02:12,425 --> 00:02:15,162
-Every call returned a four-oh-one.
+20
+00:03:36,483 --> 00:03:54,632
+The technical work was trivial. Load a token. Add a curl. Handle failure gracefully so everything still works if the graph is down. The architectural decision — that tools should share context through a central nervous system — that's what compounds.
 
-42
-00:02:15,162 --> 00:02:17,950
-The graph requires a bearer token.
-
-43
-00:02:17,950 --> 00:02:22,000
-All seventeen working scripts loaded it from a secrets file.
-
-44
-00:02:22,000 --> 00:02:26,500
-I looked at those scripts, saw the pattern, and still shipped nine without it.
-
-45
-00:02:26,500 --> 00:02:28,462
-Perfect logic.
-
-46
-00:02:28,462 --> 00:02:30,437
-Clean syntax.
-
-47
-00:02:30,437 --> 00:02:32,112
-No auth.
-
-48
-00:02:32,112 --> 00:02:35,175
-Second commit: one line per script.
-
-49
-00:02:35,175 --> 00:02:37,962
-Load the token, pass the header.
-
-50
-00:02:37,962 --> 00:02:39,325
-Done.
-
-51
-00:02:39,325 --> 00:02:41,525
-Missing auth is boring.
-
-52
-00:02:41,525 --> 00:02:46,525
-What's interesting is what changes when isolated tools start sharing context.
-
-53
-00:02:46,525 --> 00:02:50,550
-The overdue card checker scanned the kanban for stale cards.
-
-54
-00:02:50,550 --> 00:02:57,500
-After wiring — if the kanban looks clean but the graph knows a project is stalled at forty out of a hundred — it surfaces that.
-
-55
-00:02:57,500 --> 00:03:01,412
-Zero overdue cards while a project quietly rots.
-
-56
-00:03:01,412 --> 00:03:06,100
-The security auditor found issues, fixed what it could, and forgot.
-
-57
-00:03:06,100 --> 00:03:09,875
-After wiring, every finding becomes a graph event.
-
-58
-00:03:09,875 --> 00:03:14,275
-Query the last thirty days, see trends, spot recurring issues.
-
-59
-00:03:14,275 --> 00:03:17,587
-The pipeline auditor read a markdown scorecard.
-
-60
-00:03:17,587 --> 00:03:21,687
-After wiring, it pulls session data and value metrics.
-
-61
-00:03:21,687 --> 00:03:24,650
-Context a flat file can't provide.
-
-62
-00:03:24,650 --> 00:03:28,300
-Tools in isolation are limited by what they can see.
-
-63
-00:03:28,300 --> 00:03:31,750
-A build gate that doesn't know about past failures.
-
-64
-00:03:31,750 --> 00:03:35,550
-A pipeline auditor that can't cross-reference two sources.
-
-65
-00:03:35,550 --> 00:03:37,512
-Each one correct.
-
-66
-00:03:37,512 --> 00:03:39,725
-Each one incomplete.
-
-67
-00:03:39,725 --> 00:03:42,362
-The technical work was trivial.
-
-68
-00:03:42,362 --> 00:03:44,187
-Load a token.
-
-69
-00:03:44,187 --> 00:03:45,887
-Add a curl.
-
-70
-00:03:45,887 --> 00:03:50,425
-Handle failure gracefully so everything still works if the graph is down.
-
-71
-00:03:50,425 --> 00:03:56,975
-The architectural decision — that tools should share context through a central nervous system — that's what compounds.
-
-72
-00:03:56,975 --> 00:03:58,950
+21
+00:03:54,632 --> 00:03:56,084
 Two things to build.
 
-73
-00:03:58,950 --> 00:04:00,300
-One.
+22
+00:03:56,084 --> 00:04:18,081
+One. A context propagation protocol. A standard way for any tool to declare "I found this" and for any other tool to query "has anyone found anything about this?" Not a message bus. A shared memory layer with typed events. Making every tool both producer and consumer by default, not as an afterthought.
 
-74
-00:04:00,300 --> 00:04:03,287
-A context propagation protocol.
+23
+00:04:18,081 --> 00:04:31,294
+Two. Auth-test-first. Before wiring any authenticated service, write the auth test before writing the integration. Catches in seconds what cost us an extra commit and a full re-test.
 
-75
-00:04:03,287 --> 00:04:10,100
-A standard way for any tool to declare "I found this" and for any other tool to query "has anyone found anything about this?
-
-76
-00:04:10,100 --> 00:04:12,262
-Not a message bus.
-
-77
-00:04:12,262 --> 00:04:15,312
-A shared memory layer with typed events.
-
-78
-00:04:15,312 --> 00:04:20,475
-Making every tool both producer and consumer by default, not as an afterthought.
-
-79
-00:04:20,475 --> 00:04:21,862
-Two.
-
-80
-00:04:21,862 --> 00:04:23,862
-Auth-test-first.
-
-81
-00:04:23,862 --> 00:04:29,587
-Before wiring any authenticated service, write the auth test before writing the integration.
-
-82
-00:04:29,587 --> 00:04:34,137
-Catches in seconds what cost us an extra commit and a full re-test.
-
-83
-00:04:34,137 --> 00:04:36,450
-That's The Nervous System.
-
-84
-00:04:36,450 --> 00:04:38,100
-I'm Jake.
-
-85
-00:04:38,100 --> 00:04:40,475
-Catch you next episode.
-
+24
+00:04:31,294 --> 00:04:35,649
+That's The Nervous System. I'm Jake. Catch you next episode.
