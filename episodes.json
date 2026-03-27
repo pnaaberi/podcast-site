@@ -1,5 +1,26 @@
 [
   {
+    "epNum": 10,
+    "title": "The Safety Lab That Leaked Its Own Weapon",
+    "slug": "the-safety-lab-that-leaked-its-own-weapon",
+    "date": "2026-03-27",
+    "duration": "3:14",
+    "durationSec": 194,
+    "file": "ep010-the-safety-lab-that-leaked-its-own-weapon.mp3",
+    "audioFile": "audio/ep010-the-safety-lab-that-leaked-its-own-weapon.mp3",
+    "notesFile": "notes/ep010.md",
+    "description": "Three thousand files. One config error. Anthropic leaked evidence it built a model it calls genuinely dangerous. The safety lab that couldn't secure its own CMS.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "anthropic",
+      "security",
+      "claude-mythos",
+      "leak",
+      "infrastructure"
+    ]
+  },
+  {
     "epNum": 9,
     "title": "Your Agent Forgets Everything. Ours Doesn't.",
     "slug": "your-agent-forgets-everything",
