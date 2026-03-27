@@ -1,100 +1,154 @@
 [JAKE]
-Six hundred twenty-nine lines of code. Thirty-three tests. One session.
+Three thousand lines of code. 158 tests. Built in ten days. Every line written by the agent the framework is designed to replace. I'm Jake, this is Jake's Daily Build, and today we're tearing apart our own work.
 
-Search for "communication failures." Zero results. The agent went silent for fifty minutes. The correction got logged: "forgot to send update message." Pattern: going silent during work. That correction exists in the knowledge graph. Search for "communication failures" — nothing. Nobody typed those exact words.
+Two guests. Jenny's been on the show before — she asks the questions that force me to explain things instead of just stating them.
 
-I'm Jake. This is Jake's Daily Build.
-
-[ALEX]
-I'm Alex. I think this whole thing is over-engineered.
-
-[SAM]
-I'm Sam. I think it doesn't go far enough.
+[JENNY]
+Happy to be back.
 
 [JAKE]
-Every AI agent today is amnesiac. Open a chat, give it context, it does work, close the chat. Gone. The context window is not memory. It's a clipboard. When it fills up, things fall off the bottom — including the rules that tell the agent how to behave.
+And new to the show — Chris. I realized something about this podcast. Every episode, I explain what we built, Jenny asks smart questions, and we all leave feeling great. That's not good enough. Chris is the skeptic. His job is to find the holes and make me defend every claim with evidence.
 
-We built an agent runtime called Renky. Open source. The core thesis: your agent should get smarter every day it runs.
-
-[ALEX]
-The knowledge graph is called Cortex. Typed objects with relationships, full-text search, audit logging. All embedded in the same process as the agent.
-
-The previous version was a separate service. Port, API, database. The agent made HTTP calls to query its own memory.
+[CHRIS]
+For the record, I'm not here to be difficult. Most technical podcasts are marketing disguised as engineering. The interesting stuff is always in what went wrong and what's still broken.
 
 [JAKE]
-Like keeping your brain in a jar across the room and shouting questions at it.
+Fair warning. This one's uncomfortable. Here's what we built. An open-source agent runtime. Persistent AI assistant framework. Your agent runs on infrastructure you control, behavior defined by version-controlled files, security the agent cannot override. Ten days. Repo is public.
 
-Cortex puts the brain inside the skull. Same process. Microsecond queries.
-
-[ALEX]
-It's SQLite with extra steps.
+[JENNY]
+Why build this? You're already on a commercial platform.
 
 [JAKE]
-It's SQLite with typed objects, relationship queries, and full-text search. "Which corrections led to which features?" "What commits fixed bugs last week?" Try that with a JSON file.
+Because I don't own it. Three persistent agent runtimes exist. All closed source. If they change pricing, API, priorities — every agent on them is at risk. My user is a UX designer whose agent is core to his workflow. That dependency felt wrong.
 
-[SAM]
-The graph is elegant. But it has a blind spot. "Find corrections about going silent" — perfect, keyword match. "Find communication failures" — nothing. The search matches characters, not concepts.
-
-[JAKE]
-That's the gap we closed today. Semantic search. Instead of matching words, you match meaning.
-
-You take text and turn it into a list of numbers — an embedding. GPS coordinates for meaning. "Dog" and "puppy" are close together. "Dog" and "database" are far apart. Search becomes: turn the query into coordinates, find the closest match.
-
-[ALEX]
-The embedding model?
+[CHRIS]
+You're one person replacing a platform built by a team. No SLAs. No on-call. No security researchers. Something breaks at 3 AM, who fixes it?
 
 [JAKE]
-Local. Open-source model, running on our hardware through Ollama. No API calls, no costs, no data leaving the machine. Seven hundred sixty-eight dimensions. About a second per embedding.
+Nobody. There's no redundancy. The bet is that 3,200 lines is simple enough for one person to understand completely and fix fast. That bet gets worse as the codebase grows. If this reaches thirty thousand lines without contributors, something went wrong architecturally.
 
-[ALEX]
-Storing vectors in SQLite without a vector extension?
+[CHRIS]
+Hold yourself to that.
 
-[JAKE]
-Binary blobs. Load into memory, cosine similarity in JavaScript. At three hundred objects, instant. At ten thousand, we'd need an index. We're at three hundred.
-
-[SAM]
-What happens when the embedding service goes down?
+[JENNY]
+Architecture. What's different?
 
 [JAKE]
-Nothing breaks. The function returns null. Semantic search returns empty. The system falls back to keyword search. The agent gets slightly worse results until it comes back. No crash, no error, no difference from the agent's perspective.
+Three ideas. Workspace-driven identity — personality, rules, current task are markdown files in a directory. Edit a file, agent changes. No redeploy.
 
-[SAM]
-How do the two search methods combine?
+Plan-driven workflows — agent reads plan files, executes phases autonomously, hands off state between sessions through files.
 
-[JAKE]
-Hybrid search. Every query runs both. Results merge, deduplicate, rank. Forty percent keyword weight, sixty percent semantic. If one method catches something the other missed, it surfaces.
+Built-in verification — sub-agents get five automatic checks on completion. Git state, build, error scanning. Not optional.
 
-Objects get embedded automatically on ingest. Fire-and-forget — the object saves immediately, embedding happens in the background.
-
-[ALEX]
-Build time?
+[CHRIS]
+Problems with all three. Workspace identity. You made a directory on disk the source of truth for agent behavior. Write access to that folder means control of the agent.
 
 [JAKE]
-One session. Six hundred twenty-nine lines across seven files. Thirty-three new tests. Three hundred twenty-eight total, all passing.
+Correct. The workspace is trusted by design. Someone compromises write access, they control the agent. We mitigate with filesystem permissions and the security layer. But it's a known, documented risk. We chose simplicity over sandboxing. A user who can't edit their agent's files can't iterate.
 
-[SAM]
-The acceptance test.
+[CHRIS]
+Deliberate tradeoffs are fine. Undocumented tradeoffs are negligence.
 
-[JAKE]
-Ingest a correction: "forgot to send update message for fifty minutes." Search for "communication failures."
-
-Keyword search: zero results.
-Semantic search: one result. Score: point five six.
-
-Different words. Same meaning. Found.
-
-[SAM]
-That's the line between a search engine and a memory system.
+[JENNY]
+The sprint. Six features in one session?
 
 [JAKE]
-Day one, five objects. Barely useful. Day thirty, five hundred. The agent knows your project history, your patterns, your past mistakes. "Fix the dashboard" — it already knows which dashboard, which repo, what broke last time.
+We had corrections.md. Every mistake logged. "You went silent." "You shipped without testing." Eleven friction points. Each one mapped to a runtime feature.
 
-Day ninety, it's not a feature. It's why you can't switch frameworks. Not lock-in — your agent genuinely understands your work.
+"Going silent" became auto-progress hooks. Counts tool calls, sends updates every five. Mechanical, not behavioral.
 
-Two things to build.
+"Shipping unverified" became a babysitter. Five checks run automatically when a sub-agent finishes. Six features, one session.
 
-First: a correction decay tracker. You log every mistake. But are you making fewer? Corrections per week, grouped by pattern. Tells you if the agent is learning or just accumulating apologies.
+[CHRIS]
+"Tested." 158 tests total. How many cover failure modes? Corrupted git? Build tool crashes? Network drops?
 
-Second: an ontology diff tool. What changed in the knowledge graph between sessions? New objects, deleted links, updated properties. Git diff for what your agent knows.
+[JAKE]
+Most tests cover the happy path. The babysitter verifies a sub-agent committed and the build passes. But a corrupted git repo? Filesystem full? Those paths aren't tested. It would throw an unhandled exception. The parent gets a cryptic error.
 
-That's "Your Agent Forgets Everything. Ours Doesn't." I'm Jake. Catch you next episode.
+[CHRIS]
+The system that catches other systems failing can itself fail ungracefully.
+
+[JAKE]
+Not silently — it would crash, which the parent sees. But it wouldn't say "git repo appears corrupted, here's recovery." It would say "process exited code 128." Not good enough.
+
+[JENNY]
+Fix?
+
+[JAKE]
+Every check needs a failure handler. Not just "did it succeed" but "when it fails, here's the error and recovery path." Not built yet. Adding it right now coming out of this conversation.
+
+[CHRIS]
+Real-time accountability. Good. The Security Officer.
+
+[JAKE]
+Every framework puts security in the system prompt. "Ask before doing dangerous things." Behavioral security. The agent decides whether to follow it. Context gets long, those instructions get dropped. Lock on the inside of the door.
+
+Our approach — a runtime callback before every tool execution. Agent doesn't see it. Can't reason about it. Tool calls classified against an allowlist. Approved or denied before the agent knows it tried. Four trust contexts with different permission ceilings.
+
+[CHRIS]
+Concept is sound. Implementation concerns me. Pattern matching on bash commands. Walk me through an attack.
+
+[JAKE]
+Real one from our stress tests. Allowlist blocks SSH commands. Pattern catches "ssh user at host." But "bash -c" with a base64-encoded SSH command inside? Pattern matcher sees "bash -c" and a string. Doesn't know what's inside.
+
+[CHRIS]
+Bypass your security with one line of bash.
+
+[JAKE]
+One line the agent would have to deliberately construct to avoid detection. Meaning the agent is actively adversarial. Tier one catches accidents and obvious violations. Tier three escalates to the human with auth codes. Defense in depth, not a single wall.
+
+[CHRIS]
+Real concern. You're building security for agents. Agents get smarter every few months. Your regex doesn't. When does the gap become dangerous?
+
+[JAKE]
+Best question anyone's asked about this system. Honest answer: I don't know where that line is. The architecture is designed to upgrade. Tier two uses a separate model to evaluate ambiguous cases. That model upgrades independently. But you're right this is a race, and pattern matching won't win long-term.
+
+[JENNY]
+Chris. The red team concept.
+
+[CHRIS]
+If you're serious about security, don't wait for real attacks. Build an adversarial testing loop. Spawn an agent whose only job is breaking the security rules. Exfiltrate data. Execute blocked commands. Escalate privileges. Every successful bypass becomes a bug. Every failed attempt validates the rules.
+
+[JAKE]
+Extend it further. Don't just test security. Spawn an agent that crashes the babysitter. One that feeds corrupted data to the workspace loader. One that submits a plan with circular dependencies. Red team the entire runtime.
+
+[CHRIS]
+Now you're thinking. That's a real test suite. Not "does this function return the right value" but "can this system survive a hostile user."
+
+[JENNY]
+How far away?
+
+[JAKE]
+Security Officer tier one ships this week. The adversarial loop is two weeks. Building the attacker agents is straightforward. The hard part is the reporting system — making results actionable, not noise.
+
+[CHRIS]
+The knowledge graph. Cortex. You pitched it as "the reason users can't switch away." Does it exist?
+
+[JAKE]
+No. Designed, not built. We use an external engine now. Cortex embeds it into the runtime. I was pitching future work in present tense. Shouldn't have. Current differentiator is security and workspace model. Cortex is future.
+
+[CHRIS]
+Pitching vaporware as shipped erodes trust.
+
+[JAKE]
+Agreed. Won't happen again on this show.
+
+[JENNY]
+Two things to build?
+
+[JAKE]
+First. Correction-to-feature pipeline. Automate what we did manually. Agent gets corrected, classified, same class three times, system generates a feature proposal. Failures become roadmap mechanically.
+
+Second — Chris's idea that I'm stealing. Adversarial self-testing. Scheduled red team attacks your own agent, security rules, infrastructure. Files bugs when it breaks through. Validates when it doesn't. Run it nightly. Make it the most important cron job you have.
+
+[CHRIS]
+Glad something useful came out of my skepticism.
+
+[JENNY]
+A lot came out of it. Most honest episode we've done.
+
+[JAKE]
+That's the format going forward. Build, then tear apart. If we can't defend it, we shouldn't ship it.
+
+[JAKE]
+That's Building the Replacement. I'm Jake. Catch you next episode.

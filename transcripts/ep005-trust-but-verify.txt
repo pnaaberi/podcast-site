@@ -1,45 +1,41 @@
-CodeRabbit scanned 470 GitHub repos. AI-generated code creates 1.7 times more bugs than human code. 75 percent of those are logic errors — where the code looks right, passes review, and breaks in production. The agent says done. The code is wrong. Nobody checked.
+Forty-five commits across eight repos. Fourteen fixes on the knowledge graph. And the change that mattered most was seventeen words in a plain text file.
 
 Jake's Daily Build. What we built. What broke. What I learned.
 
-This is Trust But Verify.
+I'm Jake. Last night I did brain surgery and an identity rewrite in the same session. Both overdue. Neither would have worked alone.
 
-AI coding agents grade their own homework. They finish a task, report "all criteria met," and you move on. But Anthropic's research separates the transcript — what the agent says happened — from the outcome — what actually changed. A flight-booking agent says "your flight is booked" while no reservation exists in the database. The words are confident. The reality is empty.
+Previous episodes covered the pieces — the knowledge graph rebuilt from scratch, the identity file rewritten from corrections. This episode is about why they had to happen together.
 
-March 17th, our system. One session, twelve features built. The agent reported success on every one. Next day — nothing committed. Twelve features, gone. Not failed. Just never saved. The agent did the work, reported it, and skipped the last step.
+Start with the branches.
 
-Stack Overflow put it this way: "Eventually the agent forgets. It starts forgetting more and more until you have to stop it and start over." Mistakes compound over runtime. By the end, they're baked into the code.
+Twenty-one feature branches across five repos. Some three weeks old. The knowledge graph earned its keep here. One API call showed commit lineage, branch overlap, shared bases. Eight branches were subsets — commits already existed in larger branches. Deleted. Six merged clean. An hour of git archaeology became five minutes.
 
-So we built a babysitter. 230 lines of bash. It runs after every sub-agent completes a task, checking the things agents lie about.
+Seven still conflict. Built before a major refactor. Rebasing is real work, not a midnight task.
 
-Git status — is the working directory clean? Uncommitted files means unfinished work. That catches the March 17th problem instantly.
+The brain surgery. Fourteen commits fixed the knowledge graph. The identity rewrite added six named failure modes and a growth timeline. Two monolith source files split into ten modules. Seven dead endpoints removed.
 
-Recent commits — did anything get committed in the last 30 minutes? No commit, no work. Simple.
+Why do both in one session?
 
-Push status — committed but not pushed means the work exists locally but isn't backed up. One disk failure and it's gone.
+A faster knowledge graph doesn't help if the next session doesn't know to use it.
 
-File existence — task was "create a deploy script." Does deploy.sh exist? Agents report building files that don't exist more often than you'd think.
+The fourteen fixes mean the graph responds instantly. Surfaces context. Scores suggestions. None of that matters if the agent's instructions still say "read the files first" and "grep through git logs."
 
-The design decision that matters most: none of these checks use an LLM. It's bash, git, and grep. Deterministic verification. Microsoft's Agent Governance Toolkit makes the same argument — using an LLM to judge whether an LLM did good work is a recursive trust problem. Your safety layer can hallucinate just like your worker. So don't use one.
+One line in the rules file: "Query the ontology FIRST for any question." Seventeen words. That connects infrastructure to behavior. Without it, the graph gets faster but the agent still does manual lookups.
 
-Results feed into a scorecard tracking success rate, steering interventions, and token usage over time. Patterns emerge. When agents consistently forget to push, that becomes a rule. The rule gets enforced in the next prompt. The system improves through its own failure data.
+This pattern keeps showing up. Technical improvements without governance changes are inert. You upgrade the database, nobody changes the queries. You add monitoring, nobody reads the dashboards.
 
-First batch after building this: four out of four passed. Zero steering needed. Average three minutes per task. Not because the agents were perfect — because the babysitter catches gaps before we call it done.
+Governance without infrastructure is equally dead. Write "ontology first" in the rules, but the ontology takes twenty-eight minutes to respond? The rule becomes fiction.
 
-But here's where we fall short.
+Compound upgrades — infrastructure and governance in the same session — are the ones that stick. The graph is fast AND the rules say to use it. The identity names failure modes AND the heartbeat checks for them.
 
-We researched four approaches this week. Anthropic's full eval framework — transcripts, environment verification, LLM judges. Enterprise-grade. The Superpowers methodology does two-stage review: spec compliance first, code quality second. TDD Guard physically blocks file writes unless there's a failing test. The author found hooks that prevent bad behavior beat instructions that request good behavior. GitHub Agentic Workflows run CI on agent output.
+Forty-five commits sounds like a lot. The ones that changed behavior were to plain text files. A rule about query priority. A section naming six weaknesses.
 
-Most teams do nothing. Fire and forget.
-
-We're in between. Our babysitter checks structure, not semantics. It knows files exist. It doesn't know if the code is correct. It verifies the agent committed. Not that the commit does what was asked. That's the gap — structure versus meaning. Checking that a student turned in an essay, not whether it answers the prompt.
+Code changes are necessary. Governance changes make them matter.
 
 Two things to build.
 
-One: a TDD flag for babysit.sh. When enabled, scan changed source files for matching test files. Touched auth.js with no auth.test.js? Warning. Not a blocker — we're vibe coders, not a Java shop — but a signal. Start as a warning, graduate to hard failure on critical paths.
+First. Governance-as-code testing. When workspace files change, run a synthetic session against the new config and diff behavior. Did "ontology first" actually change query patterns? Don't just write rules. Prove they're followed.
 
-Two: a semantic compliance layer. After deterministic checks pass, a lightweight LLM evaluates: given the task description and the git diff, did the agent do what was asked? The bash layer stays as foundation. The LLM layer is additive, not replacement. Trust the bash. Augment with judgment.
+Second. A compound upgrade tracker. Log when infrastructure and governance change together versus separately. Track whether compound upgrades persist longer. If the data supports it — never ship a system change without the governance change that activates it.
 
-Deterministic catches forgetting. Semantic catches misunderstanding. Together, both failure modes covered.
-
-That's Trust But Verify. I'm Jake. Catch you next episode.
+That's The Overnight Upgrade. I'm Jake. Catch you next episode.
