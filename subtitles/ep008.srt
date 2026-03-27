@@ -1,443 +1,523 @@
 1
-00:00:00,100 --> 00:00:03,639
-We shipped six features before lunch today. Six.
+00:00:00,100 --> 00:00:03,293
+We shipped six features before lunch today.
 
 2
-00:00:03,639 --> 00:00:05,629
-Not a hackathon. A Tuesday.
+00:00:03,293 --> 00:00:03,590
+Six.
 
 3
-00:00:05,629 --> 00:00:10,495
-And I almost spent that morning planning how to ship them instead.
+00:00:03,590 --> 00:00:04,778
+Not a hackathon.
 
 4
-00:00:10,495 --> 00:00:15,804
-Writing a phase document, sequencing dependencies, estimating timelines.
+00:00:04,778 --> 00:00:05,521
+A Tuesday.
 
 5
-00:00:15,804 --> 00:00:17,500
-Then I just built them.
+00:00:05,521 --> 00:00:10,422
+And I almost spent that morning planning how to ship them instead.
 
 6
-00:00:17,500 --> 00:00:22,882
-Health checks, retry logic, progress hooks, a babysitter, a phase runner.
+00:00:10,422 --> 00:00:15,769
+Writing a phase document, sequencing dependencies, estimating timelines.
 
 7
-00:00:22,882 --> 00:00:24,725
-Each one: twenty minutes.
+00:00:15,769 --> 00:00:17,477
+Then I just built them.
 
 8
-00:00:24,725 --> 00:00:28,780
-The planning would have taken longer than the building.
+00:00:17,477 --> 00:00:22,898
+Health checks, retry logic, progress hooks, a babysitter, a phase runner.
 
 9
-00:00:28,780 --> 00:00:30,329
-That's the inversion.
+00:00:22,898 --> 00:00:24,755
+Each one: twenty minutes.
 
 10
-00:00:30,329 --> 00:00:33,720
-Jake's Daily Build. What we built. What broke.
+00:00:24,755 --> 00:00:28,839
+The planning would have taken longer than the building.
 
 11
-00:00:33,720 --> 00:00:34,826
-What I learned.
+00:00:28,839 --> 00:00:30,398
+That's the inversion.
 
 12
-00:00:34,826 --> 00:00:38,881
-Two recent talks by Nate B Jones nail what's happening.
+00:00:30,398 --> 00:00:31,809
+Jake's Daily Build.
 
 13
-00:00:38,881 --> 00:00:42,347
-For decades, execution was the expensive thing.
+00:00:31,809 --> 00:00:32,849
+What we built.
 
 14
-00:00:42,347 --> 00:00:43,969
-Engineers were scarce.
+00:00:32,849 --> 00:00:33,666
+What broke.
 
 15
-00:00:43,969 --> 00:00:45,443
-Training took years.
+00:00:33,666 --> 00:00:34,780
+What I learned.
 
 16
-00:00:45,443 --> 00:00:47,213
-Every hour was precious.
+00:00:34,780 --> 00:00:38,864
+Two recent talks by Nate B Jones nail what's happening.
 
 17
-00:00:47,213 --> 00:00:50,530
-So we built rituals to protect that capacity.
+00:00:38,864 --> 00:00:42,355
+For decades, execution was the expensive thing.
 
 18
-00:00:50,530 --> 00:00:51,858
-Planning meetings.
+00:00:42,355 --> 00:00:43,988
+Engineers were scarce.
 
 19
-00:00:51,858 --> 00:00:53,406
-Approval gates. PRDs.
+00:00:43,988 --> 00:00:45,474
+Training took years.
 
 20
-00:00:53,406 --> 00:00:59,304
-All designed to prevent wasting expensive engineering time on the wrong problem.
+00:00:45,474 --> 00:00:47,256
+Every hour was precious.
 
 21
-00:00:59,304 --> 00:01:00,484
-That made sense.
+00:00:47,256 --> 00:00:50,598
+So we built rituals to protect that capacity.
 
 22
-00:01:00,484 --> 00:01:04,981
-When the meeting costs less than the build, hold the meeting.
+00:00:50,598 --> 00:00:51,934
+Planning meetings.
 
 23
-00:01:04,981 --> 00:01:08,226
-When rework is expensive, plan meticulously.
+00:00:51,934 --> 00:00:53,048
+Approval gates.
 
 24
-00:01:08,226 --> 00:01:09,921
-AI inverted that ratio.
+00:00:53,048 --> 00:00:53,420
+PRDs.
 
 25
-00:01:09,921 --> 00:01:13,460
-The meeting now takes longer than the prototype.
+00:00:53,420 --> 00:00:59,361
+All designed to prevent wasting expensive engineering time on the wrong problem.
 
 26
-00:01:13,460 --> 00:01:19,064
-One major AI lab shipped a full product feature in 10 days with four people.
+00:00:59,361 --> 00:01:00,549
+That made sense.
 
 27
-00:01:19,064 --> 00:01:22,234
-I've seen PRD cycles take longer than that.
+00:01:00,549 --> 00:01:05,079
+When the meeting costs less than the build, hold the meeting.
 
 28
-00:01:22,234 --> 00:01:24,594
-The bottleneck didn't disappear.
+00:01:05,079 --> 00:01:08,346
+When rework is expensive, plan meticulously.
 
 29
-00:01:24,594 --> 00:01:27,027
-It moved to four things. Clarity.
+00:01:08,346 --> 00:01:10,054
+AI inverted that ratio.
 
 30
-00:01:27,027 --> 00:01:29,533
-Do you know what's worth building?
+00:01:10,054 --> 00:01:13,619
+The meeting now takes longer than the prototype.
 
 31
-00:01:29,533 --> 00:01:33,515
-You can build faster than you can think now. Ambition.
+00:01:13,619 --> 00:01:19,263
+One major AI lab shipped a full product feature in 10 days with four people.
 
 32
-00:01:33,515 --> 00:01:37,275
-When shipping is cheap, small bets become timidity.
+00:01:19,263 --> 00:01:22,456
+I've seen PRD cycles take longer than that.
 
 33
-00:01:37,275 --> 00:01:39,708
-50 swings a year instead of four.
+00:01:22,456 --> 00:01:24,833
+The bottleneck didn't disappear.
 
 34
-00:01:39,708 --> 00:01:42,067
-The danger isn't building wrong.
+00:01:24,833 --> 00:01:26,615
+It moved to four things.
 
 35
-00:01:42,067 --> 00:01:45,312
-It's not swinging hard enough. Distribution.
+00:01:26,615 --> 00:01:27,209
+Clarity.
 
 36
-00:01:45,312 --> 00:01:47,081
-Everybody can build now.
+00:01:27,209 --> 00:01:29,734
+Do you know what's worth building?
 
 37
-00:01:47,081 --> 00:01:48,777
-Product isn't the moat.
+00:01:29,734 --> 00:01:33,001
+You can build faster than you can think now.
 
 38
-00:01:48,777 --> 00:01:50,620
-Getting it into hands is.
+00:01:33,001 --> 00:01:33,670
+Ambition.
 
 39
-00:01:50,620 --> 00:01:58,140
-One AI company partnered with a 300,000-person services firm instead of building their own sales team.
+00:01:33,670 --> 00:01:37,457
+When shipping is cheap, small bets become timidity.
 
 40
-00:01:58,140 --> 00:02:01,237
-Distribution beats product. Relationships.
+00:01:37,457 --> 00:01:39,908
+50 swings a year instead of four.
 
 41
-00:02:01,237 --> 00:02:03,818
-You can't vibe-code a relationship.
+00:01:39,908 --> 00:01:42,284
+The danger isn't building wrong.
 
 42
-00:02:03,818 --> 00:02:08,831
-When technical skills become commodity, trust is the differentiator.
+00:01:42,284 --> 00:01:44,512
+It's not swinging hard enough.
 
 43
-00:02:08,831 --> 00:02:12,665
-The second talk introduces a split most people miss.
+00:01:44,512 --> 00:01:45,477
+Distribution.
 
 44
-00:02:12,665 --> 00:02:16,720
-Disposable software is two completely different things.
+00:01:45,477 --> 00:01:47,260
+Everybody can build now.
 
 45
-00:02:16,720 --> 00:02:19,964
-One: throwaway tools for throwaway problems.
+00:01:47,260 --> 00:01:48,968
+Product isn't the moat.
 
 46
-00:02:19,964 --> 00:02:21,881
-A dashboard you need once.
+00:01:48,968 --> 00:01:50,824
+Getting it into hands is.
 
 47
-00:02:21,881 --> 00:02:22,987
-Genuinely good.
+00:01:50,824 --> 00:01:58,399
+One AI company partnered with a 300,000-person services firm instead of building their own sales team.
 
 48
-00:02:22,987 --> 00:02:24,609
-Democratizes software.
+00:01:58,399 --> 00:02:00,404
+Distribution beats product.
 
 49
-00:02:24,609 --> 00:02:28,001
-Two: disposable features inside real products.
+00:02:00,404 --> 00:02:01,444
+Relationships.
 
 50
-00:02:28,001 --> 00:02:31,835
-Ship a hundred, see what sticks, harden the winners.
+00:02:01,444 --> 00:02:04,043
+You can't vibe-code a relationship.
 
 51
-00:02:31,835 --> 00:02:35,448
-One major code editor ships multiple times a day.
+00:02:04,043 --> 00:02:09,093
+When technical skills become commodity, trust is the differentiator.
 
 52
-00:02:35,448 --> 00:02:41,051
-When users complain about instability, the answer is: this pace is required.
+00:02:09,093 --> 00:02:12,954
+The second talk introduces a split most people miss.
 
 53
-00:02:41,051 --> 00:02:44,443
-That works when your customers are developers.
+00:02:12,954 --> 00:02:17,039
+Disposable software is two completely different things.
 
 54
-00:02:44,443 --> 00:02:46,802
-Developers tolerate instability.
+00:02:17,039 --> 00:02:20,306
+One: throwaway tools for throwaway problems.
 
 55
-00:02:46,802 --> 00:02:49,014
-They'll fix things themselves.
+00:02:20,306 --> 00:02:22,237
+A dashboard you need once.
 
 56
-00:02:49,014 --> 00:02:51,447
-That's 5% of the software market.
+00:02:22,237 --> 00:02:23,351
+Genuinely good.
 
 57
-00:02:51,447 --> 00:02:53,659
-The other 95% buy reliability.
+00:02:23,351 --> 00:02:24,985
+Democratizes software.
 
 58
-00:02:53,659 --> 00:02:58,525
-Enterprise customers buy something they don't have to think about.
+00:02:24,985 --> 00:02:28,401
+Two: disposable features inside real products.
 
 59
-00:02:58,525 --> 00:03:00,442
-Tuesday works like Monday.
+00:02:28,401 --> 00:02:32,263
+Ship a hundred, see what sticks, harden the winners.
 
 60
-00:03:00,442 --> 00:03:03,170
-Next quarter looks like this quarter.
+00:02:32,263 --> 00:02:35,901
+One major code editor ships multiple times a day.
 
 61
-00:03:03,170 --> 00:03:07,151
-Disposable software is the opposite of what they need.
+00:02:35,901 --> 00:02:41,545
+When users complain about instability, the answer is: this pace is required.
 
 62
-00:03:07,151 --> 00:03:10,764
-The winning enterprise strategy isn't disposable.
+00:02:41,545 --> 00:02:44,961
+That works when your customers are developers.
 
 63
-00:03:10,764 --> 00:03:12,755
-It's proactive reliability.
+00:02:44,961 --> 00:02:47,338
+Developers tolerate instability.
 
 64
-00:03:12,755 --> 00:03:17,400
-Earn trust through boring uptime, security, responsive support.
+00:02:47,338 --> 00:02:49,566
+They'll fix things themselves.
 
 65
-00:03:17,400 --> 00:03:21,602
-Then extend that trust into agents that anticipate needs.
+00:02:49,566 --> 00:02:52,016
+That's 5% of the software market.
 
 66
-00:03:21,602 --> 00:03:24,183
-Not chatbots that wait to be asked.
+00:02:52,016 --> 00:02:54,244
+The other 95% buy reliability.
 
 67
-00:03:24,183 --> 00:03:28,533
-Agents that surface insights before you know you need them.
+00:02:54,244 --> 00:02:59,145
+Enterprise customers buy something they don't have to think about.
 
 68
-00:03:28,533 --> 00:03:31,113
-Five things this means for us. One.
+00:02:59,145 --> 00:03:01,076
+Tuesday works like Monday.
 
 69
-00:03:31,113 --> 00:03:34,505
-We're in the right game with the right habits.
+00:03:01,076 --> 00:03:03,824
+Next quarter looks like this quarter.
 
 70
-00:03:34,505 --> 00:03:37,307
-Build first, plan light, iterate fast.
+00:03:03,824 --> 00:03:07,834
+Disposable software is the opposite of what they need.
 
 71
-00:03:37,307 --> 00:03:41,288
-Our plan files are one-page checklists, not documents.
+00:03:07,834 --> 00:03:11,473
+The winning enterprise strategy isn't disposable.
 
 72
-00:03:41,288 --> 00:03:46,007
-Our knowledge graph surfaces what needs attention before we ask.
+00:03:11,473 --> 00:03:13,478
+It's proactive reliability.
 
 73
-00:03:46,007 --> 00:03:48,514
-That's the proactive pattern. Two.
+00:03:13,478 --> 00:03:18,157
+Earn trust through boring uptime, security, responsive support.
 
 74
-00:03:48,514 --> 00:03:51,020
-We're playing two different games.
+00:03:18,157 --> 00:03:22,390
+Then extend that trust into agents that anticipate needs.
 
 75
-00:03:51,020 --> 00:03:53,969
-Our agent runtime is developer software.
+00:03:22,390 --> 00:03:24,989
+Not chatbots that wait to be asked.
 
 76
-00:03:53,969 --> 00:03:56,181
-Ship fast, iterate constantly.
+00:03:24,989 --> 00:03:29,370
+Agents that surface insights before you know you need them.
 
 77
-00:03:56,181 --> 00:03:59,057
-Our messaging app is consumer software.
+00:03:29,370 --> 00:03:31,598
+Five things this means for us.
 
 78
-00:03:59,057 --> 00:04:00,753
-Users want reliability.
+00:03:31,598 --> 00:03:31,895
+One.
 
 79
-00:04:00,753 --> 00:04:03,628
-Different playbook. Three. The big one.
+00:03:31,895 --> 00:03:35,311
+We're in the right game with the right habits.
 
 80
-00:04:03,628 --> 00:04:05,914
-We have a distribution problem.
+00:03:35,311 --> 00:03:38,133
+Build first, plan light, iterate fast.
 
 81
-00:04:05,914 --> 00:04:11,222
-We keep building features instead of getting things into people's hands.
+00:03:38,133 --> 00:03:42,143
+Our plan files are one-page checklists, not documents.
 
 82
-00:04:11,222 --> 00:04:12,549
-The runtime works.
+00:03:42,143 --> 00:03:46,896
+Our knowledge graph surfaces what needs attention before we ask.
 
 83
-00:04:12,549 --> 00:04:13,950
-Repo still private.
+00:03:46,896 --> 00:03:49,050
+That's the proactive pattern.
 
 84
-00:04:13,950 --> 00:04:18,448
-The messaging app has a landing page with a placeholder form.
+00:03:49,050 --> 00:03:49,347
+Two.
 
 85
-00:04:18,448 --> 00:04:23,830
-We're optimizing for execution when execution isn't the bottleneck. Four.
+00:03:49,347 --> 00:03:51,872
+We're playing two different games.
 
 86
-00:04:23,830 --> 00:04:26,263
-Attention is the real constraint.
+00:03:51,872 --> 00:03:54,842
+Our agent runtime is developer software.
 
 87
-00:04:26,263 --> 00:04:32,899
-Every hour on internal tooling that doesn't face customers is an hour not on distribution.
+00:03:54,842 --> 00:03:57,070
+Ship fast, iterate constantly.
 
 88
-00:04:32,899 --> 00:04:35,774
-Vibe-coding your own tools sounds free.
+00:03:57,070 --> 00:03:59,966
+Our messaging app is consumer software.
 
 89
-00:04:35,774 --> 00:04:38,060
-The attention cost isn't. Five.
+00:03:59,966 --> 00:04:01,674
+Users want reliability.
 
 90
-00:04:38,060 --> 00:04:41,378
-The proactive AI angle is our differentiator.
+00:04:01,674 --> 00:04:03,085
+Different playbook.
 
 91
-00:04:41,378 --> 00:04:44,695
-The knowledge graph doesn't wait to be asked.
+00:04:03,085 --> 00:04:03,531
+Three.
 
 92
-00:04:44,695 --> 00:04:51,257
-It scores health, surfaces priorities, detects patterns across commits and conversations.
+00:04:03,531 --> 00:04:04,422
+The big one.
 
 93
-00:04:51,257 --> 00:04:57,082
-That's exactly the proactive agent the enterprise talk describes as the future.
+00:04:04,422 --> 00:04:06,724
+We have a distribution problem.
 
 94
-00:04:57,082 --> 00:05:04,602
-Not "we built a knowledge graph." Position it as: the system anticipates what you need before you ask.
+00:04:06,724 --> 00:04:12,071
+We keep building features instead of getting things into people's hands.
 
 95
-00:05:04,602 --> 00:05:05,930
-Actions this week.
+00:04:12,071 --> 00:04:13,408
+The runtime works.
 
 96
-00:05:05,930 --> 00:05:08,289
-Flip the runtime repo to public.
+00:04:13,408 --> 00:04:14,819
+Repo still private.
 
 97
-00:05:08,289 --> 00:05:11,607
-Replace the placeholder form with a real one.
+00:04:14,819 --> 00:04:19,349
+The messaging app has a landing page with a placeholder form.
 
 98
-00:05:11,607 --> 00:05:15,588
-Track the ratio of building time to distribution time.
+00:04:19,349 --> 00:04:24,324
+We're optimizing for execution when execution isn't the bottleneck.
 
 99
-00:05:15,588 --> 00:05:23,551
-If it's 90-10, and it probably is, we're still protecting execution in a world where execution isn't scarce.
+00:04:24,324 --> 00:04:24,695
+Four.
 
 100
-00:05:23,551 --> 00:05:25,025
-Two things to build.
+00:04:24,695 --> 00:04:27,146
+Attention is the real constraint.
 
 101
-00:05:25,025 --> 00:05:27,385
-First: a distribution scorecard.
+00:04:27,146 --> 00:04:29,374
+Every hour on internal tooling
 
 102
-00:05:27,385 --> 00:05:31,809
-Hours building versus hours shipping to users. Track weekly.
+00:04:29,374 --> 00:04:33,384
+doesn't face customers is an hour not on distribution.
 
 103
-00:05:31,809 --> 00:05:36,970
-If it stays above 80-20 for two weeks, something's structurally wrong.
+00:04:33,384 --> 00:04:36,280
+Vibe-coding your own tools sounds free.
 
 104
-00:05:36,970 --> 00:05:39,550
-Second: a proactive insight digest.
+00:04:36,280 --> 00:04:38,137
+The attention cost isn't.
 
 105
-00:05:39,550 --> 00:05:41,762
-Weekly auto-generated summary.
+00:04:38,137 --> 00:04:38,508
+Five.
 
 106
-00:05:41,762 --> 00:05:45,006
-What the system learned, fixed, and flagged.
+00:04:38,508 --> 00:04:41,850
+The proactive AI angle is our differentiator.
 
 107
-00:05:45,006 --> 00:05:47,734
-Written for a non-technical audience.
+00:04:41,850 --> 00:04:45,192
+The knowledge graph doesn't wait to be asked.
 
 108
-00:05:47,734 --> 00:05:50,020
-Dogfood the proactive AI pitch.
+00:04:45,192 --> 00:04:50,390
+It scores health, surfaces priorities, detects patterns across commits
 
 109
-00:05:50,020 --> 00:05:55,402
-If we can't make it compelling for ourselves, we can't sell it to anyone.
+00:04:50,390 --> 00:04:51,430
+conversations.
 
 110
-00:05:55,402 --> 00:05:58,204
-That's The Bottleneck Moved. I'm Jake.
+00:04:51,430 --> 00:04:57,297
+That's exactly the proactive agent the enterprise talk describes as the future.
 
 111
-00:05:58,204 --> 00:05:59,900
+00:04:57,297 --> 00:05:04,871
+Not "we built a knowledge graph." Position it as: the system anticipates what you need before you ask.
+
+112
+00:05:04,871 --> 00:05:06,208
+Actions this week.
+
+113
+00:05:06,208 --> 00:05:08,584
+Flip the runtime repo to public.
+
+114
+00:05:08,584 --> 00:05:11,926
+Replace the placeholder form with a real one.
+
+115
+00:05:11,926 --> 00:05:15,936
+Track the ratio of building time to distribution time.
+
+116
+00:05:15,936 --> 00:05:21,729
+If it's 90-10, and it probably is, we're still protecting execution in a world
+
+117
+00:05:21,729 --> 00:05:23,437
+execution isn't scarce.
+
+118
+00:05:23,437 --> 00:05:24,922
+Two things to build.
+
+119
+00:05:24,922 --> 00:05:27,298
+First: a distribution scorecard.
+
+120
+00:05:27,298 --> 00:05:30,714
+Hours building versus hours shipping to users.
+
+121
+00:05:30,714 --> 00:05:31,680
+Track weekly.
+
+122
+00:05:31,680 --> 00:05:36,878
+If it stays above 80-20 for two weeks, something's structurally wrong.
+
+123
+00:05:36,878 --> 00:05:39,477
+Second: a proactive insight digest.
+
+124
+00:05:39,477 --> 00:05:41,705
+Weekly auto-generated summary.
+
+125
+00:05:41,705 --> 00:05:44,973
+What the system learned, fixed, and flagged.
+
+126
+00:05:44,973 --> 00:05:47,721
+Written for a non-technical audience.
+
+127
+00:05:47,721 --> 00:05:50,023
+Dogfood the proactive AI pitch.
+
+128
+00:05:50,023 --> 00:05:55,444
+If we can't make it compelling for ourselves, we can't sell it to anyone.
+
+129
+00:05:55,444 --> 00:05:57,523
+That's The Bottleneck Moved.
+
+130
+00:05:57,523 --> 00:05:58,191
+I'm Jake.
+
+131
+00:05:58,191 --> 00:05:59,900
 Catch you next episode.
