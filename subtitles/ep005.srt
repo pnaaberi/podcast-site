@@ -1,245 +1,301 @@
 1
-00:00:00,100 --> 00:00:02,896
+00:00:00,100 --> 00:00:02,942
 Forty-five commits across eight repos.
 
 2
-00:00:02,896 --> 00:00:05,692
+00:00:02,942 --> 00:00:05,784
 Fourteen fixes on the knowledge graph.
 
 3
-00:00:05,692 --> 00:00:11,210
+00:00:05,784 --> 00:00:11,393
 And the change that mattered most was seventeen words in a plain text file.
 
 4
-00:00:11,210 --> 00:00:14,595
-Jake's Daily Build. What we built. What broke.
+00:00:11,393 --> 00:00:12,814
+Jake's Daily Build.
 
 5
-00:00:14,595 --> 00:00:16,435
-What I learned. I'm Jake.
+00:00:12,814 --> 00:00:13,861
+What we built.
 
 6
-00:00:16,435 --> 00:00:22,983
-Last night I did brain surgery and an identity rewrite in the same session. Both overdue.
+00:00:13,861 --> 00:00:14,684
+What broke.
 
 7
-00:00:22,983 --> 00:00:25,338
-Neither would have worked alone.
+00:00:14,684 --> 00:00:15,806
+What I learned.
 
 8
-00:00:25,338 --> 00:00:34,609
-Previous episodes covered the pieces — the knowledge graph rebuilt from scratch, the identity file rewritten from corrections.
+00:00:15,806 --> 00:00:16,479
+I'm Jake.
 
 9
-00:00:34,609 --> 00:00:38,583
-This episode is about why they had to happen together.
+00:00:16,479 --> 00:00:22,088
+Last night I did brain surgery and an identity rewrite in the same session.
 
 10
-00:00:38,583 --> 00:00:40,349
-Start with the branches.
+00:00:22,088 --> 00:00:23,060
+Both overdue.
 
 11
-00:00:40,349 --> 00:00:43,734
-Twenty-one feature branches across five repos.
+00:00:23,060 --> 00:00:25,453
+Neither would have worked alone.
 
 12
-00:00:43,734 --> 00:00:45,279
-Some three weeks old.
+00:00:25,453 --> 00:00:31,287
+Previous episodes covered the pieces the knowledge graph rebuilt from scratch,
 
 13
-00:00:45,279 --> 00:00:48,296
-The knowledge graph earned its keep here.
+00:00:31,287 --> 00:00:34,653
+the identity file rewritten from corrections.
 
 14
-00:00:48,296 --> 00:00:53,078
-One API call showed commit lineage, branch overlap, shared bases.
+00:00:34,653 --> 00:00:38,691
+This episode is about why they had to happen together.
 
 15
-00:00:53,078 --> 00:00:59,112
-Eight branches were subsets — commits already existed in larger branches. Deleted.
+00:00:38,691 --> 00:00:40,486
+Start with the branches.
 
 16
-00:00:59,112 --> 00:01:00,363
-Six merged clean.
+00:00:40,486 --> 00:00:43,927
+Twenty-one feature branches across five repos.
 
 17
-00:01:00,363 --> 00:01:03,821
-An hour of git archaeology became five minutes.
+00:00:43,927 --> 00:00:45,497
+Some three weeks old.
 
 18
-00:01:03,821 --> 00:01:05,367
-Seven still conflict.
+00:00:45,497 --> 00:00:48,564
+The knowledge graph earned its keep here.
 
 19
-00:01:05,367 --> 00:01:07,574
-Built before a major refactor.
+00:00:48,564 --> 00:00:53,425
+One API call showed commit lineage, branch overlap, shared bases.
 
 20
-00:01:07,574 --> 00:01:10,738
-Rebasing is real work, not a midnight task.
+00:00:53,425 --> 00:00:58,885
+Eight branches were subsets — commits already existed in larger branches.
 
 21
-00:01:10,738 --> 00:01:12,062
-The brain surgery.
+00:00:58,885 --> 00:00:59,483
+Deleted.
 
 22
-00:01:12,062 --> 00:01:15,227
-Fourteen commits fixed the knowledge graph.
+00:00:59,483 --> 00:01:00,755
+Six merged clean.
 
 23
-00:01:15,227 --> 00:01:20,598
-The identity rewrite added six named failure modes and a growth timeline.
+00:01:00,755 --> 00:01:04,270
+An hour of git archaeology became five minutes.
 
 24
-00:01:20,598 --> 00:01:24,203
-Two monolith source files split into ten modules.
+00:01:04,270 --> 00:01:05,840
+Seven still conflict.
 
 25
-00:01:24,203 --> 00:01:26,337
-Seven dead endpoints removed.
+00:01:05,840 --> 00:01:08,084
+Built before a major refactor.
 
 26
-00:01:26,337 --> 00:01:28,324
-Why do both in one session?
+00:01:08,084 --> 00:01:11,300
+Rebasing is real work, not a midnight task.
 
 27
-00:01:28,324 --> 00:01:34,284
-A faster knowledge graph doesn't help if the next session doesn't know to use it.
+00:01:11,300 --> 00:01:12,646
+The brain surgery.
 
 28
-00:01:34,284 --> 00:01:38,184
-The fourteen fixes mean the graph responds instantly.
+00:01:12,646 --> 00:01:15,862
+Fourteen commits fixed the knowledge graph.
 
 29
-00:01:38,184 --> 00:01:39,435
-Surfaces context.
+00:01:15,862 --> 00:01:21,322
+The identity rewrite added six named failure modes and a growth timeline.
 
 30
-00:01:39,435 --> 00:01:40,833
-Scores suggestions.
+00:01:21,322 --> 00:01:24,987
+Two monolith source files split into ten modules.
 
 31
-00:01:40,833 --> 00:01:55,623
-None of that matters if the agent's instructions still say "read the files first" and "grep through git logs."
+00:01:24,987 --> 00:01:27,156
+Seven dead endpoints removed.
+
+32
+00:01:27,156 --> 00:01:29,175
+Why do both in one session?
+
+33
+00:01:29,175 --> 00:01:35,233
+A faster knowledge graph doesn't help if the next session doesn't know to use it.
+
+34
+00:01:35,233 --> 00:01:39,197
+The fourteen fixes mean the graph responds instantly.
+
+35
+00:01:39,197 --> 00:01:40,468
+Surfaces context.
+
+36
+00:01:40,468 --> 00:01:41,889
+Scores suggestions.
+
+37
+00:01:41,889 --> 00:01:47,573
+None of matters if the agent's instructions still say "read the files first"
+
+38
+00:01:47,573 --> 00:01:56,174
+"grep through git logs."
 
 One line in the rules file: "Query the ontology FIRST for any question." Seventeen words.
 
-32
-00:01:55,623 --> 00:01:58,640
+39
+00:01:56,174 --> 00:01:59,241
 That connects infrastructure to behavior.
 
-33
-00:01:58,640 --> 00:02:04,085
+40
+00:01:59,241 --> 00:02:04,775
 Without it, the graph gets faster but the agent still does manual lookups.
 
-34
-00:02:04,085 --> 00:02:06,292
+41
+00:02:04,775 --> 00:02:07,019
 This pattern keeps showing up.
 
-35
-00:02:06,292 --> 00:02:10,707
+42
+00:02:07,019 --> 00:02:11,506
 Technical improvements without governance changes are inert.
 
-36
-00:02:10,707 --> 00:02:14,607
+43
+00:02:11,506 --> 00:02:15,470
 You upgrade the database, nobody changes the queries.
 
-37
-00:02:14,607 --> 00:02:18,139
+44
+00:02:15,470 --> 00:02:19,060
 You add monitoring, nobody reads the dashboards.
 
-38
-00:02:18,139 --> 00:02:21,818
+45
+00:02:19,060 --> 00:02:22,800
 Governance without infrastructure is equally dead.
 
-39
-00:02:21,818 --> 00:02:28,588
-Write "ontology first" in the rules, but the ontology takes twenty-eight minutes to respond?
-
-40
-00:02:28,588 --> 00:02:30,427
-The rule becomes fiction.
-
-41
-00:02:30,427 --> 00:02:37,491
-Compound upgrades — infrastructure and governance in the same session — are the ones that stick.
-
-42
-00:02:37,491 --> 00:02:40,876
-The graph is fast AND the rules say to use it.
-
-43
-00:02:40,876 --> 00:02:45,806
-The identity names failure modes AND the heartbeat checks for them.
-
-44
-00:02:45,806 --> 00:02:48,528
-Forty-five commits sounds like a lot.
-
-45
-00:02:48,528 --> 00:02:52,649
-The ones that changed behavior were to plain text files.
-
 46
-00:02:52,649 --> 00:02:54,709
-A rule about query priority.
+00:02:22,800 --> 00:02:25,492
+Write "ontology first" in the rules,
 
 47
-00:02:54,709 --> 00:02:57,064
-A section naming six weaknesses.
+00:02:25,492 --> 00:02:29,606
+but the ontology takes twenty-eight minutes to respond?
 
 48
-00:02:57,064 --> 00:02:59,050
-Code changes are necessary.
+00:02:29,606 --> 00:02:31,475
+The rule becomes fiction.
 
 49
-00:02:59,050 --> 00:03:01,699
-Governance changes make them matter.
+00:02:31,475 --> 00:02:37,160
+Compound upgrades infrastructure governance in the same session are the ones
 
 50
-00:03:01,699 --> 00:03:03,686
-Two things to build. First.
+00:02:37,160 --> 00:02:37,608
+stick.
 
 51
-00:03:03,686 --> 00:03:05,673
-Governance-as-code testing.
+00:02:37,608 --> 00:02:41,049
+The graph is fast AND the rules say to use it.
 
 52
-00:03:05,673 --> 00:03:12,589
-When workspace files change, run a synthetic session against the new config and diff behavior.
+00:02:41,049 --> 00:02:46,060
+The identity names failure modes AND the heartbeat checks for them.
 
 53
-00:03:12,589 --> 00:03:16,416
-Did "ontology first" actually change query patterns?
+00:02:46,060 --> 00:02:48,827
+Forty-five commits sounds like a lot.
 
 54
-00:03:16,416 --> 00:03:18,108
-Don't just write rules.
+00:02:48,827 --> 00:02:53,015
+The ones that changed behavior were to plain text files.
 
 55
-00:03:18,108 --> 00:03:20,389
-Prove they're followed. Second.
+00:02:53,015 --> 00:02:55,109
+A rule about query priority.
 
 56
-00:03:20,389 --> 00:03:22,376
-A compound upgrade tracker.
+00:02:55,109 --> 00:02:57,503
+A section naming six weaknesses.
 
 57
-00:03:22,376 --> 00:03:27,747
-Log when infrastructure and governance change together versus separately.
+00:02:57,503 --> 00:02:59,522
+Code changes are necessary.
 
 58
-00:03:27,747 --> 00:03:31,206
-Track whether compound upgrades persist longer.
+00:02:59,522 --> 00:03:02,214
+Governance changes make them matter.
 
 59
-00:03:31,206 --> 00:03:38,637
-If the data supports it — never ship a system change without the governance change that activates it.
+00:03:02,214 --> 00:03:03,710
+Two things to build.
 
 60
-00:03:38,637 --> 00:03:41,507
-That's The Overnight Upgrade. I'm Jake.
+00:03:03,710 --> 00:03:04,159
+First.
 
 61
-00:03:41,507 --> 00:03:43,200
+00:03:04,159 --> 00:03:06,178
+Governance-as-code testing.
+
+62
+00:03:06,178 --> 00:03:11,787
+When workspace files change, run a synthetic session against the new config
+
+63
+00:03:11,787 --> 00:03:12,835
+diff behavior.
+
+64
+00:03:12,835 --> 00:03:16,724
+Did "ontology first" actually change query patterns?
+
+65
+00:03:16,724 --> 00:03:18,444
+Don't just write rules.
+
+66
+00:03:18,444 --> 00:03:20,164
+Prove they're followed.
+
+67
+00:03:20,164 --> 00:03:20,688
+Second.
+
+68
+00:03:20,688 --> 00:03:22,707
+A compound upgrade tracker.
+
+69
+00:03:22,707 --> 00:03:28,167
+Log when infrastructure and governance change together versus separately.
+
+70
+00:03:28,167 --> 00:03:31,682
+Track whether compound upgrades persist longer.
+
+71
+00:03:31,682 --> 00:03:37,665
+If the data supports it never ship a system change without the governance change
+
+72
+00:03:37,665 --> 00:03:38,637
+activates it.
+
+73
+00:03:38,637 --> 00:03:40,806
+That's The Overnight Upgrade.
+
+74
+00:03:40,806 --> 00:03:41,479
+I'm Jake.
+
+75
+00:03:41,479 --> 00:03:43,199
 Catch you next episode.
