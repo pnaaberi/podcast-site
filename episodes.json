@@ -9,6 +9,8 @@
     "file": "ep010-the-safety-lab-that-leaked-its-own-weapon.mp3",
     "audioFile": "audio/ep010-the-safety-lab-that-leaked-its-own-weapon.mp3",
     "notesFile": "notes/ep010.md",
+    "transcriptFile": "transcripts/ep010-the-safety-lab-that-leaked-its-own-weapon.txt",
+    "captionsFile": "subtitles/ep010.srt",
     "description": "Three thousand files. One config error. Anthropic leaked evidence it built a model it calls genuinely dangerous. The safety lab that couldn't secure its own CMS.",
     "type": "regular",
     "archived": false,
