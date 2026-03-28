@@ -1,841 +1,715 @@
 1
-00:00:00,100 --> 00:00:02,289
-Three thousand lines of code.
+00:00:00,000 --> 00:00:05,679
+3,000 lines of code, 158 tests, built in 10 days.
 
 2
-00:00:02,289 --> 00:00:03,044
-158 tests.
-
-3
-00:00:03,044 --> 00:00:04,403
-Built in ten days.
-
-4
-00:00:04,403 --> 00:00:09,613
+00:00:05,759 --> 00:00:09,759
 Every line written by the agent the framework is designed to replace.
 
-5
-00:00:09,613 --> 00:00:12,407
-I'm Jake, this is Jake's Daily Build,
+3
+00:00:09,839 --> 00:00:12,960
+I'm Jake, this is Jake's daily build,
 
-6
-00:00:12,407 --> 00:00:15,654
+4
+00:00:13,220 --> 00:00:15,320
 and today we're tearing apart our own work.
 
+5
+00:00:15,400 --> 00:00:18,640
+Two guests. Jenny's been on the show before,
+
+6
+00:00:18,920 --> 00:00:22,059
+she asks the questions that force me to explain things
+
 7
-00:00:15,654 --> 00:00:16,484
-Two guests.
+00:00:22,139 --> 00:00:25,739
+instead of just stating them. Happy to be back.
 
 8
-00:00:16,484 --> 00:00:20,562
-Jenny's been on the show before she asks the questions
+00:00:25,819 --> 00:00:28,460
+And new to the show, Chris.
 
 9
-00:00:20,562 --> 00:00:24,790
-force me to explain things instead of just stating them.
+00:00:28,539 --> 00:00:31,160
+I realize something about this podcast.
 
 10
-00:00:24,790 --> 00:00:26,074
-Happy to be back.
+00:00:31,739 --> 00:00:34,179
+Every episode I explain what we built,
 
 11
-00:00:26,074 --> 00:00:28,188
-And new to the show — Chris.
+00:00:34,619 --> 00:00:37,920
+Jenny asks smart questions and we all leave feeling great.
 
 12
-00:00:28,188 --> 00:00:31,208
-I realized something about this podcast.
+00:00:38,000 --> 00:00:41,399
+That's not good enough. Chris is the skeptic.
 
 13
-00:00:31,208 --> 00:00:36,267
-Every episode, I explain what we built, Jenny asks smart questions,
-
-14
-00:00:36,267 --> 00:00:38,608
-and we all leave feeling great.
-
-15
-00:00:38,608 --> 00:00:40,344
-That's not good enough.
-
-16
-00:00:40,344 --> 00:00:41,930
-Chris is the skeptic.
-
-17
-00:00:41,930 --> 00:00:47,518
+00:00:41,479 --> 00:00:46,039
 His job is to find the holes and make me defend every claim with evidence.
 
-18
-00:00:47,518 --> 00:00:50,915
+14
+00:00:46,119 --> 00:00:49,479
 For the record, I'm not here to be difficult.
 
-19
-00:00:50,915 --> 00:00:55,672
+15
+00:00:49,559 --> 00:00:53,359
 Most technical podcasts are marketing disguised as engineering.
 
+16
+00:00:53,439 --> 00:00:56,320
+The interesting stuff is always in what went wrong
+
+17
+00:00:56,399 --> 00:00:57,520
+and what's still broken.
+
+18
+00:00:58,640 --> 00:01:01,359
+Fair warning. This one's uncomfortable.
+
+19
+00:01:02,000 --> 00:01:05,040
+Here's what we built. An open source agent runtime.
+
 20
-00:00:55,672 --> 00:01:01,335
-The interesting stuff is always in what went wrong and what's still broken.
-
-21
-00:01:01,335 --> 00:01:02,317
-Fair warning.
-
-22
-00:01:02,317 --> 00:01:04,205
-This one's uncomfortable.
-
-23
-00:01:04,205 --> 00:01:05,790
-Here's what we built.
-
-24
-00:01:05,790 --> 00:01:07,980
-An open-source agent runtime.
-
-25
-00:01:07,980 --> 00:01:10,547
+00:01:05,680 --> 00:01:07,959
 Persistent AI assistant framework.
 
-26
-00:01:10,547 --> 00:01:14,020
-Your agent runs on infrastructure you control,
+21
+00:01:08,640 --> 00:01:13,439
+Your agent runs on infrastructure you control behavior defined by version controlled
 
-27
-00:01:14,020 --> 00:01:17,418
-behavior defined by version-controlled files,
+22
+00:01:13,519 --> 00:01:16,620
+files. Security the agent cannot override.
 
-28
-00:01:17,418 --> 00:01:20,061
-security the agent cannot override.
+23
+00:01:16,700 --> 00:01:19,640
+10 days. Repo is public.
 
-29
-00:01:20,061 --> 00:01:20,740
-Ten days.
+24
+00:01:20,799 --> 00:01:23,760
+Why build this? You're already on a commercial platform.
 
-30
-00:01:20,740 --> 00:01:21,873
-Repo is public.
-
-31
-00:01:21,873 --> 00:01:23,006
-Why build this?
-
-32
-00:01:23,006 --> 00:01:26,026
-You're already on a commercial platform.
-
-33
-00:01:26,026 --> 00:01:27,763
+25
+00:01:23,840 --> 00:01:26,239
 Because I don't own it.
 
-34
-00:01:27,763 --> 00:01:30,632
+26
+00:01:26,319 --> 00:01:29,019
 Three persistent agent runtimes exist.
 
-35
-00:01:30,632 --> 00:01:31,991
+27
+00:01:29,599 --> 00:01:30,760
 All closed source.
 
-36
-00:01:31,991 --> 00:01:37,503
-If they change pricing, API, priorities — every agent on them is at risk.
+28
+00:01:31,459 --> 00:01:34,239
+If they change pricing, API priorities,
 
-37
-00:01:37,503 --> 00:01:42,109
+29
+00:01:34,640 --> 00:01:36,400
+every agent on them is at risk.
+
+30
+00:01:36,900 --> 00:01:40,859
 My user is a UX designer whose agent is core to his workflow.
 
-38
-00:01:42,109 --> 00:01:44,147
+31
+00:01:40,939 --> 00:01:43,099
 That dependency felt wrong.
 
-39
-00:01:44,147 --> 00:01:48,300
+32
+00:01:44,080 --> 00:01:47,260
 You're one person replacing a platform built by a team.
 
-40
-00:01:48,300 --> 00:01:48,904
-No SLAs.
+33
+00:01:47,340 --> 00:01:51,099
+No SLAs. No on call. No security researchers.
 
-41
-00:01:48,904 --> 00:01:49,735
-No on-call.
+34
+00:01:51,179 --> 00:01:55,620
+Something breaks at 3 a.m. who fixes it. Nobody.
 
-42
-00:01:49,735 --> 00:01:51,547
-No security researchers.
-
-43
-00:01:51,547 --> 00:01:54,492
-Something breaks at 3 AM, who fixes it?
-
-44
-00:01:54,492 --> 00:01:55,020
-Nobody.
-
-45
-00:01:55,020 --> 00:01:56,682
+35
+00:01:55,700 --> 00:01:57,439
 There's no redundancy.
 
-46
-00:01:56,682 --> 00:02:02,647
-The bet is 3,200 lines is simple enough for one person to understand completely
+36
+00:01:58,099 --> 00:02:03,560
+The bet is that 3,200 lines is simple enough for one person to understand completely
 
-47
-00:02:02,647 --> 00:02:03,326
-fix fast.
+37
+00:02:03,640 --> 00:02:07,680
+and fix fast. That bet gets worse as the code base grows.
 
-48
-00:02:03,326 --> 00:02:06,497
-That bet gets worse as the codebase grows.
+38
+00:02:07,760 --> 00:02:11,639
+If this reaches 30,000 lines without contributors,
 
-49
-00:02:06,497 --> 00:02:10,952
-If this reaches thirty thousand lines without contributors,
-
-50
-00:02:10,952 --> 00:02:13,746
+39
+00:02:12,219 --> 00:02:14,099
 something went wrong architecturally.
 
-51
-00:02:13,746 --> 00:02:15,407
+40
+00:02:15,020 --> 00:02:16,599
 Hold yourself to that.
 
-52
-00:02:15,407 --> 00:02:16,389
-Architecture.
+41
+00:02:17,719 --> 00:02:21,659
+Architecture, what's different? Three ideas.
 
-53
-00:02:16,389 --> 00:02:17,672
-What's different?
+42
+00:02:21,740 --> 00:02:24,960
+Workspace-driven identity, personality, rules,
 
-54
-00:02:17,672 --> 00:02:18,578
-Three ideas.
+43
+00:02:25,240 --> 00:02:27,699
+current tasks are marked down files in a directory.
 
-55
-00:02:18,578 --> 00:02:21,976
-Workspace-driven identity personality, rules,
-
-56
-00:02:21,976 --> 00:02:25,525
-current task are markdown files in a directory.
-
-57
-00:02:25,525 --> 00:02:27,564
+44
+00:02:27,780 --> 00:02:29,900
 Edit a file, agent changes.
 
-58
-00:02:27,564 --> 00:02:28,470
-No redeploy.
+45
+00:02:30,520 --> 00:02:32,800
+No redeploy. Plan-driven workflows,
 
-59
-00:02:28,470 --> 00:02:34,133
-Plan-driven workflows agent reads plan files, executes phases autonomously,
+46
+00:02:33,099 --> 00:02:35,729
+agent reads plan files, executes phases autonomously,
 
-60
-00:02:34,133 --> 00:02:37,682
+47
+00:02:35,810 --> 00:02:38,819
 hands off state between sessions through files.
 
-61
-00:02:37,682 --> 00:02:43,345
-Built-in verification — sub-agents get five automatic checks on completion.
+48
+00:02:38,900 --> 00:02:40,419
+Built-in verification,
 
-62
-00:02:43,345 --> 00:02:45,836
-Git state, build, error scanning.
+49
+00:02:40,939 --> 00:02:43,599
+sub-agents get five automatic checks on completion.
 
-63
-00:02:45,836 --> 00:02:46,818
-Not optional.
+50
+00:02:43,680 --> 00:02:47,699
+Get state, build, error scanning. Not optional.
 
-64
-00:02:46,818 --> 00:02:48,630
-Problems with all three.
+51
+00:02:47,780 --> 00:02:51,599
+Problems with all three. Workspace identity.
 
-65
-00:02:48,630 --> 00:02:50,065
-Workspace identity.
-
-66
-00:02:50,065 --> 00:02:55,199
+52
+00:02:51,680 --> 00:02:55,580
 You made a directory on disk the source of truth for agent behavior.
 
-67
-00:02:55,199 --> 00:02:59,352
+53
+00:02:55,660 --> 00:02:58,979
 Write access to that folder means control of the agent.
 
-68
-00:02:59,352 --> 00:02:59,956
-Correct.
+54
+00:02:59,060 --> 00:03:03,360
+Correct. The workspace is trusted by design.
 
-69
-00:02:59,956 --> 00:03:02,599
-The workspace is trusted by design.
+55
+00:03:03,440 --> 00:03:07,360
+Someone compromises write access they control the agent.
 
-70
-00:03:02,599 --> 00:03:06,903
-Someone compromises write access, they control the agent.
+56
+00:03:07,440 --> 00:03:11,199
+We mitigate with file system permissions and the security layer.
 
-71
-00:03:06,903 --> 00:03:11,659
-We mitigate with filesystem permissions and the security layer.
-
-72
-00:03:11,659 --> 00:03:14,227
+57
+00:03:11,280 --> 00:03:13,960
 But it's a known, documented risk.
 
-73
-00:03:14,227 --> 00:03:16,945
+58
+00:03:14,439 --> 00:03:16,799
 We chose simplicity over sandboxing.
 
-74
-00:03:16,945 --> 00:03:21,173
+59
+00:03:16,879 --> 00:03:20,659
 A user who can't edit their agent's files can't iterate.
 
-75
-00:03:21,173 --> 00:03:23,438
-Deliberate tradeoffs are fine.
+60
+00:03:20,740 --> 00:03:23,479
+Deliberate trade-offs are fine.
 
-76
-00:03:23,438 --> 00:03:26,308
-Undocumented tradeoffs are negligence.
+61
+00:03:23,960 --> 00:03:25,860
+Undocumented trade-offs are negligence.
 
-77
-00:03:26,308 --> 00:03:27,138
-The sprint.
+62
+00:03:27,280 --> 00:03:29,379
+The sprint, six features in one session.
 
-78
-00:03:27,138 --> 00:03:29,252
-Six features in one session?
+63
+00:03:30,419 --> 00:03:33,819
+We had corrections, MD, every mistake logged.
 
-79
-00:03:29,252 --> 00:03:30,914
-We had corrections.md.
+64
+00:03:33,900 --> 00:03:36,939
+You went silent. You shipped without testing.
 
-80
-00:03:30,914 --> 00:03:32,499
-Every mistake logged.
+65
+00:03:37,020 --> 00:03:38,620
+11 friction points.
 
-81
-00:03:32,499 --> 00:03:38,011
-"You went silent." "You shipped without testing." Eleven friction points.
-
-82
-00:03:38,011 --> 00:03:40,805
+66
+00:03:39,080 --> 00:03:40,860
 Each one mapped to a runtime feature.
 
-83
-00:03:40,805 --> 00:03:43,976
-"Going silent" became auto-progress hooks.
+67
+00:03:41,539 --> 00:03:43,659
+Going silent became auto-progress hooks.
 
-84
-00:03:43,976 --> 00:03:47,299
+68
+00:03:43,740 --> 00:03:46,719
 Counts tool calls, sends updates every five.
 
-85
-00:03:47,299 --> 00:03:49,337
+69
+00:03:46,800 --> 00:03:48,680
 Mechanical, not behavioral.
 
-86
-00:03:49,337 --> 00:03:52,508
-"Shipping unverified" became a babysitter.
+70
+00:03:49,400 --> 00:03:51,740
+Shipping, unverified, became a babysitter.
 
-87
-00:03:52,508 --> 00:03:56,737
+71
+00:03:51,820 --> 00:03:55,500
 Five checks run automatically when a sub-agent finishes.
 
-88
-00:03:56,737 --> 00:03:58,700
+72
+00:03:55,580 --> 00:03:57,659
 Six features, one session.
 
-89
-00:03:58,700 --> 00:04:00,663
-"Tested." 158 tests total.
+73
+00:03:58,979 --> 00:04:01,319
+Tested. 158 tests total.
 
-90
-00:04:00,663 --> 00:04:02,853
-How many cover failure modes?
+74
+00:04:01,699 --> 00:04:03,960
+How many cover failure modes, corrupted git,
 
-91
-00:04:02,853 --> 00:04:03,910
-Corrupted git?
+75
+00:04:04,280 --> 00:04:06,139
+build tool crashes, network drops.
 
-92
-00:04:03,910 --> 00:04:05,345
-Build tool crashes?
-
-93
-00:04:05,345 --> 00:04:06,402
-Network drops?
-
-94
-00:04:06,402 --> 00:04:08,818
+76
+00:04:07,500 --> 00:04:09,559
 Most tests cover the happy path.
 
-95
-00:04:08,818 --> 00:04:13,877
-The babysitter verifies a sub-agent committed and the build passes.
+77
+00:04:09,639 --> 00:04:12,699
+The babysitter verifies a sub-agent committed
 
-96
-00:04:13,877 --> 00:04:15,764
-But a corrupted git repo?
+78
+00:04:12,780 --> 00:04:13,879
+and the build passes.
 
-97
-00:04:15,764 --> 00:04:16,973
-Filesystem full?
+79
+00:04:14,419 --> 00:04:17,459
+But a corrupted git repo, file system full.
 
-98
-00:04:16,973 --> 00:04:18,936
+80
+00:04:17,539 --> 00:04:19,519
 Those paths aren't tested.
 
-99
-00:04:18,936 --> 00:04:21,805
+81
+00:04:19,920 --> 00:04:22,060
 It would throw an unhandled exception.
 
-100
-00:04:21,805 --> 00:04:24,221
+82
+00:04:22,740 --> 00:04:24,420
 The parent gets a cryptic error.
 
-101
-00:04:24,221 --> 00:04:29,884
+83
+00:04:25,639 --> 00:04:30,060
 The system that catches other systems failing can itself fail ungracefully.
 
-102
-00:04:29,884 --> 00:04:33,886
-Not silently — it would crash, which the parent sees.
+84
+00:04:30,139 --> 00:04:34,399
+Not silently, it would crash, which the parent sees.
 
-103
-00:04:33,886 --> 00:04:37,510
-But it wouldn't say "git repo appears corrupted,
+85
+00:04:34,479 --> 00:04:37,580
+But it wouldn't say git repo appears corrupted,
 
-104
-00:04:37,510 --> 00:04:43,098
-here's recovery." It would say "process exited code 128." Not good enough.
+86
+00:04:37,660 --> 00:04:38,680
+here's recovery.
 
-105
-00:04:43,098 --> 00:04:43,400
-Fix?
+87
+00:04:39,300 --> 00:04:42,220
+It would say process exited code 128.
 
-106
-00:04:43,400 --> 00:04:46,118
-Every check needs a failure handler.
+88
+00:04:43,060 --> 00:04:49,220
+Not good enough. Fixed. Every check needs a failure handler.
 
-107
-00:04:46,118 --> 00:04:50,497
-Not just "did it succeed" "when it fails, here's the error
+89
+00:04:49,300 --> 00:04:52,399
+Not just did it succeed, but when it fails,
 
-108
-00:04:50,497 --> 00:04:52,763
-recovery path." Not built yet.
+90
+00:04:52,579 --> 00:04:54,560
+here's the error and recovery path.
 
-109
-00:04:52,763 --> 00:04:56,689
-Adding it right now coming out of this conversation.
+91
+00:04:55,139 --> 00:04:59,019
+Not built yet. Adding it right now coming out of this conversation.
 
-110
-00:04:56,689 --> 00:04:58,577
+92
+00:04:59,099 --> 00:05:01,600
 Real-time accountability.
 
-111
-00:04:58,577 --> 00:04:58,954
-Good.
+93
+00:05:02,199 --> 00:05:03,600
+Good, the security officer.
 
-112
-00:04:58,954 --> 00:05:00,540
-The Security Officer.
-
-113
-00:05:00,540 --> 00:05:04,391
+94
+00:05:04,819 --> 00:05:07,720
 Every framework puts security in the system prompt.
 
-114
-00:05:04,391 --> 00:05:08,695
-"Ask before doing dangerous things." Behavioral security.
+95
+00:05:07,800 --> 00:05:10,379
+Ask before doing dangerous things.
 
-115
-00:05:08,695 --> 00:05:11,639
-The agent decides whether to follow it.
+96
+00:05:10,899 --> 00:05:14,439
+Behavioral security. The agent decides whether to follow it.
 
-116
-00:05:11,639 --> 00:05:15,415
+97
+00:05:14,819 --> 00:05:17,459
 Context gets long, those instructions get dropped.
 
-117
-00:05:15,415 --> 00:05:17,755
+98
+00:05:17,539 --> 00:05:19,319
 Lock on the inside of the door.
 
-118
-00:05:17,755 --> 00:05:22,437
-Our approach — a runtime callback before every tool execution.
+99
+00:05:19,779 --> 00:05:23,339
+Our approach, a runtime callback before every tool execution.
 
-119
-00:05:22,437 --> 00:05:24,022
-Agent doesn't see it.
+100
+00:05:23,419 --> 00:05:26,300
+Agent doesn't see it. Can't reason about it.
 
-120
-00:05:24,022 --> 00:05:25,683
-Can't reason about it.
+101
+00:05:26,379 --> 00:05:29,240
+Tool calls classified against an allow list.
 
-121
-00:05:25,683 --> 00:05:28,930
-Tool calls classified against an allowlist.
-
-122
-00:05:28,930 --> 00:05:32,781
+102
+00:05:29,319 --> 00:05:32,680
 Approved or denied before the agent knows it tried.
 
-123
-00:05:32,781 --> 00:05:36,934
-Four trust contexts with different permission ceilings.
+103
+00:05:32,759 --> 00:05:36,300
+Four trust contacts with different permission ceilings.
 
-124
-00:05:36,934 --> 00:05:38,218
-Concept is sound.
+104
+00:05:36,379 --> 00:05:40,500
+Concept is sound. Implementation concerns me.
 
-125
-00:05:38,218 --> 00:05:40,256
-Implementation concerns me.
+105
+00:05:40,579 --> 00:05:43,879
+Pattern matching on bash commands walk me through an attack.
 
-126
-00:05:40,256 --> 00:05:42,823
-Pattern matching on bash commands.
-
-127
-00:05:42,823 --> 00:05:44,787
-Walk me through an attack.
-
-128
-00:05:44,787 --> 00:05:47,127
+106
+00:05:43,959 --> 00:05:47,100
 Real one from our stress tests.
 
-129
-00:05:47,127 --> 00:05:49,393
-Allowlist blocks SSH commands.
+107
+00:05:47,480 --> 00:05:49,439
+Allow list blocks SSH commands.
 
-130
-00:05:49,393 --> 00:05:56,264
-Pattern catches "ssh user at host." But "bash -c" with a base64-encoded SSH command inside?
+108
+00:05:50,019 --> 00:05:52,480
+Pattern catches SSH user at host.
 
-131
-00:05:56,264 --> 00:05:59,586
-Pattern matcher sees "bash -c" and a string.
+109
+00:05:52,980 --> 00:05:57,500
+But bash C with a base 64 encoded SSH command inside.
 
-132
-00:05:59,586 --> 00:06:01,625
+110
+00:05:57,579 --> 00:06:00,819
+Pattern matcher sees bash C in a string.
+
+111
+00:06:00,899 --> 00:06:02,720
 Doesn't know what's inside.
 
-133
-00:06:01,625 --> 00:06:04,871
+112
+00:06:03,899 --> 00:06:06,500
 Bypass your security with one line of bash.
 
-134
-00:06:04,871 --> 00:06:10,534
+113
+00:06:06,579 --> 00:06:12,160
 One line the agent would have to deliberately construct to avoid detection.
 
-135
-00:06:10,534 --> 00:06:13,706
+114
+00:06:12,240 --> 00:06:15,360
 Meaning the agent is actively adversarial.
 
-136
-00:06:13,706 --> 00:06:17,481
+115
+00:06:15,439 --> 00:06:19,000
 Tier one catches accidents and obvious violations.
 
-137
-00:06:17,481 --> 00:06:21,256
+116
+00:06:19,079 --> 00:06:23,019
 Tier three escalates to the human with auth codes.
 
-138
-00:06:21,256 --> 00:06:23,974
+117
+00:06:23,099 --> 00:06:26,079
 Defense in depth, not a single wall.
 
-139
-00:06:23,974 --> 00:06:24,956
-Real concern.
+118
+00:06:27,240 --> 00:06:30,019
+Real concern, you're building security for agents.
 
-140
-00:06:24,956 --> 00:06:27,674
-You're building security for agents.
-
-141
-00:06:27,674 --> 00:06:30,393
+119
+00:06:30,099 --> 00:06:32,519
 Agents get smarter every few months.
 
-142
-00:06:30,393 --> 00:06:31,827
-Your regex doesn't.
+120
+00:06:32,779 --> 00:06:35,279
+Your regex doesn't. When does the gap become dangerous?
 
-143
-00:06:31,827 --> 00:06:34,470
-When does the gap become dangerous?
-
-144
-00:06:34,470 --> 00:06:38,019
+121
+00:06:36,720 --> 00:06:39,639
 Best question anyone's asked about this system.
 
-145
-00:06:38,019 --> 00:06:41,567
-Honest answer: I don't know where that line is.
+122
+00:06:39,719 --> 00:06:43,079
+Honest answer. I don't know where that line is.
 
-146
-00:06:41,567 --> 00:06:44,588
+123
+00:06:43,159 --> 00:06:45,399
 The architecture is designed to upgrade.
 
-147
-00:06:44,588 --> 00:06:49,043
+124
+00:06:46,259 --> 00:06:50,480
 Tier two uses a separate model to evaluate ambiguous cases.
 
-148
-00:06:49,043 --> 00:06:51,610
+125
+00:06:50,560 --> 00:06:53,000
 That model upgrades independently.
 
-149
-00:06:51,610 --> 00:06:57,197
-But you're right this is a race, and pattern matching won't win long-term.
+126
+00:06:53,699 --> 00:06:57,839
+But you're right. This is a race and pattern matching won't win long term.
 
-150
-00:06:57,197 --> 00:06:57,650
-Chris.
+127
+00:06:57,919 --> 00:07:01,000
+Chris, the red team concept.
 
-151
-00:06:57,650 --> 00:06:59,236
-The red team concept.
+128
+00:07:01,939 --> 00:07:03,839
+If you're serious about security,
 
-152
-00:06:59,236 --> 00:07:03,917
-If you're serious about security, don't wait for real attacks.
+129
+00:07:04,120 --> 00:07:05,199
+don't wait for real attacks.
 
-153
-00:07:03,917 --> 00:07:06,485
+130
+00:07:05,800 --> 00:07:07,399
 Build an adversarial testing loop.
 
-154
-00:07:06,485 --> 00:07:11,091
+131
+00:07:07,980 --> 00:07:10,860
 Spawn an agent whose only job is breaking the security rules.
 
-155
-00:07:11,091 --> 00:07:12,299
-Exfiltrate data.
+132
+00:07:10,939 --> 00:07:14,060
+Exfiltrate data. Execute blocked commands.
 
-156
-00:07:12,299 --> 00:07:14,186
-Execute blocked commands.
-
-157
-00:07:14,186 --> 00:07:15,696
+133
+00:07:14,139 --> 00:07:15,319
 Escalate privileges.
 
-158
-00:07:15,696 --> 00:07:18,566
+134
+00:07:15,839 --> 00:07:17,920
 Every successful bypass becomes a bug.
 
-159
-00:07:18,566 --> 00:07:21,661
+135
+00:07:18,379 --> 00:07:20,600
 Every failed attempt validates the rules.
 
-160
-00:07:21,661 --> 00:07:23,021
-Extend it further.
+136
+00:07:22,060 --> 00:07:24,899
+Extend it further. Don't just test security.
 
-161
-00:07:23,021 --> 00:07:24,908
-Don't just test security.
-
-162
-00:07:24,908 --> 00:07:28,155
+137
+00:07:24,979 --> 00:07:28,000
 Spawn an agent that crashes the babysitter.
 
-163
-00:07:28,155 --> 00:07:32,232
+138
+00:07:28,079 --> 00:07:31,579
 One that feeds corrupted data to the workspace loader.
 
-164
-00:07:32,232 --> 00:07:36,083
+139
+00:07:31,659 --> 00:07:34,819
 One that submits a plan with circular dependencies.
 
-165
-00:07:36,083 --> 00:07:38,197
+140
+00:07:34,899 --> 00:07:37,459
 Red team the entire runtime.
 
-166
-00:07:38,197 --> 00:07:39,707
-Now you're thinking.
+141
+00:07:38,560 --> 00:07:41,120
+Now you're thinking, that's a real test suite.
 
-167
-00:07:39,707 --> 00:07:41,595
-That's a real test suite.
+142
+00:07:41,199 --> 00:07:43,839
+Not does this function return the right value,
 
-168
-00:07:41,595 --> 00:07:45,144
-Not "does this function return the right value"
+143
+00:07:44,060 --> 00:07:46,279
+but can this system survive a hostile user?
 
-169
-00:07:45,144 --> 00:07:49,372
-"can this system survive a hostile user."
+144
+00:07:46,359 --> 00:07:52,800
+How far away? Security officer tier one ships this week.
 
-How far away?
-
-170
-00:07:49,372 --> 00:07:52,544
-Security Officer tier one ships this week.
-
-171
-00:07:52,544 --> 00:07:55,111
+145
+00:07:52,879 --> 00:07:55,519
 The adversarial loop is two weeks.
 
-172
-00:07:55,111 --> 00:07:58,735
+146
+00:07:56,040 --> 00:07:58,459
 Building the attacker agents is straightforward.
 
-173
-00:07:58,735 --> 00:08:04,549
-The hard part is the reporting system — making results actionable, not noise.
+147
+00:07:58,539 --> 00:08:01,279
+The hard part is the reporting system,
 
-174
-00:08:04,549 --> 00:08:06,059
-The knowledge graph.
+148
+00:08:01,660 --> 00:08:04,000
+making results actionable, not noise.
 
-175
-00:08:06,059 --> 00:08:06,588
-Cortex.
+149
+00:08:05,199 --> 00:08:06,279
+The knowledge graph,
 
-176
-00:08:06,588 --> 00:08:11,873
-You pitched it as "the reason users can't switch away." Does it exist?
+150
+00:08:06,600 --> 00:08:09,579
+Cortex, you pitched it as the reason users can't switch away.
 
-177
-00:08:11,873 --> 00:08:12,100
-No.
+151
+00:08:09,659 --> 00:08:13,860
+Does it exist? No design not built.
 
-178
-00:08:12,100 --> 00:08:13,610
-Designed, not built.
-
-179
-00:08:13,610 --> 00:08:15,875
+152
+00:08:14,319 --> 00:08:16,220
 We use an external engine now.
 
-180
-00:08:15,875 --> 00:08:18,442
+153
+00:08:16,720 --> 00:08:18,579
 Cortex embeds it into the runtime.
 
-181
-00:08:18,442 --> 00:08:21,765
+154
+00:08:19,339 --> 00:08:21,779
 I was pitching future work in present tense.
 
-182
-00:08:21,765 --> 00:08:22,897
-Shouldn't have.
+155
+00:08:21,859 --> 00:08:26,459
+Shouldn't have. Current differentiator is security and workspace model.
 
-183
-00:08:22,897 --> 00:08:27,050
-Current differentiator is security and workspace model.
-
-184
-00:08:27,050 --> 00:08:28,334
+156
+00:08:26,539 --> 00:08:27,959
 Cortex is future.
 
-185
-00:08:28,334 --> 00:08:31,580
-Pitching vaporware as shipped erodes trust.
+157
+00:08:29,160 --> 00:08:31,579
+Pitching vaporware as shipped to Rhodes Trust.
 
-186
-00:08:31,580 --> 00:08:32,109
-Agreed.
+158
+00:08:31,659 --> 00:08:35,059
+Agreed won't happen again on this show.
 
-187
-00:08:32,109 --> 00:08:34,525
-Won't happen again on this show.
+159
+00:08:36,139 --> 00:08:37,399
+Two things to build.
 
-188
-00:08:34,525 --> 00:08:36,035
-Two things to build?
+160
+00:08:38,580 --> 00:08:40,559
+First, correction to feature pipeline.
 
-189
-00:08:36,035 --> 00:08:36,488
-First.
-
-190
-00:08:36,488 --> 00:08:38,829
-Correction-to-feature pipeline.
-
-191
-00:08:38,829 --> 00:08:41,094
+161
+00:08:41,019 --> 00:08:42,360
 Automate what we did manually.
 
-192
-00:08:41,094 --> 00:08:45,398
+162
+00:08:43,039 --> 00:08:46,240
 Agent gets corrected, classified, same class three times,
 
-193
-00:08:45,398 --> 00:08:48,116
+163
+00:08:46,320 --> 00:08:48,039
 system generates a feature proposal.
 
-194
-00:08:48,116 --> 00:08:50,910
+164
+00:08:48,720 --> 00:08:50,759
 Failures become roadmap mechanically.
 
-195
-00:08:50,910 --> 00:08:53,930
-Second — Chris's idea that I'm stealing.
+165
+00:08:50,840 --> 00:08:53,320
+Second, Chris's idea that I'm stealing.
 
-196
-00:08:53,930 --> 00:08:55,818
+166
+00:08:53,720 --> 00:08:55,179
 Adversarial self-testing.
 
-197
-00:08:55,818 --> 00:09:01,406
-Scheduled red team attacks your own agent, security rules, infrastructure.
+167
+00:08:55,840 --> 00:08:58,059
+Scheduled red team attacks your own agent.
 
-198
-00:09:01,406 --> 00:09:03,973
+168
+00:08:58,139 --> 00:08:59,799
+Security rules infrastructure.
+
+169
+00:09:00,500 --> 00:09:02,179
 Files bugs when it breaks through.
 
-199
-00:09:03,973 --> 00:09:05,936
-Validates when it doesn't.
+170
+00:09:02,700 --> 00:09:04,919
+Validates when it doesn't. Run it nightly.
 
-200
-00:09:05,936 --> 00:09:07,069
-Run it nightly.
-
-201
-00:09:07,069 --> 00:09:10,466
+171
+00:09:05,000 --> 00:09:07,860
 Make it the most important cron job you have.
 
-202
-00:09:10,466 --> 00:09:14,091
+172
+00:09:07,940 --> 00:09:11,740
 Glad something useful came out of my skepticism.
 
-203
-00:09:14,091 --> 00:09:15,676
+173
+00:09:11,820 --> 00:09:14,240
 A lot came out of it.
 
-204
-00:09:15,676 --> 00:09:18,017
+174
+00:09:14,700 --> 00:09:16,220
 Most honest episode we've done.
 
-205
-00:09:18,017 --> 00:09:20,433
+175
+00:09:17,300 --> 00:09:19,179
 That's the format going forward.
 
-206
-00:09:20,433 --> 00:09:22,170
-Build, then tear apart.
+176
+00:09:19,259 --> 00:09:21,200
+Build then tear apart.
 
-207
-00:09:22,170 --> 00:09:25,492
+177
+00:09:21,779 --> 00:09:23,919
 If we can't defend it, we shouldn't ship it.
 
-208
-00:09:25,492 --> 00:09:27,908
-That's Building the Replacement.
+178
+00:09:24,000 --> 00:09:27,399
+That's Building the Replacement. I'm Jake.
 
-209
-00:09:27,908 --> 00:09:28,588
-I'm Jake.
-
-210
-00:09:28,588 --> 00:09:30,324
+179
+00:09:27,480 --> 00:09:29,220
 Catch you next episode.

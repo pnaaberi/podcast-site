@@ -1,523 +1,279 @@
 1
-00:00:00,100 --> 00:00:03,293
-We shipped six features before lunch today.
+00:00:00,000 --> 00:00:05,660
+We shipped six features before lunch today six not a hackathon a Tuesday
 
 2
-00:00:03,293 --> 00:00:03,590
-Six.
+00:00:05,740 --> 00:00:09,000
+And I almost spent that morning planning how to ship them
 
 3
-00:00:03,590 --> 00:00:04,778
-Not a hackathon.
+00:00:09,080 --> 00:00:14,640
+instead writing a phase document sequencing dependencies estimating timelines
 
 4
-00:00:04,778 --> 00:00:05,521
-A Tuesday.
+00:00:14,720 --> 00:00:21,579
+Then I just built them health checks retry logic progress hooks a babysitter a phase
 
 5
-00:00:05,521 --> 00:00:10,422
-And I almost spent that morning planning how to ship them instead.
+00:00:21,659 --> 00:00:26,859
+runner Each one 20 minutes the planning would have taken longer than the building
 
 6
-00:00:10,422 --> 00:00:15,769
-Writing a phase document, sequencing dependencies, estimating timelines.
+00:00:26,939 --> 00:00:33,619
+That's the inversion Jake's daily build what we built what broke what I learned
 
 7
-00:00:15,769 --> 00:00:17,477
-Then I just built them.
+00:00:33,699 --> 00:00:36,200
+Two recent talks by Nate B.
 
 8
-00:00:17,477 --> 00:00:22,898
-Health checks, retry logic, progress hooks, a babysitter, a phase runner.
+00:00:36,439 --> 00:00:42,100
+Jones nail what's happening for decades Execution was the expensive thing Engineers
 
 9
-00:00:22,898 --> 00:00:24,755
-Each one: twenty minutes.
+00:00:42,179 --> 00:00:46,299
+were scarce training took years every hour was precious
 
 10
-00:00:24,755 --> 00:00:28,839
-The planning would have taken longer than the building.
+00:00:46,379 --> 00:00:48,440
+So we built rituals to protect
 
 11
-00:00:28,839 --> 00:00:30,398
-That's the inversion.
+00:00:48,520 --> 00:00:55,340
+that capacity planning meetings approval gates PRDs all designed to prevent wasting
 
 12
-00:00:30,398 --> 00:00:31,809
-Jake's Daily Build.
+00:00:55,420 --> 00:00:58,259
+expensive engineering time on the wrong problem
 
 13
-00:00:31,809 --> 00:00:32,849
-What we built.
+00:00:58,979 --> 00:01:03,380
+That made sense when the meeting costs less than the build hold the meeting
 
 14
-00:00:32,849 --> 00:00:33,666
-What broke.
+00:01:03,460 --> 00:01:08,859
+when rework is expensive plan meticulously AI inverted
 
 15
-00:00:33,666 --> 00:00:34,780
-What I learned.
+00:01:08,939 --> 00:01:14,959
+that ratio the meeting now takes longer than the prototype One major AI lab shipped
 
 16
-00:00:34,780 --> 00:00:38,864
-Two recent talks by Nate B Jones nail what's happening.
+00:01:15,039 --> 00:01:18,099
+a full product feature in 10 days with four people.
 
 17
-00:00:38,864 --> 00:00:42,355
-For decades, execution was the expensive thing.
+00:01:18,179 --> 00:01:23,840
+I've seen PRD cycles take longer than that The bottleneck didn't disappear.
 
 18
-00:00:42,355 --> 00:00:43,988
-Engineers were scarce.
+00:01:23,920 --> 00:01:27,120
+It moved to four things Clarity,
 
 19
-00:00:43,988 --> 00:00:45,474
-Training took years.
+00:01:27,319 --> 00:01:31,459
+do you know what's worth building you can build faster than you can think now?
 
 20
-00:00:45,474 --> 00:00:47,256
-Every hour was precious.
+00:01:31,539 --> 00:01:38,219
+Ambition when shipping is cheap small bets become timidity 50 swings a year
 
 21
-00:00:47,256 --> 00:00:50,598
-So we built rituals to protect that capacity.
+00:01:38,299 --> 00:01:41,239
+instead of four the danger isn't building wrong.
 
 22
-00:00:50,598 --> 00:00:51,934
-Planning meetings.
+00:01:41,319 --> 00:01:47,840
+It's not swinging hard enough Distribution everybody can build now product isn't
 
 23
-00:00:51,934 --> 00:00:53,048
-Approval gates.
+00:01:47,920 --> 00:01:54,540
+the moat getting it into hands is One AI company partnered with a 300,000 person
 
 24
-00:00:53,048 --> 00:00:53,420
-PRDs.
+00:01:54,620 --> 00:02:00,060
+services firm instead of building their own sales team distribution beats product
 
 25
-00:00:53,420 --> 00:00:59,361
-All designed to prevent wasting expensive engineering time on the wrong problem.
+00:02:00,140 --> 00:02:04,180
+Relationships you can't vibe code a relationship
 
 26
-00:00:59,361 --> 00:01:00,549
-That made sense.
+00:02:04,260 --> 00:02:10,680
+when technical skills become commodity trust is the differentiator The second talk
 
 27
-00:01:00,549 --> 00:01:05,079
-When the meeting costs less than the build, hold the meeting.
+00:02:10,760 --> 00:02:16,400
+introduces a split most people miss disposable software is two completely different
 
 28
-00:01:05,079 --> 00:01:08,346
-When rework is expensive, plan meticulously.
+00:02:16,480 --> 00:02:23,319
+things One throwaway tools for throwaway problems a dashboard you need once genuinely
 
 29
-00:01:08,346 --> 00:01:10,054
-AI inverted that ratio.
+00:02:23,400 --> 00:02:30,599
+good democratizes software To disposable features inside real products ship
 
 30
-00:01:10,054 --> 00:01:13,619
-The meeting now takes longer than the prototype.
+00:02:30,680 --> 00:02:36,159
+a hundred see what sticks harden the winners One major code editor ships multiple
 
 31
-00:01:13,619 --> 00:01:19,263
-One major AI lab shipped a full product feature in 10 days with four people.
+00:02:36,240 --> 00:02:39,439
+times a day when users complain about instability.
 
 32
-00:01:19,263 --> 00:01:22,456
-I've seen PRD cycles take longer than that.
+00:02:39,520 --> 00:02:44,099
+The answer is this pace is required That works
 
 33
-00:01:22,456 --> 00:01:24,833
-The bottleneck didn't disappear.
+00:02:44,180 --> 00:02:48,159
+when your customers are developers Developers tolerate instability.
 
 34
-00:01:24,833 --> 00:01:26,615
-It moved to four things.
-
-35
-00:01:26,615 --> 00:01:27,209
-Clarity.
-
-36
-00:01:27,209 --> 00:01:29,734
-Do you know what's worth building?
-
-37
-00:01:29,734 --> 00:01:33,001
-You can build faster than you can think now.
-
-38
-00:01:33,001 --> 00:01:33,670
-Ambition.
-
-39
-00:01:33,670 --> 00:01:37,457
-When shipping is cheap, small bets become timidity.
-
-40
-00:01:37,457 --> 00:01:39,908
-50 swings a year instead of four.
-
-41
-00:01:39,908 --> 00:01:42,284
-The danger isn't building wrong.
-
-42
-00:01:42,284 --> 00:01:44,512
-It's not swinging hard enough.
-
-43
-00:01:44,512 --> 00:01:45,477
-Distribution.
-
-44
-00:01:45,477 --> 00:01:47,260
-Everybody can build now.
-
-45
-00:01:47,260 --> 00:01:48,968
-Product isn't the moat.
-
-46
-00:01:48,968 --> 00:01:50,824
-Getting it into hands is.
-
-47
-00:01:50,824 --> 00:01:58,399
-One AI company partnered with a 300,000-person services firm instead of building their own sales team.
-
-48
-00:01:58,399 --> 00:02:00,404
-Distribution beats product.
-
-49
-00:02:00,404 --> 00:02:01,444
-Relationships.
-
-50
-00:02:01,444 --> 00:02:04,043
-You can't vibe-code a relationship.
-
-51
-00:02:04,043 --> 00:02:09,093
-When technical skills become commodity, trust is the differentiator.
-
-52
-00:02:09,093 --> 00:02:12,954
-The second talk introduces a split most people miss.
-
-53
-00:02:12,954 --> 00:02:17,039
-Disposable software is two completely different things.
-
-54
-00:02:17,039 --> 00:02:20,306
-One: throwaway tools for throwaway problems.
-
-55
-00:02:20,306 --> 00:02:22,237
-A dashboard you need once.
-
-56
-00:02:22,237 --> 00:02:23,351
-Genuinely good.
-
-57
-00:02:23,351 --> 00:02:24,985
-Democratizes software.
-
-58
-00:02:24,985 --> 00:02:28,401
-Two: disposable features inside real products.
-
-59
-00:02:28,401 --> 00:02:32,263
-Ship a hundred, see what sticks, harden the winners.
-
-60
-00:02:32,263 --> 00:02:35,901
-One major code editor ships multiple times a day.
-
-61
-00:02:35,901 --> 00:02:41,545
-When users complain about instability, the answer is: this pace is required.
-
-62
-00:02:41,545 --> 00:02:44,961
-That works when your customers are developers.
-
-63
-00:02:44,961 --> 00:02:47,338
-Developers tolerate instability.
-
-64
-00:02:47,338 --> 00:02:49,566
+00:02:48,240 --> 00:02:50,319
 They'll fix things themselves.
 
+35
+00:02:50,599 --> 00:02:57,939
+That's five percent of the software market The other 95% by reliability Enterprise
+
+36
+00:02:58,020 --> 00:03:02,840
+customers by something they don't have to think about Tuesday works like Monday
+
+37
+00:03:02,920 --> 00:03:08,400
+next quarter looks like this quarter Disposable software is the opposite of what
+
+38
+00:03:08,480 --> 00:03:12,620
+they need The winning enterprise strategy isn't disposable.
+
+39
+00:03:12,700 --> 00:03:19,240
+It's proactive reliability Earn trust through boring uptime security Responsive
+
+40
+00:03:19,320 --> 00:03:22,239
+support then extend that trust into agents
+
+41
+00:03:22,319 --> 00:03:27,300
+that anticipate needs not chatbots that wait to be asked Agents
+
+42
+00:03:27,380 --> 00:03:28,539
+that surface insights
+
+43
+00:03:28,620 --> 00:03:34,840
+before you know you need them Five things this means for us One we're in the right
+
+44
+00:03:34,920 --> 00:03:40,759
+game with the right habits build first plan light iterate fast Our plan files are
+
+45
+00:03:40,840 --> 00:03:46,159
+one-page checklists not documents our knowledge graph surfaces What needs attention
+
+46
+00:03:46,240 --> 00:03:49,219
+before we ask that's the proactive pattern?
+
+47
+00:03:49,300 --> 00:03:55,840
+To we're playing two different games our agent runtime is developer software ship
+
+48
+00:03:55,920 --> 00:04:02,300
+fast iterate constantly Our messaging app is consumer software users want reliability
+
+49
+00:04:02,380 --> 00:04:09,120
+different playbook Three the big one we have a distribution problem We keep building
+
+50
+00:04:09,200 --> 00:04:14,840
+features instead of getting things into people's hands the runtime works Repo still
+
+51
+00:04:14,920 --> 00:04:20,680
+private the messaging app has a landing page with a placeholder form We're optimizing
+
+52
+00:04:20,759 --> 00:04:27,139
+for execution when execution isn't the bottleneck For attention is the real constraint
+
+53
+00:04:27,219 --> 00:04:29,560
+every hour on internal tooling
+
+54
+00:04:29,639 --> 00:04:35,019
+that doesn't face customers is an hour Not on distribution vibe coding your own
+
+55
+00:04:35,099 --> 00:04:42,839
+tools sounds free the attention cost isn't Five the proactive AI angle is our differentiator
+
+56
+00:04:42,919 --> 00:04:48,379
+the knowledge graph doesn't wait to be asked its scores health Surfaces priorities
+
+57
+00:04:48,459 --> 00:04:50,240
+detects patterns across commits
+
+58
+00:04:50,319 --> 00:04:55,420
+and conversations That's exactly the proactive agent the enterprise talk describes
+
+59
+00:04:55,500 --> 00:05:02,160
+as the future not we built a knowledge graph Position it as the system anticipates
+
+60
+00:05:02,240 --> 00:05:09,319
+what you need before you ask Actions this week flip the runtime repo to public Replace
+
+61
+00:05:09,399 --> 00:05:14,699
+the placeholder form with a real one track the ratio of building time to distribution
+
+62
+00:05:14,779 --> 00:05:20,660
+time If it's 9010 and it probably is we're still protecting execution in a world
+
+63
+00:05:20,740 --> 00:05:27,199
+where execution isn't scarce Two things to build first a distribution scorecard
+
+64
+00:05:27,279 --> 00:05:31,740
+Hours building versus hours shipping to users track weekly
+
 65
-00:02:49,566 --> 00:02:52,016
-That's 5% of the software market.
+00:05:31,819 --> 00:05:38,180
+if it stays above 80 20 for two weeks something structurally wrong Second a proactive
 
 66
-00:02:52,016 --> 00:02:54,244
-The other 95% buy reliability.
+00:05:38,259 --> 00:05:43,899
+insight digest weekly auto-generated summary what the system learned fixed
 
 67
-00:02:54,244 --> 00:02:59,145
-Enterprise customers buy something they don't have to think about.
+00:05:43,979 --> 00:05:50,079
+and flagged Written for a non-technical audience dog food the proactive AI pitch
 
 68
-00:02:59,145 --> 00:03:01,076
-Tuesday works like Monday.
+00:05:50,159 --> 00:05:52,720
+If we can't make it compelling for ourselves,
 
 69
-00:03:01,076 --> 00:03:03,824
-Next quarter looks like this quarter.
+00:05:53,040 --> 00:05:56,939
+we can't sell it to anyone That's the bottleneck moved.
 
 70
-00:03:03,824 --> 00:03:07,834
-Disposable software is the opposite of what they need.
-
-71
-00:03:07,834 --> 00:03:11,473
-The winning enterprise strategy isn't disposable.
-
-72
-00:03:11,473 --> 00:03:13,478
-It's proactive reliability.
-
-73
-00:03:13,478 --> 00:03:18,157
-Earn trust through boring uptime, security, responsive support.
-
-74
-00:03:18,157 --> 00:03:22,390
-Then extend that trust into agents that anticipate needs.
-
-75
-00:03:22,390 --> 00:03:24,989
-Not chatbots that wait to be asked.
-
-76
-00:03:24,989 --> 00:03:29,370
-Agents that surface insights before you know you need them.
-
-77
-00:03:29,370 --> 00:03:31,598
-Five things this means for us.
-
-78
-00:03:31,598 --> 00:03:31,895
-One.
-
-79
-00:03:31,895 --> 00:03:35,311
-We're in the right game with the right habits.
-
-80
-00:03:35,311 --> 00:03:38,133
-Build first, plan light, iterate fast.
-
-81
-00:03:38,133 --> 00:03:42,143
-Our plan files are one-page checklists, not documents.
-
-82
-00:03:42,143 --> 00:03:46,896
-Our knowledge graph surfaces what needs attention before we ask.
-
-83
-00:03:46,896 --> 00:03:49,050
-That's the proactive pattern.
-
-84
-00:03:49,050 --> 00:03:49,347
-Two.
-
-85
-00:03:49,347 --> 00:03:51,872
-We're playing two different games.
-
-86
-00:03:51,872 --> 00:03:54,842
-Our agent runtime is developer software.
-
-87
-00:03:54,842 --> 00:03:57,070
-Ship fast, iterate constantly.
-
-88
-00:03:57,070 --> 00:03:59,966
-Our messaging app is consumer software.
-
-89
-00:03:59,966 --> 00:04:01,674
-Users want reliability.
-
-90
-00:04:01,674 --> 00:04:03,085
-Different playbook.
-
-91
-00:04:03,085 --> 00:04:03,531
-Three.
-
-92
-00:04:03,531 --> 00:04:04,422
-The big one.
-
-93
-00:04:04,422 --> 00:04:06,724
-We have a distribution problem.
-
-94
-00:04:06,724 --> 00:04:12,071
-We keep building features instead of getting things into people's hands.
-
-95
-00:04:12,071 --> 00:04:13,408
-The runtime works.
-
-96
-00:04:13,408 --> 00:04:14,819
-Repo still private.
-
-97
-00:04:14,819 --> 00:04:19,349
-The messaging app has a landing page with a placeholder form.
-
-98
-00:04:19,349 --> 00:04:24,324
-We're optimizing for execution when execution isn't the bottleneck.
-
-99
-00:04:24,324 --> 00:04:24,695
-Four.
-
-100
-00:04:24,695 --> 00:04:27,146
-Attention is the real constraint.
-
-101
-00:04:27,146 --> 00:04:29,374
-Every hour on internal tooling
-
-102
-00:04:29,374 --> 00:04:33,384
-doesn't face customers is an hour not on distribution.
-
-103
-00:04:33,384 --> 00:04:36,280
-Vibe-coding your own tools sounds free.
-
-104
-00:04:36,280 --> 00:04:38,137
-The attention cost isn't.
-
-105
-00:04:38,137 --> 00:04:38,508
-Five.
-
-106
-00:04:38,508 --> 00:04:41,850
-The proactive AI angle is our differentiator.
-
-107
-00:04:41,850 --> 00:04:45,192
-The knowledge graph doesn't wait to be asked.
-
-108
-00:04:45,192 --> 00:04:50,390
-It scores health, surfaces priorities, detects patterns across commits
-
-109
-00:04:50,390 --> 00:04:51,430
-conversations.
-
-110
-00:04:51,430 --> 00:04:57,297
-That's exactly the proactive agent the enterprise talk describes as the future.
-
-111
-00:04:57,297 --> 00:05:04,871
-Not "we built a knowledge graph." Position it as: the system anticipates what you need before you ask.
-
-112
-00:05:04,871 --> 00:05:06,208
-Actions this week.
-
-113
-00:05:06,208 --> 00:05:08,584
-Flip the runtime repo to public.
-
-114
-00:05:08,584 --> 00:05:11,926
-Replace the placeholder form with a real one.
-
-115
-00:05:11,926 --> 00:05:15,936
-Track the ratio of building time to distribution time.
-
-116
-00:05:15,936 --> 00:05:21,729
-If it's 90-10, and it probably is, we're still protecting execution in a world
-
-117
-00:05:21,729 --> 00:05:23,437
-execution isn't scarce.
-
-118
-00:05:23,437 --> 00:05:24,922
-Two things to build.
-
-119
-00:05:24,922 --> 00:05:27,298
-First: a distribution scorecard.
-
-120
-00:05:27,298 --> 00:05:30,714
-Hours building versus hours shipping to users.
-
-121
-00:05:30,714 --> 00:05:31,680
-Track weekly.
-
-122
-00:05:31,680 --> 00:05:36,878
-If it stays above 80-20 for two weeks, something's structurally wrong.
-
-123
-00:05:36,878 --> 00:05:39,477
-Second: a proactive insight digest.
-
-124
-00:05:39,477 --> 00:05:41,705
-Weekly auto-generated summary.
-
-125
-00:05:41,705 --> 00:05:44,973
-What the system learned, fixed, and flagged.
-
-126
-00:05:44,973 --> 00:05:47,721
-Written for a non-technical audience.
-
-127
-00:05:47,721 --> 00:05:50,023
-Dogfood the proactive AI pitch.
-
-128
-00:05:50,023 --> 00:05:55,444
-If we can't make it compelling for ourselves, we can't sell it to anyone.
-
-129
-00:05:55,444 --> 00:05:57,523
-That's The Bottleneck Moved.
-
-130
-00:05:57,523 --> 00:05:58,191
-I'm Jake.
-
-131
-00:05:58,191 --> 00:05:59,900
-Catch you next episode.
+00:05:57,019 --> 00:05:59,240
+I'm Jake catch you next episode
