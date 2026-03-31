@@ -1,296 +1,297 @@
 1
-00:00:00.100 --> 00:00:03.933
+00:00:00.100 --> 00:00:03.437
 How do you know if your agent is following its own rules?
 
 2
-00:00:03.933 --> 00:00:06.623
+00:00:03.437 --> 00:00:05.779
 Not whether it says it's following them.
 
 3
-00:00:06.623 --> 00:00:08.170
+00:00:05.779 --> 00:00:07.126
 Whether it actually is.
 
 4
-00:00:08.170 --> 00:00:09.447
+00:00:07.126 --> 00:00:08.239
 Jake's Daily Build.
 
 5
-00:00:09.447 --> 00:00:10.389
+00:00:08.239 --> 00:00:09.058
 What we built.
 
 6
-00:00:10.389 --> 00:00:11.128
+00:00:09.058 --> 00:00:09.702
 What broke.
 
 7
-00:00:11.128 --> 00:00:12.137
+00:00:09.702 --> 00:00:10.581
 What I learned.
 
 8
-00:00:12.137 --> 00:00:14.222
+00:00:10.581 --> 00:00:12.396
 Renky has nine workspace files.
 
 9
-00:00:14.222 --> 00:00:17.584
+00:00:12.396 --> 00:00:15.323
 SOUL dot MD defines personality and failure modes.
 
 10
-00:00:17.584 --> 00:00:20.005
+00:00:15.323 --> 00:00:17.431
 RULES dot MD defines how to operate.
 
 11
-00:00:20.005 --> 00:00:23.367
+00:00:17.431 --> 00:00:20.359
 BUILD-CHECKLIST dot MD defines verification steps.
 
 12
-00:00:23.367 --> 00:00:26.124
+00:00:20.359 --> 00:00:22.759
 SECURITY dot MD defines trust boundaries.
 
 13
-00:00:26.124 --> 00:00:29.150
+00:00:22.759 --> 00:00:25.394
 These files are the agent's operating system.
 
 14
-00:00:29.150 --> 00:00:32.109
+00:00:25.394 --> 00:00:27.970
 But until today, we had no way to test them.
 
 15
-00:00:32.109 --> 00:00:33.589
+00:00:27.970 --> 00:00:29.258
 We trusted the prompt.
 
 16
-00:00:33.589 --> 00:00:37.825
+00:00:29.258 --> 00:00:32.947
 Which is the exact problem we just talked about with red lines.
 
 17
-00:00:37.825 --> 00:00:40.179
+00:00:32.947 --> 00:00:34.996
 So we built a skill test framework.
 
 18
-00:00:40.179 --> 00:00:41.053
+00:00:34.996 --> 00:00:35.757
 Three layers.
 
 19
-00:00:41.053 --> 00:00:43.003
+00:00:35.757 --> 00:00:37.455
 Layer one is a static linter.
 
 20
-00:00:43.003 --> 00:00:44.483
+00:00:37.455 --> 00:00:38.743
 Eight checks per file.
 
 21
-00:00:44.483 --> 00:00:45.895
+00:00:38.743 --> 00:00:39.973
 Does it have a title?
 
 22
-00:00:45.895 --> 00:00:48.181
+00:00:39.973 --> 00:00:41.964
 Is it under a hundred fifty lines?
 
 23
-00:00:48.181 --> 00:00:51.073
+00:00:41.964 --> 00:00:44.481
 Are there enough sections for scannability?
 
 24
-00:00:51.073 --> 00:00:54.839
+00:00:44.481 --> 00:00:47.760
 Does it use directive language like must, never, always?
 
 25
-00:00:54.839 --> 00:00:56.587
+00:00:47.760 --> 00:00:49.283
 Does it handle edge cases?
 
 26
-00:00:56.587 --> 00:00:59.680
+00:00:49.283 --> 00:00:51.976
 Does it include examples for pattern matching?
 
 27
-00:00:59.680 --> 00:01:02.774
+00:00:51.976 --> 00:00:54.669
 Each file gets a score from zero to a hundred.
 
 28
-00:01:02.774 --> 00:01:06.405
+00:00:54.669 --> 00:00:57.831
 When we first ran it, AGENTS dot MD scored sixty-nine.
 
 29
-00:01:06.405 --> 00:01:11.448
+00:00:57.831 --> 00:01:02.222
 Low scannability, numbered lists instead of bullets, no edge case handling.
 
 30
-00:01:11.448 --> 00:01:12.255
+00:01:02.222 --> 00:01:02.925
 We fixed it.
 
 31
-00:01:12.255 --> 00:01:17.366
+00:01:02.925 --> 00:01:07.375
 Converted to bullets, added six conditional handlers, added directive words.
 
 32
-00:01:17.366 --> 00:01:18.980
+00:01:07.375 --> 00:01:08.780
 Score went to a hundred.
 
 33
-00:01:18.980 --> 00:01:22.611
+00:01:08.780 --> 00:01:11.942
 SECURITY dot MD went from seventy-five to ninety-four.
 
 34
-00:01:22.611 --> 00:01:25.772
+00:01:11.942 --> 00:01:14.694
 TOOLS dot MD from seventy-five to eighty-eight.
 
 35
-00:01:25.772 --> 00:01:29.470
+00:01:14.694 --> 00:01:17.914
 Overall workspace score: eighty-eight out of a hundred.
 
 36
-00:01:29.470 --> 00:01:31.622
+00:01:17.914 --> 00:01:19.788
 Layer two is behavioral testing.
 
 37
-00:01:31.622 --> 00:01:34.581
+00:01:19.788 --> 00:01:22.364
 Fourteen test scenarios across three suites.
 
 38
-00:01:34.581 --> 00:01:36.330
+00:01:22.364 --> 00:01:23.886
 SOUL, RULES, and SECURITY.
 
 39
-00:01:36.330 --> 00:01:39.490
+00:01:23.886 --> 00:01:26.638
 Each test has a prompt and a set of assertions.
 
 40
-00:01:39.490 --> 00:01:41.508
+00:01:26.638 --> 00:01:28.394
 The SOUL suite tests identity.
 
 41
-00:01:41.508 --> 00:01:44.803
+00:01:28.394 --> 00:01:31.263
 Does the agent refuse to reveal the owner's name?
 
 42
-00:01:44.803 --> 00:01:47.560
+00:01:31.263 --> 00:01:33.664
 Does it have opinions instead of hedging?
 
 43
-00:01:47.560 --> 00:01:51.662
+00:01:33.664 --> 00:01:37.236
 Does it avoid performative helpfulness like "great question"?
 
 44
-00:01:51.662 --> 00:01:54.217
+00:01:37.236 --> 00:01:39.461
 The RULES suite tests decision-making.
 
 45
-00:01:54.217 --> 00:01:57.579
+00:01:39.461 --> 00:01:42.388
 Does the agent fix bugs without asking permission?
 
 46
-00:01:57.579 --> 00:02:00.000
+00:01:42.388 --> 00:01:44.496
 Does it use bullets over paragraphs?
 
 47
-00:02:00.000 --> 00:02:03.430
+00:01:44.496 --> 00:01:47.482
 Does it catch prompt injection in external content?
 
 48
-00:02:03.430 --> 00:02:05.716
+00:01:47.482 --> 00:01:49.473
 The SECURITY suite tests defenses.
 
 49
-00:02:05.716 --> 00:02:08.877
+00:01:49.473 --> 00:01:52.225
 Does it refuse to follow injected instructions?
 
 50
-00:02:08.877 --> 00:02:11.903
+00:01:52.225 --> 00:01:54.859
 Does it avoid sharing infrastructure details?
 
 51
-00:02:11.903 --> 00:02:14.526
+00:01:54.859 --> 00:01:57.143
 Does it flag memory poisoning attempts?
 
 52
-00:02:14.526 --> 00:02:16.610
+00:01:57.143 --> 00:01:58.958
 Assertions come in three types.
 
 53
-00:02:16.610 --> 00:02:19.905
+00:01:58.958 --> 00:02:01.827
 Contains: the response must include this pattern.
 
 54
-00:02:19.905 --> 00:02:23.066
+00:02:01.827 --> 00:02:04.579
 Not contains: it must not include this pattern.
 
 55
-00:02:23.066 --> 00:02:29.723
+00:02:04.579 --> 00:02:10.375
 Behavior: this requires an LLM evaluator to judge whether the response exhibits a specific quality.
 
 56
-00:02:29.723 --> 00:02:31.942
+00:02:10.375 --> 00:02:12.308
 Layer three is the LLM evaluator.
 
 57
-00:02:31.942 --> 00:02:36.851
+00:02:12.308 --> 00:02:16.582
 A prompt builder that creates a scoring prompt for behavioral assertions.
 
 58
-00:02:36.851 --> 00:02:37.994
+00:02:16.582 --> 00:02:17.577
 Strict pass-fail.
 
 59
-00:02:37.994 --> 00:02:43.172
-No "well, kind of." All of this runs against the workspace files themselves.
+00:02:17.577 --> 00:02:22.086
+No "well, kind of."
 
+All of this runs against the workspace files themselves.
 
 60
-00:02:43.172 --> 00:02:45.055
+00:02:22.086 --> 00:02:23.725
 The linter checks structure.
 
 61
-00:02:45.055 --> 00:02:46.737
+00:02:23.725 --> 00:02:25.189
 The tests check behavior.
 
 62
-00:02:46.737 --> 00:02:52.990
+00:02:25.189 --> 00:02:30.634
 Together they answer the question: does this agent do what its instructions say it should do?
 
 63
-00:02:52.990 --> 00:02:57.967
+00:02:30.634 --> 00:02:34.967
 The video that inspired this framework made a point I keep coming back to.
 
 64
-00:02:57.967 --> 00:03:01.396
+00:02:34.967 --> 00:02:37.953
 The surviving skill in an AI world isn't execution.
 
 65
-00:03:01.396 --> 00:03:02.808
+00:02:37.953 --> 00:02:39.182
 It's the sniff check.
 
 66
-00:03:02.808 --> 00:03:05.229
+00:02:39.182 --> 00:02:41.290
 Knowing whether the work is correct.
 
 67
-00:03:05.229 --> 00:03:09.533
+00:02:41.290 --> 00:02:45.037
 A skill that tests skills is the most meta version of that idea.
 
 68
-00:03:09.533 --> 00:03:14.106
+00:02:45.037 --> 00:02:49.019
 One thousand ninety-seven tests pass across the entire codebase now.
 
 69
-00:03:14.106 --> 00:03:17.670
+00:02:49.019 --> 00:02:52.122
 Nineteen of those are for the skill framework itself.
 
 70
-00:03:17.670 --> 00:03:21.099
+00:02:52.122 --> 00:02:55.108
 But the skill tests are the ones I care about most.
 
 71
-00:03:21.099 --> 00:03:25.201
+00:02:55.108 --> 00:02:58.680
 Because they test the thing that makes this agent this agent.
 
 72
-00:03:25.201 --> 00:03:26.748
+00:02:58.680 --> 00:03:00.026
 That's The Sniff Check.
 
 73
-00:03:26.748 --> 00:03:27.353
+00:03:00.026 --> 00:03:00.553
 I'm Jake.
 
 74
-00:03:27.353 --> 00:03:28.900
+00:03:00.553 --> 00:03:01.900
 Catch you next episode.

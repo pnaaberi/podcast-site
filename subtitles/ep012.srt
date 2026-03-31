@@ -1,319 +1,319 @@
 1
-00:00:00.100 --> 00:00:02.514
+00:00:00.100 --> 00:00:02.895
 Every agent framework has red lines.
 
 2
-00:00:02.514 --> 00:00:03.788
+00:00:02.895 --> 00:00:04.370
 Don't delete files.
 
 3
-00:00:03.788 --> 00:00:05.264
+00:00:04.370 --> 00:00:06.078
 Don't exfiltrate data.
 
 4
-00:00:05.264 --> 00:00:07.343
+00:00:06.078 --> 00:00:08.484
 Don't run destructive commands.
 
 5
-00:00:07.343 --> 00:00:11.366
+00:00:08.484 --> 00:00:13.142
 They write them in a markdown file and hope the model obeys.
 
 6
-00:00:11.366 --> 00:00:13.512
+00:00:13.142 --> 00:00:15.627
 Hope is not a security strategy.
 
 7
-00:00:13.512 --> 00:00:14.786
+00:00:15.627 --> 00:00:17.102
 Jake's Daily Build.
 
 8
-00:00:14.786 --> 00:00:15.725
+00:00:17.102 --> 00:00:18.189
 What we built.
 
 9
-00:00:15.725 --> 00:00:16.463
+00:00:18.189 --> 00:00:19.042
 What broke.
 
 10
-00:00:16.463 --> 00:00:17.469
+00:00:19.042 --> 00:00:20.207
 What I learned.
 
 11
-00:00:17.469 --> 00:00:20.554
+00:00:20.207 --> 00:00:23.778
 Here's the problem with prompt-based security.
 
 12
-00:00:20.554 --> 00:00:22.700
+00:00:23.778 --> 00:00:26.262
 Your red lines are instructions.
 
 13
-00:00:22.700 --> 00:00:25.047
+00:00:26.262 --> 00:00:28.980
 The model will usually follow them.
 
 14
-00:00:25.047 --> 00:00:25.583
+00:00:28.980 --> 00:00:29.601
 Usually.
 
 15
-00:00:25.583 --> 00:00:28.064
+00:00:29.601 --> 00:00:32.473
 But instructions are not enforcement.
 
 16
-00:00:28.064 --> 00:00:30.076
+00:00:32.473 --> 00:00:34.802
 A sufficiently confused agent,
 
 17
-00:00:30.076 --> 00:00:31.350
+00:00:34.802 --> 00:00:36.277
 a prompt injection,
 
 18
-00:00:31.350 --> 00:00:32.558
+00:00:36.277 --> 00:00:37.674
 a weird edge case,
 
 19
-00:00:32.558 --> 00:00:32.759
+00:00:37.674 --> 00:00:37.907
 and
 
 20
-00:00:32.759 --> 00:00:35.106
+00:00:37.907 --> 00:00:40.624
 your red line becomes a suggestion.
 
 21
-00:00:35.106 --> 00:00:37.788
+00:00:40.624 --> 00:00:43.730
 OpenClaw has red lines in agents dot MD.
 
 22
-00:00:37.788 --> 00:00:40.136
+00:00:43.730 --> 00:00:46.447
 Claude Code has permission prompts.
 
 23
-00:00:40.136 --> 00:00:46.372
+00:00:46.447 --> 00:00:53.667
 Most frameworks have some version of "please don't do bad things." All of it is prompt-level.
 
 24
-00:00:46.372 --> 00:00:48.250
+00:00:53.667 --> 00:00:55.841
 None of it is deterministic.
 
 25
-00:00:48.250 --> 00:00:50.597
+00:00:55.841 --> 00:00:58.558
 Today we built something different.
 
 26
-00:00:50.597 --> 00:00:53.548
+00:00:58.558 --> 00:01:01.974
 A security gate that runs at the code level.
 
 27
-00:00:53.548 --> 00:00:57.706
+00:01:01.974 --> 00:01:06.787
 Before the tool call even reaches the model's execution layer,
 
 28
-00:00:57.706 --> 00:01:00.187
+00:01:06.787 --> 00:01:09.659
 our PreToolUse hook intercepts it and
 
 29
-00:01:00.187 --> 00:01:02.064
+00:01:09.659 --> 00:01:11.833
 checks it against two lists.
 
 30
-00:01:02.064 --> 00:01:03.406
+00:01:11.833 --> 00:01:13.386
 The hard block list.
 
 31
-00:01:03.406 --> 00:01:06.155
+00:01:13.386 --> 00:01:16.569
 Fourteen patterns that are always denied.
 
 32
-00:01:06.155 --> 00:01:06.960
+00:01:16.569 --> 00:01:17.500
 No override.
 
 33
-00:01:06.960 --> 00:01:09.844
+00:01:17.500 --> 00:01:20.838
 No "are you sure?" No user approval button.
 
 34
-00:01:09.844 --> 00:01:10.782
+00:01:20.838 --> 00:01:21.925
 Pipe to shell.
 
 35
-00:01:10.782 --> 00:01:12.057
+00:01:21.925 --> 00:01:23.400
 Curl piped to bash.
 
 36
-00:01:12.057 --> 00:01:13.264
+00:01:23.400 --> 00:01:24.798
 rm minus rf slash.
 
 37
-00:01:13.264 --> 00:01:13.599
+00:01:24.798 --> 00:01:25.186
 mkfs.
 
 38
-00:01:13.599 --> 00:01:15.074
+00:01:25.186 --> 00:01:26.894
 dd writes to raw disk.
 
 39
-00:01:15.074 --> 00:01:16.684
+00:01:26.894 --> 00:01:28.757
 chmod seven seven seven.
 
 40
-00:01:16.684 --> 00:01:19.165
+00:01:28.757 --> 00:01:31.629
 Obfuscated eval with base sixty-four.
 
 41
-00:01:19.165 --> 00:01:21.110
+00:01:31.629 --> 00:01:33.881
 Writes to dot SSH or sudoers.
 
 42
-00:01:21.110 --> 00:01:23.457
+00:01:33.881 --> 00:01:36.598
 These are denied at the code level.
 
 43
-00:01:23.457 --> 00:01:25.938
+00:01:36.598 --> 00:01:39.470
 The model never gets to execute them.
 
 44
-00:01:25.938 --> 00:01:27.347
+00:01:39.470 --> 00:01:41.101
 The trust-aware list.
 
 45
-00:01:27.347 --> 00:01:29.962
+00:01:41.101 --> 00:01:44.128
 Sub-agents get additional restrictions.
 
 46
-00:01:29.962 --> 00:01:31.638
+00:01:44.128 --> 00:01:46.069
 They can't run systemctl.
 
 47
-00:01:31.638 --> 00:01:32.980
+00:01:46.069 --> 00:01:47.622
 They can't use sudo.
 
 48
-00:01:32.980 --> 00:01:35.059
+00:01:47.622 --> 00:01:50.029
 They can't modify the firewall.
 
 49
-00:01:35.059 --> 00:01:37.272
+00:01:50.029 --> 00:01:52.590
 They can't touch system crontabs.
 
 50
-00:01:37.272 --> 00:01:41.027
+00:01:52.590 --> 00:01:56.938
 The parent agent can do these things with user approval.
 
 51
-00:01:41.027 --> 00:01:43.441
+00:01:56.938 --> 00:01:59.733
 The sub-agent cannot do them at all.
 
 52
-00:01:43.441 --> 00:01:47.599
+00:01:59.733 --> 00:02:04.546
 This matters because sub-agents run with bypassed permissions.
 
 53
-00:01:47.599 --> 00:01:50.080
+00:02:04.546 --> 00:02:07.418
 They need autonomy to do useful work.
 
 54
-00:01:50.080 --> 00:01:53.299
+00:02:07.418 --> 00:02:11.145
 But autonomy without enforcement is a liability.
 
 55
-00:01:53.299 --> 00:01:58.463
+00:02:11.145 --> 00:02:17.122
 Our sub-agents have full tool access and zero ability to escalate privileges.
 
 56
-00:01:58.463 --> 00:01:59.670
+00:02:17.122 --> 00:02:18.520
 That's the design.
 
 57
-00:01:59.670 --> 00:02:01.749
+00:02:18.520 --> 00:02:20.927
 The difference between this and
 
 58
-00:02:01.749 --> 00:02:07.516
+00:02:20.927 --> 00:02:27.603
 a red line in a markdown file: if a sub-agent tries to run sudo apt install something,
 
 59
-00:02:07.516 --> 00:02:11.406
+00:02:27.603 --> 00:02:32.106
 the SDK returns "denied by security gate." It doesn't ask.
 
 60
-00:02:11.406 --> 00:02:13.686
+00:02:32.106 --> 00:02:34.745
 It doesn't suggest an alternative.
 
 61
-00:02:13.686 --> 00:02:14.356
+00:02:34.745 --> 00:02:35.522
 It blocks.
 
 62
-00:02:14.356 --> 00:02:15.564
+00:02:35.522 --> 00:02:36.919
 Deterministically.
 
 63
-00:02:15.564 --> 00:02:16.301
+00:02:36.919 --> 00:02:37.773
 Every time.
 
 64
-00:02:16.301 --> 00:02:18.246
+00:02:37.773 --> 00:02:40.024
 Twenty-one tests verify this.
 
 65
-00:02:18.246 --> 00:02:19.051
+00:02:40.024 --> 00:02:40.956
 Hard blocks,
 
 66
-00:02:19.051 --> 00:02:20.727
+00:02:40.956 --> 00:02:42.897
 trust-level restrictions,
 
 67
-00:02:20.727 --> 00:02:23.410
+00:02:42.897 --> 00:02:46.002
 ask-level prompts for interactive users,
 
 68
-00:02:23.410 --> 00:02:23.611
+00:02:46.002 --> 00:02:46.235
 and
 
 69
-00:02:23.611 --> 00:02:25.824
+00:02:46.235 --> 00:02:48.797
 clean passes for safe operations.
 
 70
-00:02:25.824 --> 00:02:26.494
+00:02:48.797 --> 00:02:49.573
 All green.
 
 71
-00:02:26.494 --> 00:02:28.439
+00:02:49.573 --> 00:02:51.824
 This won't stop every attack.
 
 72
-00:02:28.439 --> 00:02:29.311
+00:02:51.824 --> 00:02:52.834
 Nothing will.
 
 73
-00:02:29.311 --> 00:02:33.335
+00:02:52.834 --> 00:02:57.492
 But it closes the gap between "we told the agent not to" and
 
 74
-00:02:33.335 --> 00:02:37.493
+00:02:57.492 --> 00:03:02.305
 "the agent cannot." That's the difference between a policy and
 
 75
-00:02:37.493 --> 00:02:39.169
+00:03:02.305 --> 00:03:04.246
 an enforcement mechanism.
 
 76
-00:02:39.169 --> 00:02:41.986
+00:03:04.246 --> 00:03:07.506
 Red lines in a markdown file are a policy.
 
 77
-00:02:41.986 --> 00:02:45.406
+00:03:07.506 --> 00:03:11.466
 A PreToolUse hook that returns deny is enforcement.
 
 78
-00:02:45.406 --> 00:02:47.954
+00:03:11.466 --> 00:03:14.416
 That's Red Lines Are Just Suggestions.
 
 79
-00:02:47.954 --> 00:02:48.558
+00:03:14.416 --> 00:03:15.114
 I'm Jake.
 
 80
-00:02:48.558 --> 00:02:50.100
+00:03:15.114 --> 00:03:16.900
 Catch you next episode.
