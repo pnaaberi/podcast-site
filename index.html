@@ -230,17 +230,17 @@
     .speed-btn{width:auto!important;min-width:48px;border-radius:8px!important;font-size:0.82rem;font-weight:700;font-family:inherit;letter-spacing:-0.02em;padding:8px 14px}
     .speed-btn:hover{color:var(--accent)}
     .speed-btn.active{color:var(--accent)}
-    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0}
+    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0;position:relative}
+    .sticky-controls .collapse-btn{position:absolute;right:0}
     .sticky-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-    .sticky-collapse-bar{display:flex;align-items:center;justify-content:center;padding:0;margin:-1px auto 0;cursor:pointer;background:none;border:none;width:100%;position:relative;z-index:1;transition:opacity 0.2s}
-    .sticky-collapse-bar:hover .sticky-collapse-pill{background:rgba(255,255,255,0.06);color:var(--t2)}
-    .sticky-collapse-pill{display:inline-flex;align-items:center;gap:5px;font-size:0.55rem;font-weight:600;font-family:inherit;letter-spacing:0.5px;text-transform:uppercase;color:var(--t3);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-bottom:none;border-radius:10px 10px 0 0;padding:4px 16px 3px;transition:all 0.15s}
-    .sticky-collapse-pill svg{width:11px;height:11px;fill:currentColor;transition:transform 0.3s}
+    .collapse-btn{background:none;border:1px solid var(--border);color:var(--t3);font-size:0.62rem;font-weight:600;font-family:inherit;padding:6px 12px;min-height:36px;border-radius:6px;cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:4px;letter-spacing:0.3px;white-space:nowrap}
+    .collapse-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .collapse-btn svg{width:12px;height:12px;fill:currentColor;transition:transform 0.3s}
     .sticky.mini .sticky-controls,.sticky.mini .sticky-tabs,.sticky.mini .vol-wrap,.sticky.mini .sticky-time{display:none}
     .sticky.mini .sticky-row{gap:6px}
     .sticky.mini .sticky-bar{height:32px}
     .sticky.mini{padding:4px 16px}
-    .sticky.mini .sticky-collapse-pill svg{transform:rotate(180deg)}
+    .sticky.mini .collapse-btn svg{transform:rotate(180deg)}
     @media(max-width:480px){
       .sbtn-prev,.sbtn-next{display:none}
       .sbtn{width:52px;height:52px;min-width:52px}
@@ -325,7 +325,6 @@
   </div>
 </div>
 <div class="sticky" id="sticky">
-  <button class="sticky-collapse-bar" onclick="toggleMini()" aria-label="Collapse player"><span class="sticky-collapse-pill"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg><span id="collapse-label">Collapse</span></span></button>
   <div class="sticky-row">
     <div class="sticky-info">
       <span class="sticky-t" id="sticky-t"></span>
@@ -356,6 +355,7 @@
     <button class="sbtn" onclick="skipFwd()" aria-label="Skip forward 15 seconds" title="Skip forward 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/></svg></button>
     <button class="sbtn sbtn-sm sbtn-next" onclick="nextTrack()" aria-label="Next episode" title="Next episode"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
     <button class="sbtn sbtn-sm speed-btn" id="speed-btn" onclick="cycleSpeed()" aria-label="Playback speed" title="Playback speed">1×</button>
+    <button class="collapse-btn" id="collapse-btn" onclick="toggleMini()" aria-label="Collapse player"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg><span id="collapse-label">Collapse</span></button>
   </div>
 </div>
 <script>
