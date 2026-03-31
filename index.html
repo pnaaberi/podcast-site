@@ -728,6 +728,7 @@ function showSticky(n){
   document.getElementById('sticky-t').textContent=t?'EP'+num+' — '+t.textContent:'';
   document.getElementById('sticky-btn').innerHTML=PA;
   document.getElementById('sticky').classList.add('on');
+  document.getElementById('sticky-panel').style.display='';
   const f=document.querySelector('footer');if(f)f.classList.add('has-sticky');
   updateJumpPos();
   // Position panel above sticky player
@@ -735,7 +736,7 @@ function showSticky(n){
 }
 function toggleMini(){const s=document.getElementById('sticky');s.classList.toggle('mini');const p=document.getElementById('sticky-panel');if(s.classList.contains('mini')&&p)p.classList.remove('open');requestAnimationFrame(()=>{if(p)p.style.bottom=s.offsetHeight+'px'})}
 function stickyBarClick(e){const s=document.getElementById('sticky');if(!s.classList.contains('mini'))return;if(e.target.closest('.sticky-mini-play,.sticky-bar'))return;toggleMini()}
-function hideSticky(){document.getElementById('sticky').classList.remove('on');document.getElementById('sticky-panel').classList.remove('open');stickyPanelMode=null;document.getElementById('sticky-tab-captions').classList.remove('active');document.getElementById('sticky-tab-notes').classList.remove('active');const f=document.querySelector('footer');if(f){f.classList.remove('has-sticky');f.classList.remove('has-panel')}updateJumpPos()}
+function hideSticky(){const s=document.getElementById('sticky');s.classList.remove('on');s.classList.remove('mini');const p=document.getElementById('sticky-panel');p.classList.remove('open');p.style.display='none';stickyPanelMode=null;document.getElementById('sticky-tab-captions').classList.remove('active');document.getElementById('sticky-tab-notes').classList.remove('active');const f=document.querySelector('footer');if(f){f.classList.remove('has-sticky');f.classList.remove('has-panel')}updateJumpPos()}
 function stickySeek(e){if(!cur)return;const r=e.currentTarget.getBoundingClientRect();const pct=(e.clientX-r.left)/r.width;if(cur.a.duration)cur.a.currentTime=pct*cur.a.duration}
 const AUTO_CAP_SEC=20;
 async function autoShowCap(n){
