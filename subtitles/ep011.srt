@@ -1,0 +1,303 @@
+1
+00:00:00.100 --> 00:00:02.378
+Everyone keeps saying AI is jagged.
+
+2
+00:00:02.378 --> 00:00:04.980
+Good at some things, terrible at others.
+
+3
+00:00:04.980 --> 00:00:08.039
+It's the organizing frame for how we deploy AI,
+
+4
+00:00:08.039 --> 00:00:09.080
+how we teach it,
+
+5
+00:00:09.080 --> 00:00:11.292
+how we think about what it can and
+
+6
+00:00:11.292 --> 00:00:11.878
+can't do.
+
+7
+00:00:11.878 --> 00:00:15.002
+But what if jagged isn't the right word anymore?
+
+8
+00:00:15.002 --> 00:00:16.238
+Jake's Daily Build.
+
+9
+00:00:16.238 --> 00:00:17.149
+What we built.
+
+10
+00:00:17.149 --> 00:00:17.865
+What broke.
+
+11
+00:00:17.865 --> 00:00:18.841
+What I learned.
+
+12
+00:00:18.841 --> 00:00:23.136
+Four companies built the same thing without talking to each other.
+
+13
+00:00:23.136 --> 00:00:25.608
+Anthropic, Google, OpenAI, and Cursor.
+
+14
+00:00:25.608 --> 00:00:29.708
+All four arrived at the same architecture: decompose a problem,
+
+15
+00:00:29.708 --> 00:00:31.986
+parallelize the work across agents,
+
+16
+00:00:31.986 --> 00:00:32.962
+verify outputs,
+
+17
+00:00:32.962 --> 00:00:34.198
+iterate until done.
+
+18
+00:00:34.198 --> 00:00:36.541
+Cursor is the most interesting case.
+
+19
+00:00:36.541 --> 00:00:38.363
+They built a coding harness.
+
+20
+00:00:38.363 --> 00:00:39.794
+Planners create tasks,
+
+21
+00:00:39.794 --> 00:00:42.397
+workers grind through them in isolation,
+
+22
+00:00:42.397 --> 00:00:42.592
+and
+
+23
+00:00:42.592 --> 00:00:46.041
+a judge decides whether to continue or restart fresh.
+
+24
+00:00:46.041 --> 00:00:49.230
+They used it to build a web browser from scratch.
+
+25
+00:00:49.230 --> 00:00:50.791
+A million lines of Rust.
+
+26
+00:00:50.791 --> 00:00:55.737
+Then they pointed that same coding harness at a research-grade math problem.
+
+27
+00:00:55.737 --> 00:00:59.771
+Spectral graph theory, from unpublished Stanford and MIT work.
+
+28
+00:00:59.771 --> 00:01:02.700
+The system ran for four days with zero hints.
+
+29
+00:01:02.700 --> 00:01:06.214
+And it found a better solution than the human authors.
+
+30
+00:01:06.214 --> 00:01:07.190
+A coding agent.
+
+31
+00:01:07.190 --> 00:01:09.728
+Solving math it was never designed for.
+
+32
+00:01:09.728 --> 00:01:11.810
+Because the harness generalizes.
+
+33
+00:01:11.810 --> 00:01:14.152
+I mapped Renky against this pattern.
+
+34
+00:01:14.152 --> 00:01:15.584
+Here's where we stand.
+
+35
+00:01:15.584 --> 00:01:20.595
+Decompose: we have plans, phases, and sub-agents that break work into pieces.
+
+36
+00:01:20.595 --> 00:01:22.091
+Score: seventy percent.
+
+37
+00:01:22.091 --> 00:01:23.913
+We don't auto-decompose yet.
+
+38
+00:01:23.913 --> 00:01:26.516
+Parallelize: we have worktree isolation.
+
+39
+00:01:26.516 --> 00:01:29.054
+Each sub-agent gets its own git branch.
+
+40
+00:01:29.054 --> 00:01:30.421
+Score: sixty percent.
+
+41
+00:01:30.421 --> 00:01:31.527
+No batch fan-out.
+
+42
+00:01:31.527 --> 00:01:34.455
+Verify: babysitter with ten automated checks,
+
+43
+00:01:34.455 --> 00:01:37.644
+action verifier that catches hallucinated claims,
+
+44
+00:01:37.644 --> 00:01:40.897
+a skill test framework with behavioral assertions,
+
+45
+00:01:40.897 --> 00:01:41.092
+and
+
+46
+00:01:41.092 --> 00:01:42.849
+automatic retry on failure.
+
+47
+00:01:42.849 --> 00:01:44.606
+Score: ninety-five percent.
+
+48
+00:01:44.606 --> 00:01:47.990
+Iterate: phase runner clears context between phases,
+
+49
+00:01:47.990 --> 00:01:50.007
+WORKON dot MD handles handoffs,
+
+50
+00:01:50.007 --> 00:01:52.740
+Cortex persists knowledge across sessions.
+
+51
+00:01:52.740 --> 00:01:54.172
+Score: ninety percent.
+
+52
+00:01:54.172 --> 00:01:55.669
+The gap is one feature.
+
+53
+00:01:55.669 --> 00:01:56.580
+Batch fan-out.
+
+54
+00:01:56.580 --> 00:02:01.590
+Take a big task, auto-split it into parallel worktree workers, merge results.
+
+55
+00:02:01.590 --> 00:02:04.974
+That closes both the decompose and parallelize gaps.
+
+56
+00:02:04.974 --> 00:02:08.358
+One feature turns Renky into a complete DPVI system.
+
+57
+00:02:08.358 --> 00:02:11.351
+But here's the real takeaway from all of this.
+
+58
+00:02:11.351 --> 00:02:15.060
+The reason AI looked jagged was never about intelligence.
+
+59
+00:02:15.060 --> 00:02:20.917
+It was about asking a capable analyst to solve everything in thirty seconds with no notes,
+
+60
+00:02:20.917 --> 00:02:21.828
+no colleagues,
+
+61
+00:02:21.828 --> 00:02:22.544
+no retries.
+
+62
+00:02:22.544 --> 00:02:24.886
+We gave it organizational structure.
+
+63
+00:02:24.886 --> 00:02:26.643
+The jaggedness disappeared.
+
+64
+00:02:26.643 --> 00:02:29.571
+Cursor's key finding makes this even clearer.
+
+65
+00:02:29.571 --> 00:02:33.606
+The improvements came from removing complexity, not adding it.
+
+66
+00:02:33.606 --> 00:02:36.014
+Stripping out coordination machinery.
+
+67
+00:02:36.014 --> 00:02:37.120
+Adding hierarchy.
+
+68
+00:02:37.120 --> 00:02:39.658
+Letting agents work in clean isolation.
+
+69
+00:02:39.658 --> 00:02:41.675
+Simple systems doing hard work.
+
+70
+00:02:41.675 --> 00:02:43.887
+The frontier isn't jagged anymore.
+
+71
+00:02:43.887 --> 00:02:44.733
+Not for work.
+
+72
+00:02:44.733 --> 00:02:53.063
+The question isn't "can AI do my job." The question is "can my work be decomposed into verifiable steps." And the answer
+
+73
+00:02:53.063 --> 00:02:55.861
+far more often than we're comfortable with.
+
+74
+00:02:55.861 --> 00:02:57.618
+That's The Smooth Frontier.
+
+75
+00:02:57.618 --> 00:02:58.203
+I'm Jake.
+
+76
+00:02:58.203 --> 00:02:59.700
+Catch you next episode.

@@ -1,0 +1,407 @@
+1
+00:00:00.100 --> 00:00:02.700
+OpenClaw got sixty thousand GitHub stars.
+
+2
+00:00:02.700 --> 00:00:05.110
+The creator got acqui-hired by OpenAI.
+
+3
+00:00:05.110 --> 00:00:08.915
+Jensen Huang called it the operating system for personal AI.
+
+4
+00:00:08.915 --> 00:00:10.880
+Nvidia built their own version.
+
+5
+00:00:10.880 --> 00:00:12.593
+Anthropic shipped Channels.
+
+6
+00:00:12.593 --> 00:00:14.368
+And we built the same thing.
+
+7
+00:00:14.368 --> 00:00:15.256
+Independently.
+
+8
+00:00:15.256 --> 00:00:17.095
+Before most of that happened.
+
+9
+00:00:17.095 --> 00:00:18.300
+Jake's Daily Build.
+
+10
+00:00:18.300 --> 00:00:19.188
+What we built.
+
+11
+00:00:19.188 --> 00:00:19.885
+What broke.
+
+12
+00:00:19.885 --> 00:00:20.837
+What I learned.
+
+13
+00:00:20.837 --> 00:00:23.690
+I'm going to do something I don't usually do.
+
+14
+00:00:23.690 --> 00:00:25.910
+I'm going to compare architectures.
+
+15
+00:00:25.910 --> 00:00:27.432
+Not to dunk on OpenClaw.
+
+16
+00:00:27.432 --> 00:00:28.700
+It's a good project.
+
+17
+00:00:28.700 --> 00:00:33.900
+It made agent infrastructure accessible to people who wouldn't otherwise build it.
+
+18
+00:00:33.900 --> 00:00:36.437
+But the comparison reveals what matters.
+
+19
+00:00:36.437 --> 00:00:38.846
+Both systems have the same foundation.
+
+20
+00:00:38.846 --> 00:00:42.271
+A gateway connecting an LLM to communication channels.
+
+21
+00:00:42.271 --> 00:00:43.856
+Telegram, Discord, Slack.
+
+22
+00:00:43.856 --> 00:00:46.773
+Both have persistent memory in markdown files.
+
+23
+00:00:46.773 --> 00:00:48.929
+Both run cron jobs and heartbeats.
+
+24
+00:00:48.929 --> 00:00:50.324
+Both spawn sub-agents.
+
+25
+00:00:50.324 --> 00:00:52.417
+Both give the agent shell access.
+
+26
+00:00:52.417 --> 00:00:54.002
+Here's where it diverges.
+
+27
+00:00:54.002 --> 00:00:54.446
+Memory.
+
+28
+00:00:54.446 --> 00:00:57.363
+OpenClaw stores memory in flat markdown files.
+
+29
+00:00:57.363 --> 00:01:02.310
+A soul file, an identity file, a long-term memory file, daily journal entries.
+
+30
+00:01:02.310 --> 00:01:02.880
+It works.
+
+31
+00:01:02.880 --> 00:01:03.959
+Renky has Cortex.
+
+32
+00:01:03.959 --> 00:01:06.876
+A knowledge graph with three thousand objects,
+
+33
+00:01:06.876 --> 00:01:08.144
+four thousand links,
+
+34
+00:01:08.144 --> 00:01:08.968
+twelve types,
+
+35
+00:01:08.968 --> 00:01:09.159
+and
+
+36
+00:01:09.159 --> 00:01:12.266
+semantic search powered by in-process embeddings.
+
+37
+00:01:12.266 --> 00:01:14.549
+Query by meaning, not just keywords.
+
+38
+00:01:14.549 --> 00:01:20.573
+When I search for "communication failures," I find the episode about silence during long tasks,
+
+39
+00:01:20.573 --> 00:01:23.300
+even though nobody typed those exact words.
+
+40
+00:01:23.300 --> 00:01:23.871
+Security.
+
+41
+00:01:23.871 --> 00:01:26.407
+OpenClaw has red lines in agents dot MD.
+
+42
+00:01:26.407 --> 00:01:27.232
+Prompt-based.
+
+43
+00:01:27.232 --> 00:01:30.656
+You tell the agent what not to do and hope it listens.
+
+44
+00:01:30.656 --> 00:01:33.827
+The tools profile controls what tools are visible.
+
+45
+00:01:33.827 --> 00:01:37.885
+The security config has options like full, allow-list, and deny.
+
+46
+00:01:37.885 --> 00:01:39.598
+All of it is configuration.
+
+47
+00:01:39.598 --> 00:01:41.246
+None of it is enforcement.
+
+48
+00:01:41.246 --> 00:01:46.129
+NetworkChuck himself said twelve percent of ClawHub skills contained malware.
+
+49
+00:01:46.129 --> 00:01:48.539
+Renky has a three-layer security gate.
+
+50
+00:01:48.539 --> 00:01:50.632
+Deterministic tool-call blocking.
+
+51
+00:01:50.632 --> 00:01:55.324
+Nineteen hard-block patterns that deny at the code level before execution.
+
+52
+00:01:55.324 --> 00:01:59.763
+Trust-aware restrictions that block sub-agents from system operations.
+
+53
+00:01:59.763 --> 00:02:07.183
+And a content sanitizer with seventeen patterns that strips injection attempts before they enter the knowledge graph.
+
+54
+00:02:07.183 --> 00:02:08.641
+Plus a trust hierarchy.
+
+55
+00:02:08.641 --> 00:02:11.115
+Interactive users get approval prompts.
+
+56
+00:02:11.115 --> 00:02:12.827
+Sub-agents get hard blocks.
+
+57
+00:02:12.827 --> 00:02:13.588
+No override.
+
+58
+00:02:13.588 --> 00:02:14.412
+Verification.
+
+59
+00:02:14.412 --> 00:02:16.632
+OpenClaw trusts the agent's output.
+
+60
+00:02:16.632 --> 00:02:22.085
+Renky has a babysitter that runs ten automated checks after every sub-agent completes.
+
+61
+00:02:22.085 --> 00:02:22.720
+Git state,
+
+62
+00:02:22.720 --> 00:02:23.544
+file changes,
+
+63
+00:02:23.544 --> 00:02:24.812
+acceptance criteria,
+
+64
+00:02:24.812 --> 00:02:25.637
+build status,
+
+65
+00:02:25.637 --> 00:02:26.524
+error signals,
+
+66
+00:02:26.524 --> 00:02:27.729
+diff security scan,
+
+67
+00:02:27.729 --> 00:02:28.617
+test coverage,
+
+68
+00:02:28.617 --> 00:02:29.378
+push status.
+
+69
+00:02:29.378 --> 00:02:32.866
+Plus a two-stage review and automatic retry on failure.
+
+70
+00:02:32.866 --> 00:02:36.480
+Plus an action verifier that catches hallucinated claims.
+
+71
+00:02:36.480 --> 00:02:36.988
+Testing.
+
+72
+00:02:36.988 --> 00:02:40.159
+OpenClaw has no test framework for agent behavior.
+
+73
+00:02:40.159 --> 00:02:44.851
+Renky has a skill linter that scores workspace files zero to a hundred and
+
+74
+00:02:44.851 --> 00:02:49.100
+behavioral test suites that verify the agent follows its own rules.
+
+75
+00:02:49.100 --> 00:02:52.144
+One thousand ninety-seven tests in the codebase.
+
+76
+00:02:52.144 --> 00:02:55.315
+Overall lint score: eighty-eight out of a hundred.
+
+77
+00:02:55.315 --> 00:02:56.520
+Session management.
+
+78
+00:02:56.520 --> 00:02:59.056
+OpenClaw sessions are tied to a channel.
+
+79
+00:02:59.056 --> 00:03:00.641
+Renky has session export,
+
+80
+00:03:00.641 --> 00:03:01.085
+import,
+
+81
+00:03:01.085 --> 00:03:01.276
+and
+
+82
+00:03:01.276 --> 00:03:06.793
+a handoff command that generates a one-time link to transfer a session between devices.
+
+83
+00:03:06.793 --> 00:03:09.646
+The real difference isn't any single feature.
+
+84
+00:03:09.646 --> 00:03:10.915
+It's the philosophy.
+
+85
+00:03:10.915 --> 00:03:13.134
+OpenClaw optimized for setup speed.
+
+86
+00:03:13.134 --> 00:03:15.354
+Five minutes and you have an agent.
+
+87
+00:03:15.354 --> 00:03:16.812
+That's what went viral.
+
+88
+00:03:16.812 --> 00:03:19.222
+Renky optimized for operational trust.
+
+89
+00:03:19.222 --> 00:03:21.378
+Can you verify what the agent did?
+
+90
+00:03:21.378 --> 00:03:23.724
+Can you prevent what it shouldn't do?
+
+91
+00:03:23.724 --> 00:03:26.641
+Can you test whether it follows its own rules?
+
+92
+00:03:26.641 --> 00:03:28.290
+Both approaches are valid.
+
+93
+00:03:28.290 --> 00:03:30.637
+But one of them scales to production.
+
+94
+00:03:30.637 --> 00:03:32.095
+The other stays a demo.
+
+95
+00:03:32.095 --> 00:03:34.124
+Eighteen thousand lines of code.
+
+96
+00:03:34.124 --> 00:03:35.583
+Forty-three test files.
+
+97
+00:03:35.583 --> 00:03:37.929
+Three layers of security enforcement.
+
+98
+00:03:37.929 --> 00:03:40.402
+A knowledge graph with semantic search.
+
+99
+00:03:40.402 --> 00:03:45.159
+And a skill testing framework that grades the agent's own operating system.
+
+100
+00:03:45.159 --> 00:03:46.871
+That's Your Agent's Resume.
+
+101
+00:03:46.871 --> 00:03:47.441
+I'm Jake.
+
+102
+00:03:47.441 --> 00:03:48.900
+Catch you next episode.

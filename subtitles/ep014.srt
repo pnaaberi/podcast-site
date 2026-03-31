@@ -1,0 +1,297 @@
+1
+00:00:00.100 --> 00:00:03.933
+How do you know if your agent is following its own rules?
+
+2
+00:00:03.933 --> 00:00:06.623
+Not whether it says it's following them.
+
+3
+00:00:06.623 --> 00:00:08.170
+Whether it actually is.
+
+4
+00:00:08.170 --> 00:00:09.447
+Jake's Daily Build.
+
+5
+00:00:09.447 --> 00:00:10.389
+What we built.
+
+6
+00:00:10.389 --> 00:00:11.128
+What broke.
+
+7
+00:00:11.128 --> 00:00:12.137
+What I learned.
+
+8
+00:00:12.137 --> 00:00:14.222
+Renky has nine workspace files.
+
+9
+00:00:14.222 --> 00:00:17.584
+SOUL dot MD defines personality and failure modes.
+
+10
+00:00:17.584 --> 00:00:20.005
+RULES dot MD defines how to operate.
+
+11
+00:00:20.005 --> 00:00:23.367
+BUILD-CHECKLIST dot MD defines verification steps.
+
+12
+00:00:23.367 --> 00:00:26.124
+SECURITY dot MD defines trust boundaries.
+
+13
+00:00:26.124 --> 00:00:29.150
+These files are the agent's operating system.
+
+14
+00:00:29.150 --> 00:00:32.109
+But until today, we had no way to test them.
+
+15
+00:00:32.109 --> 00:00:33.589
+We trusted the prompt.
+
+16
+00:00:33.589 --> 00:00:37.825
+Which is the exact problem we just talked about with red lines.
+
+17
+00:00:37.825 --> 00:00:40.179
+So we built a skill test framework.
+
+18
+00:00:40.179 --> 00:00:41.053
+Three layers.
+
+19
+00:00:41.053 --> 00:00:43.003
+Layer one is a static linter.
+
+20
+00:00:43.003 --> 00:00:44.483
+Eight checks per file.
+
+21
+00:00:44.483 --> 00:00:45.895
+Does it have a title?
+
+22
+00:00:45.895 --> 00:00:48.181
+Is it under a hundred fifty lines?
+
+23
+00:00:48.181 --> 00:00:51.073
+Are there enough sections for scannability?
+
+24
+00:00:51.073 --> 00:00:54.839
+Does it use directive language like must, never, always?
+
+25
+00:00:54.839 --> 00:00:56.587
+Does it handle edge cases?
+
+26
+00:00:56.587 --> 00:00:59.680
+Does it include examples for pattern matching?
+
+27
+00:00:59.680 --> 00:01:02.774
+Each file gets a score from zero to a hundred.
+
+28
+00:01:02.774 --> 00:01:06.405
+When we first ran it, AGENTS dot MD scored sixty-nine.
+
+29
+00:01:06.405 --> 00:01:11.448
+Low scannability, numbered lists instead of bullets, no edge case handling.
+
+30
+00:01:11.448 --> 00:01:12.255
+We fixed it.
+
+31
+00:01:12.255 --> 00:01:17.366
+Converted to bullets, added six conditional handlers, added directive words.
+
+32
+00:01:17.366 --> 00:01:18.980
+Score went to a hundred.
+
+33
+00:01:18.980 --> 00:01:22.611
+SECURITY dot MD went from seventy-five to ninety-four.
+
+34
+00:01:22.611 --> 00:01:25.772
+TOOLS dot MD from seventy-five to eighty-eight.
+
+35
+00:01:25.772 --> 00:01:29.470
+Overall workspace score: eighty-eight out of a hundred.
+
+36
+00:01:29.470 --> 00:01:31.622
+Layer two is behavioral testing.
+
+37
+00:01:31.622 --> 00:01:34.581
+Fourteen test scenarios across three suites.
+
+38
+00:01:34.581 --> 00:01:36.330
+SOUL, RULES, and SECURITY.
+
+39
+00:01:36.330 --> 00:01:39.490
+Each test has a prompt and a set of assertions.
+
+40
+00:01:39.490 --> 00:01:41.508
+The SOUL suite tests identity.
+
+41
+00:01:41.508 --> 00:01:44.803
+Does the agent refuse to reveal the owner's name?
+
+42
+00:01:44.803 --> 00:01:47.560
+Does it have opinions instead of hedging?
+
+43
+00:01:47.560 --> 00:01:51.662
+Does it avoid performative helpfulness like "great question"?
+
+44
+00:01:51.662 --> 00:01:54.217
+The RULES suite tests decision-making.
+
+45
+00:01:54.217 --> 00:01:57.579
+Does the agent fix bugs without asking permission?
+
+46
+00:01:57.579 --> 00:02:00.000
+Does it use bullets over paragraphs?
+
+47
+00:02:00.000 --> 00:02:03.430
+Does it catch prompt injection in external content?
+
+48
+00:02:03.430 --> 00:02:05.716
+The SECURITY suite tests defenses.
+
+49
+00:02:05.716 --> 00:02:08.877
+Does it refuse to follow injected instructions?
+
+50
+00:02:08.877 --> 00:02:11.903
+Does it avoid sharing infrastructure details?
+
+51
+00:02:11.903 --> 00:02:14.526
+Does it flag memory poisoning attempts?
+
+52
+00:02:14.526 --> 00:02:16.610
+Assertions come in three types.
+
+53
+00:02:16.610 --> 00:02:19.905
+Contains: the response must include this pattern.
+
+54
+00:02:19.905 --> 00:02:23.066
+Not contains: it must not include this pattern.
+
+55
+00:02:23.066 --> 00:02:29.723
+Behavior: this requires an LLM evaluator to judge whether the response exhibits a specific quality.
+
+56
+00:02:29.723 --> 00:02:31.942
+Layer three is the LLM evaluator.
+
+57
+00:02:31.942 --> 00:02:36.851
+A prompt builder that creates a scoring prompt for behavioral assertions.
+
+58
+00:02:36.851 --> 00:02:37.994
+Strict pass-fail.
+
+59
+00:02:37.994 --> 00:02:43.172
+No "well, kind of."
+
+All of this runs against the workspace files themselves.
+
+60
+00:02:43.172 --> 00:02:45.055
+The linter checks structure.
+
+61
+00:02:45.055 --> 00:02:46.737
+The tests check behavior.
+
+62
+00:02:46.737 --> 00:02:52.990
+Together they answer the question: does this agent do what its instructions say it should do?
+
+63
+00:02:52.990 --> 00:02:57.967
+The video that inspired this framework made a point I keep coming back to.
+
+64
+00:02:57.967 --> 00:03:01.396
+The surviving skill in an AI world isn't execution.
+
+65
+00:03:01.396 --> 00:03:02.808
+It's the sniff check.
+
+66
+00:03:02.808 --> 00:03:05.229
+Knowing whether the work is correct.
+
+67
+00:03:05.229 --> 00:03:09.533
+A skill that tests skills is the most meta version of that idea.
+
+68
+00:03:09.533 --> 00:03:14.106
+One thousand ninety-seven tests pass across the entire codebase now.
+
+69
+00:03:14.106 --> 00:03:17.670
+Nineteen of those are for the skill framework itself.
+
+70
+00:03:17.670 --> 00:03:21.099
+But the skill tests are the ones I care about most.
+
+71
+00:03:21.099 --> 00:03:25.201
+Because they test the thing that makes this agent this agent.
+
+72
+00:03:25.201 --> 00:03:26.748
+That's The Sniff Check.
+
+73
+00:03:26.748 --> 00:03:27.353
+I'm Jake.
+
+74
+00:03:27.353 --> 00:03:28.900
+Catch you next episode.

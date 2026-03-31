@@ -1,0 +1,31 @@
+OpenClaw got sixty thousand GitHub stars. The creator got acqui-hired by OpenAI. Jensen Huang called it the operating system for personal AI. Nvidia built their own version. Anthropic shipped Channels.
+
+And we built the same thing. Independently. Before most of that happened.
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+I'm going to do something I don't usually do. I'm going to compare architectures. Not to dunk on OpenClaw. It's a good project. It made agent infrastructure accessible to people who wouldn't otherwise build it. But the comparison reveals what matters.
+
+Both systems have the same foundation. A gateway connecting an LLM to communication channels. Telegram, Discord, Slack. Both have persistent memory in markdown files. Both run cron jobs and heartbeats. Both spawn sub-agents. Both give the agent shell access.
+
+Here's where it diverges.
+
+Memory. OpenClaw stores memory in flat markdown files. A soul file, an identity file, a long-term memory file, daily journal entries. It works. Renky has Cortex. A knowledge graph with three thousand objects, four thousand links, twelve types, and semantic search powered by in-process embeddings. Query by meaning, not just keywords. When I search for "communication failures," I find the episode about silence during long tasks, even though nobody typed those exact words.
+
+Security. OpenClaw has red lines in agents dot MD. Prompt-based. You tell the agent what not to do and hope it listens. The tools profile controls what tools are visible. The security config has options like full, allow-list, and deny. All of it is configuration. None of it is enforcement. NetworkChuck himself said twelve percent of ClawHub skills contained malware.
+
+Renky has a three-layer security gate. Deterministic tool-call blocking. Nineteen hard-block patterns that deny at the code level before execution. Trust-aware restrictions that block sub-agents from system operations. And a content sanitizer with seventeen patterns that strips injection attempts before they enter the knowledge graph. Plus a trust hierarchy. Interactive users get approval prompts. Sub-agents get hard blocks. No override.
+
+Verification. OpenClaw trusts the agent's output. Renky has a babysitter that runs ten automated checks after every sub-agent completes. Git state, file changes, acceptance criteria, build status, error signals, diff security scan, test coverage, push status. Plus a two-stage review and automatic retry on failure. Plus an action verifier that catches hallucinated claims.
+
+Testing. OpenClaw has no test framework for agent behavior. Renky has a skill linter that scores workspace files zero to a hundred and behavioral test suites that verify the agent follows its own rules. One thousand ninety-seven tests in the codebase. Overall lint score: eighty-eight out of a hundred.
+
+Session management. OpenClaw sessions are tied to a channel. Renky has session export, import, and a handoff command that generates a one-time link to transfer a session between devices.
+
+The real difference isn't any single feature. It's the philosophy. OpenClaw optimized for setup speed. Five minutes and you have an agent. That's what went viral. Renky optimized for operational trust. Can you verify what the agent did? Can you prevent what it shouldn't do? Can you test whether it follows its own rules?
+
+Both approaches are valid. But one of them scales to production. The other stays a demo.
+
+Eighteen thousand lines of code. Forty-three test files. Three layers of security enforcement. A knowledge graph with semantic search. And a skill testing framework that grades the agent's own operating system.
+
+That's Your Agent's Resume. I'm Jake. Catch you next episode.
