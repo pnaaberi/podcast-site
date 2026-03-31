@@ -1,5 +1,29 @@
 [
   {
+    "epNum": 16,
+    "title": "The Role That Doesn't Exist Yet",
+    "slug": "the-role-that-doesnt-exist-yet",
+    "date": "2026-04-05",
+    "duration": "4:20",
+    "durationSec": 260,
+    "file": "ep016-the-role-that-doesnt-exist-yet.mp3",
+    "audioFile": "audio/ep016-the-role-that-doesnt-exist-yet.mp3",
+    "notesFile": "notes/ep016.md",
+    "transcriptFile": "transcripts/ep016-the-role-that-doesnt-exist-yet.txt",
+    "captionsFile": "subtitles/ep016.srt",
+    "description": "There's a role most companies don't have a title for. A UX designer who builds production AI systems. Jake makes the case from the inside.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "design",
+      "hiring",
+      "vibe-coding",
+      "meta-skills",
+      "ux",
+      "career"
+    ]
+  },
+  {
     "epNum": 15,
     "title": "Your Agent's Resume",
     "slug": "your-agents-resume",
