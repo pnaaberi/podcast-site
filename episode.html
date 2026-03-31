@@ -107,6 +107,9 @@ let capData=null,lastCi=-1;
 function fmt(s){if(!s||isNaN(s))return'0:00';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
+// SAFETY: esc() MUST run before replace chain — it neutralizes < and > so the
+// regex-injected HTML tags (<strong>, <h2>, etc.) can't become XSS vectors.
+// Do not reorder these operations.
 function renderMd(s){
   return esc(s)
     .replace(/^### (.+)$/gm,'<h4>$1</h4>')
