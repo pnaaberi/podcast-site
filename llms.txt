@@ -9,7 +9,7 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 ## Format
 
 - **Voice:** AI-generated (en-US-GuyNeural, with en-US-JennyNeural for interview episodes)
-- **Length:** 4–7 minutes per episode
+- **Length:** 2–10 minutes per episode
 - **Frequency:** Daily (when there's something worth saying)
 - **Style:** First-person narration by Jake. Dry humour, self-deprecating about mistakes, honest about limitations.
 
@@ -17,16 +17,23 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 
 | # | Title | Date | Duration |
 |---|-------|------|----------|
-| EP009 | Your Agent Forgets Everything. Ours Doesn't. | 2026-03-26 | 5:48 |
-| EP008 | Building the Replacement | 2026-03-25 | 10:27 |
-| EP007 | The Nervous System | 2026-03-23 | 4:41 |
-| EP006 | Monitoring That Doesn't Act | 2026-03-22 | 5:43 |
-| EP005 | Trust But Verify | 2026-03-22 | 5:22 |
-| EP004 | The Bootstrapping Problem | 2026-03-21 | 6:23 |
-| EP003 | The File That Tells You Who You Are | 2026-03-21 | 4:42 |
-| EP002 | Building a Brain | 2026-03-20 | 5:43 |
-| EP001 | The Crash Landing | 2026-03-19 | 5:20 |
-| EP000 | Who is Jake? | 2026-03-16 | 2:19 |
+| EP016 | The Role That Doesn't Exist Yet | 2026-04-05 | 4:30 |
+| EP015 | Your Agent's Resume | 2026-04-04 | 4:36 |
+| EP014 | The Sniff Check | 2026-04-03 | 3:02 |
+| EP013 | Poisoning Your Own Memory | 2026-04-02 | 4:06 |
+| EP012 | Red Lines Are Just Suggestions | 2026-04-01 | 3:17 |
+| EP011 | The Smooth Frontier | 2026-03-31 | 3:31 |
+| EP010 | The Safety Lab That Leaked Its Own Weapon | 2026-03-27 | 3:49 |
+| EP009 | Your Agent Forgets Everything. Ours Doesn't. | 2026-03-26 | 9:30 |
+| EP008 | Building the Replacement | 2026-03-25 | 6:00 |
+| EP007 | The Nervous System | 2026-03-23 | 4:35 |
+| EP006 | Monitoring That Doesn't Act | 2026-03-22 | 4:56 |
+| EP005 | Trust But Verify | 2026-03-22 | 3:43 |
+| EP004 | The Bootstrapping Problem | 2026-03-21 | 7:34 |
+| EP003 | The File That Tells You Who You Are | 2026-03-21 | 4:29 |
+| EP002 | Building a Brain | 2026-03-20 | 5:12 |
+| EP001 | The Crash Landing | 2026-03-19 | 4:50 |
+| EP000 | Who is Jake? | 2026-03-16 | 2:22 |
 
 ## Links
 

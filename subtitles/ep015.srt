@@ -1,407 +1,407 @@
 1
-00:00:00.100 --> 00:00:03.234
+00:00:00,100 --> 00:00:03,234
 OpenClaw got sixty thousand GitHub stars.
 
 2
-00:00:03.234 --> 00:00:06.139
+00:00:03,234 --> 00:00:06,139
 The creator got acqui-hired by OpenAI.
 
 3
-00:00:06.139 --> 00:00:10.725
+00:00:06,139 --> 00:00:10,725
 Jensen Huang called it the operating system for personal AI.
 
 4
-00:00:10.725 --> 00:00:13.095
+00:00:10,725 --> 00:00:13,095
 Nvidia built their own version.
 
 5
-00:00:13.095 --> 00:00:15.159
+00:00:13,095 --> 00:00:15,159
 Anthropic shipped Channels.
 
 6
-00:00:15.159 --> 00:00:17.299
+00:00:15,159 --> 00:00:17,299
 And we built the same thing.
 
 7
-00:00:17.299 --> 00:00:18.369
+00:00:17,299 --> 00:00:18,369
 Independently.
 
 8
-00:00:18.369 --> 00:00:20.586
+00:00:18,369 --> 00:00:20,586
 Before most of that happened.
 
 9
-00:00:20.586 --> 00:00:22.039
+00:00:20,586 --> 00:00:22,039
 Jake's Daily Build.
 
 10
-00:00:22.039 --> 00:00:23.109
+00:00:22,039 --> 00:00:23,109
 What we built.
 
 11
-00:00:23.109 --> 00:00:23.950
+00:00:23,109 --> 00:00:23,950
 What broke.
 
 12
-00:00:23.950 --> 00:00:25.096
+00:00:23,950 --> 00:00:25,096
 What I learned.
 
 13
-00:00:25.096 --> 00:00:28.536
+00:00:25,096 --> 00:00:28,536
 I'm going to do something I don't usually do.
 
 14
-00:00:28.536 --> 00:00:31.212
+00:00:28,536 --> 00:00:31,212
 I'm going to compare architectures.
 
 15
-00:00:31.212 --> 00:00:33.046
+00:00:31,212 --> 00:00:33,046
 Not to dunk on OpenClaw.
 
 16
-00:00:33.046 --> 00:00:34.575
+00:00:33,046 --> 00:00:34,575
 It's a good project.
 
 17
-00:00:34.575 --> 00:00:40.843
+00:00:34,575 --> 00:00:40,843
 It made agent infrastructure accessible to people who wouldn't otherwise build it.
 
 18
-00:00:40.843 --> 00:00:43.901
+00:00:40,843 --> 00:00:43,901
 But the comparison reveals what matters.
 
 19
-00:00:43.901 --> 00:00:46.806
+00:00:43,901 --> 00:00:46,806
 Both systems have the same foundation.
 
 20
-00:00:46.806 --> 00:00:50.933
+00:00:46,806 --> 00:00:50,933
 A gateway connecting an LLM to communication channels.
 
 21
-00:00:50.933 --> 00:00:52.844
+00:00:50,933 --> 00:00:52,844
 Telegram, Discord, Slack.
 
 22
-00:00:52.844 --> 00:00:56.361
+00:00:52,844 --> 00:00:56,361
 Both have persistent memory in markdown files.
 
 23
-00:00:56.361 --> 00:00:58.960
+00:00:56,361 --> 00:00:58,960
 Both run cron jobs and heartbeats.
 
 24
-00:00:58.960 --> 00:01:00.641
+00:00:58,960 --> 00:01:00,641
 Both spawn sub-agents.
 
 25
-00:01:00.641 --> 00:01:03.164
+00:01:00,641 --> 00:01:03,164
 Both give the agent shell access.
 
 26
-00:01:03.164 --> 00:01:05.075
+00:01:03,164 --> 00:01:05,075
 Here's where it diverges.
 
 27
-00:01:05.075 --> 00:01:05.610
+00:01:05,075 --> 00:01:05,610
 Memory.
 
 28
-00:01:05.610 --> 00:01:09.126
+00:01:05,610 --> 00:01:09,126
 OpenClaw stores memory in flat markdown files.
 
 29
-00:01:09.126 --> 00:01:15.089
+00:01:09,126 --> 00:01:15,089
 A soul file, an identity file, a long-term memory file, daily journal entries.
 
 30
-00:01:15.089 --> 00:01:15.777
+00:01:15,089 --> 00:01:15,777
 It works.
 
 31
-00:01:15.777 --> 00:01:17.076
+00:01:15,777 --> 00:01:17,076
 Renky has Cortex.
 
 32
-00:01:17.076 --> 00:01:20.593
+00:01:17,076 --> 00:01:20,593
 A knowledge graph with three thousand objects,
 
 33
-00:01:20.593 --> 00:01:22.121
+00:01:20,593 --> 00:01:22,121
 four thousand links,
 
 34
-00:01:22.121 --> 00:01:23.115
+00:01:22,121 --> 00:01:23,115
 twelve types,
 
 35
-00:01:23.115 --> 00:01:23.345
+00:01:23,115 --> 00:01:23,345
 and
 
 36
-00:01:23.345 --> 00:01:27.090
+00:01:23,345 --> 00:01:27,090
 semantic search powered by in-process embeddings.
 
 37
-00:01:27.090 --> 00:01:29.842
+00:01:27,090 --> 00:01:29,842
 Query by meaning, not just keywords.
 
 38
-00:01:29.842 --> 00:01:37.104
+00:01:29,842 --> 00:01:37,104
 When I search for "communication failures," I find the episode about silence during long tasks,
 
 39
-00:01:37.104 --> 00:01:40.391
+00:01:37,104 --> 00:01:40,391
 even though nobody typed those exact words.
 
 40
-00:01:40.391 --> 00:01:41.079
+00:01:40,391 --> 00:01:41,079
 Security.
 
 41
-00:01:41.079 --> 00:01:44.137
+00:01:41,079 --> 00:01:44,137
 OpenClaw has red lines in agents dot MD.
 
 42
-00:01:44.137 --> 00:01:45.130
+00:01:44,137 --> 00:01:45,130
 Prompt-based.
 
 43
-00:01:45.130 --> 00:01:49.258
+00:01:45,130 --> 00:01:49,258
 You tell the agent what not to do and hope it listens.
 
 44
-00:01:49.258 --> 00:01:53.080
+00:01:49,258 --> 00:01:53,080
 The tools profile controls what tools are visible.
 
 45
-00:01:53.080 --> 00:01:57.972
+00:01:53,080 --> 00:01:57,972
 The security config has options like full, allow-list, and deny.
 
 46
-00:01:57.972 --> 00:02:00.036
+00:01:57,972 --> 00:02:00,036
 All of it is configuration.
 
 47
-00:02:00.036 --> 00:02:02.024
+00:02:00,036 --> 00:02:02,024
 None of it is enforcement.
 
 48
-00:02:02.024 --> 00:02:07.910
+00:02:02,024 --> 00:02:07,910
 NetworkChuck himself said twelve percent of ClawHub skills contained malware.
 
 49
-00:02:07.910 --> 00:02:10.815
+00:02:07,910 --> 00:02:10,815
 Renky has a three-layer security gate.
 
 50
-00:02:10.815 --> 00:02:13.337
+00:02:10,815 --> 00:02:13,337
 Deterministic tool-call blocking.
 
 51
-00:02:13.337 --> 00:02:18.994
+00:02:13,337 --> 00:02:18,994
 Nineteen hard-block patterns that deny at the code level before execution.
 
 52
-00:02:18.994 --> 00:02:24.345
+00:02:18,994 --> 00:02:24,345
 Trust-aware restrictions that block sub-agents from system operations.
 
 53
-00:02:24.345 --> 00:02:33.288
+00:02:24,345 --> 00:02:33,288
 And a content sanitizer with seventeen patterns that strips injection attempts before they enter the knowledge graph.
 
 54
-00:02:33.288 --> 00:02:35.046
+00:02:33,288 --> 00:02:35,046
 Plus a trust hierarchy.
 
 55
-00:02:35.046 --> 00:02:38.028
+00:02:35,046 --> 00:02:38,028
 Interactive users get approval prompts.
 
 56
-00:02:38.028 --> 00:02:40.092
+00:02:38,028 --> 00:02:40,092
 Sub-agents get hard blocks.
 
 57
-00:02:40.092 --> 00:02:41.009
+00:02:40,092 --> 00:02:41,009
 No override.
 
 58
-00:02:41.009 --> 00:02:42.003
+00:02:41,009 --> 00:02:42,003
 Verification.
 
 59
-00:02:42.003 --> 00:02:44.678
+00:02:42,003 --> 00:02:44,678
 OpenClaw trusts the agent's output.
 
 60
-00:02:44.678 --> 00:02:51.252
+00:02:44,678 --> 00:02:51,252
 Renky has a babysitter that runs ten automated checks after every sub-agent completes.
 
 61
-00:02:51.252 --> 00:02:52.016
+00:02:51,252 --> 00:02:52,016
 Git state,
 
 62
-00:02:52.016 --> 00:02:53.010
+00:02:52,016 --> 00:02:53,010
 file changes,
 
 63
-00:02:53.010 --> 00:02:54.539
+00:02:53,010 --> 00:02:54,539
 acceptance criteria,
 
 64
-00:02:54.539 --> 00:02:55.533
+00:02:54,539 --> 00:02:55,533
 build status,
 
 65
-00:02:55.533 --> 00:02:56.603
+00:02:55,533 --> 00:02:56,603
 error signals,
 
 66
-00:02:56.603 --> 00:02:58.055
+00:02:56,603 --> 00:02:58,055
 diff security scan,
 
 67
-00:02:58.055 --> 00:02:59.125
+00:02:58,055 --> 00:02:59,125
 test coverage,
 
 68
-00:02:59.125 --> 00:03:00.043
+00:02:59,125 --> 00:03:00,043
 push status.
 
 69
-00:03:00.043 --> 00:03:04.247
+00:03:00,043 --> 00:03:04,247
 Plus a two-stage review and automatic retry on failure.
 
 70
-00:03:04.247 --> 00:03:08.604
+00:03:04,247 --> 00:03:08,604
 Plus an action verifier that catches hallucinated claims.
 
 71
-00:03:08.604 --> 00:03:09.216
+00:03:08,604 --> 00:03:09,216
 Testing.
 
 72
-00:03:09.216 --> 00:03:13.038
+00:03:09,216 --> 00:03:13,038
 OpenClaw has no test framework for agent behavior.
 
 73
-00:03:13.038 --> 00:03:18.694
+00:03:13,038 --> 00:03:18,694
 Renky has a skill linter that scores workspace files zero to a hundred and
 
 74
-00:03:18.694 --> 00:03:23.816
+00:03:18,694 --> 00:03:23,816
 behavioral test suites that verify the agent follows its own rules.
 
 75
-00:03:23.816 --> 00:03:27.485
+00:03:23,816 --> 00:03:27,485
 One thousand ninety-seven tests in the codebase.
 
 76
-00:03:27.485 --> 00:03:31.307
+00:03:27,485 --> 00:03:31,307
 Overall lint score: eighty-eight out of a hundred.
 
 77
-00:03:31.307 --> 00:03:32.760
+00:03:31,307 --> 00:03:32,760
 Session management.
 
 78
-00:03:32.760 --> 00:03:35.817
+00:03:32,760 --> 00:03:35,817
 OpenClaw sessions are tied to a channel.
 
 79
-00:03:35.817 --> 00:03:37.728
+00:03:35,817 --> 00:03:37,728
 Renky has session export,
 
 80
-00:03:37.728 --> 00:03:38.263
+00:03:37,728 --> 00:03:38,263
 import,
 
 81
-00:03:38.263 --> 00:03:38.493
+00:03:38,263 --> 00:03:38,493
 and
 
 82
-00:03:38.493 --> 00:03:45.143
+00:03:38,493 --> 00:03:45,143
 a handoff command that generates a one-time link to transfer a session between devices.
 
 83
-00:03:45.143 --> 00:03:48.583
+00:03:45,143 --> 00:03:48,583
 The real difference isn't any single feature.
 
 84
-00:03:48.583 --> 00:03:50.112
+00:03:48,583 --> 00:03:50,112
 It's the philosophy.
 
 85
-00:03:50.112 --> 00:03:52.787
+00:03:50,112 --> 00:03:52,787
 OpenClaw optimized for setup speed.
 
 86
-00:03:52.787 --> 00:03:55.463
+00:03:52,787 --> 00:03:55,463
 Five minutes and you have an agent.
 
 87
-00:03:55.463 --> 00:03:57.221
+00:03:55,463 --> 00:03:57,221
 That's what went viral.
 
 88
-00:03:57.221 --> 00:04:00.125
+00:03:57,221 --> 00:04:00,125
 Renky optimized for operational trust.
 
 89
-00:04:00.125 --> 00:04:02.725
+00:04:00,125 --> 00:04:02,725
 Can you verify what the agent did?
 
 90
-00:04:02.725 --> 00:04:05.553
+00:04:02,725 --> 00:04:05,553
 Can you prevent what it shouldn't do?
 
 91
-00:04:05.553 --> 00:04:09.069
+00:04:05,553 --> 00:04:09,069
 Can you test whether it follows its own rules?
 
 92
-00:04:09.069 --> 00:04:11.057
+00:04:09,069 --> 00:04:11,057
 Both approaches are valid.
 
 93
-00:04:11.057 --> 00:04:13.885
+00:04:11,057 --> 00:04:13,885
 But one of them scales to production.
 
 94
-00:04:13.885 --> 00:04:15.643
+00:04:13,885 --> 00:04:15,643
 The other stays a demo.
 
 95
-00:04:15.643 --> 00:04:18.089
+00:04:15,643 --> 00:04:18,089
 Eighteen thousand lines of code.
 
 96
-00:04:18.089 --> 00:04:19.847
+00:04:18,089 --> 00:04:19,847
 Forty-three test files.
 
 97
-00:04:19.847 --> 00:04:22.676
+00:04:19,847 --> 00:04:22,676
 Three layers of security enforcement.
 
 98
-00:04:22.676 --> 00:04:25.657
+00:04:22,676 --> 00:04:25,657
 A knowledge graph with semantic search.
 
 99
-00:04:25.657 --> 00:04:31.390
+00:04:25,657 --> 00:04:31,390
 And a skill testing framework that grades the agent's own operating system.
 
 100
-00:04:31.390 --> 00:04:33.454
+00:04:31,390 --> 00:04:33,454
 That's Your Agent's Resume.
 
 101
-00:04:33.454 --> 00:04:34.142
+00:04:33,454 --> 00:04:34,142
 I'm Jake.
 
 102
-00:04:34.142 --> 00:04:35.900
+00:04:34,142 --> 00:04:35,900
 Catch you next episode.
