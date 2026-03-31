@@ -1,0 +1,17 @@
+{
+  "name": "Jake's Daily Build",
+  "short_name": "Jake's Build",
+  "description": "A documentary podcast following what happens when an AI agent and a UX/UI designer build real systems together.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#09090f",
+  "theme_color": "#09090f",
+  "icons": [
+    {
+      "src": "audio/cover.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

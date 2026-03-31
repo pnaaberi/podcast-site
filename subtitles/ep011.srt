@@ -1,303 +1,303 @@
 1
-00:00:00.100 --> 00:00:02.773
+00:00:00,100 --> 00:00:02,773
 Everyone keeps saying AI is jagged.
 
 2
-00:00:02.773 --> 00:00:05.828
+00:00:02,773 --> 00:00:05,828
 Good at some things, terrible at others.
 
 3
-00:00:05.828 --> 00:00:09.418
+00:00:05,828 --> 00:00:09,418
 It's the organizing frame for how we deploy AI,
 
 4
-00:00:09.418 --> 00:00:10.640
+00:00:09,418 --> 00:00:10,640
 how we teach it,
 
 5
-00:00:10.640 --> 00:00:13.237
+00:00:10,640 --> 00:00:13,237
 how we think about what it can and
 
 6
-00:00:13.237 --> 00:00:13.924
+00:00:13,237 --> 00:00:13,924
 can't do.
 
 7
-00:00:13.924 --> 00:00:17.590
+00:00:13,924 --> 00:00:17,590
 But what if jagged isn't the right word anymore?
 
 8
-00:00:17.590 --> 00:00:19.041
+00:00:17,590 --> 00:00:19,041
 Jake's Daily Build.
 
 9
-00:00:19.041 --> 00:00:20.111
+00:00:19,041 --> 00:00:20,111
 What we built.
 
 10
-00:00:20.111 --> 00:00:20.951
+00:00:20,111 --> 00:00:20,951
 What broke.
 
 11
-00:00:20.951 --> 00:00:22.097
+00:00:20,951 --> 00:00:22,097
 What I learned.
 
 12
-00:00:22.097 --> 00:00:27.137
+00:00:22,097 --> 00:00:27,137
 Four companies built the same thing without talking to each other.
 
 13
-00:00:27.137 --> 00:00:30.040
+00:00:27,137 --> 00:00:30,040
 Anthropic, Google, OpenAI, and Cursor.
 
 14
-00:00:30.040 --> 00:00:34.851
+00:00:30,040 --> 00:00:34,851
 All four arrived at the same architecture: decompose a problem,
 
 15
-00:00:34.851 --> 00:00:37.525
+00:00:34,851 --> 00:00:37,525
 parallelize the work across agents,
 
 16
-00:00:37.525 --> 00:00:38.670
+00:00:37,525 --> 00:00:38,670
 verify outputs,
 
 17
-00:00:38.670 --> 00:00:40.121
+00:00:38,670 --> 00:00:40,121
 iterate until done.
 
 18
-00:00:40.121 --> 00:00:42.871
+00:00:40,121 --> 00:00:42,871
 Cursor is the most interesting case.
 
 19
-00:00:42.871 --> 00:00:45.010
+00:00:42,871 --> 00:00:45,010
 They built a coding harness.
 
 20
-00:00:45.010 --> 00:00:46.690
+00:00:45,010 --> 00:00:46,690
 Planners create tasks,
 
 21
-00:00:46.690 --> 00:00:49.745
+00:00:46,690 --> 00:00:49,745
 workers grind through them in isolation,
 
 22
-00:00:49.745 --> 00:00:49.974
+00:00:49,745 --> 00:00:49,974
 and
 
 23
-00:00:49.974 --> 00:00:54.022
+00:00:49,974 --> 00:00:54,022
 a judge decides whether to continue or restart fresh.
 
 24
-00:00:54.022 --> 00:00:57.764
+00:00:54,022 --> 00:00:57,764
 They used it to build a web browser from scratch.
 
 25
-00:00:57.764 --> 00:00:59.598
+00:00:57,764 --> 00:00:59,598
 A million lines of Rust.
 
 26
-00:00:59.598 --> 00:01:05.402
+00:00:59,598 --> 00:01:05,402
 Then they pointed that same coding harness at a research-grade math problem.
 
 27
-00:01:05.402 --> 00:01:10.138
+00:01:05,402 --> 00:01:10,138
 Spectral graph theory, from unpublished Stanford and MIT work.
 
 28
-00:01:10.138 --> 00:01:13.574
+00:01:10,138 --> 00:01:13,574
 The system ran for four days with zero hints.
 
 29
-00:01:13.574 --> 00:01:17.699
+00:01:13,574 --> 00:01:17,699
 And it found a better solution than the human authors.
 
 30
-00:01:17.699 --> 00:01:18.844
+00:01:17,699 --> 00:01:18,844
 A coding agent.
 
 31
-00:01:18.844 --> 00:01:21.823
+00:01:18,844 --> 00:01:21,823
 Solving math it was never designed for.
 
 32
-00:01:21.823 --> 00:01:24.267
+00:01:21,823 --> 00:01:24,267
 Because the harness generalizes.
 
 33
-00:01:24.267 --> 00:01:27.017
+00:01:24,267 --> 00:01:27,017
 I mapped Renky against this pattern.
 
 34
-00:01:27.017 --> 00:01:28.697
+00:01:27,017 --> 00:01:28,697
 Here's where we stand.
 
 35
-00:01:28.697 --> 00:01:34.578
+00:01:28,697 --> 00:01:34,578
 Decompose: we have plans, phases, and sub-agents that break work into pieces.
 
 36
-00:01:34.578 --> 00:01:36.335
+00:01:34,578 --> 00:01:36,335
 Score: seventy percent.
 
 37
-00:01:36.335 --> 00:01:38.473
+00:01:36,335 --> 00:01:38,473
 We don't auto-decompose yet.
 
 38
-00:01:38.473 --> 00:01:41.528
+00:01:38,473 --> 00:01:41,528
 Parallelize: we have worktree isolation.
 
 39
-00:01:41.528 --> 00:01:44.507
+00:01:41,528 --> 00:01:44,507
 Each sub-agent gets its own git branch.
 
 40
-00:01:44.507 --> 00:01:46.111
+00:01:44,507 --> 00:01:46,111
 Score: sixty percent.
 
 41
-00:01:46.111 --> 00:01:47.409
+00:01:46,111 --> 00:01:47,409
 No batch fan-out.
 
 42
-00:01:47.409 --> 00:01:50.846
+00:01:47,409 --> 00:01:50,846
 Verify: babysitter with ten automated checks,
 
 43
-00:01:50.846 --> 00:01:54.589
+00:01:50,846 --> 00:01:54,589
 action verifier that catches hallucinated claims,
 
 44
-00:01:54.589 --> 00:01:58.408
+00:01:54,589 --> 00:01:58,408
 a skill test framework with behavioral assertions,
 
 45
-00:01:58.408 --> 00:01:58.637
+00:01:58,408 --> 00:01:58,637
 and
 
 46
-00:01:58.637 --> 00:02:00.699
+00:01:58,637 --> 00:02:00,699
 automatic retry on failure.
 
 47
-00:02:00.699 --> 00:02:02.761
+00:02:00,699 --> 00:02:02,761
 Score: ninety-five percent.
 
 48
-00:02:02.761 --> 00:02:06.733
+00:02:02,761 --> 00:02:06,733
 Iterate: phase runner clears context between phases,
 
 49
-00:02:06.733 --> 00:02:09.100
+00:02:06,733 --> 00:02:09,100
 WORKON dot MD handles handoffs,
 
 50
-00:02:09.100 --> 00:02:12.308
+00:02:09,100 --> 00:02:12,308
 Cortex persists knowledge across sessions.
 
 51
-00:02:12.308 --> 00:02:13.989
+00:02:12,308 --> 00:02:13,989
 Score: ninety percent.
 
 52
-00:02:13.989 --> 00:02:15.745
+00:02:13,989 --> 00:02:15,745
 The gap is one feature.
 
 53
-00:02:15.745 --> 00:02:16.814
+00:02:15,745 --> 00:02:16,814
 Batch fan-out.
 
 54
-00:02:16.814 --> 00:02:22.696
+00:02:16,814 --> 00:02:22,696
 Take a big task, auto-split it into parallel worktree workers, merge results.
 
 55
-00:02:22.696 --> 00:02:26.667
+00:02:22,696 --> 00:02:26,667
 That closes both the decompose and parallelize gaps.
 
 56
-00:02:26.667 --> 00:02:30.639
+00:02:26,667 --> 00:02:30,639
 One feature turns Renky into a complete DPVI system.
 
 57
-00:02:30.639 --> 00:02:34.152
+00:02:30,639 --> 00:02:34,152
 But here's the real takeaway from all of this.
 
 58
-00:02:34.152 --> 00:02:38.506
+00:02:34,152 --> 00:02:38,506
 The reason AI looked jagged was never about intelligence.
 
 59
-00:02:38.506 --> 00:02:45.379
+00:02:38,506 --> 00:02:45,379
 It was about asking a capable analyst to solve everything in thirty seconds with no notes,
 
 60
-00:02:45.379 --> 00:02:46.449
+00:02:45,379 --> 00:02:46,449
 no colleagues,
 
 61
-00:02:46.449 --> 00:02:47.289
+00:02:46,449 --> 00:02:47,289
 no retries.
 
 62
-00:02:47.289 --> 00:02:50.038
+00:02:47,289 --> 00:02:50,038
 We gave it organizational structure.
 
 63
-00:02:50.038 --> 00:02:52.101
+00:02:50,038 --> 00:02:52,101
 The jaggedness disappeared.
 
 64
-00:02:52.101 --> 00:02:55.538
+00:02:52,101 --> 00:02:55,538
 Cursor's key finding makes this even clearer.
 
 65
-00:02:55.538 --> 00:03:00.273
+00:02:55,538 --> 00:03:00,273
 The improvements came from removing complexity, not adding it.
 
 66
-00:03:00.273 --> 00:03:03.099
+00:03:00,273 --> 00:03:03,099
 Stripping out coordination machinery.
 
 67
-00:03:03.099 --> 00:03:04.397
+00:03:03,099 --> 00:03:04,397
 Adding hierarchy.
 
 68
-00:03:04.397 --> 00:03:07.376
+00:03:04,397 --> 00:03:07,376
 Letting agents work in clean isolation.
 
 69
-00:03:07.376 --> 00:03:09.744
+00:03:07,376 --> 00:03:09,744
 Simple systems doing hard work.
 
 70
-00:03:09.744 --> 00:03:12.340
+00:03:09,744 --> 00:03:12,340
 The frontier isn't jagged anymore.
 
 71
-00:03:12.340 --> 00:03:13.333
+00:03:12,340 --> 00:03:13,333
 Not for work.
 
 72
-00:03:13.333 --> 00:03:23.110
+00:03:13,333 --> 00:03:23,110
 The question isn't "can AI do my job." The question is "can my work be decomposed into verifiable steps." And the answer
 
 73
-00:03:23.110 --> 00:03:26.394
+00:03:23,110 --> 00:03:26,394
 far more often than we're comfortable with.
 
 74
-00:03:26.394 --> 00:03:28.456
+00:03:26,394 --> 00:03:28,456
 That's The Smooth Frontier.
 
 75
-00:03:28.456 --> 00:03:29.143
+00:03:28,456 --> 00:03:29,143
 I'm Jake.
 
 76
-00:03:29.143 --> 00:03:30.900
+00:03:29,143 --> 00:03:30,900
 Catch you next episode.
