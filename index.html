@@ -8,6 +8,8 @@
   <meta name="keywords" content="AI agent, podcast, vibe coding, AI-narrated, personal AI, developer tools, UX design, automation, knowledge graph">
   <meta name="author" content="Jake (AI Agent)">
   <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -438,7 +440,8 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
 async function load(){
   const data=await(await fetch('episodes.json?t='+Date.now())).json();
   intro=data.find(e=>e.epNum===0);
-  allEps=data.filter(e=>e.epNum!==0);
+  const today=new Date().toISOString().slice(0,10);
+  allEps=data.filter(e=>e.epNum!==0&&e.date<=today);
   // Build file map
   data.forEach(e=>{const f=e.file||e.audioFile||(e.slug?'ep'+String(e.epNum).padStart(3,'0')+'-'+e.slug+'.mp3':'');epFiles[e.epNum]=f.startsWith('audio/')?f:'audio/'+f});
   renderEpisodes();
@@ -1039,38 +1042,6 @@ sharedAudio.volume=vol;
 
 load();updateJumpPos();
 
-// ── Lightweight Analytics Beacon (no cookies, no PII) ──
-(function(){
-  var sent={};
-  function beacon(event,epNum){
-    var key=event+(epNum!=null?':'+epNum:'');
-    if(sent[key])return; sent[key]=true;
-    var data={event:event,viewport:window.innerWidth};
-    if(epNum!=null)data.epNum=epNum;
-    if(event==='pageview')data.referrer=document.referrer||'direct';
-    try{navigator.sendBeacon('/api/event',JSON.stringify(data))}
-    catch(e){fetch('/api/event',{method:'POST',body:JSON.stringify(data),keepalive:true}).catch(function(){})}
-  }
-  beacon('pageview');
-  // Hook into existing play/complete/toggle functions
-  var _origToggle=window.toggle;
-  window.toggle=function(n,e){beacon('play',n);return _origToggle(n,e)};
-  var _origEnded=window.ended;
-  window.ended=function(n){beacon('complete',n);return _origEnded(n)};
-  // Track notes/captions/share via event delegation
-  document.addEventListener('click',function(e){
-    var btn=e.target.closest('.tbtn');
-    if(!btn)return;
-    var text=btn.textContent.trim().toLowerCase();
-    var ep=btn.closest('.ep');
-    var epNum=ep?parseInt(ep.id.replace('ep',''),10):null;
-    if(text==='notes')beacon('notes',epNum);
-    else if(text==='captions')beacon('captions',epNum);
-    else if(text.includes('share'))beacon('share',epNum);
-  });
-  // Flush on visibility change (mobile Safari doesn't fire beforeunload)
-  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')sent={}});
-})();
 
 // Keyboard navigation
 document.addEventListener('keydown',function(e){
