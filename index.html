@@ -974,15 +974,16 @@ async function loadStickyNotes(n, num) {
   const content = document.getElementById('sticky-panel-content');
   const url = 'notes/ep' + num + '.md';
 
-  if (stickyNotesLoaded[n]) return; // Already loaded
+  if (stickyNotesLoaded[n]) { content.innerHTML = stickyNotesLoaded[n]; return; }
 
   content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Loading notes...</div>';
   try {
     const r = await fetch(url);
     if (!r.ok) { content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">No notes available for this episode.</div>'; return; }
     const text = await r.text();
-    content.innerHTML = '<div class="panel open" style="display:block">' + renderMd(text) + '</div>';
-    stickyNotesLoaded[n] = true;
+    const html = '<div class="panel open" style="display:block">' + renderMd(text) + '</div>';
+    content.innerHTML = html;
+    stickyNotesLoaded[n] = html;
   } catch(e) {
     content.innerHTML = '<div style="color:var(--t3);font-size:0.7rem;text-align:center">Failed to load notes.</div>';
   }
