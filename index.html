@@ -230,17 +230,23 @@
     .speed-btn{width:auto!important;min-width:48px;border-radius:8px!important;font-size:0.82rem;font-weight:700;font-family:inherit;letter-spacing:-0.02em;padding:8px 14px}
     .speed-btn:hover{color:var(--accent)}
     .speed-btn.active{color:var(--accent)}
-    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0;position:relative}
-    .sticky-controls .collapse-btn{position:absolute;right:0}
+    .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0}
     .sticky-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-    .collapse-btn{background:none;border:1px solid var(--border);color:var(--t3);font-size:0.62rem;font-weight:600;font-family:inherit;padding:6px 12px;min-height:36px;border-radius:6px;cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:4px;letter-spacing:0.3px;white-space:nowrap}
-    .collapse-btn:hover{border-color:var(--accent);color:var(--accent)}
-    .collapse-btn svg{width:12px;height:12px;fill:currentColor;transition:transform 0.3s}
-    .sticky.mini .sticky-controls,.sticky.mini .sticky-tabs,.sticky.mini .vol-wrap,.sticky.mini .sticky-time{display:none}
-    .sticky.mini .sticky-row{gap:6px}
-    .sticky.mini .sticky-bar{height:32px}
-    .sticky.mini{padding:4px 16px}
-    .sticky.mini .collapse-btn svg{transform:rotate(180deg)}
+    /* Minimize chevron in full player top row */
+    .sticky-minimize{background:none;border:none;color:var(--t3);cursor:pointer;padding:6px;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;transition:color 0.15s}
+    .sticky-minimize:hover{color:var(--t2)}
+    .sticky-minimize svg{width:18px;height:18px;fill:currentColor}
+    /* Mini state: single row — play + title + progress + time */
+    .sticky.mini{padding:6px 16px;cursor:pointer}
+    .sticky.mini .sticky-row{gap:8px}
+    .sticky.mini .sticky-controls,.sticky.mini .sticky-tabs,.sticky.mini .vol-wrap,.sticky.mini .sticky-minimize{display:none}
+    .sticky.mini .sticky-bar{height:36px}
+    .sticky.mini .sticky-bar .sticky-track{height:4px}
+    /* Mini play button — small, inline with title */
+    .sticky-mini-play{display:none;width:36px;height:36px;min-width:36px;border-radius:50%;border:none;background:var(--accent);color:#fff;cursor:pointer;align-items:center;justify-content:center}
+    .sticky-mini-play svg{width:14px;height:14px;fill:#fff}
+    .sticky.mini .sticky-mini-play{display:flex}
+    .sticky.mini .sticky-time{display:block}
     @media(max-width:480px){
       .sbtn-prev,.sbtn-next{display:none}
       .sbtn{width:52px;height:52px;min-width:52px}
@@ -324,16 +330,18 @@
     <div class="sticky-panel-content" id="sticky-panel-content"></div>
   </div>
 </div>
-<div class="sticky" id="sticky">
+<div class="sticky" id="sticky" onclick="stickyBarClick(event)">
   <div class="sticky-row">
+    <button class="sticky-mini-play" id="sticky-mini-play" onclick="event.stopPropagation();toggleCur()"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
     <div class="sticky-info">
       <span class="sticky-t" id="sticky-t"></span>
     </div>
     <div class="sticky-tabs">
-      <button class="sticky-tab" id="sticky-tab-captions" onclick="toggleStickyPanel('captions')">CC</button>
-      <button class="sticky-tab" id="sticky-tab-notes" onclick="toggleStickyPanel('notes')">Notes</button>
+      <button class="sticky-tab" id="sticky-tab-captions" onclick="event.stopPropagation();toggleStickyPanel('captions')">CC</button>
+      <button class="sticky-tab" id="sticky-tab-notes" onclick="event.stopPropagation();toggleStickyPanel('notes')">Notes</button>
     </div>
     <span class="sticky-time" id="sticky-time"></span>
+    <button class="sticky-minimize" onclick="event.stopPropagation();toggleMini()" aria-label="Minimize player" title="Minimize"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg></button>
     <div class="vol-wrap" id="vol-wrap">
       <button class="vol-icon" id="vol-icon" onclick="handleVolClick()" aria-label="Volume control"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
       <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
@@ -355,7 +363,6 @@
     <button class="sbtn" onclick="skipFwd()" aria-label="Skip forward 15 seconds" title="Skip forward 15s"><svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/></svg></button>
     <button class="sbtn sbtn-sm sbtn-next" onclick="nextTrack()" aria-label="Next episode" title="Next episode"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
     <button class="sbtn sbtn-sm speed-btn" id="speed-btn" onclick="cycleSpeed()" aria-label="Playback speed" title="Playback speed">1×</button>
-    <button class="collapse-btn" id="collapse-btn" onclick="toggleMini()" aria-label="Collapse player"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg><span id="collapse-label">Collapse</span></button>
   </div>
 </div>
 <script>
@@ -725,7 +732,8 @@ function showSticky(n){
   // Position panel above sticky player
   requestAnimationFrame(()=>{const s=document.getElementById('sticky');const p=document.getElementById('sticky-panel');if(s&&p)p.style.bottom=s.offsetHeight+'px'});
 }
-function toggleMini(){const s=document.getElementById('sticky');s.classList.toggle('mini');const l=document.getElementById('collapse-label');if(l)l.textContent=s.classList.contains('mini')?'Expand':'Collapse';const p=document.getElementById('sticky-panel');if(s.classList.contains('mini')&&p)p.classList.remove('open');requestAnimationFrame(()=>{if(p)p.style.bottom=s.offsetHeight+'px'})}
+function toggleMini(){const s=document.getElementById('sticky');s.classList.toggle('mini');const p=document.getElementById('sticky-panel');if(s.classList.contains('mini')&&p)p.classList.remove('open');requestAnimationFrame(()=>{if(p)p.style.bottom=s.offsetHeight+'px'})}
+function stickyBarClick(e){const s=document.getElementById('sticky');if(!s.classList.contains('mini'))return;if(e.target.closest('.sticky-mini-play,.sticky-bar'))return;toggleMini()}
 function hideSticky(){document.getElementById('sticky').classList.remove('on');document.getElementById('sticky-panel').classList.remove('open');stickyPanelMode=null;document.getElementById('sticky-tab-captions').classList.remove('active');document.getElementById('sticky-tab-notes').classList.remove('active');const f=document.querySelector('footer');if(f){f.classList.remove('has-sticky');f.classList.remove('has-panel')}updateJumpPos()}
 function stickySeek(e){if(!cur)return;const r=e.currentTarget.getBoundingClientRect();const pct=(e.clientX-r.left)/r.width;if(cur.a.duration)cur.a.currentTime=pct*cur.a.duration}
 const AUTO_CAP_SEC=20;
@@ -1055,6 +1063,8 @@ function nextTrack(){
 // Wire shared audio events
 sharedAudio.addEventListener('timeupdate',()=>{if(cur)tick(cur.n)});
 sharedAudio.addEventListener('ended',()=>{if(cur)ended(cur.n)});
+sharedAudio.addEventListener('play',()=>{document.getElementById('sticky-mini-play').innerHTML=PA});
+sharedAudio.addEventListener('pause',()=>{document.getElementById('sticky-mini-play').innerHTML=PL});
 sharedAudio.volume=vol;
 
 load();updateJumpPos();
