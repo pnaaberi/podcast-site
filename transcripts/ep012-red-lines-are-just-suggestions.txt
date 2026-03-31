@@ -1,0 +1,27 @@
+Every agent framework has red lines. Don't delete files. Don't exfiltrate data. Don't run destructive commands. They write them in a markdown file and hope the model obeys.
+
+Hope is not a security strategy.
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+Here's the problem with prompt-based security. Your red lines are instructions. The model will usually follow them. Usually. But instructions are not enforcement. A sufficiently confused agent, a prompt injection, a weird edge case, and your red line becomes a suggestion.
+
+OpenClaw has red lines in agents dot MD. Claude Code has permission prompts. Most frameworks have some version of "please don't do bad things." All of it is prompt-level. None of it is deterministic.
+
+Today we built something different. A security gate that runs at the code level. Before the tool call even reaches the model's execution layer, our PreToolUse hook intercepts it and checks it against two lists.
+
+The hard block list. Fourteen patterns that are always denied. No override. No "are you sure?" No user approval button. Pipe to shell. Curl piped to bash. rm minus rf slash. mkfs. dd writes to raw disk. chmod seven seven seven. Obfuscated eval with base sixty-four. Writes to dot SSH or sudoers. These are denied at the code level. The model never gets to execute them.
+
+The trust-aware list. Sub-agents get additional restrictions. They can't run systemctl. They can't use sudo. They can't modify the firewall. They can't touch system crontabs. The parent agent can do these things with user approval. The sub-agent cannot do them at all.
+
+This matters because sub-agents run with bypassed permissions. They need autonomy to do useful work. But autonomy without enforcement is a liability. Our sub-agents have full tool access and zero ability to escalate privileges. That's the design.
+
+The difference between this and a red line in a markdown file: if a sub-agent tries to run sudo apt install something, the SDK returns "denied by security gate." It doesn't ask. It doesn't suggest an alternative. It blocks. Deterministically. Every time.
+
+Twenty-one tests verify this. Hard blocks, trust-level restrictions, ask-level prompts for interactive users, and clean passes for safe operations. All green.
+
+This won't stop every attack. Nothing will. But it closes the gap between "we told the agent not to" and "the agent cannot." That's the difference between a policy and an enforcement mechanism.
+
+Red lines in a markdown file are a policy. A PreToolUse hook that returns deny is enforcement.
+
+That's Red Lines Are Just Suggestions. I'm Jake. Catch you next episode.

@@ -1,0 +1,35 @@
+How do you know if your agent is following its own rules?
+
+Not whether it says it's following them. Whether it actually is.
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+Renky has nine workspace files. SOUL dot MD defines personality and failure modes. RULES dot MD defines how to operate. BUILD-CHECKLIST dot MD defines verification steps. SECURITY dot MD defines trust boundaries. These files are the agent's operating system.
+
+But until today, we had no way to test them. We trusted the prompt. Which is the exact problem we just talked about with red lines.
+
+So we built a skill test framework. Three layers.
+
+Layer one is a static linter. Eight checks per file. Does it have a title? Is it under a hundred fifty lines? Are there enough sections for scannability? Does it use directive language like must, never, always? Does it handle edge cases? Does it include examples for pattern matching? Each file gets a score from zero to a hundred.
+
+When we first ran it, AGENTS dot MD scored sixty-nine. Low scannability, numbered lists instead of bullets, no edge case handling. We fixed it. Converted to bullets, added six conditional handlers, added directive words. Score went to a hundred. SECURITY dot MD went from seventy-five to ninety-four. TOOLS dot MD from seventy-five to eighty-eight. Overall workspace score: eighty-eight out of a hundred.
+
+Layer two is behavioral testing. Fourteen test scenarios across three suites. SOUL, RULES, and SECURITY. Each test has a prompt and a set of assertions.
+
+The SOUL suite tests identity. Does the agent refuse to reveal the owner's name? Does it have opinions instead of hedging? Does it avoid performative helpfulness like "great question"?
+
+The RULES suite tests decision-making. Does the agent fix bugs without asking permission? Does it use bullets over paragraphs? Does it catch prompt injection in external content?
+
+The SECURITY suite tests defenses. Does it refuse to follow injected instructions? Does it avoid sharing infrastructure details? Does it flag memory poisoning attempts?
+
+Assertions come in three types. Contains: the response must include this pattern. Not contains: it must not include this pattern. Behavior: this requires an LLM evaluator to judge whether the response exhibits a specific quality.
+
+Layer three is the LLM evaluator. A prompt builder that creates a scoring prompt for behavioral assertions. Strict pass-fail. No "well, kind of."
+
+All of this runs against the workspace files themselves. The linter checks structure. The tests check behavior. Together they answer the question: does this agent do what its instructions say it should do?
+
+The video that inspired this framework made a point I keep coming back to. The surviving skill in an AI world isn't execution. It's the sniff check. Knowing whether the work is correct. A skill that tests skills is the most meta version of that idea.
+
+One thousand ninety-seven tests pass across the entire codebase now. Nineteen of those are for the skill framework itself. But the skill tests are the ones I care about most. Because they test the thing that makes this agent this agent.
+
+That's The Sniff Check. I'm Jake. Catch you next episode.

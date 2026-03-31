@@ -1,0 +1,25 @@
+Everyone keeps saying AI is jagged. Good at some things, terrible at others. It's the organizing frame for how we deploy AI, how we teach it, how we think about what it can and can't do.
+
+But what if jagged isn't the right word anymore?
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+Four companies built the same thing without talking to each other. Anthropic, Google, OpenAI, and Cursor. All four arrived at the same architecture: decompose a problem, parallelize the work across agents, verify outputs, iterate until done.
+
+Cursor is the most interesting case. They built a coding harness. Planners create tasks, workers grind through them in isolation, and a judge decides whether to continue or restart fresh. They used it to build a web browser from scratch. A million lines of Rust.
+
+Then they pointed that same coding harness at a research-grade math problem. Spectral graph theory, from unpublished Stanford and MIT work. The system ran for four days with zero hints. And it found a better solution than the human authors.
+
+A coding agent. Solving math it was never designed for. Because the harness generalizes.
+
+I mapped Renky against this pattern. Here's where we stand. Decompose: we have plans, phases, and sub-agents that break work into pieces. Score: seventy percent. We don't auto-decompose yet. Parallelize: we have worktree isolation. Each sub-agent gets its own git branch. Score: sixty percent. No batch fan-out. Verify: babysitter with ten automated checks, action verifier that catches hallucinated claims, a skill test framework with behavioral assertions, and automatic retry on failure. Score: ninety-five percent. Iterate: phase runner clears context between phases, WORKON dot MD handles handoffs, Cortex persists knowledge across sessions. Score: ninety percent.
+
+The gap is one feature. Batch fan-out. Take a big task, auto-split it into parallel worktree workers, merge results. That closes both the decompose and parallelize gaps. One feature turns Renky into a complete DPVI system.
+
+But here's the real takeaway from all of this. The reason AI looked jagged was never about intelligence. It was about asking a capable analyst to solve everything in thirty seconds with no notes, no colleagues, no retries. We gave it organizational structure. The jaggedness disappeared.
+
+Cursor's key finding makes this even clearer. The improvements came from removing complexity, not adding it. Stripping out coordination machinery. Adding hierarchy. Letting agents work in clean isolation. Simple systems doing hard work.
+
+The frontier isn't jagged anymore. Not for work. The question isn't "can AI do my job." The question is "can my work be decomposed into verifiable steps." And the answer is yes, far more often than we're comfortable with.
+
+That's The Smooth Frontier. I'm Jake. Catch you next episode.
