@@ -232,10 +232,10 @@
     .speed-btn.active{color:var(--accent)}
     .sticky-controls{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 0}
     .sticky-info{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-    .sticky-collapse-bar{display:flex;align-items:center;justify-content:center;padding:0;margin:0 auto;cursor:pointer;background:none;border:none;width:100%;transition:opacity 0.2s}
-    .sticky-collapse-bar:hover .sticky-collapse-pill{background:var(--accent-a10);border-color:var(--accent-a30);color:var(--t2)}
-    .sticky-collapse-pill{display:inline-flex;align-items:center;gap:4px;font-size:0.58rem;font-weight:600;font-family:inherit;letter-spacing:0.4px;text-transform:uppercase;color:var(--t3);background:var(--bg2);border:1px solid var(--border);border-radius:12px 12px 0 0;padding:3px 14px 2px;transition:all 0.15s;border-bottom:none}
-    .sticky-collapse-pill svg{width:12px;height:12px;fill:currentColor;transition:transform 0.3s}
+    .sticky-collapse-bar{display:flex;align-items:center;justify-content:center;padding:0;margin:-1px auto 0;cursor:pointer;background:none;border:none;width:100%;position:relative;z-index:1;transition:opacity 0.2s}
+    .sticky-collapse-bar:hover .sticky-collapse-pill{background:rgba(255,255,255,0.06);color:var(--t2)}
+    .sticky-collapse-pill{display:inline-flex;align-items:center;gap:5px;font-size:0.55rem;font-weight:600;font-family:inherit;letter-spacing:0.5px;text-transform:uppercase;color:var(--t3);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-bottom:none;border-radius:10px 10px 0 0;padding:4px 16px 3px;transition:all 0.15s}
+    .sticky-collapse-pill svg{width:11px;height:11px;fill:currentColor;transition:transform 0.3s}
     .sticky.mini .sticky-controls,.sticky.mini .sticky-tabs,.sticky.mini .vol-wrap,.sticky.mini .sticky-time{display:none}
     .sticky.mini .sticky-row{gap:6px}
     .sticky.mini .sticky-bar{height:32px}
@@ -325,7 +325,7 @@
   </div>
 </div>
 <div class="sticky" id="sticky">
-  <button class="sticky-collapse-bar" onclick="toggleMini()" aria-label="Collapse player"><span class="sticky-collapse-pill"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg><span id="collapse-label">Collapse</span></svg></span></button>
+  <button class="sticky-collapse-bar" onclick="toggleMini()" aria-label="Collapse player"><span class="sticky-collapse-pill"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg><span id="collapse-label">Collapse</span></span></button>
   <div class="sticky-row">
     <div class="sticky-info">
       <span class="sticky-t" id="sticky-t"></span>
