@@ -724,7 +724,8 @@ function autoplayNext(n){
 function updateJumpPos(){const j=document.getElementById('jump');if(j){j.classList.toggle('no-sticky',!document.getElementById('sticky').classList.contains('on'))}}
 function showSticky(n){
   const t=document.querySelector('#ep'+n+' .ep-title');
-  document.getElementById('sticky-t').textContent=t?t.textContent:'';
+  const num=String(n).padStart(3,'0');
+  document.getElementById('sticky-t').textContent=t?'EP'+num+' — '+t.textContent:'';
   document.getElementById('sticky-btn').innerHTML=PA;
   document.getElementById('sticky').classList.add('on');
   const f=document.querySelector('footer');if(f)f.classList.add('has-sticky');
