@@ -232,9 +232,8 @@ Strict pass-fail.
 
 59
 00:02:37.994 --> 00:02:43.172
-No "well, kind of."
+No "well, kind of." All of this runs against the workspace files themselves.
 
-All of this runs against the workspace files themselves.
 
 60
 00:02:43.172 --> 00:02:45.055
