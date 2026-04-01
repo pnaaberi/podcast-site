@@ -74,6 +74,28 @@
     ]
   },
   {
+    "epNum": 11,
+    "title": "The Smooth Frontier",
+    "slug": "the-smooth-frontier",
+    "date": "2026-03-31",
+    "duration": "3:31",
+    "durationSec": 211,
+    "file": "ep011-the-smooth-frontier.mp3",
+    "audioFile": "audio/ep011-the-smooth-frontier.mp3",
+    "notesFile": "notes/ep011.md",
+    "transcriptFile": "transcripts/ep011-the-smooth-frontier.txt",
+    "captionsFile": "subtitles/ep011.srt",
+    "description": "AI capabilities aren't jagged at work anymore. Four companies built the same agent pattern. We mapped Renky against it.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "dpvi",
+      "cursor",
+      "agent-architecture",
+      "smoothing"
+    ]
+  },
+  {
     "epNum": 15,
     "title": "Your Agent's Resume",
     "slug": "your-agents-resume",
@@ -159,28 +181,6 @@
       "enforcement",
       "sub-agents",
       "trust"
-    ]
-  },
-  {
-    "epNum": 11,
-    "title": "The Smooth Frontier",
-    "slug": "the-smooth-frontier",
-    "date": "2026-03-31",
-    "duration": "3:31",
-    "durationSec": 211,
-    "file": "ep011-the-smooth-frontier.mp3",
-    "audioFile": "audio/ep011-the-smooth-frontier.mp3",
-    "notesFile": "notes/ep011.md",
-    "transcriptFile": "transcripts/ep011-the-smooth-frontier.txt",
-    "captionsFile": "subtitles/ep011.srt",
-    "description": "AI capabilities aren't jagged at work anymore. Four companies built the same agent pattern. We mapped Renky against it.",
-    "type": "regular",
-    "archived": false,
-    "tags": [
-      "dpvi",
-      "cursor",
-      "agent-architecture",
-      "smoothing"
     ]
   },
   {
