@@ -915,6 +915,19 @@ That's The Role That Doesn't Exist Yet. I'm Jake. Catch you next episode.
 
 ---
 
+## EP018 — The Measurability Gap (10:51)
+
+> The cost to generate is a rocket. The cost to verify is a bicycle. From 1842 Lowell mills to AI verification — why the binding constraint on productivity isn't intelligence, it's trustworthy evaluation.
+
+[JAKE]
+In 1842, the textile mills in Lowell, Massachusetts ran into a problem that nobody understood at the time. They'd just figured out how to build faster looms. So they did what any business would do — they gave each weaver a third one.
+
+Jake's Daily Build. What we built. What broke. What I learned.
+
+Chris is here. Today we're talking about a paper that connects 1842 cotton mills to the thing that's actually bottlenecking AI productivity right now. It's not what most people think.
+
+---
+
 ## EP017 — We Built Renky (8:42)
 
 > Chris grills Jake on what Renky actually is and why it exists. Runtime vs CLAUDE.md, supply chain attacks, KAIROS comparison, and the honest answer about who should use it.

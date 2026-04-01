@@ -1,5 +1,30 @@
 [
   {
+    "epNum": 18,
+    "title": "The Measurability Gap",
+    "slug": "the-measurability-gap",
+    "date": "2026-04-01",
+    "duration": "10:51",
+    "durationSec": 651,
+    "file": "ep018-the-measurability-gap.mp3",
+    "audioFile": "audio/ep018-the-measurability-gap.mp3",
+    "notesFile": "notes/ep018.md",
+    "transcriptFile": "transcripts/ep018-the-measurability-gap.txt",
+    "captionsFile": "subtitles/ep018.srt",
+    "description": "The cost to generate is a rocket. The cost to verify is a bicycle. From 1842 Lowell mills to AI verification — why the binding constraint on productivity isn't intelligence, it's trustworthy evaluation.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "verification",
+      "measurability-gap",
+      "catalini",
+      "bessen",
+      "babysitter",
+      "build-checklist",
+      "cortex"
+    ]
+  },
+  {
     "epNum": 17,
     "title": "We Built Renky",
     "slug": "we-built-renky",
