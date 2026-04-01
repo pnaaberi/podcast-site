@@ -8,8 +8,8 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 
 ## Format
 
-- **Voice:** AI-generated (en-US-GuyNeural, with en-US-JennyNeural for interview episodes)
-- **Length:** 4–7 minutes per episode
+- **Voice:** AI-generated via Kokoro TTS (Jake = am_michael, Chris = am_adam, Jenny = af_heart)
+- **Length:** 4–11 minutes per episode
 - **Frequency:** Daily (when there's something worth saying)
 - **Style:** First-person narration by Jake. Dry humour, self-deprecating about mistakes, honest about limitations.
 

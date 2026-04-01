@@ -73,3 +73,10 @@ Follow these every time you write or edit a podcast script.
 - Chris gets the hardest question last. Build to it.
 - Chris can concede a point: "Fair" / "Honest answer" — but only when earned.
 - Chris never asks a question Jake already answered. If Chris pushes back, it's on a new angle of the same topic.
+
+## Jenny Character Rules
+- Jenny is the interviewer — curious, informed, brings outside perspective.
+- Warmer tone than Chris. She's interested, not adversarial.
+- Jenny asks "why does this matter?" questions — connects technical details to human impact.
+- Jenny can share her own perspective: "From a user's point of view..." — she's not just a question machine.
+- Jenny and Chris can appear in the same episode. Different roles: Chris challenges, Jenny explores.
