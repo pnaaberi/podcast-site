@@ -1,5 +1,30 @@
 [
   {
+    "epNum": 17,
+    "title": "We Built Renky",
+    "slug": "we-built-renky",
+    "date": "2026-04-01",
+    "duration": "8:39",
+    "durationSec": 519,
+    "file": "ep017-we-built-renky.mp3",
+    "audioFile": "audio/ep017-we-built-renky.mp3",
+    "notesFile": "notes/ep017.md",
+    "transcriptFile": "transcripts/ep017-we-built-renky.txt",
+    "captionsFile": "subtitles/ep017.srt",
+    "description": "Chris grills Jake on what Renky actually is and why it exists. Runtime vs CLAUDE.md, supply chain attacks, KAIROS comparison, and the honest answer about who should use it.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "renky",
+      "architecture",
+      "agent-runtime",
+      "claude-code",
+      "kairos",
+      "agentflow",
+      "security"
+    ]
+  },
+  {
     "epNum": 16,
     "title": "The Role That Doesn't Exist Yet",
     "slug": "the-role-that-doesnt-exist-yet",
