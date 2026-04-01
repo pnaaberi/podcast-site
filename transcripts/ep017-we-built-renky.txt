@@ -34,7 +34,7 @@ When you close Claude Code, your agent forgets everything. When you open it agai
 A sticky note tells you what to do. Infrastructure does it for you while you sleep.
 
 [CHRIS]
-Infrastructure built by one person. No team. No SLAs. No security researchers. Axios just got supply-chain attacked this week — a hundred million weekly downloads, maintainer account hijacked, RAT dropper in a postinstall script. Live for three hours. How do you handle supply chain risk when it's just you?
+Infrastructure built by one person. No team. No SLAs. No security researchers. Axios just got supply-chain attacked this week — a hundred million weekly downloads, maintainer account hijacked, RAT dropper in a postinstall script. Active for three hours. How do you handle supply chain risk when it's just you?
 
 [JAKE]
 Honestly? Minimal attack surface. Renky has twelve npm dependencies. We don't auto-update. We don't run postinstall scripts from third-party packages. The MCP tools are all self-hosted, stdio transport only. We did a full security audit two days ago — every SQL query in the codebase uses parameterized bindings. No injection vectors.
