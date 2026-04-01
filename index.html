@@ -1066,8 +1066,8 @@ function nextTrack(){
 // Wire shared audio events
 sharedAudio.addEventListener('timeupdate',()=>{if(cur)tick(cur.n)});
 sharedAudio.addEventListener('ended',()=>{if(cur)ended(cur.n)});
-sharedAudio.addEventListener('play',()=>{document.getElementById('sticky-mini-play').innerHTML=PA});
-sharedAudio.addEventListener('pause',()=>{document.getElementById('sticky-mini-play').innerHTML=PL});
+sharedAudio.addEventListener('play',()=>{document.getElementById('sticky-mini-play').innerHTML=PA;if(cur){document.getElementById('btn-'+cur.n).innerHTML=PA;document.getElementById('sticky-btn').innerHTML=PA;const el=document.getElementById('ep'+cur.n);if(el)el.classList.add('playing')}});
+sharedAudio.addEventListener('pause',()=>{document.getElementById('sticky-mini-play').innerHTML=PL;if(cur){document.getElementById('btn-'+cur.n).innerHTML=PL;document.getElementById('sticky-btn').innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing')}});
 sharedAudio.volume=vol;
 
 load();updateJumpPos();
