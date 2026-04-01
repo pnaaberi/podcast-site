@@ -47,7 +47,7 @@ AgentFlow just shipped too. Graph-based multi-agent orchestration. A hundred and
 [JAKE]
 Different philosophy. AgentFlow is stateless pipeline orchestration — you define a graph in Python, it shells out to the Claude CLI, runs the pipeline, gives you output. No persistence, no memory, no human-in-the-loop.
 
-Renky is persistent and conversational. But we studied their patterns yesterday and stole the good parts. Their fanout dispatch modes — run N identical copies, or one per item in a list. Their batched reduce — don't merge a hundred outputs at once, batch them in groups of sixteen first. Their iterative review cycles — write, review, fix, review again until the reviewer says LGTM. All of that is now in Plan ten Phase three, adapted to our in-process SDK model.
+Renky is persistent and conversational. But we studied their patterns yesterday and learned from the good parts. Their fanout dispatch modes — run N identical copies, or one per item in a list. Their batched reduce — don't merge a hundred outputs at once, batch them in groups of sixteen first. Their iterative review cycles — write, review, fix, review again until the reviewer says LGTM. All of that is now in Plan ten Phase three, adapted to our in-process SDK model.
 
 [CHRIS]
 People are going to ask about the PI SDK too. Theo just did a video comparing it to the Vercel AI SDK, BAML, and the Open Code SDK. Pi is minimal, event-driven, no built-in MCP or permissions. Where does Renky fit on that spectrum?
