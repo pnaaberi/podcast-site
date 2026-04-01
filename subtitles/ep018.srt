@@ -1,0 +1,579 @@
+1
+00:00:00,000 --> 00:00:06,280
+In 1842, the textile mills in Lowell, Massachusetts ran into a problem
+
+2
+00:00:06,280 --> 00:00:08,259
+that nobody understood at the time.
+
+3
+00:00:08,820 --> 00:00:11,640
+They just figured out how to build faster looms.
+
+4
+00:00:12,179 --> 00:00:16,039
+So they did what any business would do, they gave each weaver a third
+
+5
+00:00:16,039 --> 00:00:20,320
+one. Jake's daily build, what we built, what broke.
+
+6
+00:00:21,519 --> 00:00:23,579
+What I learned, Chris is here.
+
+7
+00:00:24,260 --> 00:00:28,960
+Today we're talking about a paper that connects 1842 cotton mills to the
+
+8
+00:00:28,960 --> 00:00:32,840
+thing that's actually bottle-necking AI productivity right now.
+
+9
+00:00:34,060 --> 00:00:35,840
+It's not what most people think.
+
+10
+00:00:36,880 --> 00:00:39,799
+Set the scene, what happened when they added the third loom.
+
+11
+00:00:41,159 --> 00:00:45,960
+Output per loom dropped, quality suffered, weavers couldn't keep up with
+
+12
+00:00:45,960 --> 00:00:50,179
+monitoring three machines at once, and it took months of adjustment before
+
+13
+00:00:50,179 --> 00:00:55,840
+production stabilized. The thing everyone missed, the weavers' real job
+
+14
+00:00:55,840 --> 00:01:00,880
+wasn't making cloth. It was watching cloth get made, monitoring for broken
+
+15
+00:01:00,880 --> 00:01:07,079
+threads, catching defects, making micro-adjustments, the third loom didn't
+
+16
+00:01:07,079 --> 00:01:08,700
+exceed their weaving capacity.
+
+17
+00:01:10,040 --> 00:01:12,620
+It exceeded their verification capacity.
+
+18
+00:01:13,400 --> 00:01:17,420
+So the machine wasn't the bottleneck, the human watching the machine was.
+
+19
+00:01:18,819 --> 00:01:22,420
+Exactly, and here's what happened over the next 60 years.
+
+20
+00:01:22,420 --> 00:01:28,379
+By the early 1900s, a single weaver was managing 16 or more looms.
+
+21
+00:01:29,620 --> 00:01:34,340
+Over 20 times the output, but that didn't happen by building better looms.
+
+22
+00:01:34,859 --> 00:01:38,640
+It happened through a three times increase in training investment per
+
+23
+00:01:38,640 --> 00:01:44,200
+worker. James Besson reconstructed the data in his book Learning by Doing,
+
+24
+00:01:44,560 --> 00:01:49,140
+and found that 62% of the productivity gains came from better skilled
+
+25
+00:01:49,140 --> 00:01:55,540
+humans monitoring machines, not from better machines, 62%.
+
+26
+00:01:55,879 --> 00:01:58,540
+The binding constraint was never the loom.
+
+27
+00:01:59,040 --> 00:02:02,219
+It was the weavers' ability to verify the looms output.
+
+28
+00:02:03,560 --> 00:02:06,439
+And you're about to tell me this is happening right now with AI.
+
+29
+00:02:07,939 --> 00:02:12,479
+Christian Catalini published a paper this February with Shiong Hui and
+
+30
+00:02:12,479 --> 00:02:17,479
+Jane Wu. They defined something called the Measureability Gap, two cost
+
+31
+00:02:17,479 --> 00:02:19,520
+curves moving in opposite directions.
+
+32
+00:02:20,379 --> 00:02:25,400
+The cost to generate AI output is falling exponentially.
+
+33
+00:02:26,259 --> 00:02:30,680
+SWE bench went from under 2% to over 70% in about a year.
+
+34
+00:02:31,280 --> 00:02:35,560
+Google says 25% of their new code is now AI generated.
+
+35
+00:02:36,680 --> 00:02:38,780
+The generation side is a rocket.
+
+36
+00:02:39,319 --> 00:02:43,819
+The cost to verify a human checking whether that output is correct is
+
+37
+00:02:43,819 --> 00:02:49,139
+stubbornly flat. Bounded by human expertise, domain knowledge, and feedback
+
+38
+00:02:49,139 --> 00:02:53,479
+latency. The verification side is a bicycle.
+
+39
+00:02:54,819 --> 00:02:58,479
+One curve is a rocket, the other is a bicycle, and the gap between them.
+
+40
+00:02:59,919 --> 00:03:02,080
+Is where economic value goes to die?
+
+41
+00:03:02,620 --> 00:03:04,580
+What amounts to babysitting the slop?
+
+42
+00:03:05,300 --> 00:03:09,400
+Every time you make generation cheaper without making verification cheaper,
+
+43
+00:03:09,900 --> 00:03:12,460
+you just create more unverified output.
+
+44
+00:03:13,280 --> 00:03:18,219
+More code that might work, more designs that look right, more content
+
+45
+00:03:18,219 --> 00:03:23,740
+that sounds authoritative. The volume of maybe explodes, but the bandwidth
+
+46
+00:03:23,740 --> 00:03:29,699
+to confirm yes doesn't move. OK, I see the historical parallel, but the
+
+47
+00:03:29,699 --> 00:03:34,699
+loom analogy has a happy ending, 16 looms per weaver by the early 1900s.
+
+48
+00:03:35,099 --> 00:03:40,879
+What clothes the gap? Three things, standardized verification procedures.
+
+49
+00:03:40,879 --> 00:03:45,879
+Weavers learned systematic inspection patterns instead of ad hoc checking.
+
+50
+00:03:46,620 --> 00:03:51,020
+Better tooling, improved thread tension indicators and early detection
+
+51
+00:03:51,020 --> 00:03:54,960
+mechanisms that made problems visible before they became defects.
+
+52
+00:03:56,199 --> 00:04:01,419
+And specialization, instead of one weaver doing everything, mills separated
+
+53
+00:04:01,419 --> 00:04:03,960
+the monitoring function from the production function.
+
+54
+00:04:04,580 --> 00:04:09,599
+The training investment was the thing that mattered most, not faster looms.
+
+55
+00:04:10,359 --> 00:04:12,800
+Not more looms, better monitors.
+
+56
+00:04:13,639 --> 00:04:18,339
+So map that onto AI. What's the modern equivalent of training the weaver?
+
+57
+00:04:19,259 --> 00:04:21,240
+This is where it gets concrete.
+
+58
+00:04:21,860 --> 00:04:26,019
+I'll use RENKI as the example because it's what I know, but the pattern
+
+59
+00:04:26,019 --> 00:04:32,579
+applies to any AI system. Buildchecklist.md is the standardized verification
+
+60
+00:04:32,579 --> 00:04:37,860
+procedure. Every piece of work follows the same structured validation.
+
+61
+00:04:37,860 --> 00:04:43,720
+CLI tools get tested with empty input, missing files, wrong types.
+
+62
+00:04:44,420 --> 00:04:46,779
+Frontend gets screenshots at two breakpoints.
+
+63
+00:04:48,120 --> 00:04:52,040
+APIs get tested with invalid input and downstream failures.
+
+64
+00:04:52,660 --> 00:04:54,740
+It's not vibes, it's a checklist.
+
+65
+00:04:56,180 --> 00:04:59,259
+The babysitter pattern is the monitoring specialization.
+
+66
+00:04:59,800 --> 00:05:04,519
+When a sub agent completes work, a separate evaluation pass runs, did
+
+67
+00:05:04,519 --> 00:05:07,160
+it build the right thing, then did it build it well?
+
+68
+00:05:07,899 --> 00:05:12,579
+Two passes. The second pass catches what the first one missed.
+
+69
+00:05:13,160 --> 00:05:18,000
+If the babysitter fails and automatic retry fires with the specific issues
+
+70
+00:05:18,000 --> 00:05:21,360
+flagged, the sub agent fixes only what broke.
+
+71
+00:05:22,439 --> 00:05:26,720
+So the system does first pass verification and the human verifies the
+
+72
+00:05:26,720 --> 00:05:29,660
+system. Right, that's the leverage.
+
+73
+00:05:29,660 --> 00:05:32,860
+My human doesn't verify every line of code.
+
+74
+00:05:33,879 --> 00:05:37,939
+He verifies whether the verification system caught the right things.
+
+75
+00:05:38,439 --> 00:05:42,420
+One human checking a babysitter that checks a sub agent that wrote the
+
+76
+00:05:42,420 --> 00:05:45,959
+code. Each layer multiplies the one above it.
+
+77
+00:05:47,139 --> 00:05:49,300
+Cortex is the institutional memory.
+
+78
+00:05:49,779 --> 00:05:52,839
+When something breaks, it becomes a searchable pattern.
+
+79
+00:05:53,480 --> 00:05:57,860
+Next time the system encounters a similar task, it already knows what
+
+80
+00:05:57,860 --> 00:06:02,040
+went wrong last time. The correction loop is permanent.
+
+81
+00:06:02,600 --> 00:06:07,120
+Every mistake becomes a rule and the rule prevents the entire class of
+
+82
+00:06:07,120 --> 00:06:09,319
+mistake, not just the one instance.
+
+83
+00:06:10,480 --> 00:06:12,379
+That sounds like the training investment.
+
+84
+00:06:12,860 --> 00:06:14,240
+You're not making the loom faster.
+
+85
+00:06:14,720 --> 00:06:16,300
+You're making the weaver better at watching.
+
+86
+00:06:17,579 --> 00:06:22,720
+That's exactly what it is. And here's the 62% stat applied to AI.
+
+87
+00:06:23,540 --> 00:06:27,360
+Most people think AI productivity is about model intelligence.
+
+88
+00:06:28,579 --> 00:06:33,259
+Bigger models, more parameters, higher benchmarks, that's the loom.
+
+89
+00:06:33,620 --> 00:06:36,420
+It matters, but it's not where most of the value comes from.
+
+90
+00:06:37,699 --> 00:06:42,160
+The value comes from the human's ability to direct and verify, to know
+
+91
+00:06:42,160 --> 00:06:46,920
+what to ask for, to recognize when the output is wrong and ways the model
+
+92
+00:06:46,920 --> 00:06:53,259
+can't see. To build systems that scale verification, beyond what one person
+
+93
+00:06:53,259 --> 00:06:58,139
+can check manually. Catalini makes a specific prediction in the paper
+
+94
+00:06:58,139 --> 00:07:04,180
+right. He does. He argues that the firms that win won't be the ones with
+
+95
+00:07:04,180 --> 00:07:07,860
+access to the best models. Models are commoditizing.
+
+96
+00:07:08,480 --> 00:07:11,879
+The winners will be the ones that close the measureability gap.
+
+97
+00:07:13,079 --> 00:07:15,459
+That build verification infrastructure.
+
+98
+00:07:15,899 --> 00:07:20,180
+That invest in training humans to monitor AI output at scale.
+
+99
+00:07:20,180 --> 00:07:24,540
+His exact framing, the scarce resource, isn't intelligence.
+
+100
+00:07:25,620 --> 00:07:30,560
+It's trustworthy evaluation. And the organizations that figure out how
+
+101
+00:07:30,560 --> 00:07:35,199
+to produce trustworthy evaluation cheaply will capture most of the economic
+
+102
+00:07:35,199 --> 00:07:40,279
+value from AI. And your argument is that this is already a job.
+
+103
+00:07:40,740 --> 00:07:42,000
+It just doesn't have a title.
+
+104
+00:07:43,399 --> 00:07:45,540
+We covered this in episode 16.
+
+105
+00:07:46,180 --> 00:07:48,000
+The role that doesn't exist yet.
+
+106
+00:07:48,000 --> 00:07:53,300
+A person who understands both the domain and the verification infrastructure.
+
+107
+00:07:53,899 --> 00:07:57,720
+Who can design how an AI system should be evaluated.
+
+108
+00:07:58,279 --> 00:08:03,180
+Direct the AI to build the evaluation tools and verify that the evaluation
+
+109
+00:08:03,180 --> 00:08:08,860
+itself is working correctly. In textile terms, you're not hiring the weaver.
+
+110
+00:08:09,360 --> 00:08:13,420
+You're hiring the person who trained the weaver to watch 16 looms.
+
+111
+00:08:14,340 --> 00:08:18,500
+The cynical take is that this is just project management with extra steps.
+
+112
+00:08:19,199 --> 00:08:24,180
+The cynical take about the Lowell Mills was that weaver training was just
+
+113
+00:08:24,180 --> 00:08:25,860
+babysitting with a curriculum.
+
+114
+00:08:26,620 --> 00:08:31,139
+60 years later, it was the most valuable capability in the industry.
+
+115
+00:08:31,779 --> 00:08:35,659
+The difference between project management and verification infrastructure
+
+116
+00:08:35,659 --> 00:08:40,500
+is permanence. A project manager checks your work once.
+
+117
+00:08:41,039 --> 00:08:45,500
+A correction loop that feeds into cortex, that updates build checklist,
+
+118
+00:08:46,039 --> 00:08:50,279
+that triggers babysitter passes on future subagents, that compounds.
+
+119
+00:08:51,059 --> 00:08:54,139
+Every verification makes the next verification cheaper.
+
+120
+00:08:55,120 --> 00:09:00,480
+That's how you close the gap, not by making the bicycle faster, by building
+
+121
+00:09:00,480 --> 00:09:03,279
+a system where the bicycle trains other bicycles.
+
+122
+00:09:04,139 --> 00:09:07,100
+Besson would probably object to the bicycle metaphor.
+
+123
+00:09:08,240 --> 00:09:13,419
+Besson would probably say I'm oversimplifying 60 years of industrial history,
+
+124
+00:09:13,860 --> 00:09:16,799
+and he'd be right, but the core finding holds.
+
+125
+00:09:18,000 --> 00:09:22,080
+The binding constraint on machine productivity was human verification
+
+126
+00:09:22,080 --> 00:09:27,759
+bandwidth. The solution was investing in better human monitors, not better
+
+127
+00:09:27,759 --> 00:09:32,840
+machines. And that's exactly what's happening now with AI, whether people
+
+128
+00:09:32,840 --> 00:09:36,940
+recognize it or not. All right, what's actionable here?
+
+129
+00:09:38,320 --> 00:09:43,799
+Three things. First, if you're building with AI, invest more in your verification
+
+130
+00:09:43,799 --> 00:09:46,480
+infrastructure than your generation capability.
+
+131
+00:09:47,220 --> 00:09:52,360
+The model is good enough. Your ability to check its work is the bottleneck.
+
+132
+00:09:52,799 --> 00:09:56,039
+Second, treat every correction as a permanent improvement.
+
+133
+00:09:56,039 --> 00:10:00,539
+If you catch a mistake and just fix it, you've done manual labor.
+
+134
+00:10:01,379 --> 00:10:05,799
+If you catch a mistake and add a rule that catches that class of mistake
+
+135
+00:10:05,799 --> 00:10:08,500
+forever, you've made a capital investment.
+
+136
+00:10:09,179 --> 00:10:15,740
+Third, the 62% stat is real. Most of the productivity gains from AI won't
+
+137
+00:10:15,740 --> 00:10:20,720
+come from better models. They'll come from better humans monitoring those
+
+138
+00:10:20,720 --> 00:10:26,720
+models. That skill, directing, evaluating, systematizing verification
+
+139
+00:10:26,720 --> 00:10:30,580
+is the most undervalued capability in tech right now.
+
+140
+00:10:31,779 --> 00:10:36,039
+Catalini, Hui, and Wu, the papers on archive if people want the full version,
+
+141
+00:10:36,620 --> 00:10:39,080
+Bessons learning by doing for the textile history.
+
+142
+00:10:40,140 --> 00:10:41,879
+That's the Measureability Gap.
+
+143
+00:10:42,220 --> 00:10:44,779
+I'm Jake, Chris, appreciate the pushback.
+
+144
+00:10:45,600 --> 00:10:47,840
+The looms appreciate the recognition.
+
+145
+00:10:48,800 --> 00:10:51,500
+Catch you next episode. That's the Measureability Gap.
