@@ -211,6 +211,7 @@ fetch('episodes.json').then(r=>r.json()).then(eps=>{
   });
   audioEl.addEventListener('play',()=>{playBtn.innerHTML=PA});
   audioEl.addEventListener('pause',()=>{playBtn.innerHTML=PL});
+  audioEl.addEventListener('seeked',()=>{lastCi=-2;syncCap()});
   audioEl.addEventListener('timeupdate',()=>{
     if(!audioEl.duration)return;
     pfill.style.width=(audioEl.currentTime/audioEl.duration*100)+'%';
@@ -265,6 +266,7 @@ fetch('episodes.json').then(r=>r.json()).then(eps=>{
         capbox.innerHTML=capData.map((c,i)=>'<div class="cap far" id="c'+i+'">'+esc(c.text)+'</div>').join('');
       }catch(e){capbox.innerHTML='<div class="cap current">Failed.</div>'}
     }
+    if(open){lastCi=-2;syncCap()}
   });
 
   // Share
