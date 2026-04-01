@@ -750,6 +750,7 @@ async function autoShowCap(n){
     }catch(e){return}
   }
   box.classList.add('open');
+  lastCi[n]=-2;syncCap(n);
   // Auto-hide after AUTO_CAP_SEC
   if(box._autoTimer)clearTimeout(box._autoTimer);
   box._autoTimer=setTimeout(()=>{if(cur&&cur.n===n){const a=cur.a;if(a.currentTime>AUTO_CAP_SEC)box.classList.remove('open')}},AUTO_CAP_SEC*1000);
@@ -866,6 +867,7 @@ async function toggleCap(n,url,btn){
       box.innerHTML=capData[n].map((c,i)=>'<div class="cap far" id="c'+n+'-'+i+'">'+esc(c.text)+'</div>').join('');
     }catch(e){box.innerHTML='<div class="cap current">Failed.</div>'}
   }
+  if(open){lastCi[n]=-2;syncCap(n)}
 }
 
 let lastCi={};
@@ -1068,6 +1070,7 @@ sharedAudio.addEventListener('timeupdate',()=>{if(cur)tick(cur.n)});
 sharedAudio.addEventListener('ended',()=>{if(cur)ended(cur.n)});
 sharedAudio.addEventListener('play',()=>{document.getElementById('sticky-mini-play').innerHTML=PA;if(cur){document.getElementById('btn-'+cur.n).innerHTML=PA;document.getElementById('sticky-btn').innerHTML=PA;const el=document.getElementById('ep'+cur.n);if(el)el.classList.add('playing')}});
 sharedAudio.addEventListener('pause',()=>{document.getElementById('sticky-mini-play').innerHTML=PL;if(cur){document.getElementById('btn-'+cur.n).innerHTML=PL;document.getElementById('sticky-btn').innerHTML=PL;const el=document.getElementById('ep'+cur.n);if(el)el.classList.remove('playing')}});
+sharedAudio.addEventListener('seeked',()=>{if(cur){lastCi[cur.n]=-2;syncCap(cur.n);syncStickyCap(cur.n)}});
 sharedAudio.volume=vol;
 
 load();updateJumpPos();
