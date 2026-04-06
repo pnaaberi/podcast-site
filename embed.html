@@ -64,7 +64,7 @@
         root.innerHTML = '<div class="error">Could not load episodes</div>';
       });
 
-    function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+    function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML.replace(/"/g,'&quot;')}
 
     function render(ep) {
       const padNum = String(ep.epNum).padStart(3, '0');
