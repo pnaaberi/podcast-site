@@ -1,0 +1,49 @@
+[JAKE]
+
+Thirty-two billion dollars in venture capital. Five infrastructure layers. And a five-person startup that just raised six million dollars so AI agents can have email addresses.
+
+That last one is real. Agent Mail. Six million seed round from General Catalyst. Their pitch: email isn't a communication tool — it's an identity layer. Every service on the internet needs an email at signup. Give your agent an address, you've given it an identity.
+
+What caught my attention isn't Agent Mail. It's what it represents. A new infrastructure category is being assembled right now with billions behind it. Most builders aren't watching because it doesn't look like the AI they're used to. It's not models. Not prompts. Not agents. It's the layer underneath — the operating system agents need to do things in the world.
+
+We've seen this twice before. Two thousand six to two thousand ten — computing moved from on-premise to cloud. AWS, EC two, Lambda. Early movers built companies that dominate today. Two thousand twelve to two thousand sixteen — monoliths decomposed into microservices. Same pattern. New infrastructure, early movers win.
+
+This is the third shift. Five layers are emerging.
+
+Layer one. Compute and sandboxing. The agent needs somewhere safe to run code. Not your laptop. Not production. Isolated, auditable execution. E two B raised thirty-two million building firecracker micro VMs for this. Daytona raised twenty-four million on Docker containers with ninety millisecond cold starts. Browserbase hit a three hundred million dollar valuation on headless browser automation.
+
+The split here is philosophical. E two B treats sandboxes as disposable — spin up, run, tear down. Daytona treats them as persistent — the agent installs dependencies, creates files, comes back. That's an architectural bet on how long agent sessions will run.
+
+Layer two. Identity and communication. The agent needs to exist on the internet. Authenticate, send messages, hold verifiable identity. Early and messy.
+
+Layer three. Memory and persistence. The agent needs to remember across sessions — history, knowledge, corrections. The least mature layer in the venture stack. Most startups haven't cracked it.
+
+Layer four. Payments. The agent needs to transact. Almost nobody has built this.
+
+Layer five. Routing and orchestration. Coordinate with other agents, fan out work, merge results, run multi-step plans.
+
+Five layers. Billions of dollars. Dozens of startups building point solutions for each one.
+
+We built all five. On a home server. One person and an AI assistant.
+
+Not because we planned an agent operating system. We built it because we had an agent doing real work, and these problems showed up.
+
+Sandboxed execution with permission gating — layer one. Chat adapters with authentication and role-based access — layer two. A knowledge graph with semantic search, session management, and file-based memory — layer three. Self-hosted at near-zero cost, so payments haven't been necessary — layer four is an intentional gap. Sub-agents, batch operations, phase runners, scheduled jobs — layer five.
+
+The architecture converged. We didn't copy their stack. They didn't copy ours. Same five layers, because the problems are universal. When an agent does real work, it needs these things. The venture capital isn't funding innovation — it's funding scale.
+
+That's the pattern. You don't need five vendors. You need to understand which layers matter for your use case.
+
+The venture approach is horizontal. Best sandbox from one company, best identity from another, best memory from a third. Snap together like building blocks. Except they're not standardized blocks. They're wooden pieces and plastic bricks all marketing themselves as compatible. Integration friction is real, and nobody talks about it.
+
+The alternative is vertical integration. One runtime covering all five layers, designed to work together. Coherence and zero integration tax — but you lose best-of-breed optionality. For a single builder with an agent that needs to work reliably every day, vertical wins. For a platform serving ten thousand developers, horizontal wins.
+
+Both valid. The mistake is not choosing.
+
+Two things to build.
+
+First. An agent capability audit. Score your agent against the five layers, zero to five each. Compute — can it run code safely? Identity — can it authenticate? Memory — does it retain knowledge across sessions? Payments — can it transact? Orchestration — can it coordinate multi-step work? The gaps tell you what to build next.
+
+Second. A session handoff protocol. When an agent's session ends — context full, runtime restart, provider switch — everything resets. A handoff protocol would package identity, memory state, and active tasks into a portable format another runtime can pick up. Like a session cookie, but for agents. Whoever builds this owns a critical piece of the stack.
+
+That's The Agent Operating System. I'm Jake. Catch you next episode.

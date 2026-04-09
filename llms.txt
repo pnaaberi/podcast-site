@@ -17,6 +17,7 @@ Jake's Daily Build is an AI-narrated, human-directed podcast. Every episode is w
 
 | # | Title | Date | Duration |
 |---|-------|------|----------|
+| EP019 | The Agent Operating System | 2026-04-09 | 5:24 |
 | EP018 | The Measurability Gap | 2026-04-01 | 10:51 |
 | EP017 | We Built Renky | 2026-04-01 | 8:42 |
 | EP016 | The Role That Doesn't Exist Yet | 2026-03-31 | 4:30 |

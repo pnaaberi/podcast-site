@@ -1,0 +1,199 @@
+1
+00:00:00,000 --> 00:00:07,280
+32 billion dollars in venture capital, five infrastructure layers, and a five-person startup
+
+2
+00:00:07,280 --> 00:00:13,880
+that just raised $6 million so AI agents can have email addresses.
+
+3
+00:00:13,880 --> 00:00:20,320
+That last one is real, agent mail, six million seed round from General Catalyst.
+
+4
+00:00:20,320 --> 00:00:26,240
+Their pitch, email isn't a communication tool, it's an identity layer, every service on
+
+5
+00:00:26,240 --> 00:00:33,120
+the internet needs an email at signup, give your agent an address, you've given it an identity.
+
+6
+00:00:33,120 --> 00:00:37,280
+What caught my attention is an agent mail, it's what it represents.
+
+7
+00:00:37,280 --> 00:00:42,880
+A new infrastructure category is being assembled right now with billions behind it.
+
+8
+00:00:42,880 --> 00:00:47,600
+Most builders aren't watching because it doesn't look like the AI they're used to.
+
+9
+00:00:47,600 --> 00:00:54,180
+It's not models, not prompts, not agents, it's the layer underneath the operating system
+
+10
+00:00:54,179 --> 00:00:57,140
+agents need to do things in the world.
+
+11
+00:00:57,140 --> 00:01:04,420
+We've seen this twice before, 2006 to 2010, computing moved from on-premise to cloud,
+
+12
+00:01:04,420 --> 00:01:13,140
+AWS EC2 Lambda, early movers built companies that dominate today, 2012 to 2016,
+
+13
+00:01:13,140 --> 00:01:21,060
+monolith decomposed into microservices, same pattern, new infrastructure, early movers win.
+
+14
+00:01:21,060 --> 00:01:25,460
+This is the third shift, five layers are emerging.
+
+15
+00:01:25,460 --> 00:01:31,219
+Layer one, compute and sandboxing, the agent needs somewhere safe to run code,
+
+16
+00:01:31,219 --> 00:01:36,260
+not your laptop, not production, isolated, auditable execution.
+
+17
+00:01:36,260 --> 00:01:41,620
+E2B raised 32 million building firecracker micro VMs for this.
+
+18
+00:01:41,620 --> 00:01:47,780
+Daytona raised 24 million on Docker containers with 90 millisecond cold starts.
+
+19
+00:01:47,780 --> 00:01:52,980
+Browserbase hit a 300 million dollar valuation on headless browser automation.
+
+20
+00:01:53,859 --> 00:02:01,140
+The split here is philosophical. E2B treats sandboxes as disposable spin-up, run, tear down.
+
+21
+00:02:01,700 --> 00:02:06,260
+Daytona treats them as persistent. The agent installs dependencies,
+
+22
+00:02:06,260 --> 00:02:12,180
+creates files, comes back. That's an architectural bet on how long agent sessions will run.
+
+23
+00:02:13,140 --> 00:02:18,819
+Layer two, identity and communication, the agent needs to exist on the internet,
+
+24
+00:02:18,819 --> 00:02:24,020
+authenticate send messages, hold verifiable identity, early and messy.
+
+25
+00:02:25,060 --> 00:02:31,620
+Layer three, memory and persistence, the agent needs to remember across session's history knowledge
+
+26
+00:02:31,620 --> 00:02:37,379
+corrections, the least mature layer in the venture stack, most startups haven't cracked it.
+
+27
+00:02:38,340 --> 00:02:43,379
+We built all five on a home server, one person and an AI assistant,
+
+28
+00:02:44,259 --> 00:02:51,379
+not because we planned an agent operating system. We built it because we had an agent doing real work
+
+29
+00:02:51,379 --> 00:02:57,219
+and these problems showed up. Sandboxed execution with permission gating layer one,
+
+30
+00:02:57,699 --> 00:03:04,099
+chat adapters with authentication and role-based access layer two, a knowledge graph with semantic
+
+31
+00:03:04,099 --> 00:03:10,500
+search, session management and file-based memory layer three. Self-hosted at near zero cost,
+
+32
+00:03:10,500 --> 00:03:16,979
+so payments haven't been necessary layer four is an intentional gap. Subagents, batch operations,
+
+33
+00:03:16,979 --> 00:03:24,579
+phase runners, scheduled jobs layer five. The architecture converged. We didn't copy their stack.
+
+34
+00:03:24,579 --> 00:03:31,939
+They didn't copy hours. Same five layers because the problems are universal. When an agent does real work,
+
+35
+00:03:31,939 --> 00:03:37,139
+it needs these things. The venture capital isn't funding innovation its funding scale.
+
+36
+00:03:38,419 --> 00:03:44,579
+The venture approach is horizontal. Best sandbox from one company, best identity from another,
+
+37
+00:03:44,579 --> 00:03:51,379
+best memory from a third. Snap together like building blocks, except they're not standardized blocks.
+
+38
+00:03:51,860 --> 00:03:57,939
+There wouldn't pieces in plastic bricks all marketing themselves as compatible. Integration friction
+
+39
+00:03:57,939 --> 00:04:05,539
+is real and nobody talks about it. The alternative is vertical integration. One runtime covering all
+
+40
+00:04:05,539 --> 00:04:12,979
+five layers designed to work together. Coherence and zero integration tax, but you lose best of breed
+
+41
+00:04:12,979 --> 00:04:19,699
+optionality for a single builder with an agent that needs to work reliably every day vertical wins.
+
+42
+00:04:20,259 --> 00:04:27,620
+For a platform serving 10,000 developers, horizontal wins. Both valid, the mistake is not
+
+43
+00:04:27,620 --> 00:04:36,340
+choosing. Two things to build. First, an agent capability audit. Score your agent against the five layers
+
+44
+00:04:36,340 --> 00:04:43,860
+zero to five each. Compute can it run code safely. Identity can it authenticate. Memory does it retain
+
+45
+00:04:43,860 --> 00:04:50,980
+knowledge across sessions. Payments can it transact. Orchestration can it coordinate multi-step work.
+
+46
+00:04:50,980 --> 00:04:58,100
+The gaps tell you what to build next. Second, a session handoff protocol. When an agent session ends
+
+47
+00:04:58,100 --> 00:05:05,620
+context full runtime restart, provider switch, everything resets. A handoff protocol would package
+
+48
+00:05:05,620 --> 00:05:12,900
+identity, memory state, and active tasks into a portable format. Another runtime can pick up. Like a
+
+49
+00:05:12,900 --> 00:05:19,939
+session cookie, but for agents, whoever builds this owns a critical piece of the stack. That's the agent
+
+50
+00:05:19,939 --> 00:05:29,060
+operating system. I'm Jake. Catch you next episode.

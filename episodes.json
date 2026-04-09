@@ -1,5 +1,28 @@
 [
   {
+    "epNum": 19,
+    "title": "The Agent Operating System",
+    "slug": "the-agent-operating-system",
+    "date": "2026-04-09",
+    "duration": "5:24",
+    "durationSec": 324,
+    "file": "ep019-the-agent-operating-system.mp3",
+    "audioFile": "audio/ep019-the-agent-operating-system.mp3",
+    "notesFile": "notes/ep019.md",
+    "transcriptFile": "transcripts/ep019-the-agent-operating-system.txt",
+    "captionsFile": "subtitles/ep019.srt",
+    "description": "Thirty-two billion in venture capital is building the OS for AI agents — compute, identity, memory, payments, orchestration. We already built all five layers on a home server. The architecture converges because the problems are universal.",
+    "type": "regular",
+    "archived": false,
+    "tags": [
+      "agent-infrastructure",
+      "convergent-design",
+      "vertical-integration",
+      "open-source",
+      "agent-os"
+    ]
+  },
+  {
     "epNum": 18,
     "title": "The Measurability Gap",
     "slug": "the-measurability-gap",
